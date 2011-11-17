@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="typeslibrary"
+    nsURI="http://www.obeonetwork.org/dsl/typeslibrary/1.0" nsPrefix="typeslibrary">
+  <eClassifiers xsi:type="ecore:EClass" name="NativeTypesLibrary">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nativeTypes" upperBound="-1"
+        eType="#//NativeType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="NativeTypeKind">
+    <eLiterals name="Simple"/>
+    <eLiterals name="Length" value="1"/>
+    <eLiterals name="LengthAndPrecision" value="2"/>
+    <eLiterals name="Enum" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeInstance" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nativeType" lowerBound="1"
+        eType="#//NativeType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="precision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="literals" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NativeType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="spec" eType="#//NativeTypeKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplexNamedType" eSuperTypes="#//UserDefinedType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
+        eType="#//UserDefinedType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleNamedType" eSuperTypes="#//UserDefinedType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//TypeInstance"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UserDefinedType" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserDefinedTypeRef" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//UserDefinedType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserDefinedTypesLibrary">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="userDefinedTypes" upperBound="-1"
+        eType="#//UserDefinedType" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

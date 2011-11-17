@@ -1,0 +1,14 @@
+h1. Welcome to Database Designer by Obeo Network
+
+Database Designer allows the modeling of database (Physical and entity relation models).
+
+These plugins are released under the EPL Open-Souce License.
+
+More details about features, screenshots, release notes, dependencies coming soon here:
+
+ * http://marketplace.obeonetwork.com/module/database
+ * http://docs.obeonetwork.com/database
+ * http://www.obeodesigner.com
+
+
+To build the module you'll need Maven3 (with Tycho plugin) and run @mvn clean verify@.

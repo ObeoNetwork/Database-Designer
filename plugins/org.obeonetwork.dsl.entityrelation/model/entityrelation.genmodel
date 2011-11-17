@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2011 Obeo.&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;    Obeo - initial API and implementation"
+    modelDirectory="/org.obeonetwork.dsl.entityrelation/src" creationIcons="false"
+    modelPluginID="org.obeonetwork.dsl.entityrelation" modelName="EntityRelation"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" usedGenPackages="../../org.obeonetwork.dsl.typeslibrary/model/typeslibrary.genmodel#//typeslibrary">
+  <foreignModel>entityrelation.ecore</foreignModel>
+  <genPackages prefix="EntityRelation" basePackage="org.obeonetwork.dsl" disposableProviderFactory="true"
+      ecorePackage="entityrelation.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="entityrelation.ecore#//Cardinality">
+      <genEnumLiterals ecoreEnumLiteral="entityrelation.ecore#//Cardinality/ZERO_ONE"/>
+      <genEnumLiterals ecoreEnumLiteral="entityrelation.ecore#//Cardinality/ZERO_STAR"/>
+      <genEnumLiterals ecoreEnumLiteral="entityrelation.ecore#//Cardinality/ONE_ONE"/>
+      <genEnumLiterals ecoreEnumLiteral="entityrelation.ecore#//Cardinality/ONE_STAR"/>
+    </genEnums>
+    <genClasses ecoreClass="entityrelation.ecore#//LogicalModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entityrelation.ecore#//LogicalModel/entities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entityrelation.ecore#//LogicalModel/relations"/>
+    </genClasses>
+    <genClasses ecoreClass="entityrelation.ecore#//Entity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Entity/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Entity/identifiers"/>
+    </genClasses>
+    <genClasses ecoreClass="entityrelation.ecore#//Relation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Relation/roles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Relation/joins"/>
+    </genClasses>
+    <genClasses ecoreClass="entityrelation.ecore#//Attribute">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Attribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//Attribute/required"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="entityrelation.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="entityrelation.ecore#//LogicalElement">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//LogicalElement/ID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//LogicalElement/comments"/>
+    </genClasses>
+    <genClasses ecoreClass="entityrelation.ecore#//Role">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Role/entity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//Role/cardinality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//Role/dependant"/>
+    </genClasses>
+    <genClasses ecoreClass="entityrelation.ecore#//Identifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//Identifier/primary"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Identifier/attributes"/>
+    </genClasses>
+    <genClasses ecoreClass="entityrelation.ecore#//Join">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Join/identifiers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Join/columns"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
