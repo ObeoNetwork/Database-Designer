@@ -45,7 +45,7 @@ public class TypesLibraryUtil {
 		registerPathmaps();
 	}
 
-	private static void registerPathmaps() {
+	public static void registerPathmaps() {
 		final URL mySqlUrl = TypesLibraryUtil.class.getClassLoader()
 				.getResource("MySQL-5.typeslibrary");
 		URIConverter.URI_MAP.put(URI.createURI(MYSQL_PATHMAP),

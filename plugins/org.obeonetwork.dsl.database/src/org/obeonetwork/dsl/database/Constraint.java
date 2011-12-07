@@ -20,7 +20,7 @@ package org.obeonetwork.dsl.database;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.database.Constraint#getExpression <em>Expression</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.database.Constraint#getColumn <em>Column</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.Constraint#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,29 +63,31 @@ public interface Constraint extends NamedElement {
 	void setExpression(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Column</b></em>' reference.
+	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.database.Table#getConstraints <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Column</em>' reference isn't clear,
+	 * If the meaning of the '<em>Owner</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Column</em>' reference.
-	 * @see #setColumn(Column)
-	 * @see org.obeonetwork.dsl.database.DatabasePackage#getConstraint_Column()
-	 * @model
+	 * @return the value of the '<em>Owner</em>' container reference.
+	 * @see #setOwner(Table)
+	 * @see org.obeonetwork.dsl.database.DatabasePackage#getConstraint_Owner()
+	 * @see org.obeonetwork.dsl.database.Table#getConstraints
+	 * @model opposite="constraints" required="true" transient="false"
 	 * @generated
 	 */
-	Column getColumn();
+	Table getOwner();
 
 	/**
-	 * Sets the value of the '{@link org.obeonetwork.dsl.database.Constraint#getColumn <em>Column</em>}' reference.
+	 * Sets the value of the '{@link org.obeonetwork.dsl.database.Constraint#getOwner <em>Owner</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Column</em>' reference.
-	 * @see #getColumn()
+	 * @param value the new value of the '<em>Owner</em>' container reference.
+	 * @see #getOwner()
 	 * @generated
 	 */
-	void setColumn(Column value);
+	void setOwner(Table value);
 
 } // Constraint

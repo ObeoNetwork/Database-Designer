@@ -12,14 +12,17 @@ package org.obeonetwork.dsl.database.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.obeonetwork.dsl.database.Column;
 import org.obeonetwork.dsl.database.Constraint;
 import org.obeonetwork.dsl.database.DatabasePackage;
+import org.obeonetwork.dsl.database.Table;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +32,7 @@ import org.obeonetwork.dsl.database.DatabasePackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ConstraintImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.database.impl.ConstraintImpl#getColumn <em>Column</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.impl.ConstraintImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,16 +65,6 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	 * @ordered
 	 */
 	protected String expression = EXPRESSION_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getColumn() <em>Column</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getColumn()
-	 * @generated
-	 * @ordered
-	 */
-	protected Column column;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,16 +111,40 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Column getColumn() {
-		if (column != null && column.eIsProxy()) {
-			InternalEObject oldColumn = (InternalEObject)column;
-			column = (Column)eResolveProxy(oldColumn);
-			if (column != oldColumn) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabasePackage.CONSTRAINT__COLUMN, oldColumn, column));
-			}
+	public Table getOwner() {
+		if (eContainerFeatureID() != DatabasePackage.CONSTRAINT__OWNER) return null;
+		return (Table)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(Table newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, DatabasePackage.CONSTRAINT__OWNER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwner(Table newOwner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.CONSTRAINT__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DatabasePackage.TABLE__CONSTRAINTS, Table.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return column;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.CONSTRAINT__OWNER, newOwner, newOwner));
 	}
 
 	/**
@@ -135,8 +152,15 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Column basicGetColumn() {
-		return column;
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabasePackage.CONSTRAINT__OWNER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwner((Table)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -144,11 +168,27 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setColumn(Column newColumn) {
-		Column oldColumn = column;
-		column = newColumn;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.CONSTRAINT__COLUMN, oldColumn, column));
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabasePackage.CONSTRAINT__OWNER:
+				return basicSetOwner(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case DatabasePackage.CONSTRAINT__OWNER:
+				return eInternalContainer().eInverseRemove(this, DatabasePackage.TABLE__CONSTRAINTS, Table.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -161,9 +201,8 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 		switch (featureID) {
 			case DatabasePackage.CONSTRAINT__EXPRESSION:
 				return getExpression();
-			case DatabasePackage.CONSTRAINT__COLUMN:
-				if (resolve) return getColumn();
-				return basicGetColumn();
+			case DatabasePackage.CONSTRAINT__OWNER:
+				return getOwner();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,8 +218,8 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 			case DatabasePackage.CONSTRAINT__EXPRESSION:
 				setExpression((String)newValue);
 				return;
-			case DatabasePackage.CONSTRAINT__COLUMN:
-				setColumn((Column)newValue);
+			case DatabasePackage.CONSTRAINT__OWNER:
+				setOwner((Table)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -197,8 +236,8 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 			case DatabasePackage.CONSTRAINT__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
-			case DatabasePackage.CONSTRAINT__COLUMN:
-				setColumn((Column)null);
+			case DatabasePackage.CONSTRAINT__OWNER:
+				setOwner((Table)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -214,8 +253,8 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 		switch (featureID) {
 			case DatabasePackage.CONSTRAINT__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
-			case DatabasePackage.CONSTRAINT__COLUMN:
-				return column != null;
+			case DatabasePackage.CONSTRAINT__OWNER:
+				return getOwner() != null;
 		}
 		return super.eIsSet(featureID);
 	}

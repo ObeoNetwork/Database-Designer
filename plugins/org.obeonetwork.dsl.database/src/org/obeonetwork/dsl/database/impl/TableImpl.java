@@ -170,7 +170,7 @@ public class TableImpl extends AbstractTableImpl implements Table {
 	 */
 	public EList<Constraint> getConstraints() {
 		if (constraints == null) {
-			constraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, DatabasePackage.TABLE__CONSTRAINTS);
+			constraints = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, DatabasePackage.TABLE__CONSTRAINTS, DatabasePackage.CONSTRAINT__OWNER);
 		}
 		return constraints;
 	}
@@ -202,6 +202,8 @@ public class TableImpl extends AbstractTableImpl implements Table {
 				return basicSetPrimaryKey((PrimaryKey)otherEnd, msgs);
 			case DatabasePackage.TABLE__FOREIGN_KEYS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getForeignKeys()).basicAdd(otherEnd, msgs);
+			case DatabasePackage.TABLE__CONSTRAINTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConstraints()).basicAdd(otherEnd, msgs);
 			case DatabasePackage.TABLE__INDEX:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIndex()).basicAdd(otherEnd, msgs);
 		}

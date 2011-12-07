@@ -1066,13 +1066,13 @@ public interface DatabasePackage extends EPackage {
 	int CONSTRAINT__EXPRESSION = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Column</b></em>' reference.
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__COLUMN = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int CONSTRAINT__OWNER = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
@@ -1720,15 +1720,15 @@ public interface DatabasePackage extends EPackage {
 	EAttribute getConstraint_Expression();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.database.Constraint#getColumn <em>Column</em>}'.
+	 * Returns the meta object for the container reference '{@link org.obeonetwork.dsl.database.Constraint#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Column</em>'.
-	 * @see org.obeonetwork.dsl.database.Constraint#getColumn()
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see org.obeonetwork.dsl.database.Constraint#getOwner()
 	 * @see #getConstraint()
 	 * @generated
 	 */
-	EReference getConstraint_Column();
+	EReference getConstraint_Owner();
 
 	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.database.DatabaseElement <em>Element</em>}'.
@@ -2289,12 +2289,12 @@ public interface DatabasePackage extends EPackage {
 		EAttribute CONSTRAINT__EXPRESSION = eINSTANCE.getConstraint_Expression();
 
 		/**
-		 * The meta object literal for the '<em><b>Column</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONSTRAINT__COLUMN = eINSTANCE.getConstraint_Column();
+		EReference CONSTRAINT__OWNER = eINSTANCE.getConstraint_Owner();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.database.impl.DatabaseElementImpl <em>Element</em>}' class.

@@ -73,7 +73,6 @@ public class ConstraintItemProvider
 			super.getPropertyDescriptors(object);
 
 			addExpressionPropertyDescriptor(object);
-			addColumnPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -96,28 +95,6 @@ public class ConstraintItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Column feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addColumnPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Constraint_column_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_column_feature", "_UI_Constraint_type"),
-				 DatabasePackage.Literals.CONSTRAINT__COLUMN,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}

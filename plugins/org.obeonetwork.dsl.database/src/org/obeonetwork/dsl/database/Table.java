@@ -89,6 +89,7 @@ public interface Table extends AbstractTable {
 	/**
 	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
 	 * The list contents are of type {@link org.obeonetwork.dsl.database.Constraint}.
+	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.database.Constraint#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constraints</em>' containment reference list isn't clear,
@@ -97,7 +98,8 @@ public interface Table extends AbstractTable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constraints</em>' containment reference list.
 	 * @see org.obeonetwork.dsl.database.DatabasePackage#getTable_Constraints()
-	 * @model containment="true"
+	 * @see org.obeonetwork.dsl.database.Constraint#getOwner
+	 * @model opposite="owner" containment="true"
 	 * @generated
 	 */
 	EList<Constraint> getConstraints();
