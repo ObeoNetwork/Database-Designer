@@ -92,7 +92,7 @@ public class ViewItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_View_query_feature", "_UI_View_type"),
 				 DatabasePackage.Literals.VIEW__QUERY,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
