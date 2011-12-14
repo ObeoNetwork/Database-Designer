@@ -41,7 +41,7 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference database.ecore#//Index/owner"/>
     </genClasses>
     <genClasses ecoreClass="database.ecore#//View">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute database.ecore#//View/query"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute database.ecore#//View/query"/>
     </genClasses>
     <genClasses ecoreClass="database.ecore#//Table">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference database.ecore#//Table/primaryKey"/>
@@ -56,6 +56,8 @@
     <genClasses ecoreClass="database.ecore#//ForeignKey">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference database.ecore#//ForeignKey/elements"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference database.ecore#//ForeignKey/owner"/>
+      <genOperations ecoreOperation="database.ecore#//ForeignKey/getSourceTable"/>
+      <genOperations ecoreOperation="database.ecore#//ForeignKey/getTargetTable"/>
     </genClasses>
     <genClasses ecoreClass="database.ecore#//ForeignKeyElement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference database.ecore#//ForeignKeyElement/fkColumn"/>

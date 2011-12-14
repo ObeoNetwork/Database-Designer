@@ -464,13 +464,22 @@ public interface DatabasePackage extends EPackage {
 	int COLUMN__FOREIGN_KEYS = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Foreign Key Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN__FOREIGN_KEY_ELEMENTS = NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int COLUMN__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Sequence</b></em>' reference.
@@ -479,7 +488,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__SEQUENCE = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int COLUMN__SEQUENCE = NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -488,7 +497,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__OWNER = NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int COLUMN__OWNER = NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Autoincrement</b></em>' attribute.
@@ -497,7 +506,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__AUTOINCREMENT = NAMED_ELEMENT_FEATURE_COUNT + 8;
+	int COLUMN__AUTOINCREMENT = NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>Column</em>' class.
@@ -506,7 +515,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 9;
+	int COLUMN_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.database.impl.IndexImpl <em>Index</em>}' class.
@@ -901,13 +910,22 @@ public interface DatabasePackage extends EPackage {
 	int FOREIGN_KEY__OWNER = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Foreign Key</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_KEY_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int FOREIGN_KEY_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.database.impl.ForeignKeyElementImpl <em>Foreign Key Element</em>}' class.
@@ -1158,13 +1176,40 @@ public interface DatabasePackage extends EPackage {
 	int SEQUENCE = 14;
 
 	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE__ID = NAMED_ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE__COMMENTS = NAMED_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Start</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE__START = 0;
+	int SEQUENCE__START = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Increment</b></em>' attribute.
@@ -1173,7 +1218,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE__INCREMENT = 1;
+	int SEQUENCE__INCREMENT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Min Value</b></em>' attribute.
@@ -1182,7 +1227,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE__MIN_VALUE = 2;
+	int SEQUENCE__MIN_VALUE = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Max Value</b></em>' attribute.
@@ -1191,7 +1236,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE__MAX_VALUE = 3;
+	int SEQUENCE__MAX_VALUE = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Sequence</em>' class.
@@ -1200,7 +1245,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_FEATURE_COUNT = 4;
+	int SEQUENCE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 
 	/**
@@ -1374,6 +1419,17 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getColumn_ForeignKeys();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.obeonetwork.dsl.database.Column#getForeignKeyElements <em>Foreign Key Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Foreign Key Elements</em>'.
+	 * @see org.obeonetwork.dsl.database.Column#getForeignKeyElements()
+	 * @see #getColumn()
+	 * @generated
+	 */
+	EReference getColumn_ForeignKeyElements();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.obeonetwork.dsl.database.Column#getType <em>Type</em>}'.
@@ -1633,6 +1689,17 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getForeignKey_Owner();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.database.ForeignKey#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see org.obeonetwork.dsl.database.ForeignKey#getTarget()
+	 * @see #getForeignKey()
+	 * @generated
+	 */
+	EReference getForeignKey_Target();
 
 	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.database.ForeignKeyElement <em>Foreign Key Element</em>}'.
@@ -2017,6 +2084,14 @@ public interface DatabasePackage extends EPackage {
 		EReference COLUMN__FOREIGN_KEYS = eINSTANCE.getColumn_ForeignKeys();
 
 		/**
+		 * The meta object literal for the '<em><b>Foreign Key Elements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLUMN__FOREIGN_KEY_ELEMENTS = eINSTANCE.getColumn_ForeignKeyElements();
+
+		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2217,6 +2292,14 @@ public interface DatabasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference FOREIGN_KEY__OWNER = eINSTANCE.getForeignKey_Owner();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOREIGN_KEY__TARGET = eINSTANCE.getForeignKey_Target();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.database.impl.ForeignKeyElementImpl <em>Foreign Key Element</em>}' class.

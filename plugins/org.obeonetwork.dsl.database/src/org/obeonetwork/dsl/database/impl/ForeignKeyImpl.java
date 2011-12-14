@@ -39,6 +39,7 @@ import org.obeonetwork.dsl.database.Table;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ForeignKeyImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ForeignKeyImpl#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.impl.ForeignKeyImpl#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,6 +62,16 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * @ordered
 	 */
 	protected EList<ForeignKeyElement> elements;
+
+	/**
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected Table target;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -139,6 +150,69 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Table getTarget() {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (Table)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabasePackage.FOREIGN_KEY__TARGET, oldTarget, target));
+			}
+		}
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Table basicGetTarget() {
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTarget(Table newTarget) {
+		Table oldTarget = target;
+		target = newTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY__TARGET, oldTarget, target));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Table getSourceTable() {
+		return getOwner();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Table getTargetTable() {
+		for (ForeignKeyElement element : getElements()) {
+			if (element.getPkColumn() != null
+					&& element.getPkColumn().getOwner() != null
+					&& element.getPkColumn().getOwner() instanceof Table) {
+				return (Table)element.getPkColumn().getOwner();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -192,6 +266,9 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 				return getElements();
 			case DatabasePackage.FOREIGN_KEY__OWNER:
 				return getOwner();
+			case DatabasePackage.FOREIGN_KEY__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -212,6 +289,9 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 			case DatabasePackage.FOREIGN_KEY__OWNER:
 				setOwner((Table)newValue);
 				return;
+			case DatabasePackage.FOREIGN_KEY__TARGET:
+				setTarget((Table)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -230,6 +310,9 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 			case DatabasePackage.FOREIGN_KEY__OWNER:
 				setOwner((Table)null);
 				return;
+			case DatabasePackage.FOREIGN_KEY__TARGET:
+				setTarget((Table)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -246,6 +329,8 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 				return elements != null && !elements.isEmpty();
 			case DatabasePackage.FOREIGN_KEY__OWNER:
 				return getOwner() != null;
+			case DatabasePackage.FOREIGN_KEY__TARGET:
+				return target != null;
 		}
 		return super.eIsSet(featureID);
 	}

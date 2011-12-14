@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.database.ForeignKey#getElements <em>Elements</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.ForeignKey#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.ForeignKey#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,5 +81,47 @@ public interface ForeignKey extends NamedElement {
 	 * @generated
 	 */
 	void setOwner(Table value);
+
+	/**
+	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target</em>' reference.
+	 * @see #setTarget(Table)
+	 * @see org.obeonetwork.dsl.database.DatabasePackage#getForeignKey_Target()
+	 * @model
+	 * @generated
+	 */
+	Table getTarget();
+
+	/**
+	 * Sets the value of the '{@link org.obeonetwork.dsl.database.ForeignKey#getTarget <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target</em>' reference.
+	 * @see #getTarget()
+	 * @generated
+	 */
+	void setTarget(Table value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	Table getSourceTable();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	Table getTargetTable();
 
 } // ForeignKey
