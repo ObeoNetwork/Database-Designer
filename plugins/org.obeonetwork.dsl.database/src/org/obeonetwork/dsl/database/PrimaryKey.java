@@ -40,6 +40,7 @@ public interface PrimaryKey extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Columns</b></em>' reference list.
 	 * The list contents are of type {@link org.obeonetwork.dsl.database.Column}.
+	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.database.Column#getPrimaryKey <em>Primary Key</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Columns</em>' reference list isn't clear,
@@ -48,7 +49,8 @@ public interface PrimaryKey extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Columns</em>' reference list.
 	 * @see org.obeonetwork.dsl.database.DatabasePackage#getPrimaryKey_Columns()
-	 * @model
+	 * @see org.obeonetwork.dsl.database.Column#getPrimaryKey
+	 * @model opposite="primaryKey"
 	 * @generated
 	 */
 	EList<Column> getColumns();

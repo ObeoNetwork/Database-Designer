@@ -81,6 +81,7 @@ public class ColumnItemProvider
 			addIndexPropertyDescriptor(object);
 			addPrimaryKeyPropertyDescriptor(object);
 			addForeignKeysPropertyDescriptor(object);
+			addForeignKeyElementsPropertyDescriptor(object);
 			addSequencePropertyDescriptor(object);
 			addAutoincrementPropertyDescriptor(object);
 		}
@@ -198,6 +199,28 @@ public class ColumnItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Foreign Key Elements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addForeignKeyElementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Column_foreignKeyElements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Column_foreignKeyElements_feature", "_UI_Column_type"),
+				 DatabasePackage.Literals.COLUMN__FOREIGN_KEY_ELEMENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Sequence feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -275,11 +298,30 @@ public class ColumnItemProvider
 	 * This returns Column.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Column"));
+		String imagePath = "full/obj16/Column";
+		Column column = (Column)object;
+		if (column.getPrimaryKey() != null) {
+			if (column.getForeignKeys().isEmpty()) {
+				// Only PK
+				imagePath = "full/obj16/ColumnAndPrimaryKey";
+			} else {
+				// PK and FK
+				imagePath = "full/obj16/ColumnAndPrimaryAndForeignKey";
+			}
+		} else {
+			if (column.getForeignKeys().isEmpty()) {
+				// No PK, no FK
+				imagePath = "full/obj16/Column";
+			} else {
+				// Only FK
+				imagePath = "full/obj16/ColumnAndForeignKey";
+			}
+		}
+		return overlayImage(object, getResourceLocator().getImage(imagePath));
 	}
 
 	/**
@@ -296,11 +338,16 @@ public class ColumnItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Column)object).getName();
+		String label = "";
+		Column column = (Column)object;
+		if (column.getOwner() != null) {
+			label += column.getOwner().getName() + ".";  
+		}
+		label += column.getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Column_type") :
 			getString("_UI_Column_type") + " " + label;

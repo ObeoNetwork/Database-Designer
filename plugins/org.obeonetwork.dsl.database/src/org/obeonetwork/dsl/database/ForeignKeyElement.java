@@ -38,6 +38,7 @@ public interface ForeignKeyElement extends DatabaseElement {
 
 	/**
 	 * Returns the value of the '<em><b>Fk Column</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.database.Column#getForeignKeyElements <em>Foreign Key Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Fk Column</em>' reference isn't clear,
@@ -47,7 +48,8 @@ public interface ForeignKeyElement extends DatabaseElement {
 	 * @return the value of the '<em>Fk Column</em>' reference.
 	 * @see #setFkColumn(Column)
 	 * @see org.obeonetwork.dsl.database.DatabasePackage#getForeignKeyElement_FkColumn()
-	 * @model
+	 * @see org.obeonetwork.dsl.database.Column#getForeignKeyElements
+	 * @model opposite="foreignKeyElements"
 	 * @generated
 	 */
 	Column getFkColumn();

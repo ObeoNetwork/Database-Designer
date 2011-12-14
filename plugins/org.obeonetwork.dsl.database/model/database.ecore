@@ -29,9 +29,13 @@
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="index" upperBound="-1"
         eType="#//Index"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryKey" eType="#//PrimaryKey"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryKey" eType="#//PrimaryKey"
+        eOpposite="#//PrimaryKey/columns"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="foreignKeys" upperBound="-1"
-        eType="#//ForeignKey"/>
+        eType="#//ForeignKey" changeable="false" volatile="true" transient="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="foreignKeyElements" upperBound="-1"
+        eType="#//ForeignKeyElement" eOpposite="#//ForeignKeyElement/fkColumn"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass ../../org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//Type"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" eType="#//Sequence"/>
@@ -64,18 +68,22 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimaryKey" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
-        eType="#//Column"/>
+        eType="#//Column" eOpposite="#//Column/primaryKey"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Table"
         eOpposite="#//Table/primaryKey"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ForeignKey" eSuperTypes="#//NamedElement">
+    <eOperations name="getSourceTable" eType="#//Table"/>
+    <eOperations name="getTargetTable" eType="#//Table"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//ForeignKeyElement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Table"
         eOpposite="#//Table/foreignKeys"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Table"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ForeignKeyElement" eSuperTypes="#//DatabaseElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fkColumn" eType="#//Column"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fkColumn" eType="#//Column"
+        eOpposite="#//Column/foreignKeyElements"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pkColumn" eType="#//Column"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IndexElement" eSuperTypes="#//DatabaseElement">
@@ -93,7 +101,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comments" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Schema" eSuperTypes="#//TableContainer"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Sequence">
+  <eClassifiers xsi:type="ecore:EClass" name="Sequence" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="increment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
