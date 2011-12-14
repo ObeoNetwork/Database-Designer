@@ -12,6 +12,7 @@ package org.obeonetwork.dsl.database.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -113,11 +114,33 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFkColumn(Column newFkColumn) {
+	public NotificationChain basicSetFkColumn(Column newFkColumn, NotificationChain msgs) {
 		Column oldFkColumn = fkColumn;
 		fkColumn = newFkColumn;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN, oldFkColumn, fkColumn));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN, oldFkColumn, newFkColumn);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFkColumn(Column newFkColumn) {
+		if (newFkColumn != fkColumn) {
+			NotificationChain msgs = null;
+			if (fkColumn != null)
+				msgs = ((InternalEObject)fkColumn).eInverseRemove(this, DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS, Column.class, msgs);
+			if (newFkColumn != null)
+				msgs = ((InternalEObject)newFkColumn).eInverseAdd(this, DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS, Column.class, msgs);
+			msgs = basicSetFkColumn(newFkColumn, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN, newFkColumn, newFkColumn));
 	}
 
 	/**
@@ -156,6 +179,36 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 		pkColumn = newPkColumn;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY_ELEMENT__PK_COLUMN, oldPkColumn, pkColumn));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN:
+				if (fkColumn != null)
+					msgs = ((InternalEObject)fkColumn).eInverseRemove(this, DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS, Column.class, msgs);
+				return basicSetFkColumn((Column)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN:
+				return basicSetFkColumn(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

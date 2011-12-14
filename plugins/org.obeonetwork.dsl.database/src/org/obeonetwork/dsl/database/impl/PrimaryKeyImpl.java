@@ -15,15 +15,12 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.obeonetwork.dsl.database.AbstractTable;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.obeonetwork.dsl.database.Column;
 import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.PrimaryKey;
@@ -87,7 +84,7 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 	 */
 	public EList<Column> getColumns() {
 		if (columns == null) {
-			columns = new EObjectResolvingEList<Column>(Column.class, this, DatabasePackage.PRIMARY_KEY__COLUMNS);
+			columns = new EObjectWithInverseResolvingEList<Column>(Column.class, this, DatabasePackage.PRIMARY_KEY__COLUMNS, DatabasePackage.COLUMN__PRIMARY_KEY);
 		}
 		return columns;
 	}
@@ -138,9 +135,12 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DatabasePackage.PRIMARY_KEY__COLUMNS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getColumns()).basicAdd(otherEnd, msgs);
 			case DatabasePackage.PRIMARY_KEY__OWNER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -157,6 +157,8 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DatabasePackage.PRIMARY_KEY__COLUMNS:
+				return ((InternalEList<?>)getColumns()).basicRemove(otherEnd, msgs);
 			case DatabasePackage.PRIMARY_KEY__OWNER:
 				return basicSetOwner(null, msgs);
 		}

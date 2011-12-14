@@ -212,6 +212,8 @@ public class DatabaseSwitch<T> {
 			case DatabasePackage.SEQUENCE: {
 				Sequence sequence = (Sequence)theEObject;
 				T result = caseSequence(sequence);
+				if (result == null) result = caseNamedElement(sequence);
+				if (result == null) result = caseDatabaseElement(sequence);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

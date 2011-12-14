@@ -10,29 +10,29 @@
  */
 package org.obeonetwork.dsl.database.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.obeonetwork.dsl.database.AbstractTable;
 import org.obeonetwork.dsl.database.Column;
 import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.ForeignKey;
+import org.obeonetwork.dsl.database.ForeignKeyElement;
 import org.obeonetwork.dsl.database.Index;
 import org.obeonetwork.dsl.database.PrimaryKey;
 import org.obeonetwork.dsl.database.Sequence;
-
 import org.obeonetwork.dsl.typeslibrary.Type;
 
 /**
@@ -47,6 +47,7 @@ import org.obeonetwork.dsl.typeslibrary.Type;
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getIndex <em>Index</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getPrimaryKey <em>Primary Key</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getForeignKeys <em>Foreign Keys</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getForeignKeyElements <em>Foreign Key Elements</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getOwner <em>Owner</em>}</li>
@@ -125,14 +126,14 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	protected PrimaryKey primaryKey;
 
 	/**
-	 * The cached value of the '{@link #getForeignKeys() <em>Foreign Keys</em>}' reference list.
+	 * The cached value of the '{@link #getForeignKeyElements() <em>Foreign Key Elements</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getForeignKeys()
+	 * @see #getForeignKeyElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ForeignKey> foreignKeys;
+	protected EList<ForeignKeyElement> foreignKeyElements;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -278,11 +279,14 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPrimaryKey(PrimaryKey newPrimaryKey) {
+	public NotificationChain basicSetPrimaryKey(PrimaryKey newPrimaryKey, NotificationChain msgs) {
 		PrimaryKey oldPrimaryKey = primaryKey;
 		primaryKey = newPrimaryKey;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__PRIMARY_KEY, oldPrimaryKey, primaryKey));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__PRIMARY_KEY, oldPrimaryKey, newPrimaryKey);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -290,11 +294,48 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ForeignKey> getForeignKeys() {
-		if (foreignKeys == null) {
-			foreignKeys = new EObjectResolvingEList<ForeignKey>(ForeignKey.class, this, DatabasePackage.COLUMN__FOREIGN_KEYS);
+	public void setPrimaryKey(PrimaryKey newPrimaryKey) {
+		if (newPrimaryKey != primaryKey) {
+			NotificationChain msgs = null;
+			if (primaryKey != null)
+				msgs = ((InternalEObject)primaryKey).eInverseRemove(this, DatabasePackage.PRIMARY_KEY__COLUMNS, PrimaryKey.class, msgs);
+			if (newPrimaryKey != null)
+				msgs = ((InternalEObject)newPrimaryKey).eInverseAdd(this, DatabasePackage.PRIMARY_KEY__COLUMNS, PrimaryKey.class, msgs);
+			msgs = basicSetPrimaryKey(newPrimaryKey, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return foreignKeys;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__PRIMARY_KEY, newPrimaryKey, newPrimaryKey));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<ForeignKey> getForeignKeys() {
+		List<ForeignKey> foreignKeys = new ArrayList<ForeignKey>();
+		for (ForeignKeyElement fkElement : getForeignKeyElements()) {
+			if (!foreignKeys.contains(fkElement.eContainer())) {
+				foreignKeys.add((ForeignKey)fkElement.eContainer());
+			}
+		}
+		return new EcoreEList.UnmodifiableEList<ForeignKey>(this,
+															DatabasePackage.Literals.COLUMN__FOREIGN_KEYS,
+															foreignKeys.size(),
+															foreignKeys.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ForeignKeyElement> getForeignKeyElements() {
+		if (foreignKeyElements == null) {
+			foreignKeyElements = new EObjectWithInverseResolvingEList<ForeignKeyElement>(ForeignKeyElement.class, this, DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS, DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN);
+		}
+		return foreignKeyElements;
 	}
 
 	/**
@@ -445,9 +486,16 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DatabasePackage.COLUMN__PRIMARY_KEY:
+				if (primaryKey != null)
+					msgs = ((InternalEObject)primaryKey).eInverseRemove(this, DatabasePackage.PRIMARY_KEY__COLUMNS, PrimaryKey.class, msgs);
+				return basicSetPrimaryKey((PrimaryKey)otherEnd, msgs);
+			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getForeignKeyElements()).basicAdd(otherEnd, msgs);
 			case DatabasePackage.COLUMN__OWNER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -464,6 +512,10 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DatabasePackage.COLUMN__PRIMARY_KEY:
+				return basicSetPrimaryKey(null, msgs);
+			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
+				return ((InternalEList<?>)getForeignKeyElements()).basicRemove(otherEnd, msgs);
 			case DatabasePackage.COLUMN__TYPE:
 				return basicSetType(null, msgs);
 			case DatabasePackage.COLUMN__OWNER:
@@ -505,6 +557,8 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 				return basicGetPrimaryKey();
 			case DatabasePackage.COLUMN__FOREIGN_KEYS:
 				return getForeignKeys();
+			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
+				return getForeignKeyElements();
 			case DatabasePackage.COLUMN__TYPE:
 				return getType();
 			case DatabasePackage.COLUMN__SEQUENCE:
@@ -540,9 +594,9 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 			case DatabasePackage.COLUMN__PRIMARY_KEY:
 				setPrimaryKey((PrimaryKey)newValue);
 				return;
-			case DatabasePackage.COLUMN__FOREIGN_KEYS:
-				getForeignKeys().clear();
-				getForeignKeys().addAll((Collection<? extends ForeignKey>)newValue);
+			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
+				getForeignKeyElements().clear();
+				getForeignKeyElements().addAll((Collection<? extends ForeignKeyElement>)newValue);
 				return;
 			case DatabasePackage.COLUMN__TYPE:
 				setType((Type)newValue);
@@ -580,8 +634,8 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 			case DatabasePackage.COLUMN__PRIMARY_KEY:
 				setPrimaryKey((PrimaryKey)null);
 				return;
-			case DatabasePackage.COLUMN__FOREIGN_KEYS:
-				getForeignKeys().clear();
+			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
+				getForeignKeyElements().clear();
 				return;
 			case DatabasePackage.COLUMN__TYPE:
 				setType((Type)null);
@@ -616,7 +670,9 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 			case DatabasePackage.COLUMN__PRIMARY_KEY:
 				return primaryKey != null;
 			case DatabasePackage.COLUMN__FOREIGN_KEYS:
-				return foreignKeys != null && !foreignKeys.isEmpty();
+				return !getForeignKeys().isEmpty();
+			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
+				return foreignKeyElements != null && !foreignKeyElements.isEmpty();
 			case DatabasePackage.COLUMN__TYPE:
 				return type != null;
 			case DatabasePackage.COLUMN__SEQUENCE:

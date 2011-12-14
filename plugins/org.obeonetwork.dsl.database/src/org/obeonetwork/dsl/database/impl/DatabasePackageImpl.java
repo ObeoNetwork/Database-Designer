@@ -377,7 +377,7 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getColumn_Type() {
+	public EReference getColumn_ForeignKeyElements() {
 		return (EReference)columnEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -386,7 +386,7 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getColumn_Sequence() {
+	public EReference getColumn_Type() {
 		return (EReference)columnEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -395,7 +395,7 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getColumn_Owner() {
+	public EReference getColumn_Sequence() {
 		return (EReference)columnEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -404,8 +404,17 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getColumn_Owner() {
+		return (EReference)columnEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getColumn_Autoincrement() {
-		return (EAttribute)columnEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)columnEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -586,6 +595,15 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 	 */
 	public EReference getForeignKey_Owner() {
 		return (EReference)foreignKeyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getForeignKey_Target() {
+		return (EReference)foreignKeyEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -824,6 +842,7 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 		createEReference(columnEClass, COLUMN__INDEX);
 		createEReference(columnEClass, COLUMN__PRIMARY_KEY);
 		createEReference(columnEClass, COLUMN__FOREIGN_KEYS);
+		createEReference(columnEClass, COLUMN__FOREIGN_KEY_ELEMENTS);
 		createEReference(columnEClass, COLUMN__TYPE);
 		createEReference(columnEClass, COLUMN__SEQUENCE);
 		createEReference(columnEClass, COLUMN__OWNER);
@@ -853,6 +872,7 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 		foreignKeyEClass = createEClass(FOREIGN_KEY);
 		createEReference(foreignKeyEClass, FOREIGN_KEY__ELEMENTS);
 		createEReference(foreignKeyEClass, FOREIGN_KEY__OWNER);
+		createEReference(foreignKeyEClass, FOREIGN_KEY__TARGET);
 
 		foreignKeyElementEClass = createEClass(FOREIGN_KEY_ELEMENT);
 		createEReference(foreignKeyElementEClass, FOREIGN_KEY_ELEMENT__FK_COLUMN);
@@ -927,6 +947,7 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 		indexElementEClass.getESuperTypes().add(this.getDatabaseElement());
 		constraintEClass.getESuperTypes().add(this.getNamedElement());
 		schemaEClass.getESuperTypes().add(this.getTableContainer());
+		sequenceEClass.getESuperTypes().add(this.getNamedElement());
 		tableContainerEClass.getESuperTypes().add(this.getNamedElement());
 
 		// Initialize classes and features; add operations and parameters
@@ -947,8 +968,9 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 		initEAttribute(getColumn_Nullable(), ecorePackage.getEBoolean(), "nullable", null, 1, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getColumn_DefaultValue(), ecorePackage.getEString(), "defaultValue", null, 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getColumn_Index(), this.getIndex(), null, "index", null, 0, -1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getColumn_PrimaryKey(), this.getPrimaryKey(), null, "primaryKey", null, 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getColumn_ForeignKeys(), this.getForeignKey(), null, "foreignKeys", null, 0, -1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getColumn_PrimaryKey(), this.getPrimaryKey(), this.getPrimaryKey_Columns(), "primaryKey", null, 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getColumn_ForeignKeys(), this.getForeignKey(), null, "foreignKeys", null, 0, -1, Column.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getColumn_ForeignKeyElements(), this.getForeignKeyElement(), this.getForeignKeyElement_FkColumn(), "foreignKeyElements", null, 0, -1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getColumn_Type(), theTypesLibraryPackage.getType(), null, "type", null, 1, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getColumn_Sequence(), this.getSequence(), null, "sequence", null, 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getColumn_Owner(), this.getAbstractTable(), this.getAbstractTable_Columns(), "owner", null, 1, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -972,15 +994,20 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 		initEReference(getTable_Index(), this.getIndex(), this.getIndex_Owner(), "index", null, 0, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(primaryKeyEClass, PrimaryKey.class, "PrimaryKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPrimaryKey_Columns(), this.getColumn(), null, "columns", null, 0, -1, PrimaryKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPrimaryKey_Columns(), this.getColumn(), this.getColumn_PrimaryKey(), "columns", null, 0, -1, PrimaryKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPrimaryKey_Owner(), this.getTable(), this.getTable_PrimaryKey(), "owner", null, 1, 1, PrimaryKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(foreignKeyEClass, ForeignKey.class, "ForeignKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getForeignKey_Elements(), this.getForeignKeyElement(), null, "elements", null, 0, -1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForeignKey_Owner(), this.getTable(), this.getTable_ForeignKeys(), "owner", null, 1, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getForeignKey_Target(), this.getTable(), null, "target", null, 0, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(foreignKeyEClass, this.getTable(), "getSourceTable", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(foreignKeyEClass, this.getTable(), "getTargetTable", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(foreignKeyElementEClass, ForeignKeyElement.class, "ForeignKeyElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getForeignKeyElement_FkColumn(), this.getColumn(), null, "fkColumn", null, 0, 1, ForeignKeyElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getForeignKeyElement_FkColumn(), this.getColumn(), this.getColumn_ForeignKeyElements(), "fkColumn", null, 0, 1, ForeignKeyElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForeignKeyElement_PkColumn(), this.getColumn(), null, "pkColumn", null, 0, 1, ForeignKeyElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(indexElementEClass, IndexElement.class, "IndexElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

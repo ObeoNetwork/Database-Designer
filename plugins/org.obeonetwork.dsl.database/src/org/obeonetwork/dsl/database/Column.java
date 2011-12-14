@@ -27,6 +27,7 @@ import org.obeonetwork.dsl.typeslibrary.Type;
  *   <li>{@link org.obeonetwork.dsl.database.Column#getIndex <em>Index</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Column#getPrimaryKey <em>Primary Key</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Column#getForeignKeys <em>Foreign Keys</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.Column#getForeignKeyElements <em>Foreign Key Elements</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Column#getType <em>Type</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Column#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Column#getOwner <em>Owner</em>}</li>
@@ -116,6 +117,7 @@ public interface Column extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Primary Key</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.database.PrimaryKey#getColumns <em>Columns</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Primary Key</em>' reference isn't clear,
@@ -125,7 +127,8 @@ public interface Column extends NamedElement {
 	 * @return the value of the '<em>Primary Key</em>' reference.
 	 * @see #setPrimaryKey(PrimaryKey)
 	 * @see org.obeonetwork.dsl.database.DatabasePackage#getColumn_PrimaryKey()
-	 * @model
+	 * @see org.obeonetwork.dsl.database.PrimaryKey#getColumns
+	 * @model opposite="columns"
 	 * @generated
 	 */
 	PrimaryKey getPrimaryKey();
@@ -151,10 +154,28 @@ public interface Column extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Foreign Keys</em>' reference list.
 	 * @see org.obeonetwork.dsl.database.DatabasePackage#getColumn_ForeignKeys()
-	 * @model
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	EList<ForeignKey> getForeignKeys();
+
+	/**
+	 * Returns the value of the '<em><b>Foreign Key Elements</b></em>' reference list.
+	 * The list contents are of type {@link org.obeonetwork.dsl.database.ForeignKeyElement}.
+	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.database.ForeignKeyElement#getFkColumn <em>Fk Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Foreign Key Elements</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Foreign Key Elements</em>' reference list.
+	 * @see org.obeonetwork.dsl.database.DatabasePackage#getColumn_ForeignKeyElements()
+	 * @see org.obeonetwork.dsl.database.ForeignKeyElement#getFkColumn
+	 * @model opposite="fkColumn"
+	 * @generated
+	 */
+	EList<ForeignKeyElement> getForeignKeyElements();
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' containment reference.

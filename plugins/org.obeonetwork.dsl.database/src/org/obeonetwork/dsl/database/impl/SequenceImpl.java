@@ -11,12 +11,8 @@
 package org.obeonetwork.dsl.database.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.Sequence;
 
@@ -36,7 +32,7 @@ import org.obeonetwork.dsl.database.Sequence;
  *
  * @generated
  */
-public class SequenceImpl extends EObjectImpl implements Sequence {
+public class SequenceImpl extends NamedElementImpl implements Sequence {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
