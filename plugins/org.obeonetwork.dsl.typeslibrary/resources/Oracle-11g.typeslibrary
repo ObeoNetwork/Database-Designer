@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<typeslibrary:NativeTypesLibrary xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:typeslibrary="http://www.obeonetwork.org/dsl/typeslibrary/1.0" xmi:id="_cUvfIBEnEeGTa_JlZYBw1A">
+<typeslibrary:NativeTypesLibrary xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:typeslibrary="http://www.obeonetwork.org/dsl/typeslibrary/1.0" xmi:id="_cUvfIBEnEeGTa_JlZYBw1A" name="Oracle-11g">
   <nativeTypes xmi:id="_cUwGMBEnEeGTa_JlZYBw1A" name="BFILE"/>
   <nativeTypes xmi:id="_cUwGMREnEeGTa_JlZYBw1A" name="BINARY_DOUBLE"/>
   <nativeTypes xmi:id="_cUwGMhEnEeGTa_JlZYBw1A" name="BINARY_FLOAT"/>
