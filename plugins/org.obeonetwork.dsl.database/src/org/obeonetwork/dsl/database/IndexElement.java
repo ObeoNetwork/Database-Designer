@@ -38,6 +38,7 @@ public interface IndexElement extends DatabaseElement {
 
 	/**
 	 * Returns the value of the '<em><b>Column</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.database.Column#getIndexElements <em>Index Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Column</em>' reference isn't clear,
@@ -47,7 +48,8 @@ public interface IndexElement extends DatabaseElement {
 	 * @return the value of the '<em>Column</em>' reference.
 	 * @see #setColumn(Column)
 	 * @see org.obeonetwork.dsl.database.DatabasePackage#getIndexElement_Column()
-	 * @model
+	 * @see org.obeonetwork.dsl.database.Column#getIndexElements
+	 * @model opposite="indexElements"
 	 * @generated
 	 */
 	Column getColumn();
