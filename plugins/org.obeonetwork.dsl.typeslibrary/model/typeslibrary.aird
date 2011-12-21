@@ -118,8 +118,8 @@
               <children xmi:type="notation:Node" xmi:id="_olwgwA-mEeGBQNg9ZOoWnA" type="3010" element="_ok16ww-mEeGBQNg9ZOoWnA">
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_olwgwQ-mEeGBQNg9ZOoWnA"/>
               </children>
-              <children xmi:type="notation:Node" xmi:id="_olwgwg-mEeGBQNg9ZOoWnA" type="3010" element="_ok3I4A-mEeGBQNg9ZOoWnA">
-                <layoutConstraint xmi:type="notation:Location" xmi:id="_olwgww-mEeGBQNg9ZOoWnA"/>
+              <children xmi:type="notation:Node" xmi:id="_PP8o8CKHEeG1xpn_WZxudw" type="3010" element="_POq2kCKHEeG1xpn_WZxudw">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_PP8o8SKHEeG1xpn_WZxudw"/>
               </children>
               <children xmi:type="notation:Node" xmi:id="_olxH0A-mEeGBQNg9ZOoWnA" type="3010" element="_ok3v8A-mEeGBQNg9ZOoWnA">
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_olxH0Q-mEeGBQNg9ZOoWnA"/>
@@ -332,7 +332,7 @@
           <foregroundColor xmi:type="viewpoint:RGBValues" xmi:id="_oki_0w-mEeGBQNg9ZOoWnA" red="209" green="209" blue="209"/>
         </ownedStyle>
         <actualMapping xmi:type="description:ContainerMapping" href="platform:/plugin/fr.obeo.mda.pim.ecore.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-        <ownedElements xmi:type="viewpoint:DNodeListElement" xmi:id="_okq7oA-mEeGBQNg9ZOoWnA" name="length : EString">
+        <ownedElements xmi:type="viewpoint:DNodeListElement" xmi:id="_okq7oA-mEeGBQNg9ZOoWnA" name="length : EInt = 0">
           <target xmi:type="ecore:EAttribute" href="typeslibrary.ecore#//TypeInstance/length"/>
           <semanticElements xmi:type="ecore:EAttribute" href="typeslibrary.ecore#//TypeInstance/length"/>
           <ownedStyle xmi:type="viewpoint:BundledImage" xmi:id="_okq7oQ-mEeGBQNg9ZOoWnA">
@@ -343,7 +343,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description:NodeMapping" href="platform:/plugin/fr.obeo.mda.pim.ecore.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
-        <ownedElements xmi:type="viewpoint:DNodeListElement" xmi:id="_okrisw-mEeGBQNg9ZOoWnA" name="precision : EString">
+        <ownedElements xmi:type="viewpoint:DNodeListElement" xmi:id="_okrisw-mEeGBQNg9ZOoWnA" name="precision : EInt = 0">
           <target xmi:type="ecore:EAttribute" href="typeslibrary.ecore#//TypeInstance/precision"/>
           <semanticElements xmi:type="ecore:EAttribute" href="typeslibrary.ecore#//TypeInstance/precision"/>
           <ownedStyle xmi:type="viewpoint:BundledImage" xmi:id="_okritA-mEeGBQNg9ZOoWnA">
@@ -551,14 +551,14 @@
           </ownedStyle>
           <actualMapping xmi:type="description:NodeMapping" href="platform:/plugin/fr.obeo.mda.pim.ecore.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
         </ownedElements>
-        <ownedElements xmi:type="viewpoint:DNodeListElement" xmi:id="_ok3I4A-mEeGBQNg9ZOoWnA" name="LenghtAndPrecision">
-          <target xmi:type="ecore:EEnumLiteral" href="typeslibrary.ecore#//NativeTypeKind/LenghtAndPrecision"/>
-          <semanticElements xmi:type="ecore:EEnumLiteral" href="typeslibrary.ecore#//NativeTypeKind/LenghtAndPrecision"/>
-          <ownedStyle xmi:type="viewpoint:BundledImage" xmi:id="_ok3I4Q-mEeGBQNg9ZOoWnA">
-            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_ok3I4g-mEeGBQNg9ZOoWnA"/>
+        <ownedElements xmi:type="viewpoint:DNodeListElement" xmi:id="_POq2kCKHEeG1xpn_WZxudw" name="LengthAndPrecision">
+          <target xmi:type="ecore:EEnumLiteral" href="typeslibrary.ecore#//NativeTypeKind/LengthAndPrecision"/>
+          <semanticElements xmi:type="ecore:EEnumLiteral" href="typeslibrary.ecore#//NativeTypeKind/LengthAndPrecision"/>
+          <ownedStyle xmi:type="viewpoint:BundledImage" xmi:id="_POrdoCKHEeG1xpn_WZxudw">
+            <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_POsEsCKHEeG1xpn_WZxudw"/>
             <description xmi:type="style:BundledImageDescription" href="platform:/plugin/fr.obeo.mda.pim.ecore.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
-            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_ok3I4w-mEeGBQNg9ZOoWnA"/>
-            <color xmi:type="viewpoint:RGBValues" xmi:id="_ok3I5A-mEeGBQNg9ZOoWnA"/>
+            <borderColor xmi:type="viewpoint:RGBValues" xmi:id="_POsEsSKHEeG1xpn_WZxudw"/>
+            <color xmi:type="viewpoint:RGBValues" xmi:id="_POsEsiKHEeG1xpn_WZxudw"/>
           </ownedStyle>
           <actualMapping xmi:type="description:NodeMapping" href="platform:/plugin/fr.obeo.mda.pim.ecore.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
         </ownedElements>
