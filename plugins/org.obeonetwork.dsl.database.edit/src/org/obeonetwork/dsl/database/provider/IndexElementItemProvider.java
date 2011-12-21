@@ -11,12 +11,12 @@
 package org.obeonetwork.dsl.database.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -26,8 +26,9 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.obeonetwork.dsl.database.Column;
 import org.obeonetwork.dsl.database.DatabasePackage;
+import org.obeonetwork.dsl.database.Index;
 import org.obeonetwork.dsl.database.IndexElement;
 
 /**
@@ -82,11 +83,11 @@ public class IndexElementItemProvider
 	 * This adds a property descriptor for the Column feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addColumnPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_IndexElement_column_feature"),
@@ -97,7 +98,24 @@ public class IndexElementItemProvider
 				 true,
 				 null,
 				 null,
-				 null));
+				 null) {
+				@Override
+				public Collection<?> getChoiceOfValues(Object object) {
+					// Suggested columns are the columns of the same table 
+					Collection<Column> suggestedColumns = new ArrayList<Column>();
+					IndexElement currentIndexElement = (IndexElement)object;
+					if (currentIndexElement.eContainer() != null) {							
+						Index index = (Index)currentIndexElement.eContainer();
+						suggestedColumns.addAll(index.getOwner().getColumns());
+						for (IndexElement indexElement : index.getElements()) {
+							if (!indexElement.equals(currentIndexElement)) {
+								suggestedColumns.remove(indexElement.getColumn());
+							}
+						}
+					}
+					return suggestedColumns;
+				}	
+			});
 	}
 
 	/**
@@ -147,14 +165,24 @@ public class IndexElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((IndexElement)object).getID();
+		IndexElement indexElement = (IndexElement)object;
+		String label = "";
+		if (indexElement.getColumn() != null) {
+			label += indexElement.getColumn().getName();
+		}
+		label += " ";
+		if (indexElement.isAsc() == true) {
+			label += getString("_UI_IndexElement_ASC");
+		} else {
+			label += getString("_UI_IndexElement_DESC");
+		}
+		
 		return label == null || label.length() == 0 ?
-			getString("_UI_IndexElement_type") :
-			getString("_UI_IndexElement_type") + " " + label;
+			getString("_UI_IndexElement_type") : label;
 	}
 
 	/**

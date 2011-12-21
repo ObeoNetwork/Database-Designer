@@ -11,12 +11,12 @@
 package org.obeonetwork.dsl.database.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,9 +24,12 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.obeonetwork.dsl.database.Column;
 import org.obeonetwork.dsl.database.DatabasePackage;
+import org.obeonetwork.dsl.database.ForeignKey;
 import org.obeonetwork.dsl.database.ForeignKeyElement;
+import org.obeonetwork.dsl.database.Table;
 
 /**
  * This is the item provider adapter for a {@link org.obeonetwork.dsl.database.ForeignKeyElement} object.
@@ -80,11 +83,11 @@ public class ForeignKeyElementItemProvider
 	 * This adds a property descriptor for the Fk Column feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addFkColumnPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ForeignKeyElement_fkColumn_feature"),
@@ -95,18 +98,30 @@ public class ForeignKeyElementItemProvider
 				 true,
 				 null,
 				 null,
-				 null));
+				 null) {
+				@Override
+				public Collection<?> getChoiceOfValues(Object object) {
+					// Suggested columns are the columns of the same table 
+					Collection<Column> suggestedColumns = new ArrayList<Column>();
+					ForeignKeyElement fke = (ForeignKeyElement)object;
+					if (fke.eContainer() != null) {							
+						ForeignKey fk = (ForeignKey)fke.eContainer();
+						suggestedColumns.addAll(fk.getSourceTable().getColumns());
+					}
+					return suggestedColumns;
+				}
+			});
 	}
 
 	/**
 	 * This adds a property descriptor for the Pk Column feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addPkColumnPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ForeignKeyElement_pkColumn_feature"),
@@ -117,7 +132,27 @@ public class ForeignKeyElementItemProvider
 				 true,
 				 null,
 				 null,
-				 null));
+				 null){
+
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+						// Suggested columns are the PK columns of the target table 
+						Collection<Column> suggestedColumns = new ArrayList<Column>();
+						
+						ForeignKeyElement fke = (ForeignKeyElement)object;
+						Table targetTable = null;
+						if (fke.eContainer() != null) {							
+							ForeignKey fk = (ForeignKey)fke.eContainer();
+							targetTable = fk.getTargetTable();
+							for (Column column : targetTable.getColumns()) {
+								if (column.isInPrimaryKey() == true) {
+									suggestedColumns.add(column);
+								}
+							}
+						}
+						return suggestedColumns;
+					}
+		});
 	}
 
 	/**
@@ -145,14 +180,32 @@ public class ForeignKeyElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ForeignKeyElement)object).getID();
+		ForeignKeyElement fkElt = (ForeignKeyElement)object;
+		String label = "";
+		if (fkElt.getFkColumn() != null) {
+			String fkColumnName = fkElt.getFkColumn().getName();
+			if (fkColumnName != null && fkColumnName.length() != 0) {
+				label = fkColumnName;
+			} else {
+				label = getString("_UI_Column_name_undefined");
+			}
+		}
+		label += " -> ";
+		if (fkElt.getPkColumn() != null) {
+			String pkColumnName = fkElt.getPkColumn().getName();
+			if (pkColumnName != null && pkColumnName.length() != 0) {
+				label += pkColumnName;
+			} else {
+				label += getString("_UI_Column_name_undefined");
+			}
+		}
+		
 		return label == null || label.length() == 0 ?
-			getString("_UI_ForeignKeyElement_type") :
-			getString("_UI_ForeignKeyElement_type") + " " + label;
+			getString("_UI_ForeignKeyElement_type") : label;
 	}
 
 	/**
