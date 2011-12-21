@@ -37,7 +37,7 @@ import org.obeonetwork.dsl.database.Table;
  *   <li>{@link org.obeonetwork.dsl.database.impl.TableImpl#getPrimaryKey <em>Primary Key</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.TableImpl#getForeignKeys <em>Foreign Keys</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.TableImpl#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.database.impl.TableImpl#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.impl.TableImpl#getIndexes <em>Indexes</em>}</li>
  * </ul>
  * </p>
  *
@@ -79,14 +79,14 @@ public class TableImpl extends AbstractTableImpl implements Table {
 	 */
 	protected EList<Constraint> constraints;
 	/**
-	 * The cached value of the '{@link #getIndex() <em>Index</em>}' containment reference list.
+	 * The cached value of the '{@link #getIndexes() <em>Indexes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIndex()
+	 * @see #getIndexes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Index> index;
+	protected EList<Index> indexes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -179,11 +179,11 @@ public class TableImpl extends AbstractTableImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Index> getIndex() {
-		if (index == null) {
-			index = new EObjectContainmentWithInverseEList<Index>(Index.class, this, DatabasePackage.TABLE__INDEX, DatabasePackage.INDEX__OWNER);
+	public EList<Index> getIndexes() {
+		if (indexes == null) {
+			indexes = new EObjectContainmentWithInverseEList<Index>(Index.class, this, DatabasePackage.TABLE__INDEXES, DatabasePackage.INDEX__OWNER);
 		}
-		return index;
+		return indexes;
 	}
 
 	/**
@@ -203,8 +203,8 @@ public class TableImpl extends AbstractTableImpl implements Table {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getForeignKeys()).basicAdd(otherEnd, msgs);
 			case DatabasePackage.TABLE__CONSTRAINTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConstraints()).basicAdd(otherEnd, msgs);
-			case DatabasePackage.TABLE__INDEX:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIndex()).basicAdd(otherEnd, msgs);
+			case DatabasePackage.TABLE__INDEXES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIndexes()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -223,8 +223,8 @@ public class TableImpl extends AbstractTableImpl implements Table {
 				return ((InternalEList<?>)getForeignKeys()).basicRemove(otherEnd, msgs);
 			case DatabasePackage.TABLE__CONSTRAINTS:
 				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
-			case DatabasePackage.TABLE__INDEX:
-				return ((InternalEList<?>)getIndex()).basicRemove(otherEnd, msgs);
+			case DatabasePackage.TABLE__INDEXES:
+				return ((InternalEList<?>)getIndexes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -243,8 +243,8 @@ public class TableImpl extends AbstractTableImpl implements Table {
 				return getForeignKeys();
 			case DatabasePackage.TABLE__CONSTRAINTS:
 				return getConstraints();
-			case DatabasePackage.TABLE__INDEX:
-				return getIndex();
+			case DatabasePackage.TABLE__INDEXES:
+				return getIndexes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -269,9 +269,9 @@ public class TableImpl extends AbstractTableImpl implements Table {
 				getConstraints().clear();
 				getConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case DatabasePackage.TABLE__INDEX:
-				getIndex().clear();
-				getIndex().addAll((Collection<? extends Index>)newValue);
+			case DatabasePackage.TABLE__INDEXES:
+				getIndexes().clear();
+				getIndexes().addAll((Collection<? extends Index>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -294,8 +294,8 @@ public class TableImpl extends AbstractTableImpl implements Table {
 			case DatabasePackage.TABLE__CONSTRAINTS:
 				getConstraints().clear();
 				return;
-			case DatabasePackage.TABLE__INDEX:
-				getIndex().clear();
+			case DatabasePackage.TABLE__INDEXES:
+				getIndexes().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -315,8 +315,8 @@ public class TableImpl extends AbstractTableImpl implements Table {
 				return foreignKeys != null && !foreignKeys.isEmpty();
 			case DatabasePackage.TABLE__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
-			case DatabasePackage.TABLE__INDEX:
-				return index != null && !index.isEmpty();
+			case DatabasePackage.TABLE__INDEXES:
+				return indexes != null && !indexes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

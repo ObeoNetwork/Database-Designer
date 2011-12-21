@@ -20,19 +20,21 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.obeonetwork.dsl.database.AbstractTable;
 import org.obeonetwork.dsl.database.Column;
+import org.obeonetwork.dsl.database.DatabaseFactory;
 import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.ForeignKey;
 import org.obeonetwork.dsl.database.ForeignKeyElement;
 import org.obeonetwork.dsl.database.Index;
+import org.obeonetwork.dsl.database.IndexElement;
 import org.obeonetwork.dsl.database.PrimaryKey;
 import org.obeonetwork.dsl.database.Sequence;
+import org.obeonetwork.dsl.database.Table;
 import org.obeonetwork.dsl.typeslibrary.Type;
 
 /**
@@ -44,7 +46,8 @@ import org.obeonetwork.dsl.typeslibrary.Type;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#isNullable <em>Nullable</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getDefaultValue <em>Default Value</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getIndexes <em>Indexes</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getIndexElements <em>Index Elements</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getPrimaryKey <em>Primary Key</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getForeignKeys <em>Foreign Keys</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getForeignKeyElements <em>Foreign Key Elements</em>}</li>
@@ -52,6 +55,9 @@ import org.obeonetwork.dsl.typeslibrary.Type;
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#isAutoincrement <em>Autoincrement</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#isInPrimaryKey <em>In Primary Key</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#isInForeignKey <em>In Foreign Key</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.impl.ColumnImpl#isUnique <em>Unique</em>}</li>
  * </ul>
  * </p>
  *
@@ -106,14 +112,14 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	protected String defaultValue = DEFAULT_VALUE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getIndex() <em>Index</em>}' reference list.
+	 * The cached value of the '{@link #getIndexElements() <em>Index Elements</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIndex()
+	 * @see #getIndexElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Index> index;
+	protected EList<IndexElement> indexElements;
 
 	/**
 	 * The cached value of the '{@link #getPrimaryKey() <em>Primary Key</em>}' reference.
@@ -174,6 +180,36 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @ordered
 	 */
 	protected boolean autoincrement = AUTOINCREMENT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isInPrimaryKey() <em>In Primary Key</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isInPrimaryKey()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IN_PRIMARY_KEY_EDEFAULT = false;
+
+	/**
+	 * The default value of the '{@link #isInForeignKey() <em>In Foreign Key</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isInForeignKey()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IN_FOREIGN_KEY_EDEFAULT = false;
+
+	/**
+	 * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnique()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean UNIQUE_EDEFAULT = false;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -239,13 +275,31 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Index> getIndexes() {
+		List<Index> indexes = new ArrayList<Index>();
+		for (IndexElement indexElement : getIndexElements()) {
+			if (!indexes.contains(indexElement.eContainer())) {
+				indexes.add((Index)indexElement.eContainer());
+			}
+		}
+		return new EcoreEList.UnmodifiableEList<Index>(this,
+															DatabasePackage.Literals.COLUMN__INDEXES,
+															indexes.size(),
+															indexes.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Index> getIndex() {
-		if (index == null) {
-			index = new EObjectResolvingEList<Index>(Index.class, this, DatabasePackage.COLUMN__INDEX);
+	public EList<IndexElement> getIndexElements() {
+		if (indexElements == null) {
+			indexElements = new EObjectWithInverseResolvingEList<IndexElement>(IndexElement.class, this, DatabasePackage.COLUMN__INDEX_ELEMENTS, DatabasePackage.INDEX_ELEMENT__COLUMN);
 		}
-		return index;
+		return indexElements;
 	}
 
 	/**
@@ -484,12 +538,134 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isInPrimaryKey() {
+		return (getPrimaryKey() != null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isInForeignKey() {
+		return !(getForeignKeys().isEmpty());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isUnique() {
+		// We have to check if the column is contained within a unique index
+		for (Index index : getIndexes()) {
+			if (index.isUnique()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void addToPrimaryKey() {
+		// Do nothing if the column is already a PK column or if it does not belong to a table
+		if (isInPrimaryKey() == false
+				&& getOwner() != null
+				&& getOwner() instanceof Table) {
+			Table table = (Table)getOwner();
+			// First, ensure there is a Primary Key defined on this table
+			PrimaryKey pk = table.getPrimaryKey();
+			if (pk == null) {
+				// Create a new PK
+				pk = DatabaseFactory.eINSTANCE.createPrimaryKey();
+				pk.setName(table.getName() + "_PK");
+				table.setPrimaryKey(pk);
+			}
+			
+			// Then attach the column to the primary key
+			pk.getColumns().add(this);
+		}
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void removeFromPrimaryKey() {
+		if (isInPrimaryKey() == true) {
+			getPrimaryKey().getColumns().remove(this);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void addToUniqueIndex() {
+		if (isUnique() == false
+				&& getOwner() != null
+				&& getOwner() instanceof Table) {
+			Table table = (Table)getOwner();
+			// Check if there is a unique index defined on the table
+			Index uniqueIndex = null;
+			for(Index index : table.getIndexes()) {
+				if (index.isUnique()) {
+					uniqueIndex = index;
+					break;
+				}
+			}
+			if (uniqueIndex == null) {
+				// Create a new unique index
+				uniqueIndex = DatabaseFactory.eINSTANCE.createIndex();
+				uniqueIndex.setName(table.getName() + "_UNIQUE_INDEX");
+				uniqueIndex.setUnique(true);
+				table.getIndexes().add(uniqueIndex);
+			}
+			// We are sure we have a unique index here
+			IndexElement indexElt = DatabaseFactory.eINSTANCE.createIndexElement();
+			uniqueIndex.getElements().add(indexElt);
+			indexElt.setAsc(true);
+			indexElt.setColumn(this);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void removeFromUniqueIndex() {
+		Collection<IndexElement> indexElements = new ArrayList<IndexElement>(getIndexElements());
+		for (IndexElement indexElt : indexElements) {
+			// Check if the associated index is unique
+			if (indexElt.eContainer() instanceof Index) {
+				Index index = (Index)indexElt.eContainer();
+				if (index.isUnique()) {
+					EcoreUtil.delete(indexElt, true);
+				}
+			}
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIndexElements()).basicAdd(otherEnd, msgs);
 			case DatabasePackage.COLUMN__PRIMARY_KEY:
 				if (primaryKey != null)
 					msgs = ((InternalEObject)primaryKey).eInverseRemove(this, DatabasePackage.PRIMARY_KEY__COLUMNS, PrimaryKey.class, msgs);
@@ -512,6 +688,8 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
+				return ((InternalEList<?>)getIndexElements()).basicRemove(otherEnd, msgs);
 			case DatabasePackage.COLUMN__PRIMARY_KEY:
 				return basicSetPrimaryKey(null, msgs);
 			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
@@ -550,8 +728,10 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 				return isNullable();
 			case DatabasePackage.COLUMN__DEFAULT_VALUE:
 				return getDefaultValue();
-			case DatabasePackage.COLUMN__INDEX:
-				return getIndex();
+			case DatabasePackage.COLUMN__INDEXES:
+				return getIndexes();
+			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
+				return getIndexElements();
 			case DatabasePackage.COLUMN__PRIMARY_KEY:
 				if (resolve) return getPrimaryKey();
 				return basicGetPrimaryKey();
@@ -568,6 +748,12 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 				return getOwner();
 			case DatabasePackage.COLUMN__AUTOINCREMENT:
 				return isAutoincrement();
+			case DatabasePackage.COLUMN__IN_PRIMARY_KEY:
+				return isInPrimaryKey();
+			case DatabasePackage.COLUMN__IN_FOREIGN_KEY:
+				return isInForeignKey();
+			case DatabasePackage.COLUMN__UNIQUE:
+				return isUnique();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -587,9 +773,9 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 			case DatabasePackage.COLUMN__DEFAULT_VALUE:
 				setDefaultValue((String)newValue);
 				return;
-			case DatabasePackage.COLUMN__INDEX:
-				getIndex().clear();
-				getIndex().addAll((Collection<? extends Index>)newValue);
+			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
+				getIndexElements().clear();
+				getIndexElements().addAll((Collection<? extends IndexElement>)newValue);
 				return;
 			case DatabasePackage.COLUMN__PRIMARY_KEY:
 				setPrimaryKey((PrimaryKey)newValue);
@@ -628,8 +814,8 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 			case DatabasePackage.COLUMN__DEFAULT_VALUE:
 				setDefaultValue(DEFAULT_VALUE_EDEFAULT);
 				return;
-			case DatabasePackage.COLUMN__INDEX:
-				getIndex().clear();
+			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
+				getIndexElements().clear();
 				return;
 			case DatabasePackage.COLUMN__PRIMARY_KEY:
 				setPrimaryKey((PrimaryKey)null);
@@ -665,8 +851,10 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 				return nullable != NULLABLE_EDEFAULT;
 			case DatabasePackage.COLUMN__DEFAULT_VALUE:
 				return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
-			case DatabasePackage.COLUMN__INDEX:
-				return index != null && !index.isEmpty();
+			case DatabasePackage.COLUMN__INDEXES:
+				return !getIndexes().isEmpty();
+			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
+				return indexElements != null && !indexElements.isEmpty();
 			case DatabasePackage.COLUMN__PRIMARY_KEY:
 				return primaryKey != null;
 			case DatabasePackage.COLUMN__FOREIGN_KEYS:
@@ -681,6 +869,12 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 				return getOwner() != null;
 			case DatabasePackage.COLUMN__AUTOINCREMENT:
 				return autoincrement != AUTOINCREMENT_EDEFAULT;
+			case DatabasePackage.COLUMN__IN_PRIMARY_KEY:
+				return isInPrimaryKey() != IN_PRIMARY_KEY_EDEFAULT;
+			case DatabasePackage.COLUMN__IN_FOREIGN_KEY:
+				return isInForeignKey() != IN_FOREIGN_KEY_EDEFAULT;
+			case DatabasePackage.COLUMN__UNIQUE:
+				return isUnique() != UNIQUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

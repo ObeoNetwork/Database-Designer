@@ -16,9 +16,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -28,11 +26,11 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.obeonetwork.dsl.database.Column;
 import org.obeonetwork.dsl.database.DatabasePackage;
-
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryFactory;
+import org.obeonetwork.dsl.typeslibrary.provider.TypesLibraryItemProviderAdapterFactory;
 
 /**
  * This is the item provider adapter for a {@link org.obeonetwork.dsl.database.Column} object.
@@ -78,12 +76,16 @@ public class ColumnItemProvider
 
 			addNullablePropertyDescriptor(object);
 			addDefaultValuePropertyDescriptor(object);
-			addIndexPropertyDescriptor(object);
+			addIndexesPropertyDescriptor(object);
+			addIndexElementsPropertyDescriptor(object);
 			addPrimaryKeyPropertyDescriptor(object);
 			addForeignKeysPropertyDescriptor(object);
 			addForeignKeyElementsPropertyDescriptor(object);
 			addSequencePropertyDescriptor(object);
 			addAutoincrementPropertyDescriptor(object);
+			addInPrimaryKeyPropertyDescriptor(object);
+			addInForeignKeyPropertyDescriptor(object);
+			addUniquePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -133,19 +135,41 @@ public class ColumnItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Index feature.
+	 * This adds a property descriptor for the Indexes feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIndexPropertyDescriptor(Object object) {
+	protected void addIndexesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Column_index_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Column_index_feature", "_UI_Column_type"),
-				 DatabasePackage.Literals.COLUMN__INDEX,
+				 getString("_UI_Column_indexes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Column_indexes_feature", "_UI_Column_type"),
+				 DatabasePackage.Literals.COLUMN__INDEXES,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Index Elements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIndexElementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Column_indexElements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Column_indexElements_feature", "_UI_Column_type"),
+				 DatabasePackage.Literals.COLUMN__INDEX_ELEMENTS,
 				 true,
 				 false,
 				 true,
@@ -265,6 +289,72 @@ public class ColumnItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the In Primary Key feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInPrimaryKeyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Column_inPrimaryKey_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Column_inPrimaryKey_feature", "_UI_Column_type"),
+				 DatabasePackage.Literals.COLUMN__IN_PRIMARY_KEY,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the In Foreign Key feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInForeignKeyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Column_inForeignKey_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Column_inForeignKey_feature", "_UI_Column_type"),
+				 DatabasePackage.Literals.COLUMN__IN_FOREIGN_KEY,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Unique feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUniquePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Column_unique_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Column_unique_feature", "_UI_Column_type"),
+				 DatabasePackage.Literals.COLUMN__UNIQUE,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -304,8 +394,8 @@ public class ColumnItemProvider
 	public Object getImage(Object object) {
 		String imagePath = "full/obj16/Column";
 		Column column = (Column)object;
-		if (column.getPrimaryKey() != null) {
-			if (column.getForeignKeys().isEmpty()) {
+		if (column.isInPrimaryKey() == true) {
+			if (column.isInForeignKey() == false) {
 				// Only PK
 				imagePath = "full/obj16/ColumnAndPrimaryKey";
 			} else {
@@ -313,7 +403,7 @@ public class ColumnItemProvider
 				imagePath = "full/obj16/ColumnAndPrimaryAndForeignKey";
 			}
 		} else {
-			if (column.getForeignKeys().isEmpty()) {
+			if (column.isInForeignKey() == false) {
 				// No PK, no FK
 				imagePath = "full/obj16/Column";
 			} else {
@@ -344,13 +434,21 @@ public class ColumnItemProvider
 	public String getText(Object object) {
 		String label = "";
 		Column column = (Column)object;
-		if (column.getOwner() != null) {
-			label += column.getOwner().getName() + ".";  
-		}
 		label += column.getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Column_type") :
-			getString("_UI_Column_type") + " " + label;
+		if (label == null || label.length() == 0) {
+			label = "#NONAME#";
+		}
+		
+		String typeLabel = "";
+		if (column.getType() != null) {
+			AdapterFactoryLabelProvider aflp = new AdapterFactoryLabelProvider(new TypesLibraryItemProviderAdapterFactory());
+			typeLabel = aflp.getText(column.getType());
+		}
+		if (typeLabel != null && typeLabel.length() != 0) {
+			label += " : " + typeLabel;
+		}
+		
+		return label;
 	}
 
 	/**
@@ -368,6 +466,9 @@ public class ColumnItemProvider
 			case DatabasePackage.COLUMN__NULLABLE:
 			case DatabasePackage.COLUMN__DEFAULT_VALUE:
 			case DatabasePackage.COLUMN__AUTOINCREMENT:
+			case DatabasePackage.COLUMN__IN_PRIMARY_KEY:
+			case DatabasePackage.COLUMN__IN_FOREIGN_KEY:
+			case DatabasePackage.COLUMN__UNIQUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case DatabasePackage.COLUMN__TYPE:

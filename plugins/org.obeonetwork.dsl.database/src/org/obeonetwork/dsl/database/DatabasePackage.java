@@ -437,13 +437,22 @@ public interface DatabasePackage extends EPackage {
 	int COLUMN__DEFAULT_VALUE = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Index</b></em>' reference list.
+	 * The feature id for the '<em><b>Indexes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__INDEX = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int COLUMN__INDEXES = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Index Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN__INDEX_ELEMENTS = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Primary Key</b></em>' reference.
@@ -452,7 +461,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__PRIMARY_KEY = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int COLUMN__PRIMARY_KEY = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Foreign Keys</b></em>' reference list.
@@ -461,7 +470,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__FOREIGN_KEYS = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int COLUMN__FOREIGN_KEYS = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Foreign Key Elements</b></em>' reference list.
@@ -470,7 +479,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__FOREIGN_KEY_ELEMENTS = NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int COLUMN__FOREIGN_KEY_ELEMENTS = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -479,7 +488,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int COLUMN__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Sequence</b></em>' reference.
@@ -488,7 +497,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__SEQUENCE = NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int COLUMN__SEQUENCE = NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -497,7 +506,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__OWNER = NAMED_ELEMENT_FEATURE_COUNT + 8;
+	int COLUMN__OWNER = NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Autoincrement</b></em>' attribute.
@@ -506,7 +515,34 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__AUTOINCREMENT = NAMED_ELEMENT_FEATURE_COUNT + 9;
+	int COLUMN__AUTOINCREMENT = NAMED_ELEMENT_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>In Primary Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN__IN_PRIMARY_KEY = NAMED_ELEMENT_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>In Foreign Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN__IN_FOREIGN_KEY = NAMED_ELEMENT_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN__UNIQUE = NAMED_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The number of structural features of the '<em>Column</em>' class.
@@ -515,7 +551,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 10;
+	int COLUMN_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.database.impl.IndexImpl <em>Index</em>}' class.
@@ -773,13 +809,13 @@ public interface DatabasePackage extends EPackage {
 	int TABLE__CONSTRAINTS = ABSTRACT_TABLE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Index</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Indexes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__INDEX = ABSTRACT_TABLE_FEATURE_COUNT + 3;
+	int TABLE__INDEXES = ABSTRACT_TABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Table</em>' class.
@@ -1388,15 +1424,26 @@ public interface DatabasePackage extends EPackage {
 	EAttribute getColumn_DefaultValue();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.obeonetwork.dsl.database.Column#getIndex <em>Index</em>}'.
+	 * Returns the meta object for the reference list '{@link org.obeonetwork.dsl.database.Column#getIndexes <em>Indexes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Index</em>'.
-	 * @see org.obeonetwork.dsl.database.Column#getIndex()
+	 * @return the meta object for the reference list '<em>Indexes</em>'.
+	 * @see org.obeonetwork.dsl.database.Column#getIndexes()
 	 * @see #getColumn()
 	 * @generated
 	 */
-	EReference getColumn_Index();
+	EReference getColumn_Indexes();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.obeonetwork.dsl.database.Column#getIndexElements <em>Index Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Index Elements</em>'.
+	 * @see org.obeonetwork.dsl.database.Column#getIndexElements()
+	 * @see #getColumn()
+	 * @generated
+	 */
+	EReference getColumn_IndexElements();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.database.Column#getPrimaryKey <em>Primary Key</em>}'.
@@ -1474,6 +1521,39 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getColumn_Autoincrement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.database.Column#isInPrimaryKey <em>In Primary Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>In Primary Key</em>'.
+	 * @see org.obeonetwork.dsl.database.Column#isInPrimaryKey()
+	 * @see #getColumn()
+	 * @generated
+	 */
+	EAttribute getColumn_InPrimaryKey();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.database.Column#isInForeignKey <em>In Foreign Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>In Foreign Key</em>'.
+	 * @see org.obeonetwork.dsl.database.Column#isInForeignKey()
+	 * @see #getColumn()
+	 * @generated
+	 */
+	EAttribute getColumn_InForeignKey();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.database.Column#isUnique <em>Unique</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unique</em>'.
+	 * @see org.obeonetwork.dsl.database.Column#isUnique()
+	 * @see #getColumn()
+	 * @generated
+	 */
+	EAttribute getColumn_Unique();
 
 	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.database.Index <em>Index</em>}'.
@@ -1616,15 +1696,15 @@ public interface DatabasePackage extends EPackage {
 	EReference getTable_Constraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.obeonetwork.dsl.database.Table#getIndex <em>Index</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.obeonetwork.dsl.database.Table#getIndexes <em>Indexes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Index</em>'.
-	 * @see org.obeonetwork.dsl.database.Table#getIndex()
+	 * @return the meta object for the containment reference list '<em>Indexes</em>'.
+	 * @see org.obeonetwork.dsl.database.Table#getIndexes()
 	 * @see #getTable()
 	 * @generated
 	 */
-	EReference getTable_Index();
+	EReference getTable_Indexes();
 
 	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.database.PrimaryKey <em>Primary Key</em>}'.
@@ -2060,12 +2140,20 @@ public interface DatabasePackage extends EPackage {
 		EAttribute COLUMN__DEFAULT_VALUE = eINSTANCE.getColumn_DefaultValue();
 
 		/**
-		 * The meta object literal for the '<em><b>Index</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Indexes</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COLUMN__INDEX = eINSTANCE.getColumn_Index();
+		EReference COLUMN__INDEXES = eINSTANCE.getColumn_Indexes();
+
+		/**
+		 * The meta object literal for the '<em><b>Index Elements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLUMN__INDEX_ELEMENTS = eINSTANCE.getColumn_IndexElements();
 
 		/**
 		 * The meta object literal for the '<em><b>Primary Key</b></em>' reference feature.
@@ -2122,6 +2210,30 @@ public interface DatabasePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute COLUMN__AUTOINCREMENT = eINSTANCE.getColumn_Autoincrement();
+
+		/**
+		 * The meta object literal for the '<em><b>In Primary Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN__IN_PRIMARY_KEY = eINSTANCE.getColumn_InPrimaryKey();
+
+		/**
+		 * The meta object literal for the '<em><b>In Foreign Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN__IN_FOREIGN_KEY = eINSTANCE.getColumn_InForeignKey();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN__UNIQUE = eINSTANCE.getColumn_Unique();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.database.impl.IndexImpl <em>Index</em>}' class.
@@ -2234,12 +2346,12 @@ public interface DatabasePackage extends EPackage {
 		EReference TABLE__CONSTRAINTS = eINSTANCE.getTable_Constraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Index</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Indexes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TABLE__INDEX = eINSTANCE.getTable_Index();
+		EReference TABLE__INDEXES = eINSTANCE.getTable_Indexes();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.database.impl.PrimaryKeyImpl <em>Primary Key</em>}' class.

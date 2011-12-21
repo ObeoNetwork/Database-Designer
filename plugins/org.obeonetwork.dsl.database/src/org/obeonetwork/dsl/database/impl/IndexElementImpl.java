@@ -12,6 +12,7 @@ package org.obeonetwork.dsl.database.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -123,11 +124,33 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setColumn(Column newColumn) {
+	public NotificationChain basicSetColumn(Column newColumn, NotificationChain msgs) {
 		Column oldColumn = column;
 		column = newColumn;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX_ELEMENT__COLUMN, oldColumn, column));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX_ELEMENT__COLUMN, oldColumn, newColumn);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setColumn(Column newColumn) {
+		if (newColumn != column) {
+			NotificationChain msgs = null;
+			if (column != null)
+				msgs = ((InternalEObject)column).eInverseRemove(this, DatabasePackage.COLUMN__INDEX_ELEMENTS, Column.class, msgs);
+			if (newColumn != null)
+				msgs = ((InternalEObject)newColumn).eInverseAdd(this, DatabasePackage.COLUMN__INDEX_ELEMENTS, Column.class, msgs);
+			msgs = basicSetColumn(newColumn, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX_ELEMENT__COLUMN, newColumn, newColumn));
 	}
 
 	/**
@@ -149,6 +172,36 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 		asc = newAsc;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX_ELEMENT__ASC, oldAsc, asc));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabasePackage.INDEX_ELEMENT__COLUMN:
+				if (column != null)
+					msgs = ((InternalEObject)column).eInverseRemove(this, DatabasePackage.COLUMN__INDEX_ELEMENTS, Column.class, msgs);
+				return basicSetColumn((Column)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabasePackage.INDEX_ELEMENT__COLUMN:
+				return basicSetColumn(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
