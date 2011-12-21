@@ -7,7 +7,7 @@
     usedGenPackages="../../org.obeonetwork.dsl.typeslibrary/model/typeslibrary.genmodel#//typeslibrary">
   <foreignModel>database.ecore</foreignModel>
   <genPackages prefix="Database" basePackage="org.obeonetwork.dsl" disposableProviderFactory="true"
-      ecorePackage="database.ecore#/">
+      multipleEditorPages="false" ecorePackage="database.ecore#/">
     <genClasses image="false" ecoreClass="database.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute database.ecore#//NamedElement/name"/>
     </genClasses>
@@ -24,13 +24,22 @@
     <genClasses ecoreClass="database.ecore#//Column">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute database.ecore#//Column/nullable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute database.ecore#//Column/defaultValue"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference database.ecore#//Column/index"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference database.ecore#//Column/indexes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference database.ecore#//Column/indexElements"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference database.ecore#//Column/primaryKey"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference database.ecore#//Column/foreignKeys"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference database.ecore#//Column/foreignKeyElements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference database.ecore#//Column/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference database.ecore#//Column/sequence"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference database.ecore#//Column/owner"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute database.ecore#//Column/autoincrement"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute database.ecore#//Column/inPrimaryKey"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute database.ecore#//Column/inForeignKey"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute database.ecore#//Column/unique"/>
+      <genOperations ecoreOperation="database.ecore#//Column/addToPrimaryKey"/>
+      <genOperations ecoreOperation="database.ecore#//Column/addToUniqueIndex"/>
+      <genOperations ecoreOperation="database.ecore#//Column/removeFromPrimaryKey"/>
+      <genOperations ecoreOperation="database.ecore#//Column/removeFromUniqueIndex"/>
     </genClasses>
     <genClasses ecoreClass="database.ecore#//Index">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute database.ecore#//Index/qualifier"/>
@@ -47,7 +56,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference database.ecore#//Table/primaryKey"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference database.ecore#//Table/foreignKeys"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference database.ecore#//Table/constraints"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference database.ecore#//Table/index"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference database.ecore#//Table/indexes"/>
     </genClasses>
     <genClasses ecoreClass="database.ecore#//PrimaryKey">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference database.ecore#//PrimaryKey/columns"/>
@@ -56,6 +65,7 @@
     <genClasses ecoreClass="database.ecore#//ForeignKey">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference database.ecore#//ForeignKey/elements"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference database.ecore#//ForeignKey/owner"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference database.ecore#//ForeignKey/target"/>
       <genOperations ecoreOperation="database.ecore#//ForeignKey/getSourceTable"/>
       <genOperations ecoreOperation="database.ecore#//ForeignKey/getTargetTable"/>
     </genClasses>

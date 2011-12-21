@@ -163,7 +163,7 @@ public interface Index extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.database.Table#getIndex <em>Index</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.database.Table#getIndexes <em>Indexes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owner</em>' container reference isn't clear,
@@ -173,8 +173,8 @@ public interface Index extends NamedElement {
 	 * @return the value of the '<em>Owner</em>' container reference.
 	 * @see #setOwner(Table)
 	 * @see org.obeonetwork.dsl.database.DatabasePackage#getIndex_Owner()
-	 * @see org.obeonetwork.dsl.database.Table#getIndex
-	 * @model opposite="index" required="true" transient="false"
+	 * @see org.obeonetwork.dsl.database.Table#getIndexes
+	 * @model opposite="indexes" required="true" transient="false"
 	 * @generated
 	 */
 	Table getOwner();

@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -26,7 +25,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.obeonetwork.dsl.typeslibrary.NativeType;
 import org.obeonetwork.dsl.typeslibrary.TypeInstance;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 
@@ -193,12 +192,69 @@ public class TypeInstanceItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		TypeInstance typeInstance = (TypeInstance)object;
-		return getString("_UI_TypeInstance_type") + " " + typeInstance.getLength();
+		NativeType nativeType = typeInstance.getNativeType();
+		String label = null;
+		if (nativeType != null) {
+			label = nativeType.getName();
+			if (label == null || label.length() == 0) {
+				label = "#NONAME#";
+			}
+			switch(nativeType.getSpec()) {
+			case LENGTH :
+				if (!label.contains("%n")) {
+					label = label + "(%n)";
+				}
+				label = replacePlaceholders(label,
+						new String[]{"%n"},
+						new String[]{String.valueOf(typeInstance.getLength())});
+				break;
+			case LENGTH_AND_PRECISION :
+				if (!label.contains("%n") && !label.contains("%p")) {
+					label = label + "(%n, %p)";
+				} else if (!label.contains("%n")) {
+					label = label + "(%n)";
+				} else if (!label.contains("%p")) {
+					label = label + "(%p)";
+				}
+				label = replacePlaceholders(label,
+						new String[]{"%n", "%p"},
+						new String[]{String.valueOf(typeInstance.getLength()), String.valueOf(typeInstance.getPrecision())});
+				break;
+			case ENUM :
+				label += "(";
+				for (int i = 0; i < typeInstance.getLiterals().size(); i++) {
+					String literal = typeInstance.getLiterals().get(i);
+					if (i != 0) {
+						label += ", ";
+					}
+					label += literal;
+				}
+				label += ")";
+				break;
+			}
+		} else {
+			label = "#NONAME#";
+		}
+		
+		return label;
+	}
+	
+	private String replacePlaceholders(String target, String[] placeholders, String[] values) {
+		String result = target;
+		for(int i = 0; i < placeholders.length; i++) {
+			String placeholder = placeholders[i];
+			String value = values[i];
+			int pos = result.indexOf(placeholder);
+			if (pos != -1) {
+				result = result.substring(0, pos) + value + result.substring(pos + placeholder.length());
+			}
+		}
+		return result;
 	}
 
 	/**

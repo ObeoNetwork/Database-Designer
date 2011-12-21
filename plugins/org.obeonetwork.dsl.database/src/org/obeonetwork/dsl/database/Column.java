@@ -24,7 +24,8 @@ import org.obeonetwork.dsl.typeslibrary.Type;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.database.Column#isNullable <em>Nullable</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Column#getDefaultValue <em>Default Value</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.database.Column#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.Column#getIndexes <em>Indexes</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.Column#getIndexElements <em>Index Elements</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Column#getPrimaryKey <em>Primary Key</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Column#getForeignKeys <em>Foreign Keys</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Column#getForeignKeyElements <em>Foreign Key Elements</em>}</li>
@@ -32,6 +33,9 @@ import org.obeonetwork.dsl.typeslibrary.Type;
  *   <li>{@link org.obeonetwork.dsl.database.Column#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Column#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Column#isAutoincrement <em>Autoincrement</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.Column#isInPrimaryKey <em>In Primary Key</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.Column#isInForeignKey <em>In Foreign Key</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.Column#isUnique <em>Unique</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,20 +104,38 @@ public interface Column extends NamedElement {
 	void setDefaultValue(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Index</b></em>' reference list.
+	 * Returns the value of the '<em><b>Indexes</b></em>' reference list.
 	 * The list contents are of type {@link org.obeonetwork.dsl.database.Index}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Index</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Indexes</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Index</em>' reference list.
-	 * @see org.obeonetwork.dsl.database.DatabasePackage#getColumn_Index()
-	 * @model
+	 * @return the value of the '<em>Indexes</em>' reference list.
+	 * @see org.obeonetwork.dsl.database.DatabasePackage#getColumn_Indexes()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	EList<Index> getIndex();
+	EList<Index> getIndexes();
+
+	/**
+	 * Returns the value of the '<em><b>Index Elements</b></em>' reference list.
+	 * The list contents are of type {@link org.obeonetwork.dsl.database.IndexElement}.
+	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.database.IndexElement#getColumn <em>Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Index Elements</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Index Elements</em>' reference list.
+	 * @see org.obeonetwork.dsl.database.DatabasePackage#getColumn_IndexElements()
+	 * @see org.obeonetwork.dsl.database.IndexElement#getColumn
+	 * @model opposite="column"
+	 * @generated
+	 */
+	EList<IndexElement> getIndexElements();
 
 	/**
 	 * Returns the value of the '<em><b>Primary Key</b></em>' reference.
@@ -282,5 +304,82 @@ public interface Column extends NamedElement {
 	 * @generated
 	 */
 	void setAutoincrement(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>In Primary Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>In Primary Key</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>In Primary Key</em>' attribute.
+	 * @see org.obeonetwork.dsl.database.DatabasePackage#getColumn_InPrimaryKey()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	boolean isInPrimaryKey();
+
+	/**
+	 * Returns the value of the '<em><b>In Foreign Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>In Foreign Key</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>In Foreign Key</em>' attribute.
+	 * @see org.obeonetwork.dsl.database.DatabasePackage#getColumn_InForeignKey()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	boolean isInForeignKey();
+
+	/**
+	 * Returns the value of the '<em><b>Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Unique</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unique</em>' attribute.
+	 * @see org.obeonetwork.dsl.database.DatabasePackage#getColumn_Unique()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	boolean isUnique();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void addToPrimaryKey();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void addToUniqueIndex();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void removeFromPrimaryKey();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void removeFromUniqueIndex();
 
 } // Column

@@ -295,7 +295,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DatabasePackage.TABLE__INDEX, Table.class, msgs);
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DatabasePackage.TABLE__INDEXES, Table.class, msgs);
 			msgs = basicSetOwner(newOwner, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -344,7 +344,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case DatabasePackage.INDEX__OWNER:
-				return eInternalContainer().eInverseRemove(this, DatabasePackage.TABLE__INDEX, Table.class, msgs);
+				return eInternalContainer().eInverseRemove(this, DatabasePackage.TABLE__INDEXES, Table.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
