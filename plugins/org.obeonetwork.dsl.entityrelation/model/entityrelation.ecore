@@ -49,7 +49,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Join">
+  <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//LogicalElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="identifiers" upperBound="-1"
         eType="#//Identifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
