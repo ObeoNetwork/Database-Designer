@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.obeonetwork.dsl.database.Table#getPrimaryKey <em>Primary Key</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Table#getForeignKeys <em>Foreign Keys</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.Table#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.database.Table#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.database.Table#getIndexes <em>Indexes</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,21 +105,21 @@ public interface Table extends AbstractTable {
 	EList<Constraint> getConstraints();
 
 	/**
-	 * Returns the value of the '<em><b>Index</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Indexes</b></em>' containment reference list.
 	 * The list contents are of type {@link org.obeonetwork.dsl.database.Index}.
 	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.database.Index#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Index</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Indexes</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Index</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.database.DatabasePackage#getTable_Index()
+	 * @return the value of the '<em>Indexes</em>' containment reference list.
+	 * @see org.obeonetwork.dsl.database.DatabasePackage#getTable_Indexes()
 	 * @see org.obeonetwork.dsl.database.Index#getOwner
 	 * @model opposite="owner" containment="true"
 	 * @generated
 	 */
-	EList<Index> getIndex();
+	EList<Index> getIndexes();
 
 } // Table
