@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.obeonetwork.dsl.dbermapping/src"
+    modelPluginID="org.obeonetwork.dsl.dbermapping" modelName="Dbermapping" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="../../org.obeonetwork.dsl.database/model/database.genmodel#//database ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.genmodel#//entityrelation ../../org.obeonetwork.dsl.typeslibrary/model/typeslibrary.genmodel#//typeslibrary">
+  <foreignModel>dbermapping.ecore</foreignModel>
+  <genPackages prefix="Dbermapping" basePackage="org.obeonetwork.dsl" disposableProviderFactory="true"
+      ecorePackage="dbermapping.ecore#/">
+    <genClasses ecoreClass="dbermapping.ecore#//DatabaseMapping">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//DatabaseMapping/database"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//DatabaseMapping/logicalModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbermapping.ecore#//DatabaseMapping/tableMappings"/>
+    </genClasses>
+    <genClasses ecoreClass="dbermapping.ecore#//TableMapping">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//TableMapping/table"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//TableMapping/entity"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

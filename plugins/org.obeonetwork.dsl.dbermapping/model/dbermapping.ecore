@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dbermapping"
+    nsURI="http://www.obeonetwork.org/dsl/dbermapping/1.0" nsPrefix="dbermapping">
+  <eClassifiers xsi:type="ecore:EClass" name="DatabaseMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="database" lowerBound="1"
+        eType="ecore:EClass ../../org.obeonetwork.dsl.database/model/database.ecore#//DataBase"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logicalModel" lowerBound="1"
+        eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//LogicalModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tableMappings" upperBound="-1"
+        eType="#//TableMapping" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TableMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="table" lowerBound="1" eType="ecore:EClass ../../org.obeonetwork.dsl.database/model/database.ecore#//Table"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
+        eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//Entity"/>
+  </eClassifiers>
+</ecore:EPackage>
