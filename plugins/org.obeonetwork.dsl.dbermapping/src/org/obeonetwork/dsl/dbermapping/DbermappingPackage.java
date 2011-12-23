@@ -133,13 +133,107 @@ public interface DbermappingPackage extends EPackage {
 	int TABLE_MAPPING__ENTITY = 1;
 
 	/**
+	 * The feature id for the '<em><b>Column Mappings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_MAPPING__COLUMN_MAPPINGS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Foreign Key Mappings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_MAPPING__FOREIGN_KEY_MAPPINGS = 3;
+
+	/**
 	 * The number of structural features of the '<em>Table Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_MAPPING_FEATURE_COUNT = 2;
+	int TABLE_MAPPING_FEATURE_COUNT = 4;
+
+
+	/**
+	 * The meta object id for the '{@link org.obeonetwork.dsl.dbermapping.impl.ColumnMappingImpl <em>Column Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.obeonetwork.dsl.dbermapping.impl.ColumnMappingImpl
+	 * @see org.obeonetwork.dsl.dbermapping.impl.DbermappingPackageImpl#getColumnMapping()
+	 * @generated
+	 */
+	int COLUMN_MAPPING = 2;
+
+	/**
+	 * The feature id for the '<em><b>Column</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN_MAPPING__COLUMN = 0;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN_MAPPING__ATTRIBUTE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Column Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN_MAPPING_FEATURE_COUNT = 2;
+
+
+	/**
+	 * The meta object id for the '{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyMappingImpl <em>Foreign Key Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.obeonetwork.dsl.dbermapping.impl.ForeignKeyMappingImpl
+	 * @see org.obeonetwork.dsl.dbermapping.impl.DbermappingPackageImpl#getForeignKeyMapping()
+	 * @generated
+	 */
+	int FOREIGN_KEY_MAPPING = 3;
+
+	/**
+	 * The feature id for the '<em><b>Foreign Key</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY_MAPPING__FOREIGN_KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Relation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY_MAPPING__RELATION = 1;
+
+	/**
+	 * The number of structural features of the '<em>Foreign Key Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY_MAPPING_FEATURE_COUNT = 2;
 
 
 	/**
@@ -216,6 +310,92 @@ public interface DbermappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTableMapping_Entity();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.obeonetwork.dsl.dbermapping.TableMapping#getColumnMappings <em>Column Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Column Mappings</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.TableMapping#getColumnMappings()
+	 * @see #getTableMapping()
+	 * @generated
+	 */
+	EReference getTableMapping_ColumnMappings();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.obeonetwork.dsl.dbermapping.TableMapping#getForeignKeyMappings <em>Foreign Key Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Foreign Key Mappings</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.TableMapping#getForeignKeyMappings()
+	 * @see #getTableMapping()
+	 * @generated
+	 */
+	EReference getTableMapping_ForeignKeyMappings();
+
+	/**
+	 * Returns the meta object for class '{@link org.obeonetwork.dsl.dbermapping.ColumnMapping <em>Column Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Column Mapping</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.ColumnMapping
+	 * @generated
+	 */
+	EClass getColumnMapping();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.dbermapping.ColumnMapping#getColumn <em>Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Column</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.ColumnMapping#getColumn()
+	 * @see #getColumnMapping()
+	 * @generated
+	 */
+	EReference getColumnMapping_Column();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.dbermapping.ColumnMapping#getAttribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Attribute</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.ColumnMapping#getAttribute()
+	 * @see #getColumnMapping()
+	 * @generated
+	 */
+	EReference getColumnMapping_Attribute();
+
+	/**
+	 * Returns the meta object for class '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping <em>Foreign Key Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Foreign Key Mapping</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyMapping
+	 * @generated
+	 */
+	EClass getForeignKeyMapping();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping#getForeignKey <em>Foreign Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Foreign Key</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyMapping#getForeignKey()
+	 * @see #getForeignKeyMapping()
+	 * @generated
+	 */
+	EReference getForeignKeyMapping_ForeignKey();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping#getRelation <em>Relation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Relation</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyMapping#getRelation()
+	 * @see #getForeignKeyMapping()
+	 * @generated
+	 */
+	EReference getForeignKeyMapping_Relation();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -298,6 +478,74 @@ public interface DbermappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TABLE_MAPPING__ENTITY = eINSTANCE.getTableMapping_Entity();
+
+		/**
+		 * The meta object literal for the '<em><b>Column Mappings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_MAPPING__COLUMN_MAPPINGS = eINSTANCE.getTableMapping_ColumnMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Foreign Key Mappings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_MAPPING__FOREIGN_KEY_MAPPINGS = eINSTANCE.getTableMapping_ForeignKeyMappings();
+
+		/**
+		 * The meta object literal for the '{@link org.obeonetwork.dsl.dbermapping.impl.ColumnMappingImpl <em>Column Mapping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.obeonetwork.dsl.dbermapping.impl.ColumnMappingImpl
+		 * @see org.obeonetwork.dsl.dbermapping.impl.DbermappingPackageImpl#getColumnMapping()
+		 * @generated
+		 */
+		EClass COLUMN_MAPPING = eINSTANCE.getColumnMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Column</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLUMN_MAPPING__COLUMN = eINSTANCE.getColumnMapping_Column();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLUMN_MAPPING__ATTRIBUTE = eINSTANCE.getColumnMapping_Attribute();
+
+		/**
+		 * The meta object literal for the '{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyMappingImpl <em>Foreign Key Mapping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.obeonetwork.dsl.dbermapping.impl.ForeignKeyMappingImpl
+		 * @see org.obeonetwork.dsl.dbermapping.impl.DbermappingPackageImpl#getForeignKeyMapping()
+		 * @generated
+		 */
+		EClass FOREIGN_KEY_MAPPING = eINSTANCE.getForeignKeyMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Foreign Key</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOREIGN_KEY_MAPPING__FOREIGN_KEY = eINSTANCE.getForeignKeyMapping_ForeignKey();
+
+		/**
+		 * The meta object literal for the '<em><b>Relation</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOREIGN_KEY_MAPPING__RELATION = eINSTANCE.getForeignKeyMapping_Relation();
 
 	}
 

@@ -80,6 +80,14 @@ public class DbermappingAdapterFactory extends AdapterFactoryImpl {
 				return createTableMappingAdapter();
 			}
 			@Override
+			public Adapter caseColumnMapping(ColumnMapping object) {
+				return createColumnMappingAdapter();
+			}
+			@Override
+			public Adapter caseForeignKeyMapping(ForeignKeyMapping object) {
+				return createForeignKeyMappingAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -124,6 +132,34 @@ public class DbermappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTableMappingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.dbermapping.ColumnMapping <em>Column Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.obeonetwork.dsl.dbermapping.ColumnMapping
+	 * @generated
+	 */
+	public Adapter createColumnMappingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping <em>Foreign Key Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyMapping
+	 * @generated
+	 */
+	public Adapter createForeignKeyMappingAdapter() {
 		return null;
 	}
 

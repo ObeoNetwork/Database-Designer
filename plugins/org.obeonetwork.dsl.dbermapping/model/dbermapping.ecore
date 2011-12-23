@@ -15,5 +15,21 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="table" lowerBound="1" eType="ecore:EClass ../../org.obeonetwork.dsl.database/model/database.ecore#//Table"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
         eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columnMappings" upperBound="-1"
+        eType="#//ColumnMapping" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="foreignKeyMappings" upperBound="-1"
+        eType="#//ForeignKeyMapping" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ColumnMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="column" lowerBound="1"
+        eType="ecore:EClass ../../org.obeonetwork.dsl.database/model/database.ecore#//Column"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+        eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//Attribute"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForeignKeyMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="foreignKey" lowerBound="1"
+        eType="ecore:EClass ../../org.obeonetwork.dsl.database/model/database.ecore#//ForeignKey"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relation" lowerBound="1"
+        eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//Relation"/>
   </eClassifiers>
 </ecore:EPackage>

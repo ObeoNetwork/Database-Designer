@@ -15,7 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -25,18 +24,15 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.obeonetwork.dsl.dbermapping.DbermappingFactory;
 import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
-import org.obeonetwork.dsl.dbermapping.TableMapping;
 
 /**
- * This is the item provider adapter for a {@link org.obeonetwork.dsl.dbermapping.TableMapping} object.
+ * This is the item provider adapter for a {@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TableMappingItemProvider
+public class ForeignKeyMappingItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -50,7 +46,7 @@ public class TableMappingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TableMappingItemProvider(AdapterFactory adapterFactory) {
+	public ForeignKeyMappingItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,26 +61,26 @@ public class TableMappingItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTablePropertyDescriptor(object);
-			addEntityPropertyDescriptor(object);
+			addForeignKeyPropertyDescriptor(object);
+			addRelationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Table feature.
+	 * This adds a property descriptor for the Foreign Key feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTablePropertyDescriptor(Object object) {
+	protected void addForeignKeyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TableMapping_table_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TableMapping_table_feature", "_UI_TableMapping_type"),
-				 DbermappingPackage.Literals.TABLE_MAPPING__TABLE,
+				 getString("_UI_ForeignKeyMapping_foreignKey_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKeyMapping_foreignKey_feature", "_UI_ForeignKeyMapping_type"),
+				 DbermappingPackage.Literals.FOREIGN_KEY_MAPPING__FOREIGN_KEY,
 				 true,
 				 false,
 				 true,
@@ -94,19 +90,19 @@ public class TableMappingItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Entity feature.
+	 * This adds a property descriptor for the Relation feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEntityPropertyDescriptor(Object object) {
+	protected void addRelationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TableMapping_entity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TableMapping_entity_feature", "_UI_TableMapping_type"),
-				 DbermappingPackage.Literals.TABLE_MAPPING__ENTITY,
+				 getString("_UI_ForeignKeyMapping_relation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKeyMapping_relation_feature", "_UI_ForeignKeyMapping_type"),
+				 DbermappingPackage.Literals.FOREIGN_KEY_MAPPING__RELATION,
 				 true,
 				 false,
 				 true,
@@ -116,45 +112,14 @@ public class TableMappingItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(DbermappingPackage.Literals.TABLE_MAPPING__COLUMN_MAPPINGS);
-			childrenFeatures.add(DbermappingPackage.Literals.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns TableMapping.gif.
+	 * This returns ForeignKeyMapping.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TableMapping"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ForeignKeyMapping"));
 	}
 
 	/**
@@ -165,7 +130,7 @@ public class TableMappingItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_TableMapping_type");
+		return getString("_UI_ForeignKeyMapping_type");
 	}
 
 	/**
@@ -178,13 +143,6 @@ public class TableMappingItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(TableMapping.class)) {
-			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
-			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -198,16 +156,6 @@ public class TableMappingItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DbermappingPackage.Literals.TABLE_MAPPING__COLUMN_MAPPINGS,
-				 DbermappingFactory.eINSTANCE.createColumnMapping()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DbermappingPackage.Literals.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS,
-				 DbermappingFactory.eINSTANCE.createForeignKeyMapping()));
 	}
 
 	/**

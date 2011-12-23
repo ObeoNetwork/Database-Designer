@@ -44,6 +44,24 @@ public interface DbermappingFactory extends EFactory {
 	TableMapping createTableMapping();
 
 	/**
+	 * Returns a new object of class '<em>Column Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Column Mapping</em>'.
+	 * @generated
+	 */
+	ColumnMapping createColumnMapping();
+
+	/**
+	 * Returns a new object of class '<em>Foreign Key Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Foreign Key Mapping</em>'.
+	 * @generated
+	 */
+	ForeignKeyMapping createForeignKeyMapping();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

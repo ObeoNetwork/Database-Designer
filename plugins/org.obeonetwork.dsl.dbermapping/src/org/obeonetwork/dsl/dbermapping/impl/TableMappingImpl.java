@@ -6,17 +6,24 @@
  */
 package org.obeonetwork.dsl.dbermapping.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.obeonetwork.dsl.database.Table;
 
+import org.obeonetwork.dsl.dbermapping.ColumnMapping;
 import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
+import org.obeonetwork.dsl.dbermapping.ForeignKeyMapping;
 import org.obeonetwork.dsl.dbermapping.TableMapping;
 
 import org.obeonetwork.dsl.entityrelation.Entity;
@@ -30,6 +37,8 @@ import org.obeonetwork.dsl.entityrelation.Entity;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.TableMappingImpl#getTable <em>Table</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.TableMappingImpl#getEntity <em>Entity</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.TableMappingImpl#getColumnMappings <em>Column Mappings</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.TableMappingImpl#getForeignKeyMappings <em>Foreign Key Mappings</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,6 +64,26 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 	 * @ordered
 	 */
 	protected Entity entity;
+
+	/**
+	 * The cached value of the '{@link #getColumnMappings() <em>Column Mappings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getColumnMappings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ColumnMapping> columnMappings;
+
+	/**
+	 * The cached value of the '{@link #getForeignKeyMappings() <em>Foreign Key Mappings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getForeignKeyMappings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ForeignKeyMapping> foreignKeyMappings;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,6 +185,46 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ColumnMapping> getColumnMappings() {
+		if (columnMappings == null) {
+			columnMappings = new EObjectContainmentEList<ColumnMapping>(ColumnMapping.class, this, DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS);
+		}
+		return columnMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ForeignKeyMapping> getForeignKeyMappings() {
+		if (foreignKeyMappings == null) {
+			foreignKeyMappings = new EObjectContainmentEList<ForeignKeyMapping>(ForeignKeyMapping.class, this, DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS);
+		}
+		return foreignKeyMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
+				return ((InternalEList<?>)getColumnMappings()).basicRemove(otherEnd, msgs);
+			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
+				return ((InternalEList<?>)getForeignKeyMappings()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -165,6 +234,10 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 			case DbermappingPackage.TABLE_MAPPING__ENTITY:
 				if (resolve) return getEntity();
 				return basicGetEntity();
+			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
+				return getColumnMappings();
+			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
+				return getForeignKeyMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -174,6 +247,7 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -182,6 +256,14 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 				return;
 			case DbermappingPackage.TABLE_MAPPING__ENTITY:
 				setEntity((Entity)newValue);
+				return;
+			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
+				getColumnMappings().clear();
+				getColumnMappings().addAll((Collection<? extends ColumnMapping>)newValue);
+				return;
+			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
+				getForeignKeyMappings().clear();
+				getForeignKeyMappings().addAll((Collection<? extends ForeignKeyMapping>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -201,6 +283,12 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 			case DbermappingPackage.TABLE_MAPPING__ENTITY:
 				setEntity((Entity)null);
 				return;
+			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
+				getColumnMappings().clear();
+				return;
+			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
+				getForeignKeyMappings().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,6 +305,10 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 				return table != null;
 			case DbermappingPackage.TABLE_MAPPING__ENTITY:
 				return entity != null;
+			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
+				return columnMappings != null && !columnMappings.isEmpty();
+			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
+				return foreignKeyMappings != null && !foreignKeyMappings.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

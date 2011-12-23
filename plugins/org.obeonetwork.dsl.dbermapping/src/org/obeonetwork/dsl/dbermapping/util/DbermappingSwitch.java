@@ -99,6 +99,18 @@ public class DbermappingSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DbermappingPackage.COLUMN_MAPPING: {
+				ColumnMapping columnMapping = (ColumnMapping)theEObject;
+				T result = caseColumnMapping(columnMapping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DbermappingPackage.FOREIGN_KEY_MAPPING: {
+				ForeignKeyMapping foreignKeyMapping = (ForeignKeyMapping)theEObject;
+				T result = caseForeignKeyMapping(foreignKeyMapping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -130,6 +142,36 @@ public class DbermappingSwitch<T> {
 	 * @generated
 	 */
 	public T caseTableMapping(TableMapping object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Column Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Column Mapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseColumnMapping(ColumnMapping object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Foreign Key Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Foreign Key Mapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseForeignKeyMapping(ForeignKeyMapping object) {
 		return null;
 	}
 

@@ -122,6 +122,52 @@ public class DbermappingItemProviderAdapterFactory extends DbermappingAdapterFac
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.obeonetwork.dsl.dbermapping.ColumnMapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ColumnMappingItemProvider columnMappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.obeonetwork.dsl.dbermapping.ColumnMapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createColumnMappingAdapter() {
+		if (columnMappingItemProvider == null) {
+			columnMappingItemProvider = new ColumnMappingItemProvider(this);
+		}
+
+		return columnMappingItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ForeignKeyMappingItemProvider foreignKeyMappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createForeignKeyMappingAdapter() {
+		if (foreignKeyMappingItemProvider == null) {
+			foreignKeyMappingItemProvider = new ForeignKeyMappingItemProvider(this);
+		}
+
+		return foreignKeyMappingItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -222,6 +268,8 @@ public class DbermappingItemProviderAdapterFactory extends DbermappingAdapterFac
 	public void dispose() {
 		if (databaseMappingItemProvider != null) databaseMappingItemProvider.dispose();
 		if (tableMappingItemProvider != null) tableMappingItemProvider.dispose();
+		if (columnMappingItemProvider != null) columnMappingItemProvider.dispose();
+		if (foreignKeyMappingItemProvider != null) foreignKeyMappingItemProvider.dispose();
 	}
 
 }

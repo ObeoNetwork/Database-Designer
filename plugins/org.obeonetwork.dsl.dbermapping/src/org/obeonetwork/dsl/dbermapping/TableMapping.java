@@ -6,6 +6,7 @@
  */
 package org.obeonetwork.dsl.dbermapping;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import org.obeonetwork.dsl.database.Table;
@@ -22,6 +23,8 @@ import org.obeonetwork.dsl.entityrelation.Entity;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.TableMapping#getTable <em>Table</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.TableMapping#getEntity <em>Entity</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.dbermapping.TableMapping#getColumnMappings <em>Column Mappings</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.dbermapping.TableMapping#getForeignKeyMappings <em>Foreign Key Mappings</em>}</li>
  * </ul>
  * </p>
  *
@@ -81,5 +84,37 @@ public interface TableMapping extends EObject {
 	 * @generated
 	 */
 	void setEntity(Entity value);
+
+	/**
+	 * Returns the value of the '<em><b>Column Mappings</b></em>' containment reference list.
+	 * The list contents are of type {@link org.obeonetwork.dsl.dbermapping.ColumnMapping}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Column Mappings</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Column Mappings</em>' containment reference list.
+	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getTableMapping_ColumnMappings()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ColumnMapping> getColumnMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Foreign Key Mappings</b></em>' containment reference list.
+	 * The list contents are of type {@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Foreign Key Mappings</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Foreign Key Mappings</em>' containment reference list.
+	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getTableMapping_ForeignKeyMappings()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ForeignKeyMapping> getForeignKeyMappings();
 
 } // TableMapping
