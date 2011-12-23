@@ -78,7 +78,7 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 			case EntityRelationPackage.ATTRIBUTE: return createAttribute();
 			case EntityRelationPackage.ROLE: return createRole();
 			case EntityRelationPackage.IDENTIFIER: return createIdentifier();
-			case EntityRelationPackage.JOIN: return createJoin();
+			case EntityRelationPackage.JOIN_BY_IDENTIFIER: return createJoinByIdentifier();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -179,9 +179,9 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Join createJoin() {
-		JoinImpl join = new JoinImpl();
-		return join;
+	public JoinByIdentifier createJoinByIdentifier() {
+		JoinByIdentifierImpl joinByIdentifier = new JoinByIdentifierImpl();
+		return joinByIdentifier;
 	}
 
 	/**

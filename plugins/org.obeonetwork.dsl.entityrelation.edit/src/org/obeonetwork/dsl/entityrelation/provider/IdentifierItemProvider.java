@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.provider;
 
@@ -27,7 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
 
 /**
@@ -44,13 +40,6 @@ public class IdentifierItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -91,7 +80,7 @@ public class IdentifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Identifier_primary_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Identifier_primary_feature", "_UI_Identifier_type"),
-				 EntityRelationPackage.Literals.IDENTIFIER__PRIMARY,
+				 EntityrelationPackage.Literals.IDENTIFIER__PRIMARY,
 				 true,
 				 false,
 				 false,
@@ -113,7 +102,7 @@ public class IdentifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Identifier_attributes_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Identifier_attributes_feature", "_UI_Identifier_type"),
-				 EntityRelationPackage.Literals.IDENTIFIER__ATTRIBUTES,
+				 EntityrelationPackage.Literals.IDENTIFIER__ATTRIBUTES,
 				 true,
 				 false,
 				 true,
@@ -131,16 +120,6 @@ public class IdentifierItemProvider
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/Identifier"));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected boolean shouldComposeCreationImage() {
-		return true;
 	}
 
 	/**
@@ -169,7 +148,7 @@ public class IdentifierItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Identifier.class)) {
-			case EntityRelationPackage.IDENTIFIER__PRIMARY:
+			case EntityrelationPackage.IDENTIFIER__PRIMARY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

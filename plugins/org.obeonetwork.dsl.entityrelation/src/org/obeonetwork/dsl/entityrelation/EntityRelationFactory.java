@@ -91,13 +91,13 @@ public interface EntityRelationFactory extends EFactory {
 	Identifier createIdentifier();
 
 	/**
-	 * Returns a new object of class '<em>Join</em>'.
+	 * Returns a new object of class '<em>Join By Identifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Join</em>'.
+	 * @return a new object of class '<em>Join By Identifier</em>'.
 	 * @generated
 	 */
-	Join createJoin();
+	JoinByIdentifier createJoinByIdentifier();
 
 	/**
 	 * Returns the package supported by this factory.

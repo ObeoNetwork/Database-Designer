@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.obeonetwork.dsl.entityrelation.Entity;
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.LogicalModel;
 import org.obeonetwork.dsl.entityrelation.Relation;
@@ -42,13 +43,6 @@ import org.obeonetwork.dsl.entityrelation.Relation;
  * @generated
  */
 public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * The cached value of the '{@link #getEntities() <em>Entities</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -85,7 +79,7 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EntityRelationPackage.Literals.LOGICAL_MODEL;
+		return EntityrelationPackage.Literals.LOGICAL_MODEL;
 	}
 
 	/**
@@ -95,7 +89,7 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	 */
 	public EList<Entity> getEntities() {
 		if (entities == null) {
-			entities = new EObjectContainmentEList<Entity>(Entity.class, this, EntityRelationPackage.LOGICAL_MODEL__ENTITIES);
+			entities = new EObjectContainmentEList<Entity>(Entity.class, this, EntityrelationPackage.LOGICAL_MODEL__ENTITIES);
 		}
 		return entities;
 	}
@@ -107,7 +101,7 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	 */
 	public EList<Relation> getRelations() {
 		if (relations == null) {
-			relations = new EObjectContainmentEList<Relation>(Relation.class, this, EntityRelationPackage.LOGICAL_MODEL__RELATIONS);
+			relations = new EObjectContainmentEList<Relation>(Relation.class, this, EntityrelationPackage.LOGICAL_MODEL__RELATIONS);
 		}
 		return relations;
 	}
@@ -120,9 +114,9 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
+			case EntityrelationPackage.LOGICAL_MODEL__ENTITIES:
 				return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
-			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
+			case EntityrelationPackage.LOGICAL_MODEL__RELATIONS:
 				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -136,9 +130,9 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
+			case EntityrelationPackage.LOGICAL_MODEL__ENTITIES:
 				return getEntities();
-			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
+			case EntityrelationPackage.LOGICAL_MODEL__RELATIONS:
 				return getRelations();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -153,11 +147,11 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
+			case EntityrelationPackage.LOGICAL_MODEL__ENTITIES:
 				getEntities().clear();
 				getEntities().addAll((Collection<? extends Entity>)newValue);
 				return;
-			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
+			case EntityrelationPackage.LOGICAL_MODEL__RELATIONS:
 				getRelations().clear();
 				getRelations().addAll((Collection<? extends Relation>)newValue);
 				return;
@@ -173,10 +167,10 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
+			case EntityrelationPackage.LOGICAL_MODEL__ENTITIES:
 				getEntities().clear();
 				return;
-			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
+			case EntityrelationPackage.LOGICAL_MODEL__RELATIONS:
 				getRelations().clear();
 				return;
 		}
@@ -191,9 +185,9 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
+			case EntityrelationPackage.LOGICAL_MODEL__ENTITIES:
 				return entities != null && !entities.isEmpty();
-			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
+			case EntityrelationPackage.LOGICAL_MODEL__RELATIONS:
 				return relations != null && !relations.isEmpty();
 		}
 		return super.eIsSet(featureID);

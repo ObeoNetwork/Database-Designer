@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -24,7 +22,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.obeonetwork.dsl.dbermapping.DbermappingFactory;
 import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
@@ -128,6 +125,7 @@ public class TableMappingItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DbermappingPackage.Literals.TABLE_MAPPING__COLUMN_MAPPINGS);
+			childrenFeatures.add(DbermappingPackage.Literals.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS);
 			childrenFeatures.add(DbermappingPackage.Literals.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS);
 		}
 		return childrenFeatures;
@@ -181,6 +179,7 @@ public class TableMappingItemProvider
 
 		switch (notification.getFeatureID(TableMapping.class)) {
 			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
+			case DbermappingPackage.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS:
 			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -203,6 +202,11 @@ public class TableMappingItemProvider
 			(createChildParameter
 				(DbermappingPackage.Literals.TABLE_MAPPING__COLUMN_MAPPINGS,
 				 DbermappingFactory.eINSTANCE.createColumnMapping()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DbermappingPackage.Literals.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS,
+				 DbermappingFactory.eINSTANCE.createPrimaryKeyMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter

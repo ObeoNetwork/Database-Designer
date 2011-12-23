@@ -6,17 +6,21 @@
  */
 package org.obeonetwork.dsl.dbermapping.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.obeonetwork.dsl.database.ForeignKey;
 
 import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
+import org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping;
 import org.obeonetwork.dsl.dbermapping.ForeignKeyMapping;
 
 import org.obeonetwork.dsl.entityrelation.Relation;
@@ -30,6 +34,7 @@ import org.obeonetwork.dsl.entityrelation.Relation;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyMappingImpl#getForeignKey <em>Foreign Key</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyMappingImpl#getRelation <em>Relation</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyMappingImpl#getForeignKeyElementMappings <em>Foreign Key Element Mappings</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,6 +60,16 @@ public class ForeignKeyMappingImpl extends EObjectImpl implements ForeignKeyMapp
 	 * @ordered
 	 */
 	protected Relation relation;
+
+	/**
+	 * The cached value of the '{@link #getForeignKeyElementMappings() <em>Foreign Key Element Mappings</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getForeignKeyElementMappings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ForeignKeyElementMapping> foreignKeyElementMappings;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,6 +171,18 @@ public class ForeignKeyMappingImpl extends EObjectImpl implements ForeignKeyMapp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ForeignKeyElementMapping> getForeignKeyElementMappings() {
+		if (foreignKeyElementMappings == null) {
+			foreignKeyElementMappings = new EObjectResolvingEList<ForeignKeyElementMapping>(ForeignKeyElementMapping.class, this, DbermappingPackage.FOREIGN_KEY_MAPPING__FOREIGN_KEY_ELEMENT_MAPPINGS);
+		}
+		return foreignKeyElementMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -165,6 +192,8 @@ public class ForeignKeyMappingImpl extends EObjectImpl implements ForeignKeyMapp
 			case DbermappingPackage.FOREIGN_KEY_MAPPING__RELATION:
 				if (resolve) return getRelation();
 				return basicGetRelation();
+			case DbermappingPackage.FOREIGN_KEY_MAPPING__FOREIGN_KEY_ELEMENT_MAPPINGS:
+				return getForeignKeyElementMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -174,6 +203,7 @@ public class ForeignKeyMappingImpl extends EObjectImpl implements ForeignKeyMapp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -182,6 +212,10 @@ public class ForeignKeyMappingImpl extends EObjectImpl implements ForeignKeyMapp
 				return;
 			case DbermappingPackage.FOREIGN_KEY_MAPPING__RELATION:
 				setRelation((Relation)newValue);
+				return;
+			case DbermappingPackage.FOREIGN_KEY_MAPPING__FOREIGN_KEY_ELEMENT_MAPPINGS:
+				getForeignKeyElementMappings().clear();
+				getForeignKeyElementMappings().addAll((Collection<? extends ForeignKeyElementMapping>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -201,6 +235,9 @@ public class ForeignKeyMappingImpl extends EObjectImpl implements ForeignKeyMapp
 			case DbermappingPackage.FOREIGN_KEY_MAPPING__RELATION:
 				setRelation((Relation)null);
 				return;
+			case DbermappingPackage.FOREIGN_KEY_MAPPING__FOREIGN_KEY_ELEMENT_MAPPINGS:
+				getForeignKeyElementMappings().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,6 +254,8 @@ public class ForeignKeyMappingImpl extends EObjectImpl implements ForeignKeyMapp
 				return foreignKey != null;
 			case DbermappingPackage.FOREIGN_KEY_MAPPING__RELATION:
 				return relation != null;
+			case DbermappingPackage.FOREIGN_KEY_MAPPING__FOREIGN_KEY_ELEMENT_MAPPINGS:
+				return foreignKeyElementMappings != null && !foreignKeyElementMappings.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.provider;
 
@@ -19,7 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -28,8 +23,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
-import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityrelationFactory;
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.Relation;
 
 /**
@@ -46,13 +41,6 @@ public class RelationItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -74,31 +62,8 @@ public class RelationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addRolesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Roles feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRolesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Relation_roles_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Relation_roles_feature", "_UI_Relation_type"),
-				 EntityRelationPackage.Literals.RELATION__ROLES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -113,7 +78,8 @@ public class RelationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EntityRelationPackage.Literals.RELATION__JOINS);
+			childrenFeatures.add(EntityrelationPackage.Literals.RELATION__ROLES);
+			childrenFeatures.add(EntityrelationPackage.Literals.RELATION__JOINS);
 		}
 		return childrenFeatures;
 	}
@@ -143,16 +109,6 @@ public class RelationItemProvider
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected boolean shouldComposeCreationImage() {
-		return true;
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -178,7 +134,8 @@ public class RelationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Relation.class)) {
-			case EntityRelationPackage.RELATION__JOINS:
+			case EntityrelationPackage.RELATION__ROLES:
+			case EntityrelationPackage.RELATION__JOINS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -198,8 +155,13 @@ public class RelationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EntityRelationPackage.Literals.RELATION__JOINS,
-				 EntityRelationFactory.eINSTANCE.createJoin()));
+				(EntityrelationPackage.Literals.RELATION__ROLES,
+				 EntityrelationFactory.eINSTANCE.createRole()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EntityrelationPackage.Literals.RELATION__JOINS,
+				 EntityrelationFactory.eINSTANCE.createJoinByIdentifier()));
 	}
 
 }

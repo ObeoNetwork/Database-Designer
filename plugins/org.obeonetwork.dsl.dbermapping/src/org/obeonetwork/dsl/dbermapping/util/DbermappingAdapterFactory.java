@@ -84,8 +84,16 @@ public class DbermappingAdapterFactory extends AdapterFactoryImpl {
 				return createColumnMappingAdapter();
 			}
 			@Override
+			public Adapter casePrimaryKeyMapping(PrimaryKeyMapping object) {
+				return createPrimaryKeyMappingAdapter();
+			}
+			@Override
 			public Adapter caseForeignKeyMapping(ForeignKeyMapping object) {
 				return createForeignKeyMappingAdapter();
+			}
+			@Override
+			public Adapter caseForeignKeyElementMapping(ForeignKeyElementMapping object) {
+				return createForeignKeyElementMappingAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -150,6 +158,20 @@ public class DbermappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping <em>Primary Key Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping
+	 * @generated
+	 */
+	public Adapter createPrimaryKeyMappingAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping <em>Foreign Key Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -160,6 +182,20 @@ public class DbermappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createForeignKeyMappingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping <em>Foreign Key Element Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping
+	 * @generated
+	 */
+	public Adapter createForeignKeyElementMappingAdapter() {
 		return null;
 	}
 

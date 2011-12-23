@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Cardinality</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getCardinality()
+ * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getCardinality()
  * @model
  * @generated
  */
@@ -65,13 +65,6 @@ public enum Cardinality implements Enumerator {
 	 * @ordered
 	 */
 	ONE_STAR(3, "ONE_STAR", "ONE_STAR");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
 	 * The '<em><b>ZERO ONE</b></em>' literal value.

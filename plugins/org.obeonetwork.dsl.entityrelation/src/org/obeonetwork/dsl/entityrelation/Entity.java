@@ -25,18 +25,11 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getEntity()
+ * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getEntity()
  * @model
  * @generated
  */
 public interface Entity extends NamedElement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
 	 * The list contents are of type {@link org.obeonetwork.dsl.entityrelation.Attribute}.
@@ -47,7 +40,7 @@ public interface Entity extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getEntity_Attributes()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getEntity_Attributes()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -63,7 +56,7 @@ public interface Entity extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifiers</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getEntity_Identifiers()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getEntity_Identifiers()
 	 * @model containment="true"
 	 * @generated
 	 */

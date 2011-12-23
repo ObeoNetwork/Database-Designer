@@ -6,6 +6,7 @@
  */
 package org.obeonetwork.dsl.dbermapping;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import org.obeonetwork.dsl.database.ForeignKey;
@@ -22,6 +23,7 @@ import org.obeonetwork.dsl.entityrelation.Relation;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping#getForeignKey <em>Foreign Key</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping#getRelation <em>Relation</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping#getForeignKeyElementMappings <em>Foreign Key Element Mappings</em>}</li>
  * </ul>
  * </p>
  *
@@ -81,5 +83,21 @@ public interface ForeignKeyMapping extends EObject {
 	 * @generated
 	 */
 	void setRelation(Relation value);
+
+	/**
+	 * Returns the value of the '<em><b>Foreign Key Element Mappings</b></em>' reference list.
+	 * The list contents are of type {@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Foreign Key Element Mappings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Foreign Key Element Mappings</em>' reference list.
+	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getForeignKeyMapping_ForeignKeyElementMappings()
+	 * @model
+	 * @generated
+	 */
+	EList<ForeignKeyElementMapping> getForeignKeyElementMappings();
 
 } // ForeignKeyMapping

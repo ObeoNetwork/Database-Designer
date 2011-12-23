@@ -17,6 +17,8 @@
         eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//Entity"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="columnMappings" upperBound="-1"
         eType="#//ColumnMapping" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryKeyMappings" upperBound="-1"
+        eType="#//PrimaryKeyMapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="foreignKeyMappings" upperBound="-1"
         eType="#//ForeignKeyMapping" containment="true"/>
   </eClassifiers>
@@ -26,10 +28,24 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
         eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//Attribute"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimaryKeyMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryKey" lowerBound="1"
+        eType="ecore:EClass ../../org.obeonetwork.dsl.database/model/database.ecore#//PrimaryKey"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="identifier" lowerBound="1"
+        eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//Identifier"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ForeignKeyMapping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="foreignKey" lowerBound="1"
         eType="ecore:EClass ../../org.obeonetwork.dsl.database/model/database.ecore#//ForeignKey"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="relation" lowerBound="1"
         eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//Relation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="foreignKeyElementMappings"
+        upperBound="-1" eType="#//ForeignKeyElementMapping"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForeignKeyElementMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="foreignKeyElement" lowerBound="1"
+        eType="ecore:EClass ../../org.obeonetwork.dsl.database/model/database.ecore#//ForeignKeyElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="join" lowerBound="1" eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//Join"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" lowerBound="1" eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//Role"/>
   </eClassifiers>
 </ecore:EPackage>

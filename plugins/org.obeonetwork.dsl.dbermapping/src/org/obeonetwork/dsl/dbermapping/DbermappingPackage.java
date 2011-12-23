@@ -142,13 +142,22 @@ public interface DbermappingPackage extends EPackage {
 	int TABLE_MAPPING__COLUMN_MAPPINGS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Primary Key Mappings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_MAPPING__PRIMARY_KEY_MAPPINGS = 3;
+
+	/**
 	 * The feature id for the '<em><b>Foreign Key Mappings</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_MAPPING__FOREIGN_KEY_MAPPINGS = 3;
+	int TABLE_MAPPING__FOREIGN_KEY_MAPPINGS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Table Mapping</em>' class.
@@ -157,7 +166,7 @@ public interface DbermappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_MAPPING_FEATURE_COUNT = 4;
+	int TABLE_MAPPING_FEATURE_COUNT = 5;
 
 
 	/**
@@ -199,6 +208,43 @@ public interface DbermappingPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.obeonetwork.dsl.dbermapping.impl.PrimaryKeyMappingImpl <em>Primary Key Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.obeonetwork.dsl.dbermapping.impl.PrimaryKeyMappingImpl
+	 * @see org.obeonetwork.dsl.dbermapping.impl.DbermappingPackageImpl#getPrimaryKeyMapping()
+	 * @generated
+	 */
+	int PRIMARY_KEY_MAPPING = 3;
+
+	/**
+	 * The feature id for the '<em><b>Primary Key</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMARY_KEY_MAPPING__PRIMARY_KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMARY_KEY_MAPPING__IDENTIFIER = 1;
+
+	/**
+	 * The number of structural features of the '<em>Primary Key Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMARY_KEY_MAPPING_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyMappingImpl <em>Foreign Key Mapping</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -206,7 +252,7 @@ public interface DbermappingPackage extends EPackage {
 	 * @see org.obeonetwork.dsl.dbermapping.impl.DbermappingPackageImpl#getForeignKeyMapping()
 	 * @generated
 	 */
-	int FOREIGN_KEY_MAPPING = 3;
+	int FOREIGN_KEY_MAPPING = 4;
 
 	/**
 	 * The feature id for the '<em><b>Foreign Key</b></em>' reference.
@@ -227,13 +273,69 @@ public interface DbermappingPackage extends EPackage {
 	int FOREIGN_KEY_MAPPING__RELATION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Foreign Key Element Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY_MAPPING__FOREIGN_KEY_ELEMENT_MAPPINGS = 2;
+
+	/**
 	 * The number of structural features of the '<em>Foreign Key Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_KEY_MAPPING_FEATURE_COUNT = 2;
+	int FOREIGN_KEY_MAPPING_FEATURE_COUNT = 3;
+
+
+	/**
+	 * The meta object id for the '{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyElementMappingImpl <em>Foreign Key Element Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.obeonetwork.dsl.dbermapping.impl.ForeignKeyElementMappingImpl
+	 * @see org.obeonetwork.dsl.dbermapping.impl.DbermappingPackageImpl#getForeignKeyElementMapping()
+	 * @generated
+	 */
+	int FOREIGN_KEY_ELEMENT_MAPPING = 5;
+
+	/**
+	 * The feature id for the '<em><b>Foreign Key Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Join</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY_ELEMENT_MAPPING__JOIN = 1;
+
+	/**
+	 * The feature id for the '<em><b>Role</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY_ELEMENT_MAPPING__ROLE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Foreign Key Element Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY_ELEMENT_MAPPING_FEATURE_COUNT = 3;
 
 
 	/**
@@ -323,6 +425,17 @@ public interface DbermappingPackage extends EPackage {
 	EReference getTableMapping_ColumnMappings();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.obeonetwork.dsl.dbermapping.TableMapping#getPrimaryKeyMappings <em>Primary Key Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Primary Key Mappings</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.TableMapping#getPrimaryKeyMappings()
+	 * @see #getTableMapping()
+	 * @generated
+	 */
+	EReference getTableMapping_PrimaryKeyMappings();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.obeonetwork.dsl.dbermapping.TableMapping#getForeignKeyMappings <em>Foreign Key Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -366,6 +479,38 @@ public interface DbermappingPackage extends EPackage {
 	EReference getColumnMapping_Attribute();
 
 	/**
+	 * Returns the meta object for class '{@link org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping <em>Primary Key Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Primary Key Mapping</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping
+	 * @generated
+	 */
+	EClass getPrimaryKeyMapping();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping#getPrimaryKey <em>Primary Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Primary Key</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping#getPrimaryKey()
+	 * @see #getPrimaryKeyMapping()
+	 * @generated
+	 */
+	EReference getPrimaryKeyMapping_PrimaryKey();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Identifier</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping#getIdentifier()
+	 * @see #getPrimaryKeyMapping()
+	 * @generated
+	 */
+	EReference getPrimaryKeyMapping_Identifier();
+
+	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping <em>Foreign Key Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -396,6 +541,60 @@ public interface DbermappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getForeignKeyMapping_Relation();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping#getForeignKeyElementMappings <em>Foreign Key Element Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Foreign Key Element Mappings</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyMapping#getForeignKeyElementMappings()
+	 * @see #getForeignKeyMapping()
+	 * @generated
+	 */
+	EReference getForeignKeyMapping_ForeignKeyElementMappings();
+
+	/**
+	 * Returns the meta object for class '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping <em>Foreign Key Element Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Foreign Key Element Mapping</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping
+	 * @generated
+	 */
+	EClass getForeignKeyElementMapping();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getForeignKeyElement <em>Foreign Key Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Foreign Key Element</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getForeignKeyElement()
+	 * @see #getForeignKeyElementMapping()
+	 * @generated
+	 */
+	EReference getForeignKeyElementMapping_ForeignKeyElement();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getJoin <em>Join</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Join</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getJoin()
+	 * @see #getForeignKeyElementMapping()
+	 * @generated
+	 */
+	EReference getForeignKeyElementMapping_Join();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getRole <em>Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Role</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getRole()
+	 * @see #getForeignKeyElementMapping()
+	 * @generated
+	 */
+	EReference getForeignKeyElementMapping_Role();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -488,6 +687,14 @@ public interface DbermappingPackage extends EPackage {
 		EReference TABLE_MAPPING__COLUMN_MAPPINGS = eINSTANCE.getTableMapping_ColumnMappings();
 
 		/**
+		 * The meta object literal for the '<em><b>Primary Key Mappings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_MAPPING__PRIMARY_KEY_MAPPINGS = eINSTANCE.getTableMapping_PrimaryKeyMappings();
+
+		/**
 		 * The meta object literal for the '<em><b>Foreign Key Mappings</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -522,6 +729,32 @@ public interface DbermappingPackage extends EPackage {
 		EReference COLUMN_MAPPING__ATTRIBUTE = eINSTANCE.getColumnMapping_Attribute();
 
 		/**
+		 * The meta object literal for the '{@link org.obeonetwork.dsl.dbermapping.impl.PrimaryKeyMappingImpl <em>Primary Key Mapping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.obeonetwork.dsl.dbermapping.impl.PrimaryKeyMappingImpl
+		 * @see org.obeonetwork.dsl.dbermapping.impl.DbermappingPackageImpl#getPrimaryKeyMapping()
+		 * @generated
+		 */
+		EClass PRIMARY_KEY_MAPPING = eINSTANCE.getPrimaryKeyMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Primary Key</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRIMARY_KEY_MAPPING__PRIMARY_KEY = eINSTANCE.getPrimaryKeyMapping_PrimaryKey();
+
+		/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRIMARY_KEY_MAPPING__IDENTIFIER = eINSTANCE.getPrimaryKeyMapping_Identifier();
+
+		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyMappingImpl <em>Foreign Key Mapping</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -546,6 +779,48 @@ public interface DbermappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FOREIGN_KEY_MAPPING__RELATION = eINSTANCE.getForeignKeyMapping_Relation();
+
+		/**
+		 * The meta object literal for the '<em><b>Foreign Key Element Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOREIGN_KEY_MAPPING__FOREIGN_KEY_ELEMENT_MAPPINGS = eINSTANCE.getForeignKeyMapping_ForeignKeyElementMappings();
+
+		/**
+		 * The meta object literal for the '{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyElementMappingImpl <em>Foreign Key Element Mapping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.obeonetwork.dsl.dbermapping.impl.ForeignKeyElementMappingImpl
+		 * @see org.obeonetwork.dsl.dbermapping.impl.DbermappingPackageImpl#getForeignKeyElementMapping()
+		 * @generated
+		 */
+		EClass FOREIGN_KEY_ELEMENT_MAPPING = eINSTANCE.getForeignKeyElementMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Foreign Key Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT = eINSTANCE.getForeignKeyElementMapping_ForeignKeyElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Join</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOREIGN_KEY_ELEMENT_MAPPING__JOIN = eINSTANCE.getForeignKeyElementMapping_Join();
+
+		/**
+		 * The meta object literal for the '<em><b>Role</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOREIGN_KEY_ELEMENT_MAPPING__ROLE = eINSTANCE.getForeignKeyElementMapping_Role();
 
 	}
 

@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.provider;
 
@@ -27,8 +23,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
-import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityrelationFactory;
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.LogicalModel;
 
 /**
@@ -45,13 +41,6 @@ public class LogicalModelItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -89,8 +78,8 @@ public class LogicalModelItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EntityRelationPackage.Literals.LOGICAL_MODEL__ENTITIES);
-			childrenFeatures.add(EntityRelationPackage.Literals.LOGICAL_MODEL__RELATIONS);
+			childrenFeatures.add(EntityrelationPackage.Literals.LOGICAL_MODEL__ENTITIES);
+			childrenFeatures.add(EntityrelationPackage.Literals.LOGICAL_MODEL__RELATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -120,16 +109,6 @@ public class LogicalModelItemProvider
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected boolean shouldComposeCreationImage() {
-		return true;
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,8 +134,8 @@ public class LogicalModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LogicalModel.class)) {
-			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
-			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
+			case EntityrelationPackage.LOGICAL_MODEL__ENTITIES:
+			case EntityrelationPackage.LOGICAL_MODEL__RELATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -176,13 +155,13 @@ public class LogicalModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EntityRelationPackage.Literals.LOGICAL_MODEL__ENTITIES,
-				 EntityRelationFactory.eINSTANCE.createEntity()));
+				(EntityrelationPackage.Literals.LOGICAL_MODEL__ENTITIES,
+				 EntityrelationFactory.eINSTANCE.createEntity()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EntityRelationPackage.Literals.LOGICAL_MODEL__RELATIONS,
-				 EntityRelationFactory.eINSTANCE.createRelation()));
+				(EntityrelationPackage.Literals.LOGICAL_MODEL__RELATIONS,
+				 EntityrelationFactory.eINSTANCE.createRelation()));
 	}
 
 }

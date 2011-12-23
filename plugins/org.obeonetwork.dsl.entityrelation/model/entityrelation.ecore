@@ -16,13 +16,16 @@
         eType="#//Identifier" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relation" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="2" eType="#//Role"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="2" eType="#//Role"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="joins" upperBound="-1"
         eType="#//Join" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass ../../org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="useInIdentifier" eType="#//Identifier"
+        eOpposite="#//Identifier/attributes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//LogicalElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -47,12 +50,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="Identifier" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="primary" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
-        eType="#//Attribute"/>
+        eType="#//Attribute" eOpposite="#//Attribute/useInIdentifier"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//LogicalElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="identifiers" upperBound="-1"
+  <eClassifiers xsi:type="ecore:EClass" name="Join" abstract="true" eSuperTypes="#//LogicalElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="JoinByIdentifier" eSuperTypes="#//Join">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="identifier" lowerBound="1"
         eType="#//Identifier"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -22,21 +22,15 @@ import org.obeonetwork.dsl.typeslibrary.Type;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.Attribute#getType <em>Type</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.Attribute#isRequired <em>Required</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.entityrelation.Attribute#getUseInIdentifier <em>Use In Identifier</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getAttribute()
+ * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getAttribute()
  * @model
  * @generated
  */
 public interface Attribute extends NamedElement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -47,7 +41,7 @@ public interface Attribute extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(Type)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getAttribute_Type()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getAttribute_Type()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -73,7 +67,7 @@ public interface Attribute extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Required</em>' attribute.
 	 * @see #setRequired(boolean)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getAttribute_Required()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getAttribute_Required()
 	 * @model
 	 * @generated
 	 */
@@ -88,5 +82,33 @@ public interface Attribute extends NamedElement {
 	 * @generated
 	 */
 	void setRequired(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Use In Identifier</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.entityrelation.Identifier#getAttributes <em>Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Use In Identifier</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Use In Identifier</em>' reference.
+	 * @see #setUseInIdentifier(Identifier)
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getAttribute_UseInIdentifier()
+	 * @see org.obeonetwork.dsl.entityrelation.Identifier#getAttributes
+	 * @model opposite="attributes"
+	 * @generated
+	 */
+	Identifier getUseInIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.obeonetwork.dsl.entityrelation.Attribute#getUseInIdentifier <em>Use In Identifier</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Use In Identifier</em>' reference.
+	 * @see #getUseInIdentifier()
+	 * @generated
+	 */
+	void setUseInIdentifier(Identifier value);
 
 } // Attribute

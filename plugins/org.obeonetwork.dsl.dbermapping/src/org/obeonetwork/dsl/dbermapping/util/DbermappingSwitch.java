@@ -105,9 +105,21 @@ public class DbermappingSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DbermappingPackage.PRIMARY_KEY_MAPPING: {
+				PrimaryKeyMapping primaryKeyMapping = (PrimaryKeyMapping)theEObject;
+				T result = casePrimaryKeyMapping(primaryKeyMapping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DbermappingPackage.FOREIGN_KEY_MAPPING: {
 				ForeignKeyMapping foreignKeyMapping = (ForeignKeyMapping)theEObject;
 				T result = caseForeignKeyMapping(foreignKeyMapping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING: {
+				ForeignKeyElementMapping foreignKeyElementMapping = (ForeignKeyElementMapping)theEObject;
+				T result = caseForeignKeyElementMapping(foreignKeyElementMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -161,6 +173,21 @@ public class DbermappingSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Primary Key Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Primary Key Mapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePrimaryKeyMapping(PrimaryKeyMapping object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Foreign Key Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -172,6 +199,21 @@ public class DbermappingSwitch<T> {
 	 * @generated
 	 */
 	public T caseForeignKeyMapping(ForeignKeyMapping object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Foreign Key Element Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Foreign Key Element Mapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseForeignKeyElementMapping(ForeignKeyElementMapping object) {
 		return null;
 	}
 

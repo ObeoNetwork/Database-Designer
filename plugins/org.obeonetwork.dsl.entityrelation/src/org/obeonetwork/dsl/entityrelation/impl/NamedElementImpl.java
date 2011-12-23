@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.NamedElement;
 
@@ -33,13 +34,6 @@ import org.obeonetwork.dsl.entityrelation.NamedElement;
  * @generated
  */
 public abstract class NamedElementImpl extends LogicalElementImpl implements NamedElement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -76,7 +70,7 @@ public abstract class NamedElementImpl extends LogicalElementImpl implements Nam
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EntityRelationPackage.Literals.NAMED_ELEMENT;
+		return EntityrelationPackage.Literals.NAMED_ELEMENT;
 	}
 
 	/**
@@ -97,7 +91,7 @@ public abstract class NamedElementImpl extends LogicalElementImpl implements Nam
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.NAMED_ELEMENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, EntityrelationPackage.NAMED_ELEMENT__NAME, oldName, name));
 	}
 
 	/**
@@ -108,7 +102,7 @@ public abstract class NamedElementImpl extends LogicalElementImpl implements Nam
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EntityRelationPackage.NAMED_ELEMENT__NAME:
+			case EntityrelationPackage.NAMED_ELEMENT__NAME:
 				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -122,7 +116,7 @@ public abstract class NamedElementImpl extends LogicalElementImpl implements Nam
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EntityRelationPackage.NAMED_ELEMENT__NAME:
+			case EntityrelationPackage.NAMED_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
 		}
@@ -137,7 +131,7 @@ public abstract class NamedElementImpl extends LogicalElementImpl implements Nam
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EntityRelationPackage.NAMED_ELEMENT__NAME:
+			case EntityrelationPackage.NAMED_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 		}
@@ -152,7 +146,7 @@ public abstract class NamedElementImpl extends LogicalElementImpl implements Nam
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EntityRelationPackage.NAMED_ELEMENT__NAME:
+			case EntityrelationPackage.NAMED_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);

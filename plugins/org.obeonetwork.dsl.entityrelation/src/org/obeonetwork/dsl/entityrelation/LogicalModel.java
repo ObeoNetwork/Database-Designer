@@ -25,18 +25,11 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getLogicalModel()
+ * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getLogicalModel()
  * @model
  * @generated
  */
 public interface LogicalModel extends NamedElement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * Returns the value of the '<em><b>Entities</b></em>' containment reference list.
 	 * The list contents are of type {@link org.obeonetwork.dsl.entityrelation.Entity}.
@@ -47,7 +40,7 @@ public interface LogicalModel extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Entities</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getLogicalModel_Entities()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getLogicalModel_Entities()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -63,7 +56,7 @@ public interface LogicalModel extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relations</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getLogicalModel_Relations()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getLogicalModel_Relations()
 	 * @model containment="true"
 	 * @generated
 	 */

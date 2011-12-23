@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.obeonetwork.dsl.entityrelation.Cardinality;
 import org.obeonetwork.dsl.entityrelation.Entity;
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Role;
 
@@ -38,13 +39,6 @@ import org.obeonetwork.dsl.entityrelation.Role;
  * @generated
  */
 public class RoleImpl extends NamedElementImpl implements Role {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -111,7 +105,7 @@ public class RoleImpl extends NamedElementImpl implements Role {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EntityRelationPackage.Literals.ROLE;
+		return EntityrelationPackage.Literals.ROLE;
 	}
 
 	/**
@@ -125,7 +119,7 @@ public class RoleImpl extends NamedElementImpl implements Role {
 			entity = (Entity)eResolveProxy(oldEntity);
 			if (entity != oldEntity) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityRelationPackage.ROLE__ENTITY, oldEntity, entity));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityrelationPackage.ROLE__ENTITY, oldEntity, entity));
 			}
 		}
 		return entity;
@@ -149,7 +143,7 @@ public class RoleImpl extends NamedElementImpl implements Role {
 		Entity oldEntity = entity;
 		entity = newEntity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ROLE__ENTITY, oldEntity, entity));
+			eNotify(new ENotificationImpl(this, Notification.SET, EntityrelationPackage.ROLE__ENTITY, oldEntity, entity));
 	}
 
 	/**
@@ -170,7 +164,7 @@ public class RoleImpl extends NamedElementImpl implements Role {
 		Cardinality oldCardinality = cardinality;
 		cardinality = newCardinality == null ? CARDINALITY_EDEFAULT : newCardinality;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ROLE__CARDINALITY, oldCardinality, cardinality));
+			eNotify(new ENotificationImpl(this, Notification.SET, EntityrelationPackage.ROLE__CARDINALITY, oldCardinality, cardinality));
 	}
 
 	/**
@@ -191,7 +185,7 @@ public class RoleImpl extends NamedElementImpl implements Role {
 		boolean oldDependant = dependant;
 		dependant = newDependant;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ROLE__DEPENDANT, oldDependant, dependant));
+			eNotify(new ENotificationImpl(this, Notification.SET, EntityrelationPackage.ROLE__DEPENDANT, oldDependant, dependant));
 	}
 
 	/**
@@ -202,12 +196,12 @@ public class RoleImpl extends NamedElementImpl implements Role {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EntityRelationPackage.ROLE__ENTITY:
+			case EntityrelationPackage.ROLE__ENTITY:
 				if (resolve) return getEntity();
 				return basicGetEntity();
-			case EntityRelationPackage.ROLE__CARDINALITY:
+			case EntityrelationPackage.ROLE__CARDINALITY:
 				return getCardinality();
-			case EntityRelationPackage.ROLE__DEPENDANT:
+			case EntityrelationPackage.ROLE__DEPENDANT:
 				return isDependant();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -221,13 +215,13 @@ public class RoleImpl extends NamedElementImpl implements Role {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EntityRelationPackage.ROLE__ENTITY:
+			case EntityrelationPackage.ROLE__ENTITY:
 				setEntity((Entity)newValue);
 				return;
-			case EntityRelationPackage.ROLE__CARDINALITY:
+			case EntityrelationPackage.ROLE__CARDINALITY:
 				setCardinality((Cardinality)newValue);
 				return;
-			case EntityRelationPackage.ROLE__DEPENDANT:
+			case EntityrelationPackage.ROLE__DEPENDANT:
 				setDependant((Boolean)newValue);
 				return;
 		}
@@ -242,13 +236,13 @@ public class RoleImpl extends NamedElementImpl implements Role {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EntityRelationPackage.ROLE__ENTITY:
+			case EntityrelationPackage.ROLE__ENTITY:
 				setEntity((Entity)null);
 				return;
-			case EntityRelationPackage.ROLE__CARDINALITY:
+			case EntityrelationPackage.ROLE__CARDINALITY:
 				setCardinality(CARDINALITY_EDEFAULT);
 				return;
-			case EntityRelationPackage.ROLE__DEPENDANT:
+			case EntityrelationPackage.ROLE__DEPENDANT:
 				setDependant(DEPENDANT_EDEFAULT);
 				return;
 		}
@@ -263,11 +257,11 @@ public class RoleImpl extends NamedElementImpl implements Role {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EntityRelationPackage.ROLE__ENTITY:
+			case EntityrelationPackage.ROLE__ENTITY:
 				return entity != null;
-			case EntityRelationPackage.ROLE__CARDINALITY:
+			case EntityrelationPackage.ROLE__CARDINALITY:
 				return cardinality != CARDINALITY_EDEFAULT;
-			case EntityRelationPackage.ROLE__DEPENDANT:
+			case EntityrelationPackage.ROLE__DEPENDANT:
 				return dependant != DEPENDANT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

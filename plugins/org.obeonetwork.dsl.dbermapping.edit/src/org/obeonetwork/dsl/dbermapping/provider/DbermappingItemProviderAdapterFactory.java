@@ -12,7 +12,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -24,7 +23,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.obeonetwork.dsl.dbermapping.util.DbermappingAdapterFactory;
 
 /**
@@ -145,6 +143,29 @@ public class DbermappingItemProviderAdapterFactory extends DbermappingAdapterFac
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PrimaryKeyMappingItemProvider primaryKeyMappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPrimaryKeyMappingAdapter() {
+		if (primaryKeyMappingItemProvider == null) {
+			primaryKeyMappingItemProvider = new PrimaryKeyMappingItemProvider(this);
+		}
+
+		return primaryKeyMappingItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.obeonetwork.dsl.dbermapping.ForeignKeyMapping} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -165,6 +186,29 @@ public class DbermappingItemProviderAdapterFactory extends DbermappingAdapterFac
 		}
 
 		return foreignKeyMappingItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ForeignKeyElementMappingItemProvider foreignKeyElementMappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createForeignKeyElementMappingAdapter() {
+		if (foreignKeyElementMappingItemProvider == null) {
+			foreignKeyElementMappingItemProvider = new ForeignKeyElementMappingItemProvider(this);
+		}
+
+		return foreignKeyElementMappingItemProvider;
 	}
 
 	/**
@@ -269,7 +313,9 @@ public class DbermappingItemProviderAdapterFactory extends DbermappingAdapterFac
 		if (databaseMappingItemProvider != null) databaseMappingItemProvider.dispose();
 		if (tableMappingItemProvider != null) tableMappingItemProvider.dispose();
 		if (columnMappingItemProvider != null) columnMappingItemProvider.dispose();
+		if (primaryKeyMappingItemProvider != null) primaryKeyMappingItemProvider.dispose();
 		if (foreignKeyMappingItemProvider != null) foreignKeyMappingItemProvider.dispose();
+		if (foreignKeyElementMappingItemProvider != null) foreignKeyElementMappingItemProvider.dispose();
 	}
 
 }

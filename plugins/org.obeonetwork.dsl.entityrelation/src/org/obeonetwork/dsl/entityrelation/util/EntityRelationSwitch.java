@@ -162,6 +162,15 @@ public class EntityRelationSwitch<T> {
 			case EntityRelationPackage.JOIN: {
 				Join join = (Join)theEObject;
 				T result = caseJoin(join);
+				if (result == null) result = caseLogicalElement(join);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EntityRelationPackage.JOIN_BY_IDENTIFIER: {
+				JoinByIdentifier joinByIdentifier = (JoinByIdentifier)theEObject;
+				T result = caseJoinByIdentifier(joinByIdentifier);
+				if (result == null) result = caseJoin(joinByIdentifier);
+				if (result == null) result = caseLogicalElement(joinByIdentifier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -301,6 +310,21 @@ public class EntityRelationSwitch<T> {
 	 * @generated
 	 */
 	public T caseJoin(Join object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Join By Identifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Join By Identifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJoinByIdentifier(JoinByIdentifier object) {
 		return null;
 	}
 

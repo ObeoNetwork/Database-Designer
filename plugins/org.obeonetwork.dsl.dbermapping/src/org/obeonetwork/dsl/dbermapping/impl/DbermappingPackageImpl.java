@@ -18,9 +18,12 @@ import org.obeonetwork.dsl.dbermapping.ColumnMapping;
 import org.obeonetwork.dsl.dbermapping.DatabaseMapping;
 import org.obeonetwork.dsl.dbermapping.DbermappingFactory;
 import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
+import org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping;
 import org.obeonetwork.dsl.dbermapping.ForeignKeyMapping;
+import org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping;
 import org.obeonetwork.dsl.dbermapping.TableMapping;
 
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 
 /**
@@ -56,7 +59,21 @@ public class DbermappingPackageImpl extends EPackageImpl implements DbermappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass primaryKeyMappingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass foreignKeyMappingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass foreignKeyElementMappingEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -106,7 +123,7 @@ public class DbermappingPackageImpl extends EPackageImpl implements DbermappingP
 
 		// Initialize simple dependencies
 		DatabasePackage.eINSTANCE.eClass();
-		EntityRelationPackage.eINSTANCE.eClass();
+		EntityrelationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theDbermappingPackage.createPackageContents();
@@ -200,8 +217,17 @@ public class DbermappingPackageImpl extends EPackageImpl implements DbermappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTableMapping_ForeignKeyMappings() {
+	public EReference getTableMapping_PrimaryKeyMappings() {
 		return (EReference)tableMappingEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTableMapping_ForeignKeyMappings() {
+		return (EReference)tableMappingEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -236,6 +262,33 @@ public class DbermappingPackageImpl extends EPackageImpl implements DbermappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPrimaryKeyMapping() {
+		return primaryKeyMappingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPrimaryKeyMapping_PrimaryKey() {
+		return (EReference)primaryKeyMappingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPrimaryKeyMapping_Identifier() {
+		return (EReference)primaryKeyMappingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getForeignKeyMapping() {
 		return foreignKeyMappingEClass;
 	}
@@ -256,6 +309,51 @@ public class DbermappingPackageImpl extends EPackageImpl implements DbermappingP
 	 */
 	public EReference getForeignKeyMapping_Relation() {
 		return (EReference)foreignKeyMappingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getForeignKeyMapping_ForeignKeyElementMappings() {
+		return (EReference)foreignKeyMappingEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getForeignKeyElementMapping() {
+		return foreignKeyElementMappingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getForeignKeyElementMapping_ForeignKeyElement() {
+		return (EReference)foreignKeyElementMappingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getForeignKeyElementMapping_Join() {
+		return (EReference)foreignKeyElementMappingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getForeignKeyElementMapping_Role() {
+		return (EReference)foreignKeyElementMappingEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -295,15 +393,26 @@ public class DbermappingPackageImpl extends EPackageImpl implements DbermappingP
 		createEReference(tableMappingEClass, TABLE_MAPPING__TABLE);
 		createEReference(tableMappingEClass, TABLE_MAPPING__ENTITY);
 		createEReference(tableMappingEClass, TABLE_MAPPING__COLUMN_MAPPINGS);
+		createEReference(tableMappingEClass, TABLE_MAPPING__PRIMARY_KEY_MAPPINGS);
 		createEReference(tableMappingEClass, TABLE_MAPPING__FOREIGN_KEY_MAPPINGS);
 
 		columnMappingEClass = createEClass(COLUMN_MAPPING);
 		createEReference(columnMappingEClass, COLUMN_MAPPING__COLUMN);
 		createEReference(columnMappingEClass, COLUMN_MAPPING__ATTRIBUTE);
 
+		primaryKeyMappingEClass = createEClass(PRIMARY_KEY_MAPPING);
+		createEReference(primaryKeyMappingEClass, PRIMARY_KEY_MAPPING__PRIMARY_KEY);
+		createEReference(primaryKeyMappingEClass, PRIMARY_KEY_MAPPING__IDENTIFIER);
+
 		foreignKeyMappingEClass = createEClass(FOREIGN_KEY_MAPPING);
 		createEReference(foreignKeyMappingEClass, FOREIGN_KEY_MAPPING__FOREIGN_KEY);
 		createEReference(foreignKeyMappingEClass, FOREIGN_KEY_MAPPING__RELATION);
+		createEReference(foreignKeyMappingEClass, FOREIGN_KEY_MAPPING__FOREIGN_KEY_ELEMENT_MAPPINGS);
+
+		foreignKeyElementMappingEClass = createEClass(FOREIGN_KEY_ELEMENT_MAPPING);
+		createEReference(foreignKeyElementMappingEClass, FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT);
+		createEReference(foreignKeyElementMappingEClass, FOREIGN_KEY_ELEMENT_MAPPING__JOIN);
+		createEReference(foreignKeyElementMappingEClass, FOREIGN_KEY_ELEMENT_MAPPING__ROLE);
 	}
 
 	/**
@@ -331,7 +440,7 @@ public class DbermappingPackageImpl extends EPackageImpl implements DbermappingP
 
 		// Obtain other dependent packages
 		DatabasePackage theDatabasePackage = (DatabasePackage)EPackage.Registry.INSTANCE.getEPackage(DatabasePackage.eNS_URI);
-		EntityRelationPackage theEntityRelationPackage = (EntityRelationPackage)EPackage.Registry.INSTANCE.getEPackage(EntityRelationPackage.eNS_URI);
+		EntityrelationPackage theEntityrelationPackage = (EntityrelationPackage)EPackage.Registry.INSTANCE.getEPackage(EntityrelationPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -342,22 +451,33 @@ public class DbermappingPackageImpl extends EPackageImpl implements DbermappingP
 		// Initialize classes and features; add operations and parameters
 		initEClass(databaseMappingEClass, DatabaseMapping.class, "DatabaseMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDatabaseMapping_Database(), theDatabasePackage.getDataBase(), null, "database", null, 1, 1, DatabaseMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDatabaseMapping_LogicalModel(), theEntityRelationPackage.getLogicalModel(), null, "logicalModel", null, 1, 1, DatabaseMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDatabaseMapping_LogicalModel(), theEntityrelationPackage.getLogicalModel(), null, "logicalModel", null, 1, 1, DatabaseMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDatabaseMapping_TableMappings(), this.getTableMapping(), null, "tableMappings", null, 0, -1, DatabaseMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tableMappingEClass, TableMapping.class, "TableMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTableMapping_Table(), theDatabasePackage.getTable(), null, "table", null, 1, 1, TableMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTableMapping_Entity(), theEntityRelationPackage.getEntity(), null, "entity", null, 1, 1, TableMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTableMapping_Entity(), theEntityrelationPackage.getEntity(), null, "entity", null, 1, 1, TableMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTableMapping_ColumnMappings(), this.getColumnMapping(), null, "columnMappings", null, 0, -1, TableMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTableMapping_PrimaryKeyMappings(), this.getPrimaryKeyMapping(), null, "primaryKeyMappings", null, 0, -1, TableMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTableMapping_ForeignKeyMappings(), this.getForeignKeyMapping(), null, "foreignKeyMappings", null, 0, -1, TableMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(columnMappingEClass, ColumnMapping.class, "ColumnMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getColumnMapping_Column(), theDatabasePackage.getColumn(), null, "column", null, 1, 1, ColumnMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getColumnMapping_Attribute(), theEntityRelationPackage.getAttribute(), null, "attribute", null, 1, 1, ColumnMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getColumnMapping_Attribute(), theEntityrelationPackage.getAttribute(), null, "attribute", null, 1, 1, ColumnMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(primaryKeyMappingEClass, PrimaryKeyMapping.class, "PrimaryKeyMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPrimaryKeyMapping_PrimaryKey(), theDatabasePackage.getPrimaryKey(), null, "primaryKey", null, 1, 1, PrimaryKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPrimaryKeyMapping_Identifier(), theEntityrelationPackage.getIdentifier(), null, "identifier", null, 1, 1, PrimaryKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(foreignKeyMappingEClass, ForeignKeyMapping.class, "ForeignKeyMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getForeignKeyMapping_ForeignKey(), theDatabasePackage.getForeignKey(), null, "foreignKey", null, 1, 1, ForeignKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getForeignKeyMapping_Relation(), theEntityRelationPackage.getRelation(), null, "relation", null, 1, 1, ForeignKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getForeignKeyMapping_Relation(), theEntityrelationPackage.getRelation(), null, "relation", null, 1, 1, ForeignKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getForeignKeyMapping_ForeignKeyElementMappings(), this.getForeignKeyElementMapping(), null, "foreignKeyElementMappings", null, 0, -1, ForeignKeyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(foreignKeyElementMappingEClass, ForeignKeyElementMapping.class, "ForeignKeyElementMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getForeignKeyElementMapping_ForeignKeyElement(), theDatabasePackage.getForeignKeyElement(), null, "foreignKeyElement", null, 1, 1, ForeignKeyElementMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getForeignKeyElementMapping_Join(), theEntityrelationPackage.getJoin(), null, "join", null, 1, 1, ForeignKeyElementMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getForeignKeyElementMapping_Role(), theEntityrelationPackage.getRole(), null, "role", null, 1, 1, ForeignKeyElementMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

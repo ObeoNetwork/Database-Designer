@@ -25,30 +25,23 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation()
+ * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getRelation()
  * @model
  * @generated
  */
 public interface Relation extends NamedElement {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
-	/**
-	 * Returns the value of the '<em><b>Roles</b></em>' reference list.
+	 * Returns the value of the '<em><b>Roles</b></em>' containment reference list.
 	 * The list contents are of type {@link org.obeonetwork.dsl.entityrelation.Role}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Roles</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Roles</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Roles</em>' reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation_Roles()
-	 * @model upper="2"
+	 * @return the value of the '<em>Roles</em>' containment reference list.
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getRelation_Roles()
+	 * @model containment="true" upper="2"
 	 * @generated
 	 */
 	EList<Role> getRoles();
@@ -63,7 +56,7 @@ public interface Relation extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Joins</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation_Joins()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getRelation_Joins()
 	 * @model containment="true"
 	 * @generated
 	 */

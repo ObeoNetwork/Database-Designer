@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.obeonetwork.dsl.entityrelation.Attribute;
 import org.obeonetwork.dsl.entityrelation.Entity;
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
 
@@ -42,13 +43,6 @@ import org.obeonetwork.dsl.entityrelation.Identifier;
  * @generated
  */
 public class EntityImpl extends NamedElementImpl implements Entity {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -85,7 +79,7 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EntityRelationPackage.Literals.ENTITY;
+		return EntityrelationPackage.Literals.ENTITY;
 	}
 
 	/**
@@ -95,7 +89,7 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 */
 	public EList<Attribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentEList<Attribute>(Attribute.class, this, EntityRelationPackage.ENTITY__ATTRIBUTES);
+			attributes = new EObjectContainmentEList<Attribute>(Attribute.class, this, EntityrelationPackage.ENTITY__ATTRIBUTES);
 		}
 		return attributes;
 	}
@@ -107,7 +101,7 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 */
 	public EList<Identifier> getIdentifiers() {
 		if (identifiers == null) {
-			identifiers = new EObjectContainmentEList<Identifier>(Identifier.class, this, EntityRelationPackage.ENTITY__IDENTIFIERS);
+			identifiers = new EObjectContainmentEList<Identifier>(Identifier.class, this, EntityrelationPackage.ENTITY__IDENTIFIERS);
 		}
 		return identifiers;
 	}
@@ -120,9 +114,9 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EntityRelationPackage.ENTITY__ATTRIBUTES:
+			case EntityrelationPackage.ENTITY__ATTRIBUTES:
 				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
-			case EntityRelationPackage.ENTITY__IDENTIFIERS:
+			case EntityrelationPackage.ENTITY__IDENTIFIERS:
 				return ((InternalEList<?>)getIdentifiers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -136,9 +130,9 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EntityRelationPackage.ENTITY__ATTRIBUTES:
+			case EntityrelationPackage.ENTITY__ATTRIBUTES:
 				return getAttributes();
-			case EntityRelationPackage.ENTITY__IDENTIFIERS:
+			case EntityrelationPackage.ENTITY__IDENTIFIERS:
 				return getIdentifiers();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -153,11 +147,11 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EntityRelationPackage.ENTITY__ATTRIBUTES:
+			case EntityrelationPackage.ENTITY__ATTRIBUTES:
 				getAttributes().clear();
 				getAttributes().addAll((Collection<? extends Attribute>)newValue);
 				return;
-			case EntityRelationPackage.ENTITY__IDENTIFIERS:
+			case EntityrelationPackage.ENTITY__IDENTIFIERS:
 				getIdentifiers().clear();
 				getIdentifiers().addAll((Collection<? extends Identifier>)newValue);
 				return;
@@ -173,10 +167,10 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EntityRelationPackage.ENTITY__ATTRIBUTES:
+			case EntityrelationPackage.ENTITY__ATTRIBUTES:
 				getAttributes().clear();
 				return;
-			case EntityRelationPackage.ENTITY__IDENTIFIERS:
+			case EntityrelationPackage.ENTITY__IDENTIFIERS:
 				getIdentifiers().clear();
 				return;
 		}
@@ -191,9 +185,9 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EntityRelationPackage.ENTITY__ATTRIBUTES:
+			case EntityrelationPackage.ENTITY__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
-			case EntityRelationPackage.ENTITY__IDENTIFIERS:
+			case EntityrelationPackage.ENTITY__IDENTIFIERS:
 				return identifiers != null && !identifiers.isEmpty();
 		}
 		return super.eIsSet(featureID);

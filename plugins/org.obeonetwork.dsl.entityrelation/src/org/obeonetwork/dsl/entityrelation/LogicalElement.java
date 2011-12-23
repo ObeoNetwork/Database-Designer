@@ -25,18 +25,11 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getLogicalElement()
+ * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getLogicalElement()
  * @model abstract="true"
  * @generated
  */
 public interface LogicalElement extends EObject {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * Returns the value of the '<em><b>ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -46,7 +39,7 @@ public interface LogicalElement extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>ID</em>' attribute.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getLogicalElement_ID()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getLogicalElement_ID()
 	 * @model id="true" transient="true" changeable="false" derived="true"
 	 * @generated
 	 */
@@ -62,7 +55,7 @@ public interface LogicalElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Comments</em>' attribute.
 	 * @see #setComments(String)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getLogicalElement_Comments()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getLogicalElement_Comments()
 	 * @model
 	 * @generated
 	 */

@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.provider;
 
@@ -27,7 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.NamedElement;
 
 /**
@@ -44,13 +40,6 @@ public class NamedElementItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -90,23 +79,13 @@ public class NamedElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_NamedElement_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature", "_UI_NamedElement_type"),
-				 EntityRelationPackage.Literals.NAMED_ELEMENT__NAME,
+				 EntityrelationPackage.Literals.NAMED_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected boolean shouldComposeCreationImage() {
-		return true;
 	}
 
 	/**
@@ -135,7 +114,7 @@ public class NamedElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(NamedElement.class)) {
-			case EntityRelationPackage.NAMED_ELEMENT__NAME:
+			case EntityrelationPackage.NAMED_ELEMENT__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -16,15 +16,26 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//TableMapping/table"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//TableMapping/entity"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbermapping.ecore#//TableMapping/columnMappings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbermapping.ecore#//TableMapping/primaryKeyMappings"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbermapping.ecore#//TableMapping/foreignKeyMappings"/>
     </genClasses>
     <genClasses ecoreClass="dbermapping.ecore#//ColumnMapping">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ColumnMapping/column"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ColumnMapping/attribute"/>
     </genClasses>
+    <genClasses ecoreClass="dbermapping.ecore#//PrimaryKeyMapping">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//PrimaryKeyMapping/primaryKey"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//PrimaryKeyMapping/identifier"/>
+    </genClasses>
     <genClasses ecoreClass="dbermapping.ecore#//ForeignKeyMapping">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyMapping/foreignKey"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyMapping/relation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyMapping/foreignKeyElementMappings"/>
+    </genClasses>
+    <genClasses ecoreClass="dbermapping.ecore#//ForeignKeyElementMapping">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyElementMapping/foreignKeyElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyElementMapping/join"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyElementMapping/role"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

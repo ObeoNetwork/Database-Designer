@@ -24,6 +24,7 @@ import org.obeonetwork.dsl.entityrelation.Entity;
  *   <li>{@link org.obeonetwork.dsl.dbermapping.TableMapping#getTable <em>Table</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.TableMapping#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.TableMapping#getColumnMappings <em>Column Mappings</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.dbermapping.TableMapping#getPrimaryKeyMappings <em>Primary Key Mappings</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.TableMapping#getForeignKeyMappings <em>Foreign Key Mappings</em>}</li>
  * </ul>
  * </p>
@@ -100,6 +101,22 @@ public interface TableMapping extends EObject {
 	 * @generated
 	 */
 	EList<ColumnMapping> getColumnMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Primary Key Mappings</b></em>' containment reference list.
+	 * The list contents are of type {@link org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Primary Key Mappings</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Primary Key Mappings</em>' containment reference list.
+	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getTableMapping_PrimaryKeyMappings()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<PrimaryKeyMapping> getPrimaryKeyMappings();
 
 	/**
 	 * Returns the value of the '<em><b>Foreign Key Mappings</b></em>' containment reference list.

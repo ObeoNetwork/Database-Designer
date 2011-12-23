@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.provider;
 
@@ -30,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.LogicalElement;
 
 /**
@@ -47,13 +43,6 @@ public class LogicalElementItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -94,7 +83,7 @@ public class LogicalElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_LogicalElement_ID_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalElement_ID_feature", "_UI_LogicalElement_type"),
-				 EntityRelationPackage.Literals.LOGICAL_ELEMENT__ID,
+				 EntityrelationPackage.Literals.LOGICAL_ELEMENT__ID,
 				 false,
 				 false,
 				 false,
@@ -116,23 +105,13 @@ public class LogicalElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_LogicalElement_comments_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalElement_comments_feature", "_UI_LogicalElement_type"),
-				 EntityRelationPackage.Literals.LOGICAL_ELEMENT__COMMENTS,
+				 EntityrelationPackage.Literals.LOGICAL_ELEMENT__COMMENTS,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected boolean shouldComposeCreationImage() {
-		return true;
 	}
 
 	/**
@@ -161,8 +140,8 @@ public class LogicalElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LogicalElement.class)) {
-			case EntityRelationPackage.LOGICAL_ELEMENT__ID:
-			case EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS:
+			case EntityrelationPackage.LOGICAL_ELEMENT__ID:
+			case EntityrelationPackage.LOGICAL_ELEMENT__COMMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -189,7 +168,7 @@ public class LogicalElementItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return EntityRelationEditPlugin.INSTANCE;
+		return EntityrelationEditPlugin.INSTANCE;
 	}
 
 }

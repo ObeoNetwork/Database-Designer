@@ -25,18 +25,11 @@ package org.obeonetwork.dsl.entityrelation;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRole()
+ * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getRole()
  * @model
  * @generated
  */
 public interface Role extends NamedElement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * Returns the value of the '<em><b>Entity</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -47,7 +40,7 @@ public interface Role extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Entity</em>' reference.
 	 * @see #setEntity(Entity)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRole_Entity()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getRole_Entity()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -75,7 +68,7 @@ public interface Role extends NamedElement {
 	 * @return the value of the '<em>Cardinality</em>' attribute.
 	 * @see org.obeonetwork.dsl.entityrelation.Cardinality
 	 * @see #setCardinality(Cardinality)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRole_Cardinality()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getRole_Cardinality()
 	 * @model
 	 * @generated
 	 */
@@ -102,7 +95,7 @@ public interface Role extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dependant</em>' attribute.
 	 * @see #setDependant(boolean)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRole_Dependant()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getRole_Dependant()
 	 * @model
 	 * @generated
 	 */

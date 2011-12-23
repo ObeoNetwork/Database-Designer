@@ -63,7 +63,9 @@ public class DbermappingFactoryImpl extends EFactoryImpl implements DbermappingF
 			case DbermappingPackage.DATABASE_MAPPING: return createDatabaseMapping();
 			case DbermappingPackage.TABLE_MAPPING: return createTableMapping();
 			case DbermappingPackage.COLUMN_MAPPING: return createColumnMapping();
+			case DbermappingPackage.PRIMARY_KEY_MAPPING: return createPrimaryKeyMapping();
 			case DbermappingPackage.FOREIGN_KEY_MAPPING: return createForeignKeyMapping();
+			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING: return createForeignKeyElementMapping();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -104,9 +106,29 @@ public class DbermappingFactoryImpl extends EFactoryImpl implements DbermappingF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PrimaryKeyMapping createPrimaryKeyMapping() {
+		PrimaryKeyMappingImpl primaryKeyMapping = new PrimaryKeyMappingImpl();
+		return primaryKeyMapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ForeignKeyMapping createForeignKeyMapping() {
 		ForeignKeyMappingImpl foreignKeyMapping = new ForeignKeyMappingImpl();
 		return foreignKeyMapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ForeignKeyElementMapping createForeignKeyElementMapping() {
+		ForeignKeyElementMappingImpl foreignKeyElementMapping = new ForeignKeyElementMappingImpl();
+		return foreignKeyElementMapping;
 	}
 
 	/**

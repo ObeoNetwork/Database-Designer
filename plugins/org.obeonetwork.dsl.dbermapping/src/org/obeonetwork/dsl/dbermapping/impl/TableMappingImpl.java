@@ -23,6 +23,7 @@ import org.obeonetwork.dsl.database.Table;
 
 import org.obeonetwork.dsl.dbermapping.ColumnMapping;
 import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
+import org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping;
 import org.obeonetwork.dsl.dbermapping.ForeignKeyMapping;
 import org.obeonetwork.dsl.dbermapping.TableMapping;
 
@@ -38,6 +39,7 @@ import org.obeonetwork.dsl.entityrelation.Entity;
  *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.TableMappingImpl#getTable <em>Table</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.TableMappingImpl#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.TableMappingImpl#getColumnMappings <em>Column Mappings</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.TableMappingImpl#getPrimaryKeyMappings <em>Primary Key Mappings</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.TableMappingImpl#getForeignKeyMappings <em>Foreign Key Mappings</em>}</li>
  * </ul>
  * </p>
@@ -74,6 +76,16 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 	 * @ordered
 	 */
 	protected EList<ColumnMapping> columnMappings;
+
+	/**
+	 * The cached value of the '{@link #getPrimaryKeyMappings() <em>Primary Key Mappings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrimaryKeyMappings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PrimaryKeyMapping> primaryKeyMappings;
 
 	/**
 	 * The cached value of the '{@link #getForeignKeyMappings() <em>Foreign Key Mappings</em>}' containment reference list.
@@ -197,6 +209,18 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<PrimaryKeyMapping> getPrimaryKeyMappings() {
+		if (primaryKeyMappings == null) {
+			primaryKeyMappings = new EObjectContainmentEList<PrimaryKeyMapping>(PrimaryKeyMapping.class, this, DbermappingPackage.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS);
+		}
+		return primaryKeyMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<ForeignKeyMapping> getForeignKeyMappings() {
 		if (foreignKeyMappings == null) {
 			foreignKeyMappings = new EObjectContainmentEList<ForeignKeyMapping>(ForeignKeyMapping.class, this, DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS);
@@ -214,6 +238,8 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 		switch (featureID) {
 			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
 				return ((InternalEList<?>)getColumnMappings()).basicRemove(otherEnd, msgs);
+			case DbermappingPackage.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS:
+				return ((InternalEList<?>)getPrimaryKeyMappings()).basicRemove(otherEnd, msgs);
 			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
 				return ((InternalEList<?>)getForeignKeyMappings()).basicRemove(otherEnd, msgs);
 		}
@@ -236,6 +262,8 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 				return basicGetEntity();
 			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
 				return getColumnMappings();
+			case DbermappingPackage.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS:
+				return getPrimaryKeyMappings();
 			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
 				return getForeignKeyMappings();
 		}
@@ -260,6 +288,10 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
 				getColumnMappings().clear();
 				getColumnMappings().addAll((Collection<? extends ColumnMapping>)newValue);
+				return;
+			case DbermappingPackage.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS:
+				getPrimaryKeyMappings().clear();
+				getPrimaryKeyMappings().addAll((Collection<? extends PrimaryKeyMapping>)newValue);
 				return;
 			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
 				getForeignKeyMappings().clear();
@@ -286,6 +318,9 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
 				getColumnMappings().clear();
 				return;
+			case DbermappingPackage.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS:
+				getPrimaryKeyMappings().clear();
+				return;
 			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
 				getForeignKeyMappings().clear();
 				return;
@@ -307,6 +342,8 @@ public class TableMappingImpl extends EObjectImpl implements TableMapping {
 				return entity != null;
 			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
 				return columnMappings != null && !columnMappings.isEmpty();
+			case DbermappingPackage.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS:
+				return primaryKeyMappings != null && !primaryKeyMappings.isEmpty();
 			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
 				return foreignKeyMappings != null && !foreignKeyMappings.isEmpty();
 		}

@@ -53,6 +53,15 @@ public interface DbermappingFactory extends EFactory {
 	ColumnMapping createColumnMapping();
 
 	/**
+	 * Returns a new object of class '<em>Primary Key Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Primary Key Mapping</em>'.
+	 * @generated
+	 */
+	PrimaryKeyMapping createPrimaryKeyMapping();
+
+	/**
 	 * Returns a new object of class '<em>Foreign Key Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,6 +69,15 @@ public interface DbermappingFactory extends EFactory {
 	 * @generated
 	 */
 	ForeignKeyMapping createForeignKeyMapping();
+
+	/**
+	 * Returns a new object of class '<em>Foreign Key Element Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Foreign Key Element Mapping</em>'.
+	 * @generated
+	 */
+	ForeignKeyElementMapping createForeignKeyElementMapping();
 
 	/**
 	 * Returns the package supported by this factory.

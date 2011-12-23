@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,7 +21,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
 import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
 
 /**
@@ -63,6 +60,7 @@ public class ForeignKeyMappingItemProvider
 
 			addForeignKeyPropertyDescriptor(object);
 			addRelationPropertyDescriptor(object);
+			addForeignKeyElementMappingsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -103,6 +101,28 @@ public class ForeignKeyMappingItemProvider
 				 getString("_UI_ForeignKeyMapping_relation_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKeyMapping_relation_feature", "_UI_ForeignKeyMapping_type"),
 				 DbermappingPackage.Literals.FOREIGN_KEY_MAPPING__RELATION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Foreign Key Element Mappings feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addForeignKeyElementMappingsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ForeignKeyMapping_foreignKeyElementMappings_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKeyMapping_foreignKeyElementMappings_feature", "_UI_ForeignKeyMapping_type"),
+				 DbermappingPackage.Literals.FOREIGN_KEY_MAPPING__FOREIGN_KEY_ELEMENT_MAPPINGS,
 				 true,
 				 false,
 				 true,

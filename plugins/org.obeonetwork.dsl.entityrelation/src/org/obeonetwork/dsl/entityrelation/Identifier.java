@@ -25,18 +25,11 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getIdentifier()
+ * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getIdentifier()
  * @model
  * @generated
  */
 public interface Identifier extends NamedElement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * Returns the value of the '<em><b>Primary</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -47,7 +40,7 @@ public interface Identifier extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Primary</em>' attribute.
 	 * @see #setPrimary(boolean)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getIdentifier_Primary()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getIdentifier_Primary()
 	 * @model
 	 * @generated
 	 */
@@ -66,6 +59,7 @@ public interface Identifier extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Attributes</b></em>' reference list.
 	 * The list contents are of type {@link org.obeonetwork.dsl.entityrelation.Attribute}.
+	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.entityrelation.Attribute#getUseInIdentifier <em>Use In Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Attributes</em>' reference list isn't clear,
@@ -73,8 +67,9 @@ public interface Identifier extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attributes</em>' reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getIdentifier_Attributes()
-	 * @model
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getIdentifier_Attributes()
+	 * @see org.obeonetwork.dsl.entityrelation.Attribute#getUseInIdentifier
+	 * @model opposite="useInIdentifier"
 	 * @generated
 	 */
 	EList<Attribute> getAttributes();

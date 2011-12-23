@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.provider;
 
@@ -27,7 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.Role;
 
 /**
@@ -44,13 +40,6 @@ public class RoleItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -92,7 +81,7 @@ public class RoleItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Role_entity_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Role_entity_feature", "_UI_Role_type"),
-				 EntityRelationPackage.Literals.ROLE__ENTITY,
+				 EntityrelationPackage.Literals.ROLE__ENTITY,
 				 true,
 				 false,
 				 true,
@@ -114,7 +103,7 @@ public class RoleItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Role_cardinality_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Role_cardinality_feature", "_UI_Role_type"),
-				 EntityRelationPackage.Literals.ROLE__CARDINALITY,
+				 EntityrelationPackage.Literals.ROLE__CARDINALITY,
 				 true,
 				 false,
 				 false,
@@ -136,7 +125,7 @@ public class RoleItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Role_dependant_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Role_dependant_feature", "_UI_Role_type"),
-				 EntityRelationPackage.Literals.ROLE__DEPENDANT,
+				 EntityrelationPackage.Literals.ROLE__DEPENDANT,
 				 true,
 				 false,
 				 false,
@@ -154,16 +143,6 @@ public class RoleItemProvider
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/Role"));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected boolean shouldComposeCreationImage() {
-		return true;
 	}
 
 	/**
@@ -192,8 +171,8 @@ public class RoleItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Role.class)) {
-			case EntityRelationPackage.ROLE__CARDINALITY:
-			case EntityRelationPackage.ROLE__DEPENDANT:
+			case EntityrelationPackage.ROLE__CARDINALITY:
+			case EntityrelationPackage.ROLE__DEPENDANT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

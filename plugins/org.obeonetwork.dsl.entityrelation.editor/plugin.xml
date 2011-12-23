@@ -2,14 +2,10 @@
 <?eclipse version="3.0"?>
 
 <!--
- Copyright (c) 2011 Obeo.
- All rights reserved. This program and the accompanying materials
- are made available under the terms of the Eclipse Public License v1.0
- which accompanies this distribution, and is available at
- http://www.eclipse.org/legal/epl-v10.html
- 
- Contributors:
-     Obeo - initial API and implementation
+ <copyright>
+ </copyright>
+
+ $Id$
 -->
 
 <plugin>
@@ -19,24 +15,24 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="org.obeonetwork.dsl.entityrelation.presentation.EntityRelationModelWizardID"
-            name="%_UI_EntityRelationModelWizard_label"
-            class="org.obeonetwork.dsl.entityrelation.presentation.EntityRelationModelWizard"
+            id="org.obeonetwork.dsl.entityrelation.presentation.EntityrelationModelWizardID"
+            name="%_UI_EntityrelationModelWizard_label"
+            class="org.obeonetwork.dsl.entityrelation.presentation.EntityrelationModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/EntityRelationModelFile.gif">
-         <description>%_UI_EntityRelationModelWizard_description</description>
+            icon="icons/full/obj16/EntityrelationModelFile.gif">
+         <description>%_UI_EntityrelationModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="org.obeonetwork.dsl.entityrelation.presentation.EntityRelationEditorID"
-            name="%_UI_EntityRelationEditor_label"
-            icon="icons/full/obj16/EntityRelationModelFile.gif"
+            id="org.obeonetwork.dsl.entityrelation.presentation.EntityrelationEditorID"
+            name="%_UI_EntityrelationEditor_label"
+            icon="icons/full/obj16/EntityrelationModelFile.gif"
             extensions="entityrelation"
-            class="org.obeonetwork.dsl.entityrelation.presentation.EntityRelationEditor"
-            contributorClass="org.obeonetwork.dsl.entityrelation.presentation.EntityRelationActionBarContributor">
+            class="org.obeonetwork.dsl.entityrelation.presentation.EntityrelationEditor"
+            contributorClass="org.obeonetwork.dsl.entityrelation.presentation.EntityrelationActionBarContributor">
       </editor>
    </extension>
 
