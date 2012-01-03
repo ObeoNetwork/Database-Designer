@@ -42,6 +42,34 @@
         <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_9dhnWiZDEeGbPrqZPmsr5Q" name="comments" views="_9diOkCZDEeGbPrqZPmsr5Q">
           <model xsi:type="ecore:EAttribute" href="platform:/resource/org.obeonetwork.dsl.database/model/database.ecore#//DatabaseElement/comments"/>
         </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_4_95ACv4EeG2AflpAVU3pg" name="type" views="_jd0mMCv4EeG2AflpAVU3pg" helpID="">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypeInstance/nativeType"/>
+          <navigation xsi:type="eef-mapping-navigation:SimpleModelNavigation" xmi:id="_9WJ2ICv4EeG2AflpAVU3pg">
+            <feature href="platform:/resource/org.obeonetwork.dsl.database/model/database.ecore#//Column/type"/>
+            <discriminatorType xsi:type="ecore:EClass" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypeInstance"/>
+          </navigation>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_EbSFwCv5EeG2AflpAVU3pg" name="length" views="_wVWSQCv4EeG2AflpAVU3pg" helpID="">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypeInstance/length"/>
+          <navigation xsi:type="eef-mapping-navigation:SimpleModelNavigation" xmi:id="_G_fH4Cv5EeG2AflpAVU3pg">
+            <feature href="platform:/resource/org.obeonetwork.dsl.database/model/database.ecore#//Column/type"/>
+            <discriminatorType xsi:type="ecore:EClass" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypeInstance"/>
+          </navigation>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_JPYG4Cv5EeG2AflpAVU3pg" name="precision" views="_yMwf0Cv4EeG2AflpAVU3pg" helpID="">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypeInstance/precision"/>
+          <navigation xsi:type="eef-mapping-navigation:SimpleModelNavigation" xmi:id="_JPYG4Sv5EeG2AflpAVU3pg">
+            <feature href="platform:/resource/org.obeonetwork.dsl.database/model/database.ecore#//Column/type"/>
+            <discriminatorType xsi:type="ecore:EClass" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypeInstance"/>
+          </navigation>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_LvlZ0Cv5EeG2AflpAVU3pg" name="literals" views="_0t1VcCv4EeG2AflpAVU3pg" helpID="">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypeInstance/literals"/>
+          <navigation xsi:type="eef-mapping-navigation:SimpleModelNavigation" xmi:id="_LvlZ0Sv5EeG2AflpAVU3pg">
+            <feature href="platform:/resource/org.obeonetwork.dsl.database/model/database.ecore#//Column/type"/>
+            <discriminatorType xsi:type="ecore:EClass" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypeInstance"/>
+          </navigation>
+        </properties>
         <model xsi:type="ecore:EClass" href="platform:/resource/org.obeonetwork.dsl.database/model/database.ecore#//Column"/>
       </bindings>
       <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_9dhnZCZDEeGbPrqZPmsr5Q" name="Index" views="_9diOmiZDEeGbPrqZPmsr5Q">
@@ -230,6 +258,21 @@
           <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_9diOkSZDEeGbPrqZPmsr5Q" name="name">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_jd0mMCv4EeG2AflpAVU3pg" name="type">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.6"/>
+          </elements>
+          <elements xsi:type="eef-views:Container" xmi:id="_e6OfMCv4EeG2AflpAVU3pg" name="typeAttributes">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.6"/>
+            <elements xsi:type="eef-views:ElementEditor" xmi:id="_wVWSQCv4EeG2AflpAVU3pg" name="length">
+              <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+            </elements>
+            <elements xsi:type="eef-views:ElementEditor" xmi:id="_yMwf0Cv4EeG2AflpAVU3pg" name="precision">
+              <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+            </elements>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_0t1VcCv4EeG2AflpAVU3pg" name="literals">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.3"/>
           </elements>
           <elements xsi:type="eef-views:Container" xmi:id="_h-cc8CveEeG2AflpAVU3pg" name="nullablePkAndUnique">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.6"/>
