@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.impl;
 
@@ -14,12 +10,18 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.obeonetwork.dsl.entityrelation.*;
+import org.obeonetwork.dsl.entityrelation.Attribute;
+import org.obeonetwork.dsl.entityrelation.Cardinality;
+import org.obeonetwork.dsl.entityrelation.Entity;
+import org.obeonetwork.dsl.entityrelation.EntityrelationFactory;
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
+import org.obeonetwork.dsl.entityrelation.Identifier;
+import org.obeonetwork.dsl.entityrelation.JoinByIdentifier;
+import org.obeonetwork.dsl.entityrelation.LogicalModel;
+import org.obeonetwork.dsl.entityrelation.Relation;
+import org.obeonetwork.dsl.entityrelation.Role;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,31 +29,24 @@ import org.obeonetwork.dsl.entityrelation.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRelationFactory {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
+public class EntityrelationFactoryImpl extends EFactoryImpl implements EntityrelationFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static EntityRelationFactory init() {
+	public static EntityrelationFactory init() {
 		try {
-			EntityRelationFactory theEntityRelationFactory = (EntityRelationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.obeonetwork.org/dsl/entityrelation/1.0"); 
-			if (theEntityRelationFactory != null) {
-				return theEntityRelationFactory;
+			EntityrelationFactory theEntityrelationFactory = (EntityrelationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.obeonetwork.org/dsl/entityrelation/1.0"); 
+			if (theEntityrelationFactory != null) {
+				return theEntityrelationFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new EntityRelationFactoryImpl();
+		return new EntityrelationFactoryImpl();
 	}
 
 	/**
@@ -60,7 +55,7 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EntityRelationFactoryImpl() {
+	public EntityrelationFactoryImpl() {
 		super();
 	}
 
@@ -72,13 +67,13 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case EntityRelationPackage.LOGICAL_MODEL: return createLogicalModel();
-			case EntityRelationPackage.ENTITY: return createEntity();
-			case EntityRelationPackage.RELATION: return createRelation();
-			case EntityRelationPackage.ATTRIBUTE: return createAttribute();
-			case EntityRelationPackage.ROLE: return createRole();
-			case EntityRelationPackage.IDENTIFIER: return createIdentifier();
-			case EntityRelationPackage.JOIN_BY_IDENTIFIER: return createJoinByIdentifier();
+			case EntityrelationPackage.LOGICAL_MODEL: return createLogicalModel();
+			case EntityrelationPackage.ENTITY: return createEntity();
+			case EntityrelationPackage.RELATION: return createRelation();
+			case EntityrelationPackage.ATTRIBUTE: return createAttribute();
+			case EntityrelationPackage.ROLE: return createRole();
+			case EntityrelationPackage.IDENTIFIER: return createIdentifier();
+			case EntityrelationPackage.JOIN_BY_IDENTIFIER: return createJoinByIdentifier();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -92,7 +87,7 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case EntityRelationPackage.CARDINALITY:
+			case EntityrelationPackage.CARDINALITY:
 				return createCardinalityFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -107,7 +102,7 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case EntityRelationPackage.CARDINALITY:
+			case EntityrelationPackage.CARDINALITY:
 				return convertCardinalityToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -209,8 +204,8 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EntityRelationPackage getEntityRelationPackage() {
-		return (EntityRelationPackage)getEPackage();
+	public EntityrelationPackage getEntityrelationPackage() {
+		return (EntityrelationPackage)getEPackage();
 	}
 
 	/**
@@ -220,8 +215,8 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	 * @generated
 	 */
 	@Deprecated
-	public static EntityRelationPackage getPackage() {
-		return EntityRelationPackage.eINSTANCE;
+	public static EntityrelationPackage getPackage() {
+		return EntityrelationPackage.eINSTANCE;
 	}
 
-} //EntityRelationFactoryImpl
+} //EntityrelationFactoryImpl

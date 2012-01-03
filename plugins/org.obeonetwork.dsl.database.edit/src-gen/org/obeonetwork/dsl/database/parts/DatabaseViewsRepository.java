@@ -48,6 +48,23 @@ public class DatabaseViewsRepository {
 			
 			public static String name = "database::Column::properties::name";
 			
+			
+			public static String type = "database::Column::properties::type";
+			
+				public static class TypeAttributes {
+			
+					
+					public static String length = "database::Column::properties::typeAttributes::length";
+					
+					
+					public static String precision = "database::Column::properties::typeAttributes::precision";
+					
+			
+				}
+			
+			
+			public static String literals = "database::Column::properties::literals";
+			
 				public static class NullablePkAndUnique {
 			
 					

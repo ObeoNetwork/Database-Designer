@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.presentation;
 
@@ -77,9 +73,9 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
-import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
-import org.obeonetwork.dsl.entityrelation.provider.EntityRelationEditPlugin;
+import org.obeonetwork.dsl.entityrelation.EntityrelationFactory;
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
+import org.obeonetwork.dsl.entityrelation.provider.EntityrelationEditPlugin;
 
 
 import org.eclipse.core.runtime.Path;
@@ -99,14 +95,7 @@ import org.eclipse.ui.PartInitException;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EntityRelationModelWizard extends Wizard implements INewWizard {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
+public class EntityrelationModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -114,7 +103,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(EntityRelationEditorPlugin.INSTANCE.getString("_UI_EntityRelationEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(EntityrelationEditorPlugin.INSTANCE.getString("_UI_EntityrelationEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -123,7 +112,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		EntityRelationEditorPlugin.INSTANCE.getString("_UI_EntityRelationEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		EntityrelationEditorPlugin.INSTANCE.getString("_UI_EntityrelationEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -131,7 +120,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EntityRelationPackage entityRelationPackage = EntityRelationPackage.eINSTANCE;
+	protected EntityrelationPackage entityrelationPackage = EntityrelationPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -139,7 +128,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EntityRelationFactory entityRelationFactory = entityRelationPackage.getEntityRelationFactory();
+	protected EntityrelationFactory entityrelationFactory = entityrelationPackage.getEntityrelationFactory();
 
 	/**
 	 * This is the file creation page.
@@ -147,7 +136,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EntityRelationModelWizardNewFileCreationPage newFileCreationPage;
+	protected EntityrelationModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * This is the initial object creation page.
@@ -155,7 +144,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EntityRelationModelWizardInitialObjectCreationPage initialObjectCreationPage;
+	protected EntityrelationModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -190,8 +179,8 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle(EntityRelationEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EntityRelationEditorPlugin.INSTANCE.getImage("full/wizban/NewEntityRelation")));
+		setWindowTitle(EntityrelationEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EntityrelationEditorPlugin.INSTANCE.getImage("full/wizban/NewEntityrelation")));
 	}
 
 	/**
@@ -203,7 +192,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
 			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : entityRelationPackage.getEClassifiers()) {
+			for (EClassifier eClassifier : entityrelationPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
@@ -223,8 +212,8 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)entityRelationPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = entityRelationFactory.create(eClass);
+		EClass eClass = (EClass)entityrelationPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EObject rootObject = entityrelationFactory.create(eClass);
 		return rootObject;
 	}
 
@@ -274,7 +263,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 							resource.save(options);
 						}
 						catch (Exception exception) {
-							EntityRelationEditorPlugin.INSTANCE.log(exception);
+							EntityrelationEditorPlugin.INSTANCE.log(exception);
 						}
 						finally {
 							progressMonitor.done();
@@ -307,14 +296,14 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(), EntityRelationEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+				MessageDialog.openError(workbenchWindow.getShell(), EntityrelationEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
 			return true;
 		}
 		catch (Exception exception) {
-			EntityRelationEditorPlugin.INSTANCE.log(exception);
+			EntityrelationEditorPlugin.INSTANCE.log(exception);
 			return false;
 		}
 	}
@@ -325,14 +314,14 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class EntityRelationModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class EntityrelationModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public EntityRelationModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public EntityrelationModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -348,7 +337,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(EntityRelationEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(EntityrelationEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -372,7 +361,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class EntityRelationModelWizardInitialObjectCreationPage extends WizardPage {
+	public class EntityrelationModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -400,7 +389,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public EntityRelationModelWizardInitialObjectCreationPage(String pageId) {
+		public EntityrelationModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -410,8 +399,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE);
-			{
+			Composite composite = new Composite(parent, SWT.NONE); {
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
@@ -426,7 +414,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 
 			Label containerLabel = new Label(composite, SWT.LEFT);
 			{
-				containerLabel.setText(EntityRelationEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
+				containerLabel.setText(EntityrelationEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -452,7 +440,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
-				encodingLabel.setText(EntityRelationEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
+				encodingLabel.setText(EntityrelationEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -551,10 +539,10 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 		 */
 		protected String getLabel(String typeName) {
 			try {
-				return EntityRelationEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
+				return EntityrelationEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
 			}
 			catch(MissingResourceException mre) {
-				EntityRelationEditorPlugin.INSTANCE.log(mre);
+				EntityrelationEditorPlugin.INSTANCE.log(mre);
 			}
 			return typeName;
 		}
@@ -567,7 +555,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(EntityRelationEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(EntityrelationEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -585,10 +573,10 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new EntityRelationModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(EntityRelationEditorPlugin.INSTANCE.getString("_UI_EntityRelationModelWizard_label"));
-		newFileCreationPage.setDescription(EntityRelationEditorPlugin.INSTANCE.getString("_UI_EntityRelationModelWizard_description"));
-		newFileCreationPage.setFileName(EntityRelationEditorPlugin.INSTANCE.getString("_UI_EntityRelationEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new EntityrelationModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(EntityrelationEditorPlugin.INSTANCE.getString("_UI_EntityrelationModelWizard_label"));
+		newFileCreationPage.setDescription(EntityrelationEditorPlugin.INSTANCE.getString("_UI_EntityrelationModelWizard_description"));
+		newFileCreationPage.setFileName(EntityrelationEditorPlugin.INSTANCE.getString("_UI_EntityrelationEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -614,7 +602,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = EntityRelationEditorPlugin.INSTANCE.getString("_UI_EntityRelationEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = EntityrelationEditorPlugin.INSTANCE.getString("_UI_EntityrelationEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -624,9 +612,9 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		initialObjectCreationPage = new EntityRelationModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(EntityRelationEditorPlugin.INSTANCE.getString("_UI_EntityRelationModelWizard_label"));
-		initialObjectCreationPage.setDescription(EntityRelationEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
+		initialObjectCreationPage = new EntityrelationModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(EntityrelationEditorPlugin.INSTANCE.getString("_UI_EntityrelationModelWizard_label"));
+		initialObjectCreationPage.setDescription(EntityrelationEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
 
