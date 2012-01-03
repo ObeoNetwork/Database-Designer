@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.util;
 
@@ -24,24 +20,17 @@ import org.obeonetwork.dsl.entityrelation.*;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage
+ * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage
  * @generated
  */
-public class EntityRelationAdapterFactory extends AdapterFactoryImpl {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
+public class EntityrelationAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static EntityRelationPackage modelPackage;
+	protected static EntityrelationPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -49,9 +38,9 @@ public class EntityRelationAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EntityRelationAdapterFactory() {
+	public EntityrelationAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = EntityRelationPackage.eINSTANCE;
+			modelPackage = EntityrelationPackage.eINSTANCE;
 		}
 	}
 
@@ -80,8 +69,8 @@ public class EntityRelationAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EntityRelationSwitch<Adapter> modelSwitch =
-		new EntityRelationSwitch<Adapter>() {
+	protected EntityrelationSwitch<Adapter> modelSwitch =
+		new EntityrelationSwitch<Adapter>() {
 			@Override
 			public Adapter caseLogicalModel(LogicalModel object) {
 				return createLogicalModelAdapter();
@@ -294,4 +283,4 @@ public class EntityRelationAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //EntityRelationAdapterFactory
+} //EntityrelationAdapterFactory

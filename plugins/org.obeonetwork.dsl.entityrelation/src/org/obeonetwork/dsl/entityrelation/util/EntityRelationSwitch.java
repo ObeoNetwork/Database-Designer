@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.util;
 
@@ -27,24 +23,17 @@ import org.obeonetwork.dsl.entityrelation.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage
+ * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage
  * @generated
  */
-public class EntityRelationSwitch<T> {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
+public class EntityrelationSwitch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static EntityRelationPackage modelPackage;
+	protected static EntityrelationPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -52,9 +41,9 @@ public class EntityRelationSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EntityRelationSwitch() {
+	public EntityrelationSwitch() {
 		if (modelPackage == null) {
-			modelPackage = EntityRelationPackage.eINSTANCE;
+			modelPackage = EntityrelationPackage.eINSTANCE;
 		}
 	}
 
@@ -98,7 +87,7 @@ public class EntityRelationSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case EntityRelationPackage.LOGICAL_MODEL: {
+			case EntityrelationPackage.LOGICAL_MODEL: {
 				LogicalModel logicalModel = (LogicalModel)theEObject;
 				T result = caseLogicalModel(logicalModel);
 				if (result == null) result = caseNamedElement(logicalModel);
@@ -106,7 +95,7 @@ public class EntityRelationSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EntityRelationPackage.ENTITY: {
+			case EntityrelationPackage.ENTITY: {
 				Entity entity = (Entity)theEObject;
 				T result = caseEntity(entity);
 				if (result == null) result = caseNamedElement(entity);
@@ -114,7 +103,7 @@ public class EntityRelationSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EntityRelationPackage.RELATION: {
+			case EntityrelationPackage.RELATION: {
 				Relation relation = (Relation)theEObject;
 				T result = caseRelation(relation);
 				if (result == null) result = caseNamedElement(relation);
@@ -122,7 +111,7 @@ public class EntityRelationSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EntityRelationPackage.ATTRIBUTE: {
+			case EntityrelationPackage.ATTRIBUTE: {
 				Attribute attribute = (Attribute)theEObject;
 				T result = caseAttribute(attribute);
 				if (result == null) result = caseNamedElement(attribute);
@@ -130,20 +119,20 @@ public class EntityRelationSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EntityRelationPackage.NAMED_ELEMENT: {
+			case EntityrelationPackage.NAMED_ELEMENT: {
 				NamedElement namedElement = (NamedElement)theEObject;
 				T result = caseNamedElement(namedElement);
 				if (result == null) result = caseLogicalElement(namedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EntityRelationPackage.LOGICAL_ELEMENT: {
+			case EntityrelationPackage.LOGICAL_ELEMENT: {
 				LogicalElement logicalElement = (LogicalElement)theEObject;
 				T result = caseLogicalElement(logicalElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EntityRelationPackage.ROLE: {
+			case EntityrelationPackage.ROLE: {
 				Role role = (Role)theEObject;
 				T result = caseRole(role);
 				if (result == null) result = caseNamedElement(role);
@@ -151,7 +140,7 @@ public class EntityRelationSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EntityRelationPackage.IDENTIFIER: {
+			case EntityrelationPackage.IDENTIFIER: {
 				Identifier identifier = (Identifier)theEObject;
 				T result = caseIdentifier(identifier);
 				if (result == null) result = caseNamedElement(identifier);
@@ -159,14 +148,14 @@ public class EntityRelationSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EntityRelationPackage.JOIN: {
+			case EntityrelationPackage.JOIN: {
 				Join join = (Join)theEObject;
 				T result = caseJoin(join);
 				if (result == null) result = caseLogicalElement(join);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EntityRelationPackage.JOIN_BY_IDENTIFIER: {
+			case EntityrelationPackage.JOIN_BY_IDENTIFIER: {
 				JoinByIdentifier joinByIdentifier = (JoinByIdentifier)theEObject;
 				T result = caseJoinByIdentifier(joinByIdentifier);
 				if (result == null) result = caseJoin(joinByIdentifier);
@@ -343,4 +332,4 @@ public class EntityRelationSwitch<T> {
 		return null;
 	}
 
-} //EntityRelationSwitch
+} //EntityrelationSwitch

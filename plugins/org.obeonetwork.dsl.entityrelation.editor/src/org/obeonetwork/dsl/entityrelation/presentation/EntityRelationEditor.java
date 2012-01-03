@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.presentation;
 
@@ -161,7 +157,7 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import org.obeonetwork.dsl.entityrelation.provider.EntityRelationItemProviderAdapterFactory;
+import org.obeonetwork.dsl.entityrelation.provider.EntityrelationItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
@@ -169,21 +165,14 @@ import org.obeonetwork.dsl.typeslibrary.provider.TypesLibraryItemProviderAdapter
 
 
 /**
- * This is an example of a EntityRelation model editor.
+ * This is an example of a Entityrelation model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EntityRelationEditor
+public class EntityrelationEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
 	 * <!-- begin-user-doc -->
@@ -343,18 +332,18 @@ public class EntityRelationEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(EntityRelationEditor.this);
+						getActionBarContributor().setActiveEditor(EntityrelationEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
-						getActionBarContributor().setActiveEditor(EntityRelationEditor.this);
+						getActionBarContributor().setActiveEditor(EntityrelationEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == EntityRelationEditor.this) {
+				else if (p == EntityrelationEditor.this) {
 					handleActivate();
 				}
 			}
@@ -517,7 +506,7 @@ public class EntityRelationEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(EntityRelationEditor.this, false);
+										 getSite().getPage().closeEditor(EntityrelationEditor.this, false);
 									 }
 								 }
 							 });
@@ -528,7 +517,7 @@ public class EntityRelationEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == EntityRelationEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == EntityrelationEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -536,7 +525,7 @@ public class EntityRelationEditor
 					}
 				}
 				catch (CoreException exception) {
-					EntityRelationEditorPlugin.INSTANCE.log(exception);
+					EntityrelationEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -560,7 +549,7 @@ public class EntityRelationEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(EntityRelationEditor.this, false);
+				getSite().getPage().closeEditor(EntityrelationEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -652,7 +641,7 @@ public class EntityRelationEditor
 					showTabs();
 				}
 				catch (PartInitException exception) {
-					EntityRelationEditorPlugin.INSTANCE.log(exception);
+					EntityrelationEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 
@@ -663,7 +652,7 @@ public class EntityRelationEditor
 						markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
-						EntityRelationEditorPlugin.INSTANCE.log(exception);
+						EntityrelationEditorPlugin.INSTANCE.log(exception);
 					}
 				}
 			}
@@ -690,7 +679,7 @@ public class EntityRelationEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EntityRelationEditor() {
+	public EntityrelationEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -707,7 +696,7 @@ public class EntityRelationEditor
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new EntityRelationItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EntityrelationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TypesLibraryItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
@@ -1022,7 +1011,7 @@ public class EntityRelationEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), EntityRelationEditor.this) {
+					new ViewerPane(getSite().getPage(), EntityrelationEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1056,7 +1045,7 @@ public class EntityRelationEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), EntityRelationEditor.this) {
+					new ViewerPane(getSite().getPage(), EntityrelationEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1085,7 +1074,7 @@ public class EntityRelationEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), EntityRelationEditor.this) {
+					new ViewerPane(getSite().getPage(), EntityrelationEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
@@ -1110,7 +1099,7 @@ public class EntityRelationEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), EntityRelationEditor.this) {
+					new ViewerPane(getSite().getPage(), EntityrelationEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1137,7 +1126,7 @@ public class EntityRelationEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), EntityRelationEditor.this) {
+					new ViewerPane(getSite().getPage(), EntityrelationEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
@@ -1180,7 +1169,7 @@ public class EntityRelationEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), EntityRelationEditor.this) {
+					new ViewerPane(getSite().getPage(), EntityrelationEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1401,8 +1390,8 @@ public class EntityRelationEditor
 				new ExtendedPropertySheetPage(editingDomain) {
 					@Override
 					public void setSelectionToViewer(List<?> selection) {
-						EntityRelationEditor.this.setSelectionToViewer(selection);
-						EntityRelationEditor.this.setFocus();
+						EntityrelationEditor.this.setSelectionToViewer(selection);
+						EntityrelationEditor.this.setFocus();
 					}
 
 					@Override
@@ -1523,7 +1512,7 @@ public class EntityRelationEditor
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			EntityRelationEditorPlugin.INSTANCE.log(exception);
+			EntityrelationEditorPlugin.INSTANCE.log(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1616,7 +1605,7 @@ public class EntityRelationEditor
 			}
 		}
 		catch (CoreException exception) {
-			EntityRelationEditorPlugin.INSTANCE.log(exception);
+			EntityrelationEditorPlugin.INSTANCE.log(exception);
 		}
 	}
 
@@ -1738,7 +1727,7 @@ public class EntityRelationEditor
 	 * @generated
 	 */
 	private static String getString(String key) {
-		return EntityRelationEditorPlugin.INSTANCE.getString(key);
+		return EntityrelationEditorPlugin.INSTANCE.getString(key);
 	}
 
 	/**
@@ -1748,7 +1737,7 @@ public class EntityRelationEditor
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return EntityRelationEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
+		return EntityrelationEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
 	/**
