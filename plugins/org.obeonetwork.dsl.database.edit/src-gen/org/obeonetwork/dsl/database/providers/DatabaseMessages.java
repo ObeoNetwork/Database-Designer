@@ -143,6 +143,18 @@ public class DatabaseMessages extends NLS {
 	public static String ColumnPropertiesEditionPart_NameLabel;
 
 	
+	public static String ColumnPropertiesEditionPart_TypeLabel;
+
+	
+	public static String ColumnPropertiesEditionPart_LengthLabel;
+
+	
+	public static String ColumnPropertiesEditionPart_PrecisionLabel;
+
+	
+	public static String ColumnPropertiesEditionPart_LiteralsLabel;
+
+	
 	public static String ColumnPropertiesEditionPart_NullableLabel;
 
 	

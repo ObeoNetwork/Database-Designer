@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.impl;
 
@@ -15,14 +11,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.obeonetwork.dsl.entityrelation.Attribute;
 import org.obeonetwork.dsl.entityrelation.Cardinality;
 import org.obeonetwork.dsl.entityrelation.Entity;
-import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
-import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityrelationFactory;
+import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
 import org.obeonetwork.dsl.entityrelation.Join;
 import org.obeonetwork.dsl.entityrelation.JoinByIdentifier;
@@ -31,7 +25,6 @@ import org.obeonetwork.dsl.entityrelation.LogicalModel;
 import org.obeonetwork.dsl.entityrelation.NamedElement;
 import org.obeonetwork.dsl.entityrelation.Relation;
 import org.obeonetwork.dsl.entityrelation.Role;
-
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 
 /**
@@ -40,14 +33,7 @@ import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EntityRelationPackageImpl extends EPackageImpl implements EntityRelationPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
+public class EntityrelationPackageImpl extends EPackageImpl implements EntityrelationPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -136,12 +122,12 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#eNS_URI
+	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private EntityRelationPackageImpl() {
-		super(eNS_URI, EntityRelationFactory.eINSTANCE);
+	private EntityrelationPackageImpl() {
+		super(eNS_URI, EntityrelationFactory.eINSTANCE);
 	}
 
 	/**
@@ -154,7 +140,7 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link EntityRelationPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link EntityrelationPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -163,11 +149,11 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static EntityRelationPackage init() {
-		if (isInited) return (EntityRelationPackage)EPackage.Registry.INSTANCE.getEPackage(EntityRelationPackage.eNS_URI);
+	public static EntityrelationPackage init() {
+		if (isInited) return (EntityrelationPackage)EPackage.Registry.INSTANCE.getEPackage(EntityrelationPackage.eNS_URI);
 
 		// Obtain or create and register package
-		EntityRelationPackageImpl theEntityRelationPackage = (EntityRelationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof EntityRelationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new EntityRelationPackageImpl());
+		EntityrelationPackageImpl theEntityrelationPackage = (EntityrelationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof EntityrelationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new EntityrelationPackageImpl());
 
 		isInited = true;
 
@@ -175,18 +161,18 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 		TypesLibraryPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
-		theEntityRelationPackage.createPackageContents();
+		theEntityrelationPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theEntityRelationPackage.initializePackageContents();
+		theEntityrelationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theEntityRelationPackage.freeze();
+		theEntityrelationPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(EntityRelationPackage.eNS_URI, theEntityRelationPackage);
-		return theEntityRelationPackage;
+		EPackage.Registry.INSTANCE.put(EntityrelationPackage.eNS_URI, theEntityrelationPackage);
+		return theEntityrelationPackage;
 	}
 
 	/**
@@ -295,6 +281,15 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	 */
 	public EAttribute getAttribute_Required() {
 		return (EAttribute)attributeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttribute_UseInIdentifier() {
+		return (EReference)attributeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -455,8 +450,8 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EntityRelationFactory getEntityRelationFactory() {
-		return (EntityRelationFactory)getEFactoryInstance();
+	public EntityrelationFactory getEntityrelationFactory() {
+		return (EntityrelationFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -493,6 +488,7 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 		attributeEClass = createEClass(ATTRIBUTE);
 		createEReference(attributeEClass, ATTRIBUTE__TYPE);
 		createEAttribute(attributeEClass, ATTRIBUTE__REQUIRED);
+		createEReference(attributeEClass, ATTRIBUTE__USE_IN_IDENTIFIER);
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
@@ -577,6 +573,7 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 		initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttribute_Type(), theTypesLibraryPackage.getType(), null, "type", null, 1, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttribute_Required(), ecorePackage.getEBoolean(), "required", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttribute_UseInIdentifier(), this.getIdentifier(), this.getIdentifier_Attributes(), "useInIdentifier", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -592,7 +589,7 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 
 		initEClass(identifierEClass, Identifier.class, "Identifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIdentifier_Primary(), ecorePackage.getEBoolean(), "primary", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIdentifier_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIdentifier_Attributes(), this.getAttribute(), this.getAttribute_UseInIdentifier(), "attributes", null, 0, -1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(joinEClass, Join.class, "Join", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -611,4 +608,4 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 		createResource(eNS_URI);
 	}
 
-} //EntityRelationPackageImpl
+} //EntityrelationPackageImpl

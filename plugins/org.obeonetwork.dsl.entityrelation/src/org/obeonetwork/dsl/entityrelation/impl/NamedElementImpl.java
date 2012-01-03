@@ -11,13 +11,9 @@
 package org.obeonetwork.dsl.entityrelation.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
-import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.NamedElement;
 
 /**

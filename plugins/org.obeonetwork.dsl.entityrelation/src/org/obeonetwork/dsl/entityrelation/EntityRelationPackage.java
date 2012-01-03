@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation;
 
@@ -27,18 +23,11 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.obeonetwork.dsl.entityrelation.EntityRelationFactory
+ * @see org.obeonetwork.dsl.entityrelation.EntityrelationFactory
  * @model kind="package"
  * @generated
  */
-public interface EntityRelationPackage extends EPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
+public interface EntityrelationPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -69,14 +58,14 @@ public interface EntityRelationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	EntityRelationPackage eINSTANCE = org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl.init();
+	EntityrelationPackage eINSTANCE = org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.LogicalElementImpl <em>Logical Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.obeonetwork.dsl.entityrelation.impl.LogicalElementImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getLogicalElement()
+	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getLogicalElement()
 	 * @generated
 	 */
 	int LOGICAL_ELEMENT = 5;
@@ -113,7 +102,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.obeonetwork.dsl.entityrelation.impl.NamedElementImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getNamedElement()
+	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getNamedElement()
 	 * @generated
 	 */
 	int NAMED_ELEMENT = 4;
@@ -159,7 +148,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.obeonetwork.dsl.entityrelation.impl.LogicalModelImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getLogicalModel()
+	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getLogicalModel()
 	 * @generated
 	 */
 	int LOGICAL_MODEL = 0;
@@ -223,7 +212,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getEntity()
+	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getEntity()
 	 * @generated
 	 */
 	int ENTITY = 1;
@@ -287,7 +276,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.obeonetwork.dsl.entityrelation.impl.RelationImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getRelation()
+	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getRelation()
 	 * @generated
 	 */
 	int RELATION = 2;
@@ -351,7 +340,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.obeonetwork.dsl.entityrelation.impl.AttributeImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getAttribute()
+	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getAttribute()
 	 * @generated
 	 */
 	int ATTRIBUTE = 3;
@@ -402,20 +391,29 @@ public interface EntityRelationPackage extends EPackage {
 	int ATTRIBUTE__REQUIRED = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Use In Identifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__USE_IN_IDENTIFIER = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int ATTRIBUTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.RoleImpl <em>Role</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.obeonetwork.dsl.entityrelation.impl.RoleImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getRole()
+	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getRole()
 	 * @generated
 	 */
 	int ROLE = 6;
@@ -488,7 +486,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.obeonetwork.dsl.entityrelation.impl.IdentifierImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getIdentifier()
+	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getIdentifier()
 	 * @generated
 	 */
 	int IDENTIFIER = 7;
@@ -552,7 +550,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.obeonetwork.dsl.entityrelation.impl.JoinImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getJoin()
+	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getJoin()
 	 * @generated
 	 */
 	int JOIN = 8;
@@ -589,7 +587,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.obeonetwork.dsl.entityrelation.impl.JoinByIdentifierImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getJoinByIdentifier()
+	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getJoinByIdentifier()
 	 * @generated
 	 */
 	int JOIN_BY_IDENTIFIER = 9;
@@ -644,7 +642,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.obeonetwork.dsl.entityrelation.Cardinality
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getCardinality()
+	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getCardinality()
 	 * @generated
 	 */
 	int CARDINALITY = 10;
@@ -777,6 +775,17 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAttribute_Required();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.entityrelation.Attribute#getUseInIdentifier <em>Use In Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Use In Identifier</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Attribute#getUseInIdentifier()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EReference getAttribute_UseInIdentifier();
 
 	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.entityrelation.NamedElement <em>Named Element</em>}'.
@@ -965,7 +974,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	EntityRelationFactory getEntityRelationFactory();
+	EntityrelationFactory getEntityrelationFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -985,7 +994,7 @@ public interface EntityRelationPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.obeonetwork.dsl.entityrelation.impl.LogicalModelImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getLogicalModel()
+		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getLogicalModel()
 		 * @generated
 		 */
 		EClass LOGICAL_MODEL = eINSTANCE.getLogicalModel();
@@ -1011,7 +1020,7 @@ public interface EntityRelationPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getEntity()
+		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getEntity()
 		 * @generated
 		 */
 		EClass ENTITY = eINSTANCE.getEntity();
@@ -1037,7 +1046,7 @@ public interface EntityRelationPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.obeonetwork.dsl.entityrelation.impl.RelationImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getRelation()
+		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getRelation()
 		 * @generated
 		 */
 		EClass RELATION = eINSTANCE.getRelation();
@@ -1063,7 +1072,7 @@ public interface EntityRelationPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.obeonetwork.dsl.entityrelation.impl.AttributeImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getAttribute()
+		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getAttribute()
 		 * @generated
 		 */
 		EClass ATTRIBUTE = eINSTANCE.getAttribute();
@@ -1085,11 +1094,19 @@ public interface EntityRelationPackage extends EPackage {
 		EAttribute ATTRIBUTE__REQUIRED = eINSTANCE.getAttribute_Required();
 
 		/**
+		 * The meta object literal for the '<em><b>Use In Identifier</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE__USE_IN_IDENTIFIER = eINSTANCE.getAttribute_UseInIdentifier();
+
+		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.impl.NamedElementImpl <em>Named Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.obeonetwork.dsl.entityrelation.impl.NamedElementImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getNamedElement()
+		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getNamedElement()
 		 * @generated
 		 */
 		EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
@@ -1107,7 +1124,7 @@ public interface EntityRelationPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.obeonetwork.dsl.entityrelation.impl.LogicalElementImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getLogicalElement()
+		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getLogicalElement()
 		 * @generated
 		 */
 		EClass LOGICAL_ELEMENT = eINSTANCE.getLogicalElement();
@@ -1133,7 +1150,7 @@ public interface EntityRelationPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.obeonetwork.dsl.entityrelation.impl.RoleImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getRole()
+		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getRole()
 		 * @generated
 		 */
 		EClass ROLE = eINSTANCE.getRole();
@@ -1167,7 +1184,7 @@ public interface EntityRelationPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.obeonetwork.dsl.entityrelation.impl.IdentifierImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getIdentifier()
+		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getIdentifier()
 		 * @generated
 		 */
 		EClass IDENTIFIER = eINSTANCE.getIdentifier();
@@ -1193,7 +1210,7 @@ public interface EntityRelationPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.obeonetwork.dsl.entityrelation.impl.JoinImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getJoin()
+		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getJoin()
 		 * @generated
 		 */
 		EClass JOIN = eINSTANCE.getJoin();
@@ -1203,7 +1220,7 @@ public interface EntityRelationPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.obeonetwork.dsl.entityrelation.impl.JoinByIdentifierImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getJoinByIdentifier()
+		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getJoinByIdentifier()
 		 * @generated
 		 */
 		EClass JOIN_BY_IDENTIFIER = eINSTANCE.getJoinByIdentifier();
@@ -1229,11 +1246,11 @@ public interface EntityRelationPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.obeonetwork.dsl.entityrelation.Cardinality
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getCardinality()
+		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityrelationPackageImpl#getCardinality()
 		 * @generated
 		 */
 		EEnum CARDINALITY = eINSTANCE.getCardinality();
 
 	}
 
-} //EntityRelationPackage
+} //EntityrelationPackage

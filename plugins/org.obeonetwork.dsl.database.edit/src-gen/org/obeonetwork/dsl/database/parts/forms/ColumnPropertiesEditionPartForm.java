@@ -4,6 +4,8 @@
 package org.obeonetwork.dsl.database.parts.forms;
 
 // Start of user code for imports
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
@@ -15,8 +17,11 @@ import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+import org.eclipse.emf.eef.runtime.ui.providers.EMFListContentProvider;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
+import org.eclipse.emf.eef.runtime.ui.widgets.EEFFeatureEditorDialog;
+import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.HorizontalBox;
@@ -25,6 +30,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
@@ -36,6 +42,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.Form;
@@ -45,6 +52,7 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart;
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.providers.DatabaseMessages;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 
 
 // End of user code
@@ -56,6 +64,12 @@ import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 public class ColumnPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, ColumnPropertiesEditionPart {
 
 	protected Text name;
+	protected EMFComboViewer type;
+	protected Text length;
+	protected Text precision;
+	protected Text literals;
+		protected Button editLiterals;
+		private EList literalsList;
 	protected Button nullable;
 	protected Button primaryKey;
 	protected Button unique;
@@ -63,6 +77,7 @@ public class ColumnPropertiesEditionPartForm extends CompositePropertiesEditionP
 	protected EObjectFlatComboViewer sequence;
 	protected Text defaultValue;
 	protected Text comments;
+
 
 
 
@@ -104,6 +119,12 @@ public class ColumnPropertiesEditionPartForm extends CompositePropertiesEditionP
 		CompositionSequence columnStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = columnStep.addStep(DatabaseViewsRepository.Column.Properties.class);
 		propertiesStep.addStep(DatabaseViewsRepository.Column.Properties.name);
+		propertiesStep.addStep(DatabaseViewsRepository.Column.Properties.type);
+		CompositionStep typeAttributesStep = propertiesStep.addStep(DatabaseViewsRepository.Column.Properties.TypeAttributes.class);
+		typeAttributesStep.addStep(DatabaseViewsRepository.Column.Properties.TypeAttributes.length);
+		typeAttributesStep.addStep(DatabaseViewsRepository.Column.Properties.TypeAttributes.precision);
+		
+		propertiesStep.addStep(DatabaseViewsRepository.Column.Properties.literals);
 		CompositionStep nullablePkAndUniqueStep = propertiesStep.addStep(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.class);
 		nullablePkAndUniqueStep.addStep(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.nullable);
 		nullablePkAndUniqueStep.addStep(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.primaryKey);
@@ -126,6 +147,21 @@ public class ColumnPropertiesEditionPartForm extends CompositePropertiesEditionP
 				}
 				if (key == DatabaseViewsRepository.Column.Properties.name) {
 					return 		createNameText(widgetFactory, parent);
+				}
+				if (key == DatabaseViewsRepository.Column.Properties.type) {
+					return createTypeEMFComboViewer(widgetFactory, parent);
+				}
+				if (key == DatabaseViewsRepository.Column.Properties.TypeAttributes.class) {
+					return createTypeAttributesHBox(widgetFactory, parent);
+				}
+				if (key == DatabaseViewsRepository.Column.Properties.TypeAttributes.length) {
+					return 		createLengthText(widgetFactory, parent);
+				}
+				if (key == DatabaseViewsRepository.Column.Properties.TypeAttributes.precision) {
+					return 		createPrecisionText(widgetFactory, parent);
+				}
+				if (key == DatabaseViewsRepository.Column.Properties.literals) {
+					return createLiteralsMultiValuedEditor(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.class) {
 					return createNullablePkAndUniqueHBox(widgetFactory, parent);
@@ -213,6 +249,172 @@ public class ColumnPropertiesEditionPartForm extends CompositePropertiesEditionP
 		EditingUtils.setID(name, DatabaseViewsRepository.Column.Properties.name);
 		EditingUtils.setEEFtype(name, "eef::Text"); //$NON-NLS-1$
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.Column.Properties.name, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		return parent;
+	}
+
+	
+	protected Composite createTypeEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
+		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.ColumnPropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Column.Properties.type, DatabaseViewsRepository.FORM_KIND));
+		type = new EMFComboViewer(parent);
+		GridData typeData = new GridData(GridData.FILL_HORIZONTAL);
+		type.getCombo().setLayoutData(typeData);
+		type.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+		type.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
+			 * 	
+			 */
+			public void selectionChanged(SelectionChangedEvent event) {
+				if (propertiesEditionComponent != null)
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ColumnPropertiesEditionPartForm.this, DatabaseViewsRepository.Column.Properties.type, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getType()));
+			}
+
+		});
+		type.setContentProvider(new EMFListContentProvider());
+		EditingUtils.setID(type.getCombo(), DatabaseViewsRepository.Column.Properties.type);
+		EditingUtils.setEEFtype(type.getCombo(), "eef::Combo");
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.Column.Properties.type, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		return parent;
+	}
+
+	/**
+	 * 
+	 */
+	protected Composite createTypeAttributesHBox(FormToolkit widgetFactory, Composite parent) {
+		Composite container = widgetFactory.createComposite(parent, SWT.NONE);
+		GridLayout layout = new GridLayout();
+		container.setLayout(layout);
+		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+		gridData.horizontalSpan=3;
+		container.setLayoutData(gridData);
+		HorizontalBox typeAttributesHBox = new HorizontalBox(container);
+		widgetFactory.adapt(typeAttributesHBox);
+		return typeAttributesHBox;
+	}
+
+	
+	protected Composite createLengthText(FormToolkit widgetFactory, Composite parent) {
+		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.ColumnPropertiesEditionPart_LengthLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Column.Properties.TypeAttributes.length, DatabaseViewsRepository.FORM_KIND));
+		length = widgetFactory.createText(parent, ""); //$NON-NLS-1$
+		length.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
+		widgetFactory.paintBordersFor(parent);
+		GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
+		length.setLayoutData(lengthData);
+		length.addFocusListener(new FocusAdapter() {
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
+			 * 
+			 */
+			@Override
+			@SuppressWarnings("synthetic-access")
+			public void focusLost(FocusEvent e) {
+				if (propertiesEditionComponent != null)
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ColumnPropertiesEditionPartForm.this, DatabaseViewsRepository.Column.Properties.TypeAttributes.length, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, length.getText()));
+			}
+		});
+		length.addKeyListener(new KeyAdapter() {
+			/**
+			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
+			 * 
+			 */
+			@Override
+			@SuppressWarnings("synthetic-access")
+			public void keyPressed(KeyEvent e) {
+				if (e.character == SWT.CR) {
+					if (propertiesEditionComponent != null)
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ColumnPropertiesEditionPartForm.this, DatabaseViewsRepository.Column.Properties.TypeAttributes.length, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, length.getText()));
+				}
+			}
+		});
+		EditingUtils.setID(length, DatabaseViewsRepository.Column.Properties.TypeAttributes.length);
+		EditingUtils.setEEFtype(length, "eef::Text"); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.Column.Properties.TypeAttributes.length, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		return parent;
+	}
+
+	
+	protected Composite createPrecisionText(FormToolkit widgetFactory, Composite parent) {
+		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.ColumnPropertiesEditionPart_PrecisionLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Column.Properties.TypeAttributes.precision, DatabaseViewsRepository.FORM_KIND));
+		precision = widgetFactory.createText(parent, ""); //$NON-NLS-1$
+		precision.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
+		widgetFactory.paintBordersFor(parent);
+		GridData precisionData = new GridData(GridData.FILL_HORIZONTAL);
+		precision.setLayoutData(precisionData);
+		precision.addFocusListener(new FocusAdapter() {
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusLost(org.eclipse.swt.events.FocusEvent)
+			 * 
+			 */
+			@Override
+			@SuppressWarnings("synthetic-access")
+			public void focusLost(FocusEvent e) {
+				if (propertiesEditionComponent != null)
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ColumnPropertiesEditionPartForm.this, DatabaseViewsRepository.Column.Properties.TypeAttributes.precision, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, precision.getText()));
+			}
+		});
+		precision.addKeyListener(new KeyAdapter() {
+			/**
+			 * @see org.eclipse.swt.events.KeyAdapter#keyPressed(org.eclipse.swt.events.KeyEvent)
+			 * 
+			 */
+			@Override
+			@SuppressWarnings("synthetic-access")
+			public void keyPressed(KeyEvent e) {
+				if (e.character == SWT.CR) {
+					if (propertiesEditionComponent != null)
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ColumnPropertiesEditionPartForm.this, DatabaseViewsRepository.Column.Properties.TypeAttributes.precision, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, precision.getText()));
+				}
+			}
+		});
+		EditingUtils.setID(precision, DatabaseViewsRepository.Column.Properties.TypeAttributes.precision);
+		EditingUtils.setEEFtype(precision, "eef::Text"); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.Column.Properties.TypeAttributes.precision, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		return parent;
+	}
+
+	/**
+	 * 
+	 */
+	protected Composite createLiteralsMultiValuedEditor(FormToolkit widgetFactory, Composite parent) {
+		literals = widgetFactory.createText(parent, "", SWT.READ_ONLY); //$NON-NLS-1$
+		GridData literalsData = new GridData(GridData.FILL_HORIZONTAL);
+		literalsData.horizontalSpan = 2;
+		literals.setLayoutData(literalsData);
+		EditingUtils.setID(literals, DatabaseViewsRepository.Column.Properties.literals);
+		EditingUtils.setEEFtype(literals, "eef::MultiValuedEditor::field"); //$NON-NLS-1$
+		editLiterals = widgetFactory.createButton(parent, DatabaseMessages.ColumnPropertiesEditionPart_LiteralsLabel, SWT.NONE);
+		GridData editLiteralsData = new GridData();
+		editLiterals.setLayoutData(editLiteralsData);
+		editLiterals.addSelectionListener(new SelectionAdapter() {
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 * 
+			 */
+			public void widgetSelected(SelectionEvent e) {
+				EEFFeatureEditorDialog dialog = new EEFFeatureEditorDialog(
+						literals.getShell(), "Column", new AdapterFactoryLabelProvider(adapterFactory), //$NON-NLS-1$
+						literalsList, TypesLibraryPackage.eINSTANCE.getTypeInstance_Literals().getEType(), null,
+						false, true, 
+						null, null);
+				if (dialog.open() == Window.OK) {
+					literalsList = dialog.getResult();
+					if (literalsList == null) {
+						literalsList = new BasicEList();
+					}
+					literals.setText(literalsList.toString());
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ColumnPropertiesEditionPartForm.this, DatabaseViewsRepository.Column.Properties.literals, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, new BasicEList(literalsList)));
+					setHasChanged(true);
+				}
+			}
+		});
+		EditingUtils.setID(editLiterals, DatabaseViewsRepository.Column.Properties.literals);
+		EditingUtils.setEEFtype(editLiterals, "eef::MultiValuedEditor::browsebutton"); //$NON-NLS-1$
 		return parent;
 	}
 
@@ -502,6 +704,150 @@ public class ColumnPropertiesEditionPartForm extends CompositePropertiesEditionP
 	/**
 	 * {@inheritDoc}
 	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart#getType()
+	 * 
+	 */
+	public Object getType() {
+		if (type.getSelection() instanceof StructuredSelection) {
+			return ((StructuredSelection) type.getSelection()).getFirstElement();
+		}
+		return "";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart#initType(Object input, Object currentValue)
+	 */
+	public void initType(Object input, Object currentValue) {
+		type.setInput(input);
+		if (currentValue != null) {
+			type.setSelection(new StructuredSelection(currentValue));
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart#setType(Object newValue)
+	 * 
+	 */
+	public void setType(Object newValue) {
+		if (newValue != null) {
+			type.modelUpdating(new StructuredSelection(newValue));
+		} else {
+			type.modelUpdating(new StructuredSelection("")); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart#addFilterType(ViewerFilter filter)
+	 * 
+	 */
+	public void addFilterToType(ViewerFilter filter) {
+		type.addFilter(filter);
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart#getLength()
+	 * 
+	 */
+	public String getLength() {
+		return length.getText();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart#setLength(String newValue)
+	 * 
+	 */
+	public void setLength(String newValue) {
+		if (newValue != null) {
+			length.setText(newValue);
+		} else {
+			length.setText(""); //$NON-NLS-1$
+		}
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart#getPrecision()
+	 * 
+	 */
+	public String getPrecision() {
+		return precision.getText();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart#setPrecision(String newValue)
+	 * 
+	 */
+	public void setPrecision(String newValue) {
+		if (newValue != null) {
+			precision.setText(newValue);
+		} else {
+			precision.setText(""); //$NON-NLS-1$
+		}
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart#getLiterals()
+	 * 
+	 */
+	public EList getLiterals() {
+		return literalsList;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart#setLiterals(EList newValue)
+	 * 
+	 */
+	public void setLiterals(EList newValue) {
+		literalsList = newValue;
+		if (newValue != null) {
+			literals.setText(literalsList.toString());
+		} else {
+			literals.setText(""); //$NON-NLS-1$
+		}
+	}
+
+	public void addToLiterals(Object newValue) {
+		literalsList.add(newValue);
+		if (newValue != null) {
+			literals.setText(literalsList.toString());
+		} else {
+			literals.setText(""); //$NON-NLS-1$
+		}
+	}
+
+	public void removeToLiterals(Object newValue) {
+		literalsList.remove(newValue);
+		if (newValue != null) {
+			literals.setText(literalsList.toString());
+		} else {
+			literals.setText(""); //$NON-NLS-1$
+		}
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart#getNullable()
 	 * 
 	 */
@@ -733,6 +1079,49 @@ public class ColumnPropertiesEditionPartForm extends CompositePropertiesEditionP
 	}
 
 	// Start of user code additional methods
+	private static final int LENGHT_LABEL_INDEX = 0;
+	private static final int LENGHT_HELP_INDEX = 2;
+	private static final int PRECISION_LABEL_INDEX = 3;
+	private static final int PRECISION_HELP_INDEX = 5;
+	private static final int LENGHT_AND_PRECISION_COMPOSITE_INDEX = 6;
+	private static final int LITERALS_BUTTON_INDEX = 8;
+	
+	public void updateTypeFields(boolean lengthVisible, boolean precisionVisible, boolean literalsVisible) {
+		Composite composite = name.getParent();
+		
+		Composite lengthAndPrecisionComposite = (Composite)composite.getChildren()[LENGHT_AND_PRECISION_COMPOSITE_INDEX];
+		HorizontalBox hbox = (HorizontalBox)lengthAndPrecisionComposite.getChildren()[0];
+		
+		((GridData)length.getLayoutData()).exclude = !lengthVisible;
+		length.setVisible(lengthVisible);
+		Control lengthLabel = hbox.getChildren()[LENGHT_LABEL_INDEX];
+		((GridData)lengthLabel.getLayoutData()).exclude = !lengthVisible;
+		lengthLabel.setVisible(lengthVisible);
+		Control lengthHelp = hbox.getChildren()[LENGHT_HELP_INDEX];
+		((GridData)lengthHelp.getLayoutData()).exclude = !lengthVisible;
+		lengthHelp.setVisible(lengthVisible);
+		
+		((GridData)precision.getLayoutData()).exclude = !precisionVisible;
+		precision.setVisible(precisionVisible);
+		Control precisionLabel = hbox.getChildren()[PRECISION_LABEL_INDEX];
+		((GridData)precisionLabel.getLayoutData()).exclude = !precisionVisible;
+		precisionLabel.setVisible(precisionVisible);
+		Control precisionHelp = hbox.getChildren()[PRECISION_HELP_INDEX];
+		((GridData)precisionHelp.getLayoutData()).exclude = !precisionVisible;
+		precisionHelp.setVisible(precisionVisible);
+		
+		((GridData)lengthAndPrecisionComposite.getLayoutData()).exclude = !lengthVisible && !precisionVisible;
+		lengthAndPrecisionComposite.setVisible(lengthVisible || precisionVisible);
+		
+		((GridData)literals.getLayoutData()).exclude = !literalsVisible;
+		literals.setVisible(literalsVisible);		
+		Control literalsButton = composite.getChildren()[LITERALS_BUTTON_INDEX];
+		((GridData)literalsButton.getLayoutData()).exclude = !literalsVisible;
+		literalsButton.setVisible(literalsVisible);
+		
+		
+		composite.getParent().layout();
+	}
 	
 	// End of user code
 
