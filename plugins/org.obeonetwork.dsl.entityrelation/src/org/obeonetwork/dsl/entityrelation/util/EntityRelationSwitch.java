@@ -10,8 +10,17 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.obeonetwork.dsl.entityrelation.*;
+import org.obeonetwork.dsl.entityrelation.Attribute;
+import org.obeonetwork.dsl.entityrelation.Entity;
+import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
+import org.obeonetwork.dsl.entityrelation.Identifier;
+import org.obeonetwork.dsl.entityrelation.Join;
+import org.obeonetwork.dsl.entityrelation.JoinByIdentifier;
+import org.obeonetwork.dsl.entityrelation.LogicalElement;
+import org.obeonetwork.dsl.entityrelation.LogicalModel;
+import org.obeonetwork.dsl.entityrelation.NamedElement;
+import org.obeonetwork.dsl.entityrelation.Relation;
+import org.obeonetwork.dsl.entityrelation.Role;
 
 /**
  * <!-- begin-user-doc -->
