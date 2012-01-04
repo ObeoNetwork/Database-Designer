@@ -18,13 +18,11 @@ import org.obeonetwork.dsl.entityrelation.Entity;
 import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
-import org.obeonetwork.dsl.entityrelation.Join;
-import org.obeonetwork.dsl.entityrelation.JoinByIdentifier;
 import org.obeonetwork.dsl.entityrelation.LogicalElement;
 import org.obeonetwork.dsl.entityrelation.LogicalModel;
 import org.obeonetwork.dsl.entityrelation.NamedElement;
 import org.obeonetwork.dsl.entityrelation.Relation;
-import org.obeonetwork.dsl.entityrelation.Role;
+import org.obeonetwork.dsl.entityrelation.RelationElement;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 
 /**
@@ -60,6 +58,13 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass relationElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass attributeEClass = null;
 
 	/**
@@ -81,28 +86,7 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass roleEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass identifierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass joinEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass joinByIdentifierEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -234,6 +218,15 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getEntity_PrimaryIdentifier() {
+		return (EReference)entityEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRelation() {
 		return relationEClass;
 	}
@@ -243,7 +236,7 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRelation_Roles() {
+	public EReference getRelation_Source() {
 		return (EReference)relationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -252,8 +245,80 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRelation_Joins() {
-		return (EReference)relationEClass.getEStructuralFeatures().get(1);
+	public EAttribute getRelation_SourceCardinality() {
+		return (EAttribute)relationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRelation_SourceIsComposite() {
+		return (EAttribute)relationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRelation_Target() {
+		return (EReference)relationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRelation_TargetCardinality() {
+		return (EAttribute)relationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRelation_TargetIsComposite() {
+		return (EAttribute)relationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRelation_Elements() {
+		return (EReference)relationEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRelationElement() {
+		return relationElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRelationElement_SourceAttribute() {
+		return (EReference)relationElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRelationElement_TargetAttribute() {
+		return (EReference)relationElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -288,7 +353,7 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAttribute_UseInIdentifier() {
+	public EReference getAttribute_UsedInIdentifier() {
 		return (EReference)attributeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -342,42 +407,6 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRole() {
-		return roleEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRole_Entity() {
-		return (EReference)roleEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRole_Cardinality() {
-		return (EAttribute)roleEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRole_Dependant() {
-		return (EAttribute)roleEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getIdentifier() {
 		return identifierEClass;
 	}
@@ -387,53 +416,8 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIdentifier_Primary() {
-		return (EAttribute)identifierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIdentifier_Attributes() {
-		return (EReference)identifierEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getJoin() {
-		return joinEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getJoinByIdentifier() {
-		return joinByIdentifierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getJoinByIdentifier_Identifier() {
-		return (EReference)joinByIdentifierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getJoinByIdentifier_Attributes() {
-		return (EReference)joinByIdentifierEClass.getEStructuralFeatures().get(1);
+		return (EReference)identifierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -480,15 +464,25 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 		entityEClass = createEClass(ENTITY);
 		createEReference(entityEClass, ENTITY__ATTRIBUTES);
 		createEReference(entityEClass, ENTITY__IDENTIFIERS);
+		createEReference(entityEClass, ENTITY__PRIMARY_IDENTIFIER);
 
 		relationEClass = createEClass(RELATION);
-		createEReference(relationEClass, RELATION__ROLES);
-		createEReference(relationEClass, RELATION__JOINS);
+		createEReference(relationEClass, RELATION__SOURCE);
+		createEAttribute(relationEClass, RELATION__SOURCE_CARDINALITY);
+		createEAttribute(relationEClass, RELATION__SOURCE_IS_COMPOSITE);
+		createEReference(relationEClass, RELATION__TARGET);
+		createEAttribute(relationEClass, RELATION__TARGET_CARDINALITY);
+		createEAttribute(relationEClass, RELATION__TARGET_IS_COMPOSITE);
+		createEReference(relationEClass, RELATION__ELEMENTS);
+
+		relationElementEClass = createEClass(RELATION_ELEMENT);
+		createEReference(relationElementEClass, RELATION_ELEMENT__SOURCE_ATTRIBUTE);
+		createEReference(relationElementEClass, RELATION_ELEMENT__TARGET_ATTRIBUTE);
 
 		attributeEClass = createEClass(ATTRIBUTE);
 		createEReference(attributeEClass, ATTRIBUTE__TYPE);
 		createEAttribute(attributeEClass, ATTRIBUTE__REQUIRED);
-		createEReference(attributeEClass, ATTRIBUTE__USE_IN_IDENTIFIER);
+		createEReference(attributeEClass, ATTRIBUTE__USED_IN_IDENTIFIER);
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
@@ -497,20 +491,8 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 		createEAttribute(logicalElementEClass, LOGICAL_ELEMENT__ID);
 		createEAttribute(logicalElementEClass, LOGICAL_ELEMENT__COMMENTS);
 
-		roleEClass = createEClass(ROLE);
-		createEReference(roleEClass, ROLE__ENTITY);
-		createEAttribute(roleEClass, ROLE__CARDINALITY);
-		createEAttribute(roleEClass, ROLE__DEPENDANT);
-
 		identifierEClass = createEClass(IDENTIFIER);
-		createEAttribute(identifierEClass, IDENTIFIER__PRIMARY);
 		createEReference(identifierEClass, IDENTIFIER__ATTRIBUTES);
-
-		joinEClass = createEClass(JOIN);
-
-		joinByIdentifierEClass = createEClass(JOIN_BY_IDENTIFIER);
-		createEReference(joinByIdentifierEClass, JOIN_BY_IDENTIFIER__IDENTIFIER);
-		createEReference(joinByIdentifierEClass, JOIN_BY_IDENTIFIER__ATTRIBUTES);
 
 		// Create enums
 		cardinalityEEnum = createEEnum(CARDINALITY);
@@ -550,12 +532,10 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 		logicalModelEClass.getESuperTypes().add(this.getNamedElement());
 		entityEClass.getESuperTypes().add(this.getNamedElement());
 		relationEClass.getESuperTypes().add(this.getNamedElement());
+		relationElementEClass.getESuperTypes().add(this.getLogicalElement());
 		attributeEClass.getESuperTypes().add(this.getNamedElement());
 		namedElementEClass.getESuperTypes().add(this.getLogicalElement());
-		roleEClass.getESuperTypes().add(this.getNamedElement());
 		identifierEClass.getESuperTypes().add(this.getNamedElement());
-		joinEClass.getESuperTypes().add(this.getLogicalElement());
-		joinByIdentifierEClass.getESuperTypes().add(this.getJoin());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(logicalModelEClass, LogicalModel.class, "LogicalModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -565,15 +545,25 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 		initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEntity_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEntity_Identifiers(), this.getIdentifier(), null, "identifiers", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEntity_PrimaryIdentifier(), this.getIdentifier(), null, "primaryIdentifier", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(relationEClass, Relation.class, "Relation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRelation_Roles(), this.getRole(), null, "roles", null, 0, 2, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRelation_Joins(), this.getJoin(), null, "joins", null, 0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRelation_Source(), this.getEntity(), null, "source", null, 1, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRelation_SourceCardinality(), this.getCardinality(), "sourceCardinality", "ZERO_ONE", 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRelation_SourceIsComposite(), ecorePackage.getEBoolean(), "sourceIsComposite", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRelation_Target(), this.getEntity(), null, "target", null, 1, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRelation_TargetCardinality(), this.getCardinality(), "targetCardinality", "ZERO_STAR", 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRelation_TargetIsComposite(), ecorePackage.getEBoolean(), "targetIsComposite", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRelation_Elements(), this.getRelationElement(), null, "elements", null, 0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(relationElementEClass, RelationElement.class, "RelationElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRelationElement_SourceAttribute(), this.getAttribute(), null, "sourceAttribute", null, 0, 1, RelationElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRelationElement_TargetAttribute(), this.getAttribute(), null, "targetAttribute", null, 0, 1, RelationElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttribute_Type(), theTypesLibraryPackage.getType(), null, "type", null, 1, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttribute_Required(), ecorePackage.getEBoolean(), "required", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAttribute_UseInIdentifier(), this.getIdentifier(), this.getIdentifier_Attributes(), "useInIdentifier", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttribute_UsedInIdentifier(), this.getIdentifier(), this.getIdentifier_Attributes(), "usedInIdentifier", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -582,20 +572,8 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 		initEAttribute(getLogicalElement_ID(), ecorePackage.getEString(), "ID", null, 0, 1, LogicalElement.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLogicalElement_Comments(), ecorePackage.getEString(), "comments", null, 0, 1, LogicalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(roleEClass, Role.class, "Role", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRole_Entity(), this.getEntity(), null, "entity", null, 1, 1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRole_Cardinality(), this.getCardinality(), "cardinality", null, 0, 1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRole_Dependant(), ecorePackage.getEBoolean(), "dependant", null, 0, 1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(identifierEClass, Identifier.class, "Identifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIdentifier_Primary(), ecorePackage.getEBoolean(), "primary", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIdentifier_Attributes(), this.getAttribute(), this.getAttribute_UseInIdentifier(), "attributes", null, 0, -1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(joinEClass, Join.class, "Join", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(joinByIdentifierEClass, JoinByIdentifier.class, "JoinByIdentifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getJoinByIdentifier_Identifier(), this.getIdentifier(), null, "identifier", null, 1, 1, JoinByIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getJoinByIdentifier_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, JoinByIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIdentifier_Attributes(), this.getAttribute(), this.getAttribute_UsedInIdentifier(), "attributes", null, 0, -1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(cardinalityEEnum, Cardinality.class, "Cardinality");

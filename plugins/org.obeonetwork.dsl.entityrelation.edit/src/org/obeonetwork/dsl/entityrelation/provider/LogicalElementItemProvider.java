@@ -165,7 +165,7 @@ public class LogicalElementItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return EntityrelationEditPlugin.INSTANCE;
+		return EntityRelationEditPlugin.INSTANCE;
 	}
 
 }

@@ -12,16 +12,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.obeonetwork.dsl.entityrelation.*;
 import org.obeonetwork.dsl.entityrelation.Attribute;
 import org.obeonetwork.dsl.entityrelation.Cardinality;
 import org.obeonetwork.dsl.entityrelation.Entity;
 import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
-import org.obeonetwork.dsl.entityrelation.JoinByIdentifier;
 import org.obeonetwork.dsl.entityrelation.LogicalModel;
 import org.obeonetwork.dsl.entityrelation.Relation;
-import org.obeonetwork.dsl.entityrelation.Role;
+import org.obeonetwork.dsl.entityrelation.RelationElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,10 +70,9 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 			case EntityRelationPackage.LOGICAL_MODEL: return createLogicalModel();
 			case EntityRelationPackage.ENTITY: return createEntity();
 			case EntityRelationPackage.RELATION: return createRelation();
+			case EntityRelationPackage.RELATION_ELEMENT: return createRelationElement();
 			case EntityRelationPackage.ATTRIBUTE: return createAttribute();
-			case EntityRelationPackage.ROLE: return createRole();
 			case EntityRelationPackage.IDENTIFIER: return createIdentifier();
-			case EntityRelationPackage.JOIN_BY_IDENTIFIER: return createJoinByIdentifier();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -144,6 +143,16 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RelationElement createRelationElement() {
+		RelationElementImpl relationElement = new RelationElementImpl();
+		return relationElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Attribute createAttribute() {
 		AttributeImpl attribute = new AttributeImpl();
 		return attribute;
@@ -154,29 +163,9 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Role createRole() {
-		RoleImpl role = new RoleImpl();
-		return role;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Identifier createIdentifier() {
 		IdentifierImpl identifier = new IdentifierImpl();
 		return identifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public JoinByIdentifier createJoinByIdentifier() {
-		JoinByIdentifierImpl joinByIdentifier = new JoinByIdentifierImpl();
-		return joinByIdentifier;
 	}
 
 	/**

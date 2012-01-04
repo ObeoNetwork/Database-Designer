@@ -143,6 +143,29 @@ public class EntityRelationItemProviderAdapterFactory extends EntityRelationAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.obeonetwork.dsl.entityrelation.RelationElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RelationElementItemProvider relationElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.obeonetwork.dsl.entityrelation.RelationElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRelationElementAdapter() {
+		if (relationElementItemProvider == null) {
+			relationElementItemProvider = new RelationElementItemProvider(this);
+		}
+
+		return relationElementItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.obeonetwork.dsl.entityrelation.Attribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,29 +189,6 @@ public class EntityRelationItemProviderAdapterFactory extends EntityRelationAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.obeonetwork.dsl.entityrelation.Role} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected RoleItemProvider roleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.obeonetwork.dsl.entityrelation.Role}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createRoleAdapter() {
-		if (roleItemProvider == null) {
-			roleItemProvider = new RoleItemProvider(this);
-		}
-
-		return roleItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.obeonetwork.dsl.entityrelation.Identifier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -209,29 +209,6 @@ public class EntityRelationItemProviderAdapterFactory extends EntityRelationAdap
 		}
 
 		return identifierItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.obeonetwork.dsl.entityrelation.JoinByIdentifier} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected JoinByIdentifierItemProvider joinByIdentifierItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.obeonetwork.dsl.entityrelation.JoinByIdentifier}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createJoinByIdentifierAdapter() {
-		if (joinByIdentifierItemProvider == null) {
-			joinByIdentifierItemProvider = new JoinByIdentifierItemProvider(this);
-		}
-
-		return joinByIdentifierItemProvider;
 	}
 
 	/**
@@ -336,10 +313,9 @@ public class EntityRelationItemProviderAdapterFactory extends EntityRelationAdap
 		if (logicalModelItemProvider != null) logicalModelItemProvider.dispose();
 		if (entityItemProvider != null) entityItemProvider.dispose();
 		if (relationItemProvider != null) relationItemProvider.dispose();
+		if (relationElementItemProvider != null) relationElementItemProvider.dispose();
 		if (attributeItemProvider != null) attributeItemProvider.dispose();
-		if (roleItemProvider != null) roleItemProvider.dispose();
 		if (identifierItemProvider != null) identifierItemProvider.dispose();
-		if (joinByIdentifierItemProvider != null) joinByIdentifierItemProvider.dispose();
 	}
 
 }

@@ -25,7 +25,7 @@ import org.obeonetwork.dsl.typeslibrary.Type;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.impl.AttributeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.impl.AttributeImpl#isRequired <em>Required</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.entityrelation.impl.AttributeImpl#getUseInIdentifier <em>Use In Identifier</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.entityrelation.impl.AttributeImpl#getUsedInIdentifier <em>Used In Identifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,14 +63,14 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	protected boolean required = REQUIRED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getUseInIdentifier() <em>Use In Identifier</em>}' reference.
+	 * The cached value of the '{@link #getUsedInIdentifier() <em>Used In Identifier</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUseInIdentifier()
+	 * @see #getUsedInIdentifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected Identifier useInIdentifier;
+	protected Identifier usedInIdentifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,16 +155,16 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Identifier getUseInIdentifier() {
-		if (useInIdentifier != null && useInIdentifier.eIsProxy()) {
-			InternalEObject oldUseInIdentifier = (InternalEObject)useInIdentifier;
-			useInIdentifier = (Identifier)eResolveProxy(oldUseInIdentifier);
-			if (useInIdentifier != oldUseInIdentifier) {
+	public Identifier getUsedInIdentifier() {
+		if (usedInIdentifier != null && usedInIdentifier.eIsProxy()) {
+			InternalEObject oldUsedInIdentifier = (InternalEObject)usedInIdentifier;
+			usedInIdentifier = (Identifier)eResolveProxy(oldUsedInIdentifier);
+			if (usedInIdentifier != oldUsedInIdentifier) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityRelationPackage.ATTRIBUTE__USE_IN_IDENTIFIER, oldUseInIdentifier, useInIdentifier));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER, oldUsedInIdentifier, usedInIdentifier));
 			}
 		}
-		return useInIdentifier;
+		return usedInIdentifier;
 	}
 
 	/**
@@ -172,8 +172,8 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Identifier basicGetUseInIdentifier() {
-		return useInIdentifier;
+	public Identifier basicGetUsedInIdentifier() {
+		return usedInIdentifier;
 	}
 
 	/**
@@ -181,11 +181,11 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetUseInIdentifier(Identifier newUseInIdentifier, NotificationChain msgs) {
-		Identifier oldUseInIdentifier = useInIdentifier;
-		useInIdentifier = newUseInIdentifier;
+	public NotificationChain basicSetUsedInIdentifier(Identifier newUsedInIdentifier, NotificationChain msgs) {
+		Identifier oldUsedInIdentifier = usedInIdentifier;
+		usedInIdentifier = newUsedInIdentifier;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ATTRIBUTE__USE_IN_IDENTIFIER, oldUseInIdentifier, newUseInIdentifier);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER, oldUsedInIdentifier, newUsedInIdentifier);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -196,18 +196,18 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUseInIdentifier(Identifier newUseInIdentifier) {
-		if (newUseInIdentifier != useInIdentifier) {
+	public void setUsedInIdentifier(Identifier newUsedInIdentifier) {
+		if (newUsedInIdentifier != usedInIdentifier) {
 			NotificationChain msgs = null;
-			if (useInIdentifier != null)
-				msgs = ((InternalEObject)useInIdentifier).eInverseRemove(this, EntityRelationPackage.IDENTIFIER__ATTRIBUTES, Identifier.class, msgs);
-			if (newUseInIdentifier != null)
-				msgs = ((InternalEObject)newUseInIdentifier).eInverseAdd(this, EntityRelationPackage.IDENTIFIER__ATTRIBUTES, Identifier.class, msgs);
-			msgs = basicSetUseInIdentifier(newUseInIdentifier, msgs);
+			if (usedInIdentifier != null)
+				msgs = ((InternalEObject)usedInIdentifier).eInverseRemove(this, EntityRelationPackage.IDENTIFIER__ATTRIBUTES, Identifier.class, msgs);
+			if (newUsedInIdentifier != null)
+				msgs = ((InternalEObject)newUsedInIdentifier).eInverseAdd(this, EntityRelationPackage.IDENTIFIER__ATTRIBUTES, Identifier.class, msgs);
+			msgs = basicSetUsedInIdentifier(newUsedInIdentifier, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ATTRIBUTE__USE_IN_IDENTIFIER, newUseInIdentifier, newUseInIdentifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER, newUsedInIdentifier, newUsedInIdentifier));
 	}
 
 	/**
@@ -218,10 +218,10 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EntityRelationPackage.ATTRIBUTE__USE_IN_IDENTIFIER:
-				if (useInIdentifier != null)
-					msgs = ((InternalEObject)useInIdentifier).eInverseRemove(this, EntityRelationPackage.IDENTIFIER__ATTRIBUTES, Identifier.class, msgs);
-				return basicSetUseInIdentifier((Identifier)otherEnd, msgs);
+			case EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER:
+				if (usedInIdentifier != null)
+					msgs = ((InternalEObject)usedInIdentifier).eInverseRemove(this, EntityRelationPackage.IDENTIFIER__ATTRIBUTES, Identifier.class, msgs);
+				return basicSetUsedInIdentifier((Identifier)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -234,8 +234,8 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EntityRelationPackage.ATTRIBUTE__USE_IN_IDENTIFIER:
-				return basicSetUseInIdentifier(null, msgs);
+			case EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER:
+				return basicSetUsedInIdentifier(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -253,9 +253,9 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 				return basicGetType();
 			case EntityRelationPackage.ATTRIBUTE__REQUIRED:
 				return isRequired();
-			case EntityRelationPackage.ATTRIBUTE__USE_IN_IDENTIFIER:
-				if (resolve) return getUseInIdentifier();
-				return basicGetUseInIdentifier();
+			case EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER:
+				if (resolve) return getUsedInIdentifier();
+				return basicGetUsedInIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,8 +274,8 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 			case EntityRelationPackage.ATTRIBUTE__REQUIRED:
 				setRequired((Boolean)newValue);
 				return;
-			case EntityRelationPackage.ATTRIBUTE__USE_IN_IDENTIFIER:
-				setUseInIdentifier((Identifier)newValue);
+			case EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER:
+				setUsedInIdentifier((Identifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -295,8 +295,8 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 			case EntityRelationPackage.ATTRIBUTE__REQUIRED:
 				setRequired(REQUIRED_EDEFAULT);
 				return;
-			case EntityRelationPackage.ATTRIBUTE__USE_IN_IDENTIFIER:
-				setUseInIdentifier((Identifier)null);
+			case EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER:
+				setUsedInIdentifier((Identifier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -314,8 +314,8 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 				return type != null;
 			case EntityRelationPackage.ATTRIBUTE__REQUIRED:
 				return required != REQUIRED_EDEFAULT;
-			case EntityRelationPackage.ATTRIBUTE__USE_IN_IDENTIFIER:
-				return useInIdentifier != null;
+			case EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER:
+				return usedInIdentifier != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -68,7 +68,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getLogicalElement()
 	 * @generated
 	 */
-	int LOGICAL_ELEMENT = 5;
+	int LOGICAL_ELEMENT = 6;
 
 	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -105,7 +105,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 4;
+	int NAMED_ELEMENT = 5;
 
 	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -263,13 +263,22 @@ public interface EntityRelationPackage extends EPackage {
 	int ENTITY__IDENTIFIERS = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Primary Identifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY__PRIMARY_IDENTIFIER = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Entity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENTITY_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int ENTITY_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.RelationImpl <em>Relation</em>}' class.
@@ -309,22 +318,67 @@ public interface EntityRelationPackage extends EPackage {
 	int RELATION__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Roles</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION__ROLES = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int RELATION__SOURCE = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Joins</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Source Cardinality</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION__JOINS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int RELATION__SOURCE_CARDINALITY = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Source Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION__SOURCE_IS_COMPOSITE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Target Cardinality</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION__TARGET_CARDINALITY = NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Target Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION__TARGET_IS_COMPOSITE = NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION__ELEMENTS = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Relation</em>' class.
@@ -333,7 +387,62 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int RELATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.RelationElementImpl <em>Relation Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.obeonetwork.dsl.entityrelation.impl.RelationElementImpl
+	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getRelationElement()
+	 * @generated
+	 */
+	int RELATION_ELEMENT = 3;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION_ELEMENT__ID = LOGICAL_ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION_ELEMENT__COMMENTS = LOGICAL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION_ELEMENT__SOURCE_ATTRIBUTE = LOGICAL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION_ELEMENT__TARGET_ATTRIBUTE = LOGICAL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Relation Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION_ELEMENT_FEATURE_COUNT = LOGICAL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -343,7 +452,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getAttribute()
 	 * @generated
 	 */
-	int ATTRIBUTE = 3;
+	int ATTRIBUTE = 4;
 
 	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -391,13 +500,13 @@ public interface EntityRelationPackage extends EPackage {
 	int ATTRIBUTE__REQUIRED = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Use In Identifier</b></em>' reference.
+	 * The feature id for the '<em><b>Used In Identifier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__USE_IN_IDENTIFIER = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int ATTRIBUTE__USED_IN_IDENTIFIER = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Attribute</em>' class.
@@ -407,79 +516,6 @@ public interface EntityRelationPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.RoleImpl <em>Role</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.obeonetwork.dsl.entityrelation.impl.RoleImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getRole()
-	 * @generated
-	 */
-	int ROLE = 6;
-
-	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE__ID = NAMED_ELEMENT__ID;
-
-	/**
-	 * The feature id for the '<em><b>Comments</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE__COMMENTS = NAMED_ELEMENT__COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Entity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE__ENTITY = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Cardinality</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE__CARDINALITY = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Dependant</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE__DEPENDANT = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Role</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.IdentifierImpl <em>Identifier</em>}' class.
@@ -519,22 +555,13 @@ public interface EntityRelationPackage extends EPackage {
 	int IDENTIFIER__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Primary</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDENTIFIER__PRIMARY = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IDENTIFIER__ATTRIBUTES = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int IDENTIFIER__ATTRIBUTES = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Identifier</em>' class.
@@ -543,99 +570,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IDENTIFIER_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.JoinImpl <em>Join</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.obeonetwork.dsl.entityrelation.impl.JoinImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getJoin()
-	 * @generated
-	 */
-	int JOIN = 8;
-
-	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN__ID = LOGICAL_ELEMENT__ID;
-
-	/**
-	 * The feature id for the '<em><b>Comments</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN__COMMENTS = LOGICAL_ELEMENT__COMMENTS;
-
-	/**
-	 * The number of structural features of the '<em>Join</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_FEATURE_COUNT = LOGICAL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.JoinByIdentifierImpl <em>Join By Identifier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.obeonetwork.dsl.entityrelation.impl.JoinByIdentifierImpl
-	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getJoinByIdentifier()
-	 * @generated
-	 */
-	int JOIN_BY_IDENTIFIER = 9;
-
-	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_BY_IDENTIFIER__ID = JOIN__ID;
-
-	/**
-	 * The feature id for the '<em><b>Comments</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_BY_IDENTIFIER__COMMENTS = JOIN__COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_BY_IDENTIFIER__IDENTIFIER = JOIN_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Attributes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_BY_IDENTIFIER__ATTRIBUTES = JOIN_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Join By Identifier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_BY_IDENTIFIER_FEATURE_COUNT = JOIN_FEATURE_COUNT + 2;
+	int IDENTIFIER_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.Cardinality <em>Cardinality</em>}' enum.
@@ -645,7 +580,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getCardinality()
 	 * @generated
 	 */
-	int CARDINALITY = 10;
+	int CARDINALITY = 8;
 
 
 	/**
@@ -713,6 +648,17 @@ public interface EntityRelationPackage extends EPackage {
 	EReference getEntity_Identifiers();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.entityrelation.Entity#getPrimaryIdentifier <em>Primary Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Primary Identifier</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Entity#getPrimaryIdentifier()
+	 * @see #getEntity()
+	 * @generated
+	 */
+	EReference getEntity_PrimaryIdentifier();
+
+	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.entityrelation.Relation <em>Relation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -723,26 +669,113 @@ public interface EntityRelationPackage extends EPackage {
 	EClass getRelation();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.obeonetwork.dsl.entityrelation.Relation#getRoles <em>Roles</em>}'.
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.entityrelation.Relation#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Roles</em>'.
-	 * @see org.obeonetwork.dsl.entityrelation.Relation#getRoles()
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Relation#getSource()
 	 * @see #getRelation()
 	 * @generated
 	 */
-	EReference getRelation_Roles();
+	EReference getRelation_Source();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.obeonetwork.dsl.entityrelation.Relation#getJoins <em>Joins</em>}'.
+	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.entityrelation.Relation#getSourceCardinality <em>Source Cardinality</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Joins</em>'.
-	 * @see org.obeonetwork.dsl.entityrelation.Relation#getJoins()
+	 * @return the meta object for the attribute '<em>Source Cardinality</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Relation#getSourceCardinality()
 	 * @see #getRelation()
 	 * @generated
 	 */
-	EReference getRelation_Joins();
+	EAttribute getRelation_SourceCardinality();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.entityrelation.Relation#isSourceIsComposite <em>Source Is Composite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Source Is Composite</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Relation#isSourceIsComposite()
+	 * @see #getRelation()
+	 * @generated
+	 */
+	EAttribute getRelation_SourceIsComposite();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.entityrelation.Relation#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Relation#getTarget()
+	 * @see #getRelation()
+	 * @generated
+	 */
+	EReference getRelation_Target();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.entityrelation.Relation#getTargetCardinality <em>Target Cardinality</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Target Cardinality</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Relation#getTargetCardinality()
+	 * @see #getRelation()
+	 * @generated
+	 */
+	EAttribute getRelation_TargetCardinality();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.entityrelation.Relation#isTargetIsComposite <em>Target Is Composite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Target Is Composite</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Relation#isTargetIsComposite()
+	 * @see #getRelation()
+	 * @generated
+	 */
+	EAttribute getRelation_TargetIsComposite();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.obeonetwork.dsl.entityrelation.Relation#getElements <em>Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Elements</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Relation#getElements()
+	 * @see #getRelation()
+	 * @generated
+	 */
+	EReference getRelation_Elements();
+
+	/**
+	 * Returns the meta object for class '{@link org.obeonetwork.dsl.entityrelation.RelationElement <em>Relation Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Relation Element</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.RelationElement
+	 * @generated
+	 */
+	EClass getRelationElement();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.entityrelation.RelationElement#getSourceAttribute <em>Source Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source Attribute</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.RelationElement#getSourceAttribute()
+	 * @see #getRelationElement()
+	 * @generated
+	 */
+	EReference getRelationElement_SourceAttribute();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.entityrelation.RelationElement#getTargetAttribute <em>Target Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target Attribute</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.RelationElement#getTargetAttribute()
+	 * @see #getRelationElement()
+	 * @generated
+	 */
+	EReference getRelationElement_TargetAttribute();
 
 	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.entityrelation.Attribute <em>Attribute</em>}'.
@@ -777,15 +810,15 @@ public interface EntityRelationPackage extends EPackage {
 	EAttribute getAttribute_Required();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.entityrelation.Attribute#getUseInIdentifier <em>Use In Identifier</em>}'.
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.entityrelation.Attribute#getUsedInIdentifier <em>Used In Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Use In Identifier</em>'.
-	 * @see org.obeonetwork.dsl.entityrelation.Attribute#getUseInIdentifier()
+	 * @return the meta object for the reference '<em>Used In Identifier</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Attribute#getUsedInIdentifier()
 	 * @see #getAttribute()
 	 * @generated
 	 */
-	EReference getAttribute_UseInIdentifier();
+	EReference getAttribute_UsedInIdentifier();
 
 	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.entityrelation.NamedElement <em>Named Element</em>}'.
@@ -841,49 +874,6 @@ public interface EntityRelationPackage extends EPackage {
 	EAttribute getLogicalElement_Comments();
 
 	/**
-	 * Returns the meta object for class '{@link org.obeonetwork.dsl.entityrelation.Role <em>Role</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Role</em>'.
-	 * @see org.obeonetwork.dsl.entityrelation.Role
-	 * @generated
-	 */
-	EClass getRole();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.entityrelation.Role#getEntity <em>Entity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Entity</em>'.
-	 * @see org.obeonetwork.dsl.entityrelation.Role#getEntity()
-	 * @see #getRole()
-	 * @generated
-	 */
-	EReference getRole_Entity();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.entityrelation.Role#getCardinality <em>Cardinality</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Cardinality</em>'.
-	 * @see org.obeonetwork.dsl.entityrelation.Role#getCardinality()
-	 * @see #getRole()
-	 * @generated
-	 */
-	EAttribute getRole_Cardinality();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.entityrelation.Role#isDependant <em>Dependant</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Dependant</em>'.
-	 * @see org.obeonetwork.dsl.entityrelation.Role#isDependant()
-	 * @see #getRole()
-	 * @generated
-	 */
-	EAttribute getRole_Dependant();
-
-	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.entityrelation.Identifier <em>Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -892,17 +882,6 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getIdentifier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.entityrelation.Identifier#isPrimary <em>Primary</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Primary</em>'.
-	 * @see org.obeonetwork.dsl.entityrelation.Identifier#isPrimary()
-	 * @see #getIdentifier()
-	 * @generated
-	 */
-	EAttribute getIdentifier_Primary();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.obeonetwork.dsl.entityrelation.Identifier#getAttributes <em>Attributes</em>}'.
@@ -914,48 +893,6 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getIdentifier_Attributes();
-
-	/**
-	 * Returns the meta object for class '{@link org.obeonetwork.dsl.entityrelation.Join <em>Join</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Join</em>'.
-	 * @see org.obeonetwork.dsl.entityrelation.Join
-	 * @generated
-	 */
-	EClass getJoin();
-
-	/**
-	 * Returns the meta object for class '{@link org.obeonetwork.dsl.entityrelation.JoinByIdentifier <em>Join By Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Join By Identifier</em>'.
-	 * @see org.obeonetwork.dsl.entityrelation.JoinByIdentifier
-	 * @generated
-	 */
-	EClass getJoinByIdentifier();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.entityrelation.JoinByIdentifier#getIdentifier <em>Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Identifier</em>'.
-	 * @see org.obeonetwork.dsl.entityrelation.JoinByIdentifier#getIdentifier()
-	 * @see #getJoinByIdentifier()
-	 * @generated
-	 */
-	EReference getJoinByIdentifier_Identifier();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.obeonetwork.dsl.entityrelation.JoinByIdentifier#getAttributes <em>Attributes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Attributes</em>'.
-	 * @see org.obeonetwork.dsl.entityrelation.JoinByIdentifier#getAttributes()
-	 * @see #getJoinByIdentifier()
-	 * @generated
-	 */
-	EReference getJoinByIdentifier_Attributes();
 
 	/**
 	 * Returns the meta object for enum '{@link org.obeonetwork.dsl.entityrelation.Cardinality <em>Cardinality</em>}'.
@@ -1042,6 +979,14 @@ public interface EntityRelationPackage extends EPackage {
 		EReference ENTITY__IDENTIFIERS = eINSTANCE.getEntity_Identifiers();
 
 		/**
+		 * The meta object literal for the '<em><b>Primary Identifier</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENTITY__PRIMARY_IDENTIFIER = eINSTANCE.getEntity_PrimaryIdentifier();
+
+		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.impl.RelationImpl <em>Relation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1052,20 +997,86 @@ public interface EntityRelationPackage extends EPackage {
 		EClass RELATION = eINSTANCE.getRelation();
 
 		/**
-		 * The meta object literal for the '<em><b>Roles</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RELATION__ROLES = eINSTANCE.getRelation_Roles();
+		EReference RELATION__SOURCE = eINSTANCE.getRelation_Source();
 
 		/**
-		 * The meta object literal for the '<em><b>Joins</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Source Cardinality</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RELATION__JOINS = eINSTANCE.getRelation_Joins();
+		EAttribute RELATION__SOURCE_CARDINALITY = eINSTANCE.getRelation_SourceCardinality();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Is Composite</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RELATION__SOURCE_IS_COMPOSITE = eINSTANCE.getRelation_SourceIsComposite();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RELATION__TARGET = eINSTANCE.getRelation_Target();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Cardinality</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RELATION__TARGET_CARDINALITY = eINSTANCE.getRelation_TargetCardinality();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Is Composite</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RELATION__TARGET_IS_COMPOSITE = eINSTANCE.getRelation_TargetIsComposite();
+
+		/**
+		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RELATION__ELEMENTS = eINSTANCE.getRelation_Elements();
+
+		/**
+		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.impl.RelationElementImpl <em>Relation Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.obeonetwork.dsl.entityrelation.impl.RelationElementImpl
+		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getRelationElement()
+		 * @generated
+		 */
+		EClass RELATION_ELEMENT = eINSTANCE.getRelationElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RELATION_ELEMENT__SOURCE_ATTRIBUTE = eINSTANCE.getRelationElement_SourceAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RELATION_ELEMENT__TARGET_ATTRIBUTE = eINSTANCE.getRelationElement_TargetAttribute();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -1094,12 +1105,12 @@ public interface EntityRelationPackage extends EPackage {
 		EAttribute ATTRIBUTE__REQUIRED = eINSTANCE.getAttribute_Required();
 
 		/**
-		 * The meta object literal for the '<em><b>Use In Identifier</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Used In Identifier</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ATTRIBUTE__USE_IN_IDENTIFIER = eINSTANCE.getAttribute_UseInIdentifier();
+		EReference ATTRIBUTE__USED_IN_IDENTIFIER = eINSTANCE.getAttribute_UsedInIdentifier();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -1146,40 +1157,6 @@ public interface EntityRelationPackage extends EPackage {
 		EAttribute LOGICAL_ELEMENT__COMMENTS = eINSTANCE.getLogicalElement_Comments();
 
 		/**
-		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.impl.RoleImpl <em>Role</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.obeonetwork.dsl.entityrelation.impl.RoleImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getRole()
-		 * @generated
-		 */
-		EClass ROLE = eINSTANCE.getRole();
-
-		/**
-		 * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ROLE__ENTITY = eINSTANCE.getRole_Entity();
-
-		/**
-		 * The meta object literal for the '<em><b>Cardinality</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ROLE__CARDINALITY = eINSTANCE.getRole_Cardinality();
-
-		/**
-		 * The meta object literal for the '<em><b>Dependant</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ROLE__DEPENDANT = eINSTANCE.getRole_Dependant();
-
-		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.impl.IdentifierImpl <em>Identifier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1190,56 +1167,12 @@ public interface EntityRelationPackage extends EPackage {
 		EClass IDENTIFIER = eINSTANCE.getIdentifier();
 
 		/**
-		 * The meta object literal for the '<em><b>Primary</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IDENTIFIER__PRIMARY = eINSTANCE.getIdentifier_Primary();
-
-		/**
 		 * The meta object literal for the '<em><b>Attributes</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference IDENTIFIER__ATTRIBUTES = eINSTANCE.getIdentifier_Attributes();
-
-		/**
-		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.impl.JoinImpl <em>Join</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.obeonetwork.dsl.entityrelation.impl.JoinImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getJoin()
-		 * @generated
-		 */
-		EClass JOIN = eINSTANCE.getJoin();
-
-		/**
-		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.impl.JoinByIdentifierImpl <em>Join By Identifier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.obeonetwork.dsl.entityrelation.impl.JoinByIdentifierImpl
-		 * @see org.obeonetwork.dsl.entityrelation.impl.EntityRelationPackageImpl#getJoinByIdentifier()
-		 * @generated
-		 */
-		EClass JOIN_BY_IDENTIFIER = eINSTANCE.getJoinByIdentifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Identifier</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference JOIN_BY_IDENTIFIER__IDENTIFIER = eINSTANCE.getJoinByIdentifier_Identifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Attributes</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference JOIN_BY_IDENTIFIER__ATTRIBUTES = eINSTANCE.getJoinByIdentifier_Attributes();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.Cardinality <em>Cardinality</em>}' enum.

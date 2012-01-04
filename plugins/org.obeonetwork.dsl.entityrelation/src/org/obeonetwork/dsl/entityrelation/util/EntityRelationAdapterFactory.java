@@ -10,17 +10,16 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.obeonetwork.dsl.entityrelation.*;
 import org.obeonetwork.dsl.entityrelation.Attribute;
 import org.obeonetwork.dsl.entityrelation.Entity;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
-import org.obeonetwork.dsl.entityrelation.Join;
-import org.obeonetwork.dsl.entityrelation.JoinByIdentifier;
 import org.obeonetwork.dsl.entityrelation.LogicalElement;
 import org.obeonetwork.dsl.entityrelation.LogicalModel;
 import org.obeonetwork.dsl.entityrelation.NamedElement;
 import org.obeonetwork.dsl.entityrelation.Relation;
-import org.obeonetwork.dsl.entityrelation.Role;
+import org.obeonetwork.dsl.entityrelation.RelationElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -91,6 +90,10 @@ public class EntityRelationAdapterFactory extends AdapterFactoryImpl {
 				return createRelationAdapter();
 			}
 			@Override
+			public Adapter caseRelationElement(RelationElement object) {
+				return createRelationElementAdapter();
+			}
+			@Override
 			public Adapter caseAttribute(Attribute object) {
 				return createAttributeAdapter();
 			}
@@ -103,20 +106,8 @@ public class EntityRelationAdapterFactory extends AdapterFactoryImpl {
 				return createLogicalElementAdapter();
 			}
 			@Override
-			public Adapter caseRole(Role object) {
-				return createRoleAdapter();
-			}
-			@Override
 			public Adapter caseIdentifier(Identifier object) {
 				return createIdentifierAdapter();
-			}
-			@Override
-			public Adapter caseJoin(Join object) {
-				return createJoinAdapter();
-			}
-			@Override
-			public Adapter caseJoinByIdentifier(JoinByIdentifier object) {
-				return createJoinByIdentifierAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -181,6 +172,20 @@ public class EntityRelationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.entityrelation.RelationElement <em>Relation Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.obeonetwork.dsl.entityrelation.RelationElement
+	 * @generated
+	 */
+	public Adapter createRelationElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.entityrelation.Attribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -223,20 +228,6 @@ public class EntityRelationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.entityrelation.Role <em>Role</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.obeonetwork.dsl.entityrelation.Role
-	 * @generated
-	 */
-	public Adapter createRoleAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.entityrelation.Identifier <em>Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -247,34 +238,6 @@ public class EntityRelationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIdentifierAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.entityrelation.Join <em>Join</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.obeonetwork.dsl.entityrelation.Join
-	 * @generated
-	 */
-	public Adapter createJoinAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.entityrelation.JoinByIdentifier <em>Join By Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.obeonetwork.dsl.entityrelation.JoinByIdentifier
-	 * @generated
-	 */
-	public Adapter createJoinByIdentifierAdapter() {
 		return null;
 	}
 

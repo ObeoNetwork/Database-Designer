@@ -61,7 +61,7 @@ public class AttributeItemProvider
 
 			addTypePropertyDescriptor(object);
 			addRequiredPropertyDescriptor(object);
-			addUseInIdentifierPropertyDescriptor(object);
+			addUsedInIdentifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -111,19 +111,19 @@ public class AttributeItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Use In Identifier feature.
+	 * This adds a property descriptor for the Used In Identifier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUseInIdentifierPropertyDescriptor(Object object) {
+	protected void addUsedInIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Attribute_useInIdentifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_useInIdentifier_feature", "_UI_Attribute_type"),
-				 EntityRelationPackage.Literals.ATTRIBUTE__USE_IN_IDENTIFIER,
+				 getString("_UI_Attribute_usedInIdentifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_usedInIdentifier_feature", "_UI_Attribute_type"),
+				 EntityRelationPackage.Literals.ATTRIBUTE__USED_IN_IDENTIFIER,
 				 true,
 				 false,
 				 true,

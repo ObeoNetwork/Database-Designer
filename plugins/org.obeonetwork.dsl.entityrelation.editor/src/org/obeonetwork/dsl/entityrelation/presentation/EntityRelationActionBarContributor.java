@@ -70,14 +70,14 @@ public class EntityRelationActionBarContributor
 	 * @generated
 	 */
 	protected IAction showPropertiesViewAction =
-		new Action(EntityrelationEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+		new Action(EntityRelationEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
 			@Override
 			public void run() {
 				try {
 					getPage().showView("org.eclipse.ui.views.PropertySheet");
 				}
 				catch (PartInitException exception) {
-					EntityrelationEditorPlugin.INSTANCE.log(exception);
+					EntityRelationEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -90,7 +90,7 @@ public class EntityRelationActionBarContributor
 	 * @generated
 	 */
 	protected IAction refreshViewerAction =
-		new Action(EntityrelationEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+		new Action(EntityRelationEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
 			@Override
 			public boolean isEnabled() {
 				return activeEditorPart instanceof IViewerProvider;
@@ -177,7 +177,7 @@ public class EntityRelationActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(EntityrelationEditorPlugin.INSTANCE.getString("_UI_EntityRelationEditor_menu"), "org.obeonetwork.dsl.entityrelationMenuID");
+		IMenuManager submenuManager = new MenuManager(EntityRelationEditorPlugin.INSTANCE.getString("_UI_EntityRelationEditor_menu"), "org.obeonetwork.dsl.entityrelationMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));
@@ -186,12 +186,12 @@ public class EntityRelationActionBarContributor
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(EntityrelationEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		createChildMenuManager = new MenuManager(EntityRelationEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		submenuManager.insertBefore("additions", createChildMenuManager);
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(EntityrelationEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		createSiblingMenuManager = new MenuManager(EntityRelationEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		submenuManager.insertBefore("additions", createSiblingMenuManager);
 
 		// Force an update because Eclipse hides empty menus now.
@@ -382,11 +382,11 @@ public class EntityRelationActionBarContributor
 		super.menuAboutToShow(menuManager);
 		MenuManager submenuManager = null;
 
-		submenuManager = new MenuManager(EntityrelationEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		submenuManager = new MenuManager(EntityRelationEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		populateManager(submenuManager, createChildActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 
-		submenuManager = new MenuManager(EntityrelationEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		submenuManager = new MenuManager(EntityRelationEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		populateManager(submenuManager, createSiblingActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 	}

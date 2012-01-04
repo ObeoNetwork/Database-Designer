@@ -486,7 +486,7 @@ public class EntityRelationEditor
 					}
 				}
 				catch (CoreException exception) {
-					EntityrelationEditorPlugin.INSTANCE.log(exception);
+					EntityRelationEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -602,7 +602,7 @@ public class EntityRelationEditor
 					showTabs();
 				}
 				catch (PartInitException exception) {
-					EntityrelationEditorPlugin.INSTANCE.log(exception);
+					EntityRelationEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 
@@ -613,7 +613,7 @@ public class EntityRelationEditor
 						markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
-						EntityrelationEditorPlugin.INSTANCE.log(exception);
+						EntityRelationEditorPlugin.INSTANCE.log(exception);
 					}
 				}
 			}
@@ -1473,7 +1473,7 @@ public class EntityRelationEditor
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			EntityrelationEditorPlugin.INSTANCE.log(exception);
+			EntityRelationEditorPlugin.INSTANCE.log(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1566,7 +1566,7 @@ public class EntityRelationEditor
 			}
 		}
 		catch (CoreException exception) {
-			EntityrelationEditorPlugin.INSTANCE.log(exception);
+			EntityRelationEditorPlugin.INSTANCE.log(exception);
 		}
 	}
 
@@ -1688,7 +1688,7 @@ public class EntityRelationEditor
 	 * @generated
 	 */
 	private static String getString(String key) {
-		return EntityrelationEditorPlugin.INSTANCE.getString(key);
+		return EntityRelationEditorPlugin.INSTANCE.getString(key);
 	}
 
 	/**
@@ -1698,7 +1698,7 @@ public class EntityRelationEditor
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return EntityrelationEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
+		return EntityRelationEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
 	/**

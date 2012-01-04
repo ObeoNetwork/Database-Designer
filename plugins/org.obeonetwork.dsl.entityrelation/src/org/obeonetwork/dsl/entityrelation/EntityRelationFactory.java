@@ -53,6 +53,15 @@ public interface EntityRelationFactory extends EFactory {
 	Relation createRelation();
 
 	/**
+	 * Returns a new object of class '<em>Relation Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Relation Element</em>'.
+	 * @generated
+	 */
+	RelationElement createRelationElement();
+
+	/**
 	 * Returns a new object of class '<em>Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,15 +71,6 @@ public interface EntityRelationFactory extends EFactory {
 	Attribute createAttribute();
 
 	/**
-	 * Returns a new object of class '<em>Role</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Role</em>'.
-	 * @generated
-	 */
-	Role createRole();
-
-	/**
 	 * Returns a new object of class '<em>Identifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,15 +78,6 @@ public interface EntityRelationFactory extends EFactory {
 	 * @generated
 	 */
 	Identifier createIdentifier();
-
-	/**
-	 * Returns a new object of class '<em>Join By Identifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Join By Identifier</em>'.
-	 * @generated
-	 */
-	JoinByIdentifier createJoinByIdentifier();
 
 	/**
 	 * Returns the package supported by this factory.

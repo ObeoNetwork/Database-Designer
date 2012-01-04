@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.Entity#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.Entity#getIdentifiers <em>Identifiers</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.entityrelation.Entity#getPrimaryIdentifier <em>Primary Identifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,5 +58,31 @@ public interface Entity extends NamedElement {
 	 * @generated
 	 */
 	EList<Identifier> getIdentifiers();
+
+	/**
+	 * Returns the value of the '<em><b>Primary Identifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Primary Identifier</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Primary Identifier</em>' reference.
+	 * @see #setPrimaryIdentifier(Identifier)
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getEntity_PrimaryIdentifier()
+	 * @model
+	 * @generated
+	 */
+	Identifier getPrimaryIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.obeonetwork.dsl.entityrelation.Entity#getPrimaryIdentifier <em>Primary Identifier</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Primary Identifier</em>' reference.
+	 * @see #getPrimaryIdentifier()
+	 * @generated
+	 */
+	void setPrimaryIdentifier(Identifier value);
 
 } // Entity

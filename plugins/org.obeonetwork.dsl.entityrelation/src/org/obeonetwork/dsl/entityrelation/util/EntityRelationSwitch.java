@@ -10,17 +10,16 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.obeonetwork.dsl.entityrelation.*;
 import org.obeonetwork.dsl.entityrelation.Attribute;
 import org.obeonetwork.dsl.entityrelation.Entity;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
-import org.obeonetwork.dsl.entityrelation.Join;
-import org.obeonetwork.dsl.entityrelation.JoinByIdentifier;
 import org.obeonetwork.dsl.entityrelation.LogicalElement;
 import org.obeonetwork.dsl.entityrelation.LogicalModel;
 import org.obeonetwork.dsl.entityrelation.NamedElement;
 import org.obeonetwork.dsl.entityrelation.Relation;
-import org.obeonetwork.dsl.entityrelation.Role;
+import org.obeonetwork.dsl.entityrelation.RelationElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -120,6 +119,13 @@ public class EntityRelationSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EntityRelationPackage.RELATION_ELEMENT: {
+				RelationElement relationElement = (RelationElement)theEObject;
+				T result = caseRelationElement(relationElement);
+				if (result == null) result = caseLogicalElement(relationElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EntityRelationPackage.ATTRIBUTE: {
 				Attribute attribute = (Attribute)theEObject;
 				T result = caseAttribute(attribute);
@@ -141,34 +147,11 @@ public class EntityRelationSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EntityRelationPackage.ROLE: {
-				Role role = (Role)theEObject;
-				T result = caseRole(role);
-				if (result == null) result = caseNamedElement(role);
-				if (result == null) result = caseLogicalElement(role);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EntityRelationPackage.IDENTIFIER: {
 				Identifier identifier = (Identifier)theEObject;
 				T result = caseIdentifier(identifier);
 				if (result == null) result = caseNamedElement(identifier);
 				if (result == null) result = caseLogicalElement(identifier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EntityRelationPackage.JOIN: {
-				Join join = (Join)theEObject;
-				T result = caseJoin(join);
-				if (result == null) result = caseLogicalElement(join);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EntityRelationPackage.JOIN_BY_IDENTIFIER: {
-				JoinByIdentifier joinByIdentifier = (JoinByIdentifier)theEObject;
-				T result = caseJoinByIdentifier(joinByIdentifier);
-				if (result == null) result = caseJoin(joinByIdentifier);
-				if (result == null) result = caseLogicalElement(joinByIdentifier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -222,6 +205,21 @@ public class EntityRelationSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Relation Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Relation Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRelationElement(RelationElement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -267,21 +265,6 @@ public class EntityRelationSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Role</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Role</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRole(Role object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -293,36 +276,6 @@ public class EntityRelationSwitch<T> {
 	 * @generated
 	 */
 	public T caseIdentifier(Identifier object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Join</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Join</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseJoin(Join object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Join By Identifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Join By Identifier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseJoinByIdentifier(JoinByIdentifier object) {
 		return null;
 	}
 
