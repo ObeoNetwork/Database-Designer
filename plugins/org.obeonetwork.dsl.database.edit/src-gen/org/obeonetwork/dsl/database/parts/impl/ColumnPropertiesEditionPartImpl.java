@@ -42,6 +42,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -1088,11 +1089,12 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 	}
 
 	// Start of user code additional methods
+
 	public void updateTypeFields(boolean lengthVisible, boolean precisionVisible, boolean literalsVisible) {
-		length.setEnabled(lengthVisible);
-		precision.setEnabled(precisionVisible);
-		literals.setEnabled(literalsVisible);
-	}	
+		
+	}
+
+	
 	// End of user code
 
 
