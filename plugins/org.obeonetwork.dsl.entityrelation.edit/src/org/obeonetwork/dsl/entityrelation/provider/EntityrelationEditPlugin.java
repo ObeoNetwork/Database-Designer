@@ -4,28 +4,27 @@
  *
  * $Id$
  */
-package org.obeonetwork.dsl.entityrelation.presentation;
+package org.obeonetwork.dsl.entityrelation.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.obeonetwork.dsl.typeslibrary.provider.TypesLibraryEditPlugin;
 
 /**
- * This is the central singleton for the Entityrelation editor plugin.
+ * This is the central singleton for the Entityrelation edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class EntityrelationEditorPlugin extends EMFPlugin {
+public final class EntityrelationEditPlugin extends EMFPlugin {
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final EntityrelationEditorPlugin INSTANCE = new EntityrelationEditorPlugin();
-	
+	public static final EntityrelationEditPlugin INSTANCE = new EntityrelationEditPlugin();
+
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -40,11 +39,11 @@ public final class EntityrelationEditorPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EntityrelationEditorPlugin() {
+	public EntityrelationEditPlugin() {
 		super
-			(new ResourceLocator [] {
-				TypesLibraryEditPlugin.INSTANCE,
-			});
+		  (new ResourceLocator [] {
+		     TypesLibraryEditPlugin.INSTANCE,
+		   });
 	}
 
 	/**
@@ -58,7 +57,7 @@ public final class EntityrelationEditorPlugin extends EMFPlugin {
 	public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
-	
+
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
@@ -69,14 +68,14 @@ public final class EntityrelationEditorPlugin extends EMFPlugin {
 	public static Implementation getPlugin() {
 		return plugin;
 	}
-	
+
 	/**
 	 * The actual implementation of the Eclipse <b>Plugin</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class Implementation extends EclipseUIPlugin {
+	public static class Implementation extends EclipsePlugin {
 		/**
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->
@@ -85,7 +84,7 @@ public final class EntityrelationEditorPlugin extends EMFPlugin {
 		 */
 		public Implementation() {
 			super();
-	
+
 			// Remember the static instance.
 			//
 			plugin = this;
