@@ -1079,48 +1079,50 @@ public class ColumnPropertiesEditionPartForm extends CompositePropertiesEditionP
 	}
 
 	// Start of user code additional methods
+	
 	private static final int LENGHT_LABEL_INDEX = 0;
+	private static final int LENGHT_TEXT_INDEX = 1;
 	private static final int LENGHT_HELP_INDEX = 2;
 	private static final int PRECISION_LABEL_INDEX = 3;
+	private static final int PRECISION_TEXT_INDEX = 4;
 	private static final int PRECISION_HELP_INDEX = 5;
 	private static final int LENGHT_AND_PRECISION_COMPOSITE_INDEX = 6;
+	private static final int LITERALS_TEXT_INDEX = 7;
 	private static final int LITERALS_BUTTON_INDEX = 8;
 	
 	public void updateTypeFields(boolean lengthVisible, boolean precisionVisible, boolean literalsVisible) {
 		Composite composite = name.getParent();
-		
 		Composite lengthAndPrecisionComposite = (Composite)composite.getChildren()[LENGHT_AND_PRECISION_COMPOSITE_INDEX];
-		HorizontalBox hbox = (HorizontalBox)lengthAndPrecisionComposite.getChildren()[0];
+		HorizontalBox lengthAndPrecisionHBox = (HorizontalBox)lengthAndPrecisionComposite.getChildren()[0];
 		
-		((GridData)length.getLayoutData()).exclude = !lengthVisible;
-		length.setVisible(lengthVisible);
-		Control lengthLabel = hbox.getChildren()[LENGHT_LABEL_INDEX];
-		((GridData)lengthLabel.getLayoutData()).exclude = !lengthVisible;
-		lengthLabel.setVisible(lengthVisible);
-		Control lengthHelp = hbox.getChildren()[LENGHT_HELP_INDEX];
-		((GridData)lengthHelp.getLayoutData()).exclude = !lengthVisible;
-		lengthHelp.setVisible(lengthVisible);
+		Control lengthText = lengthAndPrecisionHBox.getChildren()[LENGHT_TEXT_INDEX];
+		Control lengthLabel = lengthAndPrecisionHBox.getChildren()[LENGHT_LABEL_INDEX];
+		Control lengthHelp = lengthAndPrecisionHBox.getChildren()[LENGHT_HELP_INDEX];
+		setVisibilityOnWidget(lengthText, lengthVisible);
+		setVisibilityOnWidget(lengthLabel, lengthVisible);
+		setVisibilityOnWidget(lengthHelp, lengthVisible);
 		
-		((GridData)precision.getLayoutData()).exclude = !precisionVisible;
-		precision.setVisible(precisionVisible);
-		Control precisionLabel = hbox.getChildren()[PRECISION_LABEL_INDEX];
-		((GridData)precisionLabel.getLayoutData()).exclude = !precisionVisible;
-		precisionLabel.setVisible(precisionVisible);
-		Control precisionHelp = hbox.getChildren()[PRECISION_HELP_INDEX];
-		((GridData)precisionHelp.getLayoutData()).exclude = !precisionVisible;
-		precisionHelp.setVisible(precisionVisible);
+		Control precisionText = lengthAndPrecisionHBox.getChildren()[PRECISION_TEXT_INDEX];
+		Control precisionLabel = lengthAndPrecisionHBox.getChildren()[PRECISION_LABEL_INDEX];
+		Control precisionHelp = lengthAndPrecisionHBox.getChildren()[PRECISION_HELP_INDEX];
+
+		setVisibilityOnWidget(precisionText, precisionVisible);
+		setVisibilityOnWidget(precisionLabel, precisionVisible);
+		setVisibilityOnWidget(precisionHelp, precisionVisible);
 		
-		((GridData)lengthAndPrecisionComposite.getLayoutData()).exclude = !lengthVisible && !precisionVisible;
-		lengthAndPrecisionComposite.setVisible(lengthVisible || precisionVisible);
+		setVisibilityOnWidget(lengthAndPrecisionComposite, lengthVisible || precisionVisible);		
 		
-		((GridData)literals.getLayoutData()).exclude = !literalsVisible;
-		literals.setVisible(literalsVisible);		
+		Control literalsText = composite.getChildren()[LITERALS_TEXT_INDEX];
 		Control literalsButton = composite.getChildren()[LITERALS_BUTTON_INDEX];
-		((GridData)literalsButton.getLayoutData()).exclude = !literalsVisible;
-		literalsButton.setVisible(literalsVisible);
-		
-		
-		composite.getParent().layout();
+		setVisibilityOnWidget(literalsText, literalsVisible);
+		setVisibilityOnWidget(literalsButton, literalsVisible);
+
+		composite.layout();
+	}
+	
+	private void setVisibilityOnWidget(Control widget, boolean visible) {
+		((GridData)widget.getLayoutData()).exclude = !visible;
+		widget.setVisible(visible);
 	}
 	
 	// End of user code
