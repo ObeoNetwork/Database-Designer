@@ -308,22 +308,13 @@ public interface DBERMappingPackage extends EPackage {
 	int FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Join</b></em>' reference.
+	 * The feature id for the '<em><b>Relation Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_KEY_ELEMENT_MAPPING__JOIN = 1;
-
-	/**
-	 * The feature id for the '<em><b>Role</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOREIGN_KEY_ELEMENT_MAPPING__ROLE = 2;
+	int FOREIGN_KEY_ELEMENT_MAPPING__RELATION_ELEMENT = 1;
 
 	/**
 	 * The number of structural features of the '<em>Foreign Key Element Mapping</em>' class.
@@ -332,7 +323,7 @@ public interface DBERMappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_KEY_ELEMENT_MAPPING_FEATURE_COUNT = 3;
+	int FOREIGN_KEY_ELEMENT_MAPPING_FEATURE_COUNT = 2;
 
 
 	/**
@@ -572,26 +563,15 @@ public interface DBERMappingPackage extends EPackage {
 	EReference getForeignKeyElementMapping_ForeignKeyElement();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getJoin <em>Join</em>}'.
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getRelationElement <em>Relation Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Join</em>'.
-	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getJoin()
+	 * @return the meta object for the reference '<em>Relation Element</em>'.
+	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getRelationElement()
 	 * @see #getForeignKeyElementMapping()
 	 * @generated
 	 */
-	EReference getForeignKeyElementMapping_Join();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getRole <em>Role</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Role</em>'.
-	 * @see org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getRole()
-	 * @see #getForeignKeyElementMapping()
-	 * @generated
-	 */
-	EReference getForeignKeyElementMapping_Role();
+	EReference getForeignKeyElementMapping_RelationElement();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -804,20 +784,12 @@ public interface DBERMappingPackage extends EPackage {
 		EReference FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT = eINSTANCE.getForeignKeyElementMapping_ForeignKeyElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Join</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Relation Element</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FOREIGN_KEY_ELEMENT_MAPPING__JOIN = eINSTANCE.getForeignKeyElementMapping_Join();
-
-		/**
-		 * The meta object literal for the '<em><b>Role</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FOREIGN_KEY_ELEMENT_MAPPING__ROLE = eINSTANCE.getForeignKeyElementMapping_Role();
+		EReference FOREIGN_KEY_ELEMENT_MAPPING__RELATION_ELEMENT = eINSTANCE.getForeignKeyElementMapping_RelationElement();
 
 	}
 

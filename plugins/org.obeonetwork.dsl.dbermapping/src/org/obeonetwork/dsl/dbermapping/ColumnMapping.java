@@ -7,9 +7,7 @@
 package org.obeonetwork.dsl.dbermapping;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.obeonetwork.dsl.database.Column;
-
 import org.obeonetwork.dsl.entityrelation.Attribute;
 
 /**

@@ -7,20 +7,14 @@
 package org.obeonetwork.dsl.dbermapping.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.obeonetwork.dsl.database.ForeignKeyElement;
-
 import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
 import org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping;
-
-import org.obeonetwork.dsl.entityrelation.Join;
-import org.obeonetwork.dsl.entityrelation.Role;
+import org.obeonetwork.dsl.entityrelation.RelationElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,8 +24,7 @@ import org.obeonetwork.dsl.entityrelation.Role;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyElementMappingImpl#getForeignKeyElement <em>Foreign Key Element</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyElementMappingImpl#getJoin <em>Join</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyElementMappingImpl#getRole <em>Role</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.dbermapping.impl.ForeignKeyElementMappingImpl#getRelationElement <em>Relation Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,24 +42,14 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 	protected ForeignKeyElement foreignKeyElement;
 
 	/**
-	 * The cached value of the '{@link #getJoin() <em>Join</em>}' reference.
+	 * The cached value of the '{@link #getRelationElement() <em>Relation Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getJoin()
+	 * @see #getRelationElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected Join join;
-
-	/**
-	 * The cached value of the '{@link #getRole() <em>Role</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRole()
-	 * @generated
-	 * @ordered
-	 */
-	protected Role role;
+	protected RelationElement relationElement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,16 +113,16 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Join getJoin() {
-		if (join != null && join.eIsProxy()) {
-			InternalEObject oldJoin = (InternalEObject)join;
-			join = (Join)eResolveProxy(oldJoin);
-			if (join != oldJoin) {
+	public RelationElement getRelationElement() {
+		if (relationElement != null && relationElement.eIsProxy()) {
+			InternalEObject oldRelationElement = (InternalEObject)relationElement;
+			relationElement = (RelationElement)eResolveProxy(oldRelationElement);
+			if (relationElement != oldRelationElement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN, oldJoin, join));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__RELATION_ELEMENT, oldRelationElement, relationElement));
 			}
 		}
-		return join;
+		return relationElement;
 	}
 
 	/**
@@ -147,8 +130,8 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Join basicGetJoin() {
-		return join;
+	public RelationElement basicGetRelationElement() {
+		return relationElement;
 	}
 
 	/**
@@ -156,49 +139,11 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setJoin(Join newJoin) {
-		Join oldJoin = join;
-		join = newJoin;
+	public void setRelationElement(RelationElement newRelationElement) {
+		RelationElement oldRelationElement = relationElement;
+		relationElement = newRelationElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN, oldJoin, join));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Role getRole() {
-		if (role != null && role.eIsProxy()) {
-			InternalEObject oldRole = (InternalEObject)role;
-			role = (Role)eResolveProxy(oldRole);
-			if (role != oldRole) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE, oldRole, role));
-			}
-		}
-		return role;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Role basicGetRole() {
-		return role;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRole(Role newRole) {
-		Role oldRole = role;
-		role = newRole;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE, oldRole, role));
+			eNotify(new ENotificationImpl(this, Notification.SET, DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__RELATION_ELEMENT, oldRelationElement, relationElement));
 	}
 
 	/**
@@ -212,12 +157,9 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT:
 				if (resolve) return getForeignKeyElement();
 				return basicGetForeignKeyElement();
-			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN:
-				if (resolve) return getJoin();
-				return basicGetJoin();
-			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE:
-				if (resolve) return getRole();
-				return basicGetRole();
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__RELATION_ELEMENT:
+				if (resolve) return getRelationElement();
+				return basicGetRelationElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -227,17 +169,15 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT:
 				setForeignKeyElement((ForeignKeyElement)newValue);
 				return;
-			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN:
-				setJoin((Join)newValue);
-				return;
-			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE:
-				setRole((Role)newValue);
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__RELATION_ELEMENT:
+				setRelationElement((RelationElement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -254,11 +194,8 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT:
 				setForeignKeyElement((ForeignKeyElement)null);
 				return;
-			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN:
-				setJoin((Join)null);
-				return;
-			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE:
-				setRole((Role)null);
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__RELATION_ELEMENT:
+				setRelationElement((RelationElement)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -274,10 +211,8 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 		switch (featureID) {
 			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT:
 				return foreignKeyElement != null;
-			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN:
-				return join != null;
-			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE:
-				return role != null;
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__RELATION_ELEMENT:
+				return relationElement != null;
 		}
 		return super.eIsSet(featureID);
 	}

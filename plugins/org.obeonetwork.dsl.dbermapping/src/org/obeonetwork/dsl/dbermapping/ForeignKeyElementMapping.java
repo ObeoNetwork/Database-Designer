@@ -7,11 +7,8 @@
 package org.obeonetwork.dsl.dbermapping;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.obeonetwork.dsl.database.ForeignKeyElement;
-
-import org.obeonetwork.dsl.entityrelation.Join;
-import org.obeonetwork.dsl.entityrelation.Role;
+import org.obeonetwork.dsl.entityrelation.RelationElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,8 +19,7 @@ import org.obeonetwork.dsl.entityrelation.Role;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getForeignKeyElement <em>Foreign Key Element</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getJoin <em>Join</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getRole <em>Role</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getRelationElement <em>Relation Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,55 +55,29 @@ public interface ForeignKeyElementMapping extends EObject {
 	void setForeignKeyElement(ForeignKeyElement value);
 
 	/**
-	 * Returns the value of the '<em><b>Join</b></em>' reference.
+	 * Returns the value of the '<em><b>Relation Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Join</em>' reference isn't clear,
+	 * If the meaning of the '<em>Relation Element</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Join</em>' reference.
-	 * @see #setJoin(Join)
-	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getForeignKeyElementMapping_Join()
+	 * @return the value of the '<em>Relation Element</em>' reference.
+	 * @see #setRelationElement(RelationElement)
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getForeignKeyElementMapping_RelationElement()
 	 * @model required="true"
 	 * @generated
 	 */
-	Join getJoin();
+	RelationElement getRelationElement();
 
 	/**
-	 * Sets the value of the '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getJoin <em>Join</em>}' reference.
+	 * Sets the value of the '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getRelationElement <em>Relation Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Join</em>' reference.
-	 * @see #getJoin()
+	 * @param value the new value of the '<em>Relation Element</em>' reference.
+	 * @see #getRelationElement()
 	 * @generated
 	 */
-	void setJoin(Join value);
-
-	/**
-	 * Returns the value of the '<em><b>Role</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Role</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Role</em>' reference.
-	 * @see #setRole(Role)
-	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getForeignKeyElementMapping_Role()
-	 * @model required="true"
-	 * @generated
-	 */
-	Role getRole();
-
-	/**
-	 * Sets the value of the '{@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping#getRole <em>Role</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Role</em>' reference.
-	 * @see #getRole()
-	 * @generated
-	 */
-	void setRole(Role value);
+	void setRelationElement(RelationElement value);
 
 } // ForeignKeyElementMapping

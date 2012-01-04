@@ -34,8 +34,7 @@
     </genClasses>
     <genClasses ecoreClass="dbermapping.ecore#//ForeignKeyElementMapping">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyElementMapping/foreignKeyElement"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyElementMapping/join"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyElementMapping/role"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyElementMapping/relationElement"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

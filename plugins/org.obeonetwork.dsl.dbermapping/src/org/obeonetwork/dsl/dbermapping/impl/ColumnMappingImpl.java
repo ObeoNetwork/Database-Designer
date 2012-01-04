@@ -7,18 +7,13 @@
 package org.obeonetwork.dsl.dbermapping.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.obeonetwork.dsl.database.Column;
-
 import org.obeonetwork.dsl.dbermapping.ColumnMapping;
 import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
-
 import org.obeonetwork.dsl.entityrelation.Attribute;
 
 /**

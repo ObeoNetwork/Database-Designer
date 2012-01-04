@@ -7,11 +7,8 @@
 package org.obeonetwork.dsl.dbermapping;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.obeonetwork.dsl.database.DataBase;
-
 import org.obeonetwork.dsl.entityrelation.LogicalModel;
 
 /**

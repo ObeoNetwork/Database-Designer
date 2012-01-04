@@ -9,11 +9,8 @@ package org.obeonetwork.dsl.dbermapping.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.obeonetwork.dsl.database.DatabasePackage;
-
 import org.obeonetwork.dsl.dbermapping.ColumnMapping;
 import org.obeonetwork.dsl.dbermapping.DBERMappingFactory;
 import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
@@ -22,7 +19,6 @@ import org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping;
 import org.obeonetwork.dsl.dbermapping.ForeignKeyMapping;
 import org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping;
 import org.obeonetwork.dsl.dbermapping.TableMapping;
-
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 
 /**
@@ -342,17 +338,8 @@ public class DBERMappingPackageImpl extends EPackageImpl implements DBERMappingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getForeignKeyElementMapping_Join() {
+	public EReference getForeignKeyElementMapping_RelationElement() {
 		return (EReference)foreignKeyElementMappingEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getForeignKeyElementMapping_Role() {
-		return (EReference)foreignKeyElementMappingEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -410,8 +397,7 @@ public class DBERMappingPackageImpl extends EPackageImpl implements DBERMappingP
 
 		foreignKeyElementMappingEClass = createEClass(FOREIGN_KEY_ELEMENT_MAPPING);
 		createEReference(foreignKeyElementMappingEClass, FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT);
-		createEReference(foreignKeyElementMappingEClass, FOREIGN_KEY_ELEMENT_MAPPING__JOIN);
-		createEReference(foreignKeyElementMappingEClass, FOREIGN_KEY_ELEMENT_MAPPING__ROLE);
+		createEReference(foreignKeyElementMappingEClass, FOREIGN_KEY_ELEMENT_MAPPING__RELATION_ELEMENT);
 	}
 
 	/**
@@ -475,8 +461,7 @@ public class DBERMappingPackageImpl extends EPackageImpl implements DBERMappingP
 
 		initEClass(foreignKeyElementMappingEClass, ForeignKeyElementMapping.class, "ForeignKeyElementMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getForeignKeyElementMapping_ForeignKeyElement(), theDatabasePackage.getForeignKeyElement(), null, "foreignKeyElement", null, 1, 1, ForeignKeyElementMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getForeignKeyElementMapping_Join(), theEntityRelationPackage.getJoin(), null, "join", null, 1, 1, ForeignKeyElementMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getForeignKeyElementMapping_Role(), theEntityRelationPackage.getRole(), null, "role", null, 1, 1, ForeignKeyElementMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getForeignKeyElementMapping_RelationElement(), theEntityRelationPackage.getRelationElement(), null, "relationElement", null, 1, 1, ForeignKeyElementMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

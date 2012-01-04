@@ -45,7 +45,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ForeignKeyElementMapping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="foreignKeyElement" lowerBound="1"
         eType="ecore:EClass ../../org.obeonetwork.dsl.database/model/database.ecore#//ForeignKeyElement"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="join" lowerBound="1" eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//Join"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="role" lowerBound="1" eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//Role"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relationElement" lowerBound="1"
+        eType="ecore:EClass ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#//RelationElement"/>
   </eClassifiers>
 </ecore:EPackage>

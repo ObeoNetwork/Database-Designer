@@ -8,12 +8,15 @@ package org.obeonetwork.dsl.dbermapping.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.obeonetwork.dsl.dbermapping.*;
+import org.obeonetwork.dsl.dbermapping.ColumnMapping;
+import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
+import org.obeonetwork.dsl.dbermapping.DatabaseMapping;
+import org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping;
+import org.obeonetwork.dsl.dbermapping.ForeignKeyMapping;
+import org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping;
+import org.obeonetwork.dsl.dbermapping.TableMapping;
 
 /**
  * <!-- begin-user-doc -->
