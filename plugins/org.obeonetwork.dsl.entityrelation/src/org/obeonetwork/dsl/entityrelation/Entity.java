@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation;
 
@@ -25,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getEntity()
+ * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getEntity()
  * @model
  * @generated
  */
@@ -40,7 +36,7 @@ public interface Entity extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getEntity_Attributes()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getEntity_Attributes()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -56,7 +52,7 @@ public interface Entity extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifiers</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getEntity_Identifiers()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getEntity_Identifiers()
 	 * @model containment="true"
 	 * @generated
 	 */

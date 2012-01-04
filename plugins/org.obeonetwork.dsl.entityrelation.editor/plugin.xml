@@ -17,7 +17,7 @@
       <wizard
             id="org.obeonetwork.dsl.entityrelation.presentation.EntityrelationModelWizardID"
             name="%_UI_EntityrelationModelWizard_label"
-            class="org.obeonetwork.dsl.entityrelation.presentation.EntityrelationModelWizard"
+            class="org.obeonetwork.dsl.entityrelation.presentation.EntityRelationModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/EntityrelationModelFile.gif">
          <description>%_UI_EntityrelationModelWizard_description</description>
@@ -27,12 +27,12 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="org.obeonetwork.dsl.entityrelation.presentation.EntityrelationEditorID"
+            id="org.obeonetwork.dsl.entityrelation.presentation.EntityRelationEditorID"
             name="%_UI_EntityrelationEditor_label"
             icon="icons/full/obj16/EntityrelationModelFile.gif"
             extensions="entityrelation"
-            class="org.obeonetwork.dsl.entityrelation.presentation.EntityrelationEditor"
-            contributorClass="org.obeonetwork.dsl.entityrelation.presentation.EntityrelationActionBarContributor">
+            class="org.obeonetwork.dsl.entityrelation.presentation.EntityRelationEditor"
+            contributorClass="org.obeonetwork.dsl.entityrelation.presentation.EntityRelationActionBarContributor">
       </editor>
    </extension>
 

@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.obeonetwork.dsl.database.PrimaryKey;
 
-import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
+import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
 import org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping;
 
 import org.obeonetwork.dsl.entityrelation.Identifier;
@@ -72,7 +72,7 @@ public class PrimaryKeyMappingImpl extends EObjectImpl implements PrimaryKeyMapp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DbermappingPackage.Literals.PRIMARY_KEY_MAPPING;
+		return DBERMappingPackage.Literals.PRIMARY_KEY_MAPPING;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class PrimaryKeyMappingImpl extends EObjectImpl implements PrimaryKeyMapp
 			primaryKey = (PrimaryKey)eResolveProxy(oldPrimaryKey);
 			if (primaryKey != oldPrimaryKey) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DbermappingPackage.PRIMARY_KEY_MAPPING__PRIMARY_KEY, oldPrimaryKey, primaryKey));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DBERMappingPackage.PRIMARY_KEY_MAPPING__PRIMARY_KEY, oldPrimaryKey, primaryKey));
 			}
 		}
 		return primaryKey;
@@ -110,7 +110,7 @@ public class PrimaryKeyMappingImpl extends EObjectImpl implements PrimaryKeyMapp
 		PrimaryKey oldPrimaryKey = primaryKey;
 		primaryKey = newPrimaryKey;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DbermappingPackage.PRIMARY_KEY_MAPPING__PRIMARY_KEY, oldPrimaryKey, primaryKey));
+			eNotify(new ENotificationImpl(this, Notification.SET, DBERMappingPackage.PRIMARY_KEY_MAPPING__PRIMARY_KEY, oldPrimaryKey, primaryKey));
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class PrimaryKeyMappingImpl extends EObjectImpl implements PrimaryKeyMapp
 			identifier = (Identifier)eResolveProxy(oldIdentifier);
 			if (identifier != oldIdentifier) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DbermappingPackage.PRIMARY_KEY_MAPPING__IDENTIFIER, oldIdentifier, identifier));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DBERMappingPackage.PRIMARY_KEY_MAPPING__IDENTIFIER, oldIdentifier, identifier));
 			}
 		}
 		return identifier;
@@ -148,7 +148,7 @@ public class PrimaryKeyMappingImpl extends EObjectImpl implements PrimaryKeyMapp
 		Identifier oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DbermappingPackage.PRIMARY_KEY_MAPPING__IDENTIFIER, oldIdentifier, identifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, DBERMappingPackage.PRIMARY_KEY_MAPPING__IDENTIFIER, oldIdentifier, identifier));
 	}
 
 	/**
@@ -159,10 +159,10 @@ public class PrimaryKeyMappingImpl extends EObjectImpl implements PrimaryKeyMapp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DbermappingPackage.PRIMARY_KEY_MAPPING__PRIMARY_KEY:
+			case DBERMappingPackage.PRIMARY_KEY_MAPPING__PRIMARY_KEY:
 				if (resolve) return getPrimaryKey();
 				return basicGetPrimaryKey();
-			case DbermappingPackage.PRIMARY_KEY_MAPPING__IDENTIFIER:
+			case DBERMappingPackage.PRIMARY_KEY_MAPPING__IDENTIFIER:
 				if (resolve) return getIdentifier();
 				return basicGetIdentifier();
 		}
@@ -177,10 +177,10 @@ public class PrimaryKeyMappingImpl extends EObjectImpl implements PrimaryKeyMapp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DbermappingPackage.PRIMARY_KEY_MAPPING__PRIMARY_KEY:
+			case DBERMappingPackage.PRIMARY_KEY_MAPPING__PRIMARY_KEY:
 				setPrimaryKey((PrimaryKey)newValue);
 				return;
-			case DbermappingPackage.PRIMARY_KEY_MAPPING__IDENTIFIER:
+			case DBERMappingPackage.PRIMARY_KEY_MAPPING__IDENTIFIER:
 				setIdentifier((Identifier)newValue);
 				return;
 		}
@@ -195,10 +195,10 @@ public class PrimaryKeyMappingImpl extends EObjectImpl implements PrimaryKeyMapp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DbermappingPackage.PRIMARY_KEY_MAPPING__PRIMARY_KEY:
+			case DBERMappingPackage.PRIMARY_KEY_MAPPING__PRIMARY_KEY:
 				setPrimaryKey((PrimaryKey)null);
 				return;
-			case DbermappingPackage.PRIMARY_KEY_MAPPING__IDENTIFIER:
+			case DBERMappingPackage.PRIMARY_KEY_MAPPING__IDENTIFIER:
 				setIdentifier((Identifier)null);
 				return;
 		}
@@ -213,9 +213,9 @@ public class PrimaryKeyMappingImpl extends EObjectImpl implements PrimaryKeyMapp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DbermappingPackage.PRIMARY_KEY_MAPPING__PRIMARY_KEY:
+			case DBERMappingPackage.PRIMARY_KEY_MAPPING__PRIMARY_KEY:
 				return primaryKey != null;
-			case DbermappingPackage.PRIMARY_KEY_MAPPING__IDENTIFIER:
+			case DBERMappingPackage.PRIMARY_KEY_MAPPING__IDENTIFIER:
 				return identifier != null;
 		}
 		return super.eIsSet(featureID);

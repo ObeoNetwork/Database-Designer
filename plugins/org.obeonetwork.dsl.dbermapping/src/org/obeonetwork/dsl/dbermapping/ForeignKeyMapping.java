@@ -7,6 +7,7 @@
 package org.obeonetwork.dsl.dbermapping;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 import org.obeonetwork.dsl.database.ForeignKey;
@@ -27,7 +28,7 @@ import org.obeonetwork.dsl.entityrelation.Relation;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getForeignKeyMapping()
+ * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getForeignKeyMapping()
  * @model
  * @generated
  */
@@ -42,7 +43,7 @@ public interface ForeignKeyMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Foreign Key</em>' reference.
 	 * @see #setForeignKey(ForeignKey)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getForeignKeyMapping_ForeignKey()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getForeignKeyMapping_ForeignKey()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -68,7 +69,7 @@ public interface ForeignKeyMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relation</em>' reference.
 	 * @see #setRelation(Relation)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getForeignKeyMapping_Relation()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getForeignKeyMapping_Relation()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -85,17 +86,17 @@ public interface ForeignKeyMapping extends EObject {
 	void setRelation(Relation value);
 
 	/**
-	 * Returns the value of the '<em><b>Foreign Key Element Mappings</b></em>' reference list.
+	 * Returns the value of the '<em><b>Foreign Key Element Mappings</b></em>' containment reference list.
 	 * The list contents are of type {@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Foreign Key Element Mappings</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Foreign Key Element Mappings</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Foreign Key Element Mappings</em>' reference list.
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getForeignKeyMapping_ForeignKeyElementMappings()
-	 * @model
+	 * @return the value of the '<em>Foreign Key Element Mappings</em>' containment reference list.
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getForeignKeyMapping_ForeignKeyElementMappings()
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<ForeignKeyElementMapping> getForeignKeyElementMappings();

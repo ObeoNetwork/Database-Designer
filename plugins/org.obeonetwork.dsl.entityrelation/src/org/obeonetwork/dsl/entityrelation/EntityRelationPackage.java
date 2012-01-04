@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation;
 
@@ -32,13 +28,6 @@ import org.eclipse.emf.ecore.EReference;
  * @generated
  */
 public interface EntityRelationPackage extends EPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -402,13 +391,22 @@ public interface EntityRelationPackage extends EPackage {
 	int ATTRIBUTE__REQUIRED = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Use In Identifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__USE_IN_IDENTIFIER = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int ATTRIBUTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.RoleImpl <em>Role</em>}' class.
@@ -779,6 +777,17 @@ public interface EntityRelationPackage extends EPackage {
 	EAttribute getAttribute_Required();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.entityrelation.Attribute#getUseInIdentifier <em>Use In Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Use In Identifier</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Attribute#getUseInIdentifier()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EReference getAttribute_UseInIdentifier();
+
+	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.entityrelation.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1083,6 +1092,14 @@ public interface EntityRelationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ATTRIBUTE__REQUIRED = eINSTANCE.getAttribute_Required();
+
+		/**
+		 * The meta object literal for the '<em><b>Use In Identifier</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE__USE_IN_IDENTIFIER = eINSTANCE.getAttribute_UseInIdentifier();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.impl.NamedElementImpl <em>Named Element</em>}' class.

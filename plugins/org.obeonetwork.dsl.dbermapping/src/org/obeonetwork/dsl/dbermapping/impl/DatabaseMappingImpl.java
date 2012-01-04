@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.obeonetwork.dsl.database.DataBase;
 
+import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
 import org.obeonetwork.dsl.dbermapping.DatabaseMapping;
-import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
 import org.obeonetwork.dsl.dbermapping.TableMapping;
 
 import org.obeonetwork.dsl.entityrelation.LogicalModel;
@@ -92,7 +92,7 @@ public class DatabaseMappingImpl extends EObjectImpl implements DatabaseMapping 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DbermappingPackage.Literals.DATABASE_MAPPING;
+		return DBERMappingPackage.Literals.DATABASE_MAPPING;
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class DatabaseMappingImpl extends EObjectImpl implements DatabaseMapping 
 			database = (DataBase)eResolveProxy(oldDatabase);
 			if (database != oldDatabase) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DbermappingPackage.DATABASE_MAPPING__DATABASE, oldDatabase, database));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DBERMappingPackage.DATABASE_MAPPING__DATABASE, oldDatabase, database));
 			}
 		}
 		return database;
@@ -130,7 +130,7 @@ public class DatabaseMappingImpl extends EObjectImpl implements DatabaseMapping 
 		DataBase oldDatabase = database;
 		database = newDatabase;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DbermappingPackage.DATABASE_MAPPING__DATABASE, oldDatabase, database));
+			eNotify(new ENotificationImpl(this, Notification.SET, DBERMappingPackage.DATABASE_MAPPING__DATABASE, oldDatabase, database));
 	}
 
 	/**
@@ -144,7 +144,7 @@ public class DatabaseMappingImpl extends EObjectImpl implements DatabaseMapping 
 			logicalModel = (LogicalModel)eResolveProxy(oldLogicalModel);
 			if (logicalModel != oldLogicalModel) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DbermappingPackage.DATABASE_MAPPING__LOGICAL_MODEL, oldLogicalModel, logicalModel));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DBERMappingPackage.DATABASE_MAPPING__LOGICAL_MODEL, oldLogicalModel, logicalModel));
 			}
 		}
 		return logicalModel;
@@ -168,7 +168,7 @@ public class DatabaseMappingImpl extends EObjectImpl implements DatabaseMapping 
 		LogicalModel oldLogicalModel = logicalModel;
 		logicalModel = newLogicalModel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DbermappingPackage.DATABASE_MAPPING__LOGICAL_MODEL, oldLogicalModel, logicalModel));
+			eNotify(new ENotificationImpl(this, Notification.SET, DBERMappingPackage.DATABASE_MAPPING__LOGICAL_MODEL, oldLogicalModel, logicalModel));
 	}
 
 	/**
@@ -178,7 +178,7 @@ public class DatabaseMappingImpl extends EObjectImpl implements DatabaseMapping 
 	 */
 	public EList<TableMapping> getTableMappings() {
 		if (tableMappings == null) {
-			tableMappings = new EObjectContainmentEList<TableMapping>(TableMapping.class, this, DbermappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS);
+			tableMappings = new EObjectContainmentEList<TableMapping>(TableMapping.class, this, DBERMappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS);
 		}
 		return tableMappings;
 	}
@@ -191,7 +191,7 @@ public class DatabaseMappingImpl extends EObjectImpl implements DatabaseMapping 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DbermappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS:
+			case DBERMappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS:
 				return ((InternalEList<?>)getTableMappings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -205,13 +205,13 @@ public class DatabaseMappingImpl extends EObjectImpl implements DatabaseMapping 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DbermappingPackage.DATABASE_MAPPING__DATABASE:
+			case DBERMappingPackage.DATABASE_MAPPING__DATABASE:
 				if (resolve) return getDatabase();
 				return basicGetDatabase();
-			case DbermappingPackage.DATABASE_MAPPING__LOGICAL_MODEL:
+			case DBERMappingPackage.DATABASE_MAPPING__LOGICAL_MODEL:
 				if (resolve) return getLogicalModel();
 				return basicGetLogicalModel();
-			case DbermappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS:
+			case DBERMappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS:
 				return getTableMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -226,13 +226,13 @@ public class DatabaseMappingImpl extends EObjectImpl implements DatabaseMapping 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DbermappingPackage.DATABASE_MAPPING__DATABASE:
+			case DBERMappingPackage.DATABASE_MAPPING__DATABASE:
 				setDatabase((DataBase)newValue);
 				return;
-			case DbermappingPackage.DATABASE_MAPPING__LOGICAL_MODEL:
+			case DBERMappingPackage.DATABASE_MAPPING__LOGICAL_MODEL:
 				setLogicalModel((LogicalModel)newValue);
 				return;
-			case DbermappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS:
+			case DBERMappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS:
 				getTableMappings().clear();
 				getTableMappings().addAll((Collection<? extends TableMapping>)newValue);
 				return;
@@ -248,13 +248,13 @@ public class DatabaseMappingImpl extends EObjectImpl implements DatabaseMapping 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DbermappingPackage.DATABASE_MAPPING__DATABASE:
+			case DBERMappingPackage.DATABASE_MAPPING__DATABASE:
 				setDatabase((DataBase)null);
 				return;
-			case DbermappingPackage.DATABASE_MAPPING__LOGICAL_MODEL:
+			case DBERMappingPackage.DATABASE_MAPPING__LOGICAL_MODEL:
 				setLogicalModel((LogicalModel)null);
 				return;
-			case DbermappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS:
+			case DBERMappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS:
 				getTableMappings().clear();
 				return;
 		}
@@ -269,11 +269,11 @@ public class DatabaseMappingImpl extends EObjectImpl implements DatabaseMapping 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DbermappingPackage.DATABASE_MAPPING__DATABASE:
+			case DBERMappingPackage.DATABASE_MAPPING__DATABASE:
 				return database != null;
-			case DbermappingPackage.DATABASE_MAPPING__LOGICAL_MODEL:
+			case DBERMappingPackage.DATABASE_MAPPING__LOGICAL_MODEL:
 				return logicalModel != null;
-			case DbermappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS:
+			case DBERMappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS:
 				return tableMappings != null && !tableMappings.isEmpty();
 		}
 		return super.eIsSet(featureID);

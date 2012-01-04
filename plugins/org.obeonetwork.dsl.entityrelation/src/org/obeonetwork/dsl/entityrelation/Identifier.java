@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation;
 
@@ -25,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getIdentifier()
+ * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getIdentifier()
  * @model
  * @generated
  */
@@ -40,7 +36,7 @@ public interface Identifier extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Primary</em>' attribute.
 	 * @see #setPrimary(boolean)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getIdentifier_Primary()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getIdentifier_Primary()
 	 * @model
 	 * @generated
 	 */
@@ -67,7 +63,7 @@ public interface Identifier extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attributes</em>' reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getIdentifier_Attributes()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getIdentifier_Attributes()
 	 * @see org.obeonetwork.dsl.entityrelation.Attribute#getUseInIdentifier
 	 * @model opposite="useInIdentifier"
 	 * @generated

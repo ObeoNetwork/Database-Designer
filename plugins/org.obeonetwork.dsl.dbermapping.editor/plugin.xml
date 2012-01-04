@@ -17,7 +17,7 @@
       <wizard
             id="org.obeonetwork.dsl.dbermapping.presentation.DbermappingModelWizardID"
             name="%_UI_DbermappingModelWizard_label"
-            class="org.obeonetwork.dsl.dbermapping.presentation.DbermappingModelWizard"
+            class="org.obeonetwork.dsl.dbermapping.presentation.DBERMappingModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/DbermappingModelFile.gif">
          <description>%_UI_DbermappingModelWizard_description</description>
@@ -27,12 +27,12 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="org.obeonetwork.dsl.dbermapping.presentation.DbermappingEditorID"
+            id="org.obeonetwork.dsl.dbermapping.presentation.DBERMappingEditorID"
             name="%_UI_DbermappingEditor_label"
             icon="icons/full/obj16/DbermappingModelFile.gif"
             extensions="dbermapping"
-            class="org.obeonetwork.dsl.dbermapping.presentation.DbermappingEditor"
-            contributorClass="org.obeonetwork.dsl.dbermapping.presentation.DbermappingActionBarContributor">
+            class="org.obeonetwork.dsl.dbermapping.presentation.DBERMappingEditor"
+            contributorClass="org.obeonetwork.dsl.dbermapping.presentation.DBERMappingActionBarContributor">
       </editor>
    </extension>
 

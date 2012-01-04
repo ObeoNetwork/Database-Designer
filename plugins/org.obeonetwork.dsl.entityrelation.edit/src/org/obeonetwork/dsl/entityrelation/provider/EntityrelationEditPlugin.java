@@ -7,9 +7,7 @@
 package org.obeonetwork.dsl.entityrelation.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.obeonetwork.dsl.typeslibrary.provider.TypesLibraryEditPlugin;
 
 /**

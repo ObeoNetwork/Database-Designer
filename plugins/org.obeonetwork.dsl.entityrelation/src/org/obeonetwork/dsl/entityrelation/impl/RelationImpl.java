@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.impl;
 
@@ -22,7 +18,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Join;
 import org.obeonetwork.dsl.entityrelation.Relation;
@@ -79,7 +74,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EntityrelationPackage.Literals.RELATION;
+		return EntityRelationPackage.Literals.RELATION;
 	}
 
 	/**
@@ -89,7 +84,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 */
 	public EList<Role> getRoles() {
 		if (roles == null) {
-			roles = new EObjectContainmentEList<Role>(Role.class, this, EntityrelationPackage.RELATION__ROLES);
+			roles = new EObjectContainmentEList<Role>(Role.class, this, EntityRelationPackage.RELATION__ROLES);
 		}
 		return roles;
 	}
@@ -101,7 +96,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 */
 	public EList<Join> getJoins() {
 		if (joins == null) {
-			joins = new EObjectContainmentEList<Join>(Join.class, this, EntityrelationPackage.RELATION__JOINS);
+			joins = new EObjectContainmentEList<Join>(Join.class, this, EntityRelationPackage.RELATION__JOINS);
 		}
 		return joins;
 	}
@@ -114,9 +109,9 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EntityrelationPackage.RELATION__ROLES:
+			case EntityRelationPackage.RELATION__ROLES:
 				return ((InternalEList<?>)getRoles()).basicRemove(otherEnd, msgs);
-			case EntityrelationPackage.RELATION__JOINS:
+			case EntityRelationPackage.RELATION__JOINS:
 				return ((InternalEList<?>)getJoins()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -130,9 +125,9 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EntityrelationPackage.RELATION__ROLES:
+			case EntityRelationPackage.RELATION__ROLES:
 				return getRoles();
-			case EntityrelationPackage.RELATION__JOINS:
+			case EntityRelationPackage.RELATION__JOINS:
 				return getJoins();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -147,11 +142,11 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EntityrelationPackage.RELATION__ROLES:
+			case EntityRelationPackage.RELATION__ROLES:
 				getRoles().clear();
 				getRoles().addAll((Collection<? extends Role>)newValue);
 				return;
-			case EntityrelationPackage.RELATION__JOINS:
+			case EntityRelationPackage.RELATION__JOINS:
 				getJoins().clear();
 				getJoins().addAll((Collection<? extends Join>)newValue);
 				return;
@@ -167,10 +162,10 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EntityrelationPackage.RELATION__ROLES:
+			case EntityRelationPackage.RELATION__ROLES:
 				getRoles().clear();
 				return;
-			case EntityrelationPackage.RELATION__JOINS:
+			case EntityRelationPackage.RELATION__JOINS:
 				getJoins().clear();
 				return;
 		}
@@ -185,9 +180,9 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EntityrelationPackage.RELATION__ROLES:
+			case EntityRelationPackage.RELATION__ROLES:
 				return roles != null && !roles.isEmpty();
-			case EntityrelationPackage.RELATION__JOINS:
+			case EntityRelationPackage.RELATION__JOINS:
 				return joins != null && !joins.isEmpty();
 		}
 		return super.eIsSet(featureID);

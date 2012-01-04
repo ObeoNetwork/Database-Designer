@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation;
 
@@ -25,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getJoinByIdentifier()
+ * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getJoinByIdentifier()
  * @model
  * @generated
  */
@@ -40,7 +36,7 @@ public interface JoinByIdentifier extends Join {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' reference.
 	 * @see #setIdentifier(Identifier)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getJoinByIdentifier_Identifier()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getJoinByIdentifier_Identifier()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -66,7 +62,7 @@ public interface JoinByIdentifier extends Join {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attributes</em>' reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getJoinByIdentifier_Attributes()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getJoinByIdentifier_Attributes()
 	 * @model
 	 * @generated
 	 */

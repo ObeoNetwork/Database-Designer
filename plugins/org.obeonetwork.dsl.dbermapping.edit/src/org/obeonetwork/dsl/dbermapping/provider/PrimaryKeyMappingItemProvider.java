@@ -12,7 +12,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,7 +23,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
+
+import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
 
 /**
  * This is the item provider adapter for a {@link org.obeonetwork.dsl.dbermapping.PrimaryKeyMapping} object.
@@ -77,7 +80,7 @@ public class PrimaryKeyMappingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_PrimaryKeyMapping_primaryKey_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_PrimaryKeyMapping_primaryKey_feature", "_UI_PrimaryKeyMapping_type"),
-				 DbermappingPackage.Literals.PRIMARY_KEY_MAPPING__PRIMARY_KEY,
+				 DBERMappingPackage.Literals.PRIMARY_KEY_MAPPING__PRIMARY_KEY,
 				 true,
 				 false,
 				 true,
@@ -99,7 +102,7 @@ public class PrimaryKeyMappingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_PrimaryKeyMapping_identifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_PrimaryKeyMapping_identifier_feature", "_UI_PrimaryKeyMapping_type"),
-				 DbermappingPackage.Literals.PRIMARY_KEY_MAPPING__IDENTIFIER,
+				 DBERMappingPackage.Literals.PRIMARY_KEY_MAPPING__IDENTIFIER,
 				 true,
 				 false,
 				 true,

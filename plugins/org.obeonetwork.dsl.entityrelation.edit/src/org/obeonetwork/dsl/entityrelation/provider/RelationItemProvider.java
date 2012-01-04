@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,9 +20,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.obeonetwork.dsl.entityrelation.EntityrelationFactory;
-import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
+import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Relation;
 
 /**
@@ -78,8 +75,8 @@ public class RelationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EntityrelationPackage.Literals.RELATION__ROLES);
-			childrenFeatures.add(EntityrelationPackage.Literals.RELATION__JOINS);
+			childrenFeatures.add(EntityRelationPackage.Literals.RELATION__ROLES);
+			childrenFeatures.add(EntityRelationPackage.Literals.RELATION__JOINS);
 		}
 		return childrenFeatures;
 	}
@@ -134,8 +131,8 @@ public class RelationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Relation.class)) {
-			case EntityrelationPackage.RELATION__ROLES:
-			case EntityrelationPackage.RELATION__JOINS:
+			case EntityRelationPackage.RELATION__ROLES:
+			case EntityRelationPackage.RELATION__JOINS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -155,13 +152,13 @@ public class RelationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EntityrelationPackage.Literals.RELATION__ROLES,
-				 EntityrelationFactory.eINSTANCE.createRole()));
+				(EntityRelationPackage.Literals.RELATION__ROLES,
+				 EntityRelationFactory.eINSTANCE.createRole()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EntityrelationPackage.Literals.RELATION__JOINS,
-				 EntityrelationFactory.eINSTANCE.createJoinByIdentifier()));
+				(EntityRelationPackage.Literals.RELATION__JOINS,
+				 EntityRelationFactory.eINSTANCE.createJoinByIdentifier()));
 	}
 
 }

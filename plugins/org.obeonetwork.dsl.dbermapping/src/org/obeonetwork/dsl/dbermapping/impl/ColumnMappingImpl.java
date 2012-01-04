@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.obeonetwork.dsl.database.Column;
 
 import org.obeonetwork.dsl.dbermapping.ColumnMapping;
-import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
+import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
 
 import org.obeonetwork.dsl.entityrelation.Attribute;
 
@@ -72,7 +72,7 @@ public class ColumnMappingImpl extends EObjectImpl implements ColumnMapping {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DbermappingPackage.Literals.COLUMN_MAPPING;
+		return DBERMappingPackage.Literals.COLUMN_MAPPING;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class ColumnMappingImpl extends EObjectImpl implements ColumnMapping {
 			column = (Column)eResolveProxy(oldColumn);
 			if (column != oldColumn) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DbermappingPackage.COLUMN_MAPPING__COLUMN, oldColumn, column));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DBERMappingPackage.COLUMN_MAPPING__COLUMN, oldColumn, column));
 			}
 		}
 		return column;
@@ -110,7 +110,7 @@ public class ColumnMappingImpl extends EObjectImpl implements ColumnMapping {
 		Column oldColumn = column;
 		column = newColumn;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DbermappingPackage.COLUMN_MAPPING__COLUMN, oldColumn, column));
+			eNotify(new ENotificationImpl(this, Notification.SET, DBERMappingPackage.COLUMN_MAPPING__COLUMN, oldColumn, column));
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class ColumnMappingImpl extends EObjectImpl implements ColumnMapping {
 			attribute = (Attribute)eResolveProxy(oldAttribute);
 			if (attribute != oldAttribute) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DbermappingPackage.COLUMN_MAPPING__ATTRIBUTE, oldAttribute, attribute));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DBERMappingPackage.COLUMN_MAPPING__ATTRIBUTE, oldAttribute, attribute));
 			}
 		}
 		return attribute;
@@ -148,7 +148,7 @@ public class ColumnMappingImpl extends EObjectImpl implements ColumnMapping {
 		Attribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DbermappingPackage.COLUMN_MAPPING__ATTRIBUTE, oldAttribute, attribute));
+			eNotify(new ENotificationImpl(this, Notification.SET, DBERMappingPackage.COLUMN_MAPPING__ATTRIBUTE, oldAttribute, attribute));
 	}
 
 	/**
@@ -159,10 +159,10 @@ public class ColumnMappingImpl extends EObjectImpl implements ColumnMapping {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DbermappingPackage.COLUMN_MAPPING__COLUMN:
+			case DBERMappingPackage.COLUMN_MAPPING__COLUMN:
 				if (resolve) return getColumn();
 				return basicGetColumn();
-			case DbermappingPackage.COLUMN_MAPPING__ATTRIBUTE:
+			case DBERMappingPackage.COLUMN_MAPPING__ATTRIBUTE:
 				if (resolve) return getAttribute();
 				return basicGetAttribute();
 		}
@@ -177,10 +177,10 @@ public class ColumnMappingImpl extends EObjectImpl implements ColumnMapping {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DbermappingPackage.COLUMN_MAPPING__COLUMN:
+			case DBERMappingPackage.COLUMN_MAPPING__COLUMN:
 				setColumn((Column)newValue);
 				return;
-			case DbermappingPackage.COLUMN_MAPPING__ATTRIBUTE:
+			case DBERMappingPackage.COLUMN_MAPPING__ATTRIBUTE:
 				setAttribute((Attribute)newValue);
 				return;
 		}
@@ -195,10 +195,10 @@ public class ColumnMappingImpl extends EObjectImpl implements ColumnMapping {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DbermappingPackage.COLUMN_MAPPING__COLUMN:
+			case DBERMappingPackage.COLUMN_MAPPING__COLUMN:
 				setColumn((Column)null);
 				return;
-			case DbermappingPackage.COLUMN_MAPPING__ATTRIBUTE:
+			case DBERMappingPackage.COLUMN_MAPPING__ATTRIBUTE:
 				setAttribute((Attribute)null);
 				return;
 		}
@@ -213,9 +213,9 @@ public class ColumnMappingImpl extends EObjectImpl implements ColumnMapping {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DbermappingPackage.COLUMN_MAPPING__COLUMN:
+			case DBERMappingPackage.COLUMN_MAPPING__COLUMN:
 				return column != null;
-			case DbermappingPackage.COLUMN_MAPPING__ATTRIBUTE:
+			case DBERMappingPackage.COLUMN_MAPPING__ATTRIBUTE:
 				return attribute != null;
 		}
 		return super.eIsSet(featureID);

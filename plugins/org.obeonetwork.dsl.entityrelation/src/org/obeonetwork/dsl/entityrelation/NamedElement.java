@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation;
 
@@ -23,7 +19,7 @@ package org.obeonetwork.dsl.entityrelation;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getNamedElement()
+ * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getNamedElement()
  * @model abstract="true"
  * @generated
  */
@@ -38,7 +34,7 @@ public interface NamedElement extends LogicalElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getNamedElement_Name()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getNamedElement_Name()
 	 * @model
 	 * @generated
 	 */

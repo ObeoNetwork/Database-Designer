@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation;
 
@@ -25,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getLogicalModel()
+ * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getLogicalModel()
  * @model
  * @generated
  */
@@ -40,7 +36,7 @@ public interface LogicalModel extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Entities</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getLogicalModel_Entities()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getLogicalModel_Entities()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -56,7 +52,7 @@ public interface LogicalModel extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relations</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getLogicalModel_Relations()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getLogicalModel_Relations()
 	 * @model containment="true"
 	 * @generated
 	 */

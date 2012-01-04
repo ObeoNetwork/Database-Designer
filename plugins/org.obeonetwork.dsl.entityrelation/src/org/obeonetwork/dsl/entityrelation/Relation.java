@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation;
 
@@ -25,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getRelation()
+ * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation()
  * @model
  * @generated
  */
@@ -40,7 +36,7 @@ public interface Relation extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Roles</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getRelation_Roles()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation_Roles()
 	 * @model containment="true" upper="2"
 	 * @generated
 	 */
@@ -56,7 +52,7 @@ public interface Relation extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Joins</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getRelation_Joins()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation_Joins()
 	 * @model containment="true"
 	 * @generated
 	 */

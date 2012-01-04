@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -25,8 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.LogicalElement;
 
 /**
@@ -83,7 +80,7 @@ public class LogicalElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_LogicalElement_ID_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalElement_ID_feature", "_UI_LogicalElement_type"),
-				 EntityrelationPackage.Literals.LOGICAL_ELEMENT__ID,
+				 EntityRelationPackage.Literals.LOGICAL_ELEMENT__ID,
 				 false,
 				 false,
 				 false,
@@ -105,7 +102,7 @@ public class LogicalElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_LogicalElement_comments_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalElement_comments_feature", "_UI_LogicalElement_type"),
-				 EntityrelationPackage.Literals.LOGICAL_ELEMENT__COMMENTS,
+				 EntityRelationPackage.Literals.LOGICAL_ELEMENT__COMMENTS,
 				 true,
 				 false,
 				 false,
@@ -140,8 +137,8 @@ public class LogicalElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LogicalElement.class)) {
-			case EntityrelationPackage.LOGICAL_ELEMENT__ID:
-			case EntityrelationPackage.LOGICAL_ELEMENT__COMMENTS:
+			case EntityRelationPackage.LOGICAL_ELEMENT__ID:
+			case EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

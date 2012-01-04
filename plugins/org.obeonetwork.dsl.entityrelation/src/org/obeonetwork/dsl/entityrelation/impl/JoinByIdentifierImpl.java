@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.impl;
 
@@ -24,7 +20,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.obeonetwork.dsl.entityrelation.Attribute;
-import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
 import org.obeonetwork.dsl.entityrelation.JoinByIdentifier;
@@ -80,7 +75,7 @@ public class JoinByIdentifierImpl extends JoinImpl implements JoinByIdentifier {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EntityrelationPackage.Literals.JOIN_BY_IDENTIFIER;
+		return EntityRelationPackage.Literals.JOIN_BY_IDENTIFIER;
 	}
 
 	/**
@@ -94,7 +89,7 @@ public class JoinByIdentifierImpl extends JoinImpl implements JoinByIdentifier {
 			identifier = (Identifier)eResolveProxy(oldIdentifier);
 			if (identifier != oldIdentifier) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityrelationPackage.JOIN_BY_IDENTIFIER__IDENTIFIER, oldIdentifier, identifier));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityRelationPackage.JOIN_BY_IDENTIFIER__IDENTIFIER, oldIdentifier, identifier));
 			}
 		}
 		return identifier;
@@ -118,7 +113,7 @@ public class JoinByIdentifierImpl extends JoinImpl implements JoinByIdentifier {
 		Identifier oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityrelationPackage.JOIN_BY_IDENTIFIER__IDENTIFIER, oldIdentifier, identifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.JOIN_BY_IDENTIFIER__IDENTIFIER, oldIdentifier, identifier));
 	}
 
 	/**
@@ -128,7 +123,7 @@ public class JoinByIdentifierImpl extends JoinImpl implements JoinByIdentifier {
 	 */
 	public EList<Attribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectResolvingEList<Attribute>(Attribute.class, this, EntityrelationPackage.JOIN_BY_IDENTIFIER__ATTRIBUTES);
+			attributes = new EObjectResolvingEList<Attribute>(Attribute.class, this, EntityRelationPackage.JOIN_BY_IDENTIFIER__ATTRIBUTES);
 		}
 		return attributes;
 	}
@@ -141,10 +136,10 @@ public class JoinByIdentifierImpl extends JoinImpl implements JoinByIdentifier {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EntityrelationPackage.JOIN_BY_IDENTIFIER__IDENTIFIER:
+			case EntityRelationPackage.JOIN_BY_IDENTIFIER__IDENTIFIER:
 				if (resolve) return getIdentifier();
 				return basicGetIdentifier();
-			case EntityrelationPackage.JOIN_BY_IDENTIFIER__ATTRIBUTES:
+			case EntityRelationPackage.JOIN_BY_IDENTIFIER__ATTRIBUTES:
 				return getAttributes();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -159,10 +154,10 @@ public class JoinByIdentifierImpl extends JoinImpl implements JoinByIdentifier {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EntityrelationPackage.JOIN_BY_IDENTIFIER__IDENTIFIER:
+			case EntityRelationPackage.JOIN_BY_IDENTIFIER__IDENTIFIER:
 				setIdentifier((Identifier)newValue);
 				return;
-			case EntityrelationPackage.JOIN_BY_IDENTIFIER__ATTRIBUTES:
+			case EntityRelationPackage.JOIN_BY_IDENTIFIER__ATTRIBUTES:
 				getAttributes().clear();
 				getAttributes().addAll((Collection<? extends Attribute>)newValue);
 				return;
@@ -178,10 +173,10 @@ public class JoinByIdentifierImpl extends JoinImpl implements JoinByIdentifier {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EntityrelationPackage.JOIN_BY_IDENTIFIER__IDENTIFIER:
+			case EntityRelationPackage.JOIN_BY_IDENTIFIER__IDENTIFIER:
 				setIdentifier((Identifier)null);
 				return;
-			case EntityrelationPackage.JOIN_BY_IDENTIFIER__ATTRIBUTES:
+			case EntityRelationPackage.JOIN_BY_IDENTIFIER__ATTRIBUTES:
 				getAttributes().clear();
 				return;
 		}
@@ -196,9 +191,9 @@ public class JoinByIdentifierImpl extends JoinImpl implements JoinByIdentifier {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EntityrelationPackage.JOIN_BY_IDENTIFIER__IDENTIFIER:
+			case EntityRelationPackage.JOIN_BY_IDENTIFIER__IDENTIFIER:
 				return identifier != null;
-			case EntityrelationPackage.JOIN_BY_IDENTIFIER__ATTRIBUTES:
+			case EntityRelationPackage.JOIN_BY_IDENTIFIER__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
 		}
 		return super.eIsSet(featureID);

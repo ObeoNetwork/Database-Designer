@@ -6,7 +6,7 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
     usedGenPackages="../../org.obeonetwork.dsl.typeslibrary/model/typeslibrary.genmodel#//typeslibrary">
   <foreignModel>entityrelation.ecore</foreignModel>
-  <genPackages prefix="Entityrelation" basePackage="org.obeonetwork.dsl" disposableProviderFactory="true"
+  <genPackages prefix="EntityRelation" basePackage="org.obeonetwork.dsl" disposableProviderFactory="true"
       ecorePackage="entityrelation.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="entityrelation.ecore#//Cardinality">
       <genEnumLiterals ecoreEnumLiteral="entityrelation.ecore#//Cardinality/ZERO_ONE"/>

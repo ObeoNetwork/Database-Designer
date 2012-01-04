@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.presentation;
 
@@ -177,13 +173,6 @@ import org.obeonetwork.dsl.typeslibrary.provider.TypesLibraryItemProviderAdapter
 public class EntityRelationEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
 	 * <!-- begin-user-doc -->
@@ -536,7 +525,7 @@ public class EntityRelationEditor
 					}
 				}
 				catch (CoreException exception) {
-					EntityRelationEditorPlugin.INSTANCE.log(exception);
+					EntityrelationEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -652,7 +641,7 @@ public class EntityRelationEditor
 					showTabs();
 				}
 				catch (PartInitException exception) {
-					EntityRelationEditorPlugin.INSTANCE.log(exception);
+					EntityrelationEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 
@@ -663,7 +652,7 @@ public class EntityRelationEditor
 						markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
-						EntityRelationEditorPlugin.INSTANCE.log(exception);
+						EntityrelationEditorPlugin.INSTANCE.log(exception);
 					}
 				}
 			}
@@ -1523,7 +1512,7 @@ public class EntityRelationEditor
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			EntityRelationEditorPlugin.INSTANCE.log(exception);
+			EntityrelationEditorPlugin.INSTANCE.log(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1616,7 +1605,7 @@ public class EntityRelationEditor
 			}
 		}
 		catch (CoreException exception) {
-			EntityRelationEditorPlugin.INSTANCE.log(exception);
+			EntityrelationEditorPlugin.INSTANCE.log(exception);
 		}
 	}
 
@@ -1738,7 +1727,7 @@ public class EntityRelationEditor
 	 * @generated
 	 */
 	private static String getString(String key) {
-		return EntityRelationEditorPlugin.INSTANCE.getString(key);
+		return EntityrelationEditorPlugin.INSTANCE.getString(key);
 	}
 
 	/**
@@ -1748,7 +1737,7 @@ public class EntityRelationEditor
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return EntityRelationEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
+		return EntityrelationEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
 	/**

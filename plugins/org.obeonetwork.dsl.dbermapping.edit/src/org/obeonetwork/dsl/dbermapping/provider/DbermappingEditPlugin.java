@@ -7,9 +7,13 @@
 package org.obeonetwork.dsl.dbermapping.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.obeonetwork.dsl.database.provider.DatabaseEditPlugin;
+
 import org.obeonetwork.dsl.entityrelation.provider.EntityrelationEditPlugin;
+
 import org.obeonetwork.dsl.typeslibrary.provider.TypesLibraryEditPlugin;
 
 /**

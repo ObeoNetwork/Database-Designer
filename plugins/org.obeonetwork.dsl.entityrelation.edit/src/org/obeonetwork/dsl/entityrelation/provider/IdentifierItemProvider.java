@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,8 +21,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
 
 /**
@@ -80,7 +78,7 @@ public class IdentifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Identifier_primary_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Identifier_primary_feature", "_UI_Identifier_type"),
-				 EntityrelationPackage.Literals.IDENTIFIER__PRIMARY,
+				 EntityRelationPackage.Literals.IDENTIFIER__PRIMARY,
 				 true,
 				 false,
 				 false,
@@ -102,7 +100,7 @@ public class IdentifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Identifier_attributes_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Identifier_attributes_feature", "_UI_Identifier_type"),
-				 EntityrelationPackage.Literals.IDENTIFIER__ATTRIBUTES,
+				 EntityRelationPackage.Literals.IDENTIFIER__ATTRIBUTES,
 				 true,
 				 false,
 				 true,
@@ -148,7 +146,7 @@ public class IdentifierItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Identifier.class)) {
-			case EntityrelationPackage.IDENTIFIER__PRIMARY:
+			case EntityRelationPackage.IDENTIFIER__PRIMARY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

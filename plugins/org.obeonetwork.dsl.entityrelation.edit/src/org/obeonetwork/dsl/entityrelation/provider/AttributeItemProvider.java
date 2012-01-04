@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,9 +21,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.obeonetwork.dsl.entityrelation.Attribute;
-import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 
 /**
  * This is the item provider adapter for a {@link org.obeonetwork.dsl.entityrelation.Attribute} object.
@@ -81,7 +79,7 @@ public class AttributeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Attribute_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_type_feature", "_UI_Attribute_type"),
-				 EntityrelationPackage.Literals.ATTRIBUTE__TYPE,
+				 EntityRelationPackage.Literals.ATTRIBUTE__TYPE,
 				 true,
 				 false,
 				 true,
@@ -103,7 +101,7 @@ public class AttributeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Attribute_required_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_required_feature", "_UI_Attribute_type"),
-				 EntityrelationPackage.Literals.ATTRIBUTE__REQUIRED,
+				 EntityRelationPackage.Literals.ATTRIBUTE__REQUIRED,
 				 true,
 				 false,
 				 false,
@@ -125,7 +123,7 @@ public class AttributeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Attribute_useInIdentifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_useInIdentifier_feature", "_UI_Attribute_type"),
-				 EntityrelationPackage.Literals.ATTRIBUTE__USE_IN_IDENTIFIER,
+				 EntityRelationPackage.Literals.ATTRIBUTE__USE_IN_IDENTIFIER,
 				 true,
 				 false,
 				 true,
@@ -171,7 +169,7 @@ public class AttributeItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Attribute.class)) {
-			case EntityrelationPackage.ATTRIBUTE__REQUIRED:
+			case EntityRelationPackage.ATTRIBUTE__REQUIRED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.impl;
 
@@ -17,7 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.LogicalElement;
 
@@ -92,7 +87,7 @@ public abstract class LogicalElementImpl extends EObjectImpl implements LogicalE
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EntityrelationPackage.Literals.LOGICAL_ELEMENT;
+		return EntityRelationPackage.Literals.LOGICAL_ELEMENT;
 	}
 
 	/**
@@ -122,7 +117,7 @@ public abstract class LogicalElementImpl extends EObjectImpl implements LogicalE
 		String oldComments = comments;
 		comments = newComments;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityrelationPackage.LOGICAL_ELEMENT__COMMENTS, oldComments, comments));
+			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS, oldComments, comments));
 	}
 
 	/**
@@ -133,9 +128,9 @@ public abstract class LogicalElementImpl extends EObjectImpl implements LogicalE
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EntityrelationPackage.LOGICAL_ELEMENT__ID:
+			case EntityRelationPackage.LOGICAL_ELEMENT__ID:
 				return getID();
-			case EntityrelationPackage.LOGICAL_ELEMENT__COMMENTS:
+			case EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS:
 				return getComments();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -149,7 +144,7 @@ public abstract class LogicalElementImpl extends EObjectImpl implements LogicalE
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EntityrelationPackage.LOGICAL_ELEMENT__COMMENTS:
+			case EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS:
 				setComments((String)newValue);
 				return;
 		}
@@ -164,7 +159,7 @@ public abstract class LogicalElementImpl extends EObjectImpl implements LogicalE
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EntityrelationPackage.LOGICAL_ELEMENT__COMMENTS:
+			case EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS:
 				setComments(COMMENTS_EDEFAULT);
 				return;
 		}
@@ -179,9 +174,9 @@ public abstract class LogicalElementImpl extends EObjectImpl implements LogicalE
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EntityrelationPackage.LOGICAL_ELEMENT__ID:
+			case EntityRelationPackage.LOGICAL_ELEMENT__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case EntityrelationPackage.LOGICAL_ELEMENT__COMMENTS:
+			case EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS:
 				return COMMENTS_EDEFAULT == null ? comments != null : !COMMENTS_EDEFAULT.equals(comments);
 		}
 		return super.eIsSet(featureID);

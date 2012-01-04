@@ -27,7 +27,7 @@ import org.obeonetwork.dsl.entityrelation.Role;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getForeignKeyElementMapping()
+ * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getForeignKeyElementMapping()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface ForeignKeyElementMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Foreign Key Element</em>' reference.
 	 * @see #setForeignKeyElement(ForeignKeyElement)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getForeignKeyElementMapping_ForeignKeyElement()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getForeignKeyElementMapping_ForeignKeyElement()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -68,7 +68,7 @@ public interface ForeignKeyElementMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Join</em>' reference.
 	 * @see #setJoin(Join)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getForeignKeyElementMapping_Join()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getForeignKeyElementMapping_Join()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -94,7 +94,7 @@ public interface ForeignKeyElementMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Role</em>' reference.
 	 * @see #setRole(Role)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getForeignKeyElementMapping_Role()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getForeignKeyElementMapping_Role()
 	 * @model required="true"
 	 * @generated
 	 */

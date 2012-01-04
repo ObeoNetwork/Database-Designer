@@ -25,7 +25,7 @@ import org.obeonetwork.dsl.entityrelation.Identifier;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getPrimaryKeyMapping()
+ * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getPrimaryKeyMapping()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface PrimaryKeyMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Primary Key</em>' reference.
 	 * @see #setPrimaryKey(PrimaryKey)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getPrimaryKeyMapping_PrimaryKey()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getPrimaryKeyMapping_PrimaryKey()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -66,7 +66,7 @@ public interface PrimaryKeyMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' reference.
 	 * @see #setIdentifier(Identifier)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getPrimaryKeyMapping_Identifier()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getPrimaryKeyMapping_Identifier()
 	 * @model required="true"
 	 * @generated
 	 */

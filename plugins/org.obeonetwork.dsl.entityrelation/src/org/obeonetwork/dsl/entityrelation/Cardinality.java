@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation;
 
@@ -21,7 +17,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Cardinality</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getCardinality()
+ * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getCardinality()
  * @model
  * @generated
  */

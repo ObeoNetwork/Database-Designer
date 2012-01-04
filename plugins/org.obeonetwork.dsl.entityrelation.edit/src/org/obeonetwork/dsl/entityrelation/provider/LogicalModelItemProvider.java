@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,9 +20,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.obeonetwork.dsl.entityrelation.EntityrelationFactory;
-import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
+import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.LogicalModel;
 
 /**
@@ -78,8 +75,8 @@ public class LogicalModelItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EntityrelationPackage.Literals.LOGICAL_MODEL__ENTITIES);
-			childrenFeatures.add(EntityrelationPackage.Literals.LOGICAL_MODEL__RELATIONS);
+			childrenFeatures.add(EntityRelationPackage.Literals.LOGICAL_MODEL__ENTITIES);
+			childrenFeatures.add(EntityRelationPackage.Literals.LOGICAL_MODEL__RELATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -134,8 +131,8 @@ public class LogicalModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LogicalModel.class)) {
-			case EntityrelationPackage.LOGICAL_MODEL__ENTITIES:
-			case EntityrelationPackage.LOGICAL_MODEL__RELATIONS:
+			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
+			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -155,13 +152,13 @@ public class LogicalModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EntityrelationPackage.Literals.LOGICAL_MODEL__ENTITIES,
-				 EntityrelationFactory.eINSTANCE.createEntity()));
+				(EntityRelationPackage.Literals.LOGICAL_MODEL__ENTITIES,
+				 EntityRelationFactory.eINSTANCE.createEntity()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EntityrelationPackage.Literals.LOGICAL_MODEL__RELATIONS,
-				 EntityrelationFactory.eINSTANCE.createRelation()));
+				(EntityRelationPackage.Literals.LOGICAL_MODEL__RELATIONS,
+				 EntityRelationFactory.eINSTANCE.createRelation()));
 	}
 
 }

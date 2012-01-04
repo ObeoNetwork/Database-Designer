@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,10 +20,9 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.obeonetwork.dsl.entityrelation.Entity;
-import org.obeonetwork.dsl.entityrelation.EntityrelationFactory;
-import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
+import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 
 /**
  * This is the item provider adapter for a {@link org.obeonetwork.dsl.entityrelation.Entity} object.
@@ -78,8 +75,8 @@ public class EntityItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EntityrelationPackage.Literals.ENTITY__ATTRIBUTES);
-			childrenFeatures.add(EntityrelationPackage.Literals.ENTITY__IDENTIFIERS);
+			childrenFeatures.add(EntityRelationPackage.Literals.ENTITY__ATTRIBUTES);
+			childrenFeatures.add(EntityRelationPackage.Literals.ENTITY__IDENTIFIERS);
 		}
 		return childrenFeatures;
 	}
@@ -134,8 +131,8 @@ public class EntityItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Entity.class)) {
-			case EntityrelationPackage.ENTITY__ATTRIBUTES:
-			case EntityrelationPackage.ENTITY__IDENTIFIERS:
+			case EntityRelationPackage.ENTITY__ATTRIBUTES:
+			case EntityRelationPackage.ENTITY__IDENTIFIERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -155,13 +152,13 @@ public class EntityItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EntityrelationPackage.Literals.ENTITY__ATTRIBUTES,
-				 EntityrelationFactory.eINSTANCE.createAttribute()));
+				(EntityRelationPackage.Literals.ENTITY__ATTRIBUTES,
+				 EntityRelationFactory.eINSTANCE.createAttribute()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(EntityrelationPackage.Literals.ENTITY__IDENTIFIERS,
-				 EntityrelationFactory.eINSTANCE.createIdentifier()));
+				(EntityRelationPackage.Literals.ENTITY__IDENTIFIERS,
+				 EntityRelationFactory.eINSTANCE.createIdentifier()));
 	}
 
 }

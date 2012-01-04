@@ -1,18 +1,13 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Join;
 
@@ -42,7 +37,7 @@ public abstract class JoinImpl extends LogicalElementImpl implements Join {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EntityrelationPackage.Literals.JOIN;
+		return EntityRelationPackage.Literals.JOIN;
 	}
 
 } //JoinImpl

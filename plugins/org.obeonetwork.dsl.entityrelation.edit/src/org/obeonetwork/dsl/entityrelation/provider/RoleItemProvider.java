@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,8 +21,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.obeonetwork.dsl.entityrelation.EntityrelationPackage;
+import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Role;
 
 /**
@@ -81,7 +79,7 @@ public class RoleItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Role_entity_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Role_entity_feature", "_UI_Role_type"),
-				 EntityrelationPackage.Literals.ROLE__ENTITY,
+				 EntityRelationPackage.Literals.ROLE__ENTITY,
 				 true,
 				 false,
 				 true,
@@ -103,7 +101,7 @@ public class RoleItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Role_cardinality_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Role_cardinality_feature", "_UI_Role_type"),
-				 EntityrelationPackage.Literals.ROLE__CARDINALITY,
+				 EntityRelationPackage.Literals.ROLE__CARDINALITY,
 				 true,
 				 false,
 				 false,
@@ -125,7 +123,7 @@ public class RoleItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Role_dependant_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Role_dependant_feature", "_UI_Role_type"),
-				 EntityrelationPackage.Literals.ROLE__DEPENDANT,
+				 EntityRelationPackage.Literals.ROLE__DEPENDANT,
 				 true,
 				 false,
 				 false,
@@ -171,8 +169,8 @@ public class RoleItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Role.class)) {
-			case EntityrelationPackage.ROLE__CARDINALITY:
-			case EntityrelationPackage.ROLE__DEPENDANT:
+			case EntityRelationPackage.ROLE__CARDINALITY:
+			case EntityRelationPackage.ROLE__DEPENDANT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

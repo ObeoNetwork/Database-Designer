@@ -5,7 +5,7 @@
     modelPluginID="org.obeonetwork.dsl.dbermapping" modelName="Dbermapping" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="6.0" copyrightFields="false" usedGenPackages="../../org.obeonetwork.dsl.database/model/database.genmodel#//database ../../org.obeonetwork.dsl.entityrelation/model/entityrelation.genmodel#//entityrelation ../../org.obeonetwork.dsl.typeslibrary/model/typeslibrary.genmodel#//typeslibrary">
   <foreignModel>dbermapping.ecore</foreignModel>
-  <genPackages prefix="Dbermapping" basePackage="org.obeonetwork.dsl" disposableProviderFactory="true"
+  <genPackages prefix="DBERMapping" basePackage="org.obeonetwork.dsl" disposableProviderFactory="true"
       ecorePackage="dbermapping.ecore#/">
     <genClasses ecoreClass="dbermapping.ecore#//DatabaseMapping">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//DatabaseMapping/database"/>
@@ -30,7 +30,7 @@
     <genClasses ecoreClass="dbermapping.ecore#//ForeignKeyMapping">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyMapping/foreignKey"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyMapping/relation"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyMapping/foreignKeyElementMappings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyMapping/foreignKeyElementMappings"/>
     </genClasses>
     <genClasses ecoreClass="dbermapping.ecore#//ForeignKeyElementMapping">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbermapping.ecore#//ForeignKeyElementMapping/foreignKeyElement"/>

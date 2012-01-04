@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation;
 
@@ -26,7 +22,7 @@ import org.obeonetwork.dsl.typeslibrary.Type;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getAttribute()
+ * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getAttribute()
  * @model
  * @generated
  */
@@ -41,7 +37,7 @@ public interface Attribute extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(Type)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getAttribute_Type()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getAttribute_Type()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -67,7 +63,7 @@ public interface Attribute extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Required</em>' attribute.
 	 * @see #setRequired(boolean)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getAttribute_Required()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getAttribute_Required()
 	 * @model
 	 * @generated
 	 */
@@ -94,7 +90,7 @@ public interface Attribute extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Use In Identifier</em>' reference.
 	 * @see #setUseInIdentifier(Identifier)
-	 * @see org.obeonetwork.dsl.entityrelation.EntityrelationPackage#getAttribute_UseInIdentifier()
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getAttribute_UseInIdentifier()
 	 * @see org.obeonetwork.dsl.entityrelation.Identifier#getAttributes
 	 * @model opposite="attributes"
 	 * @generated

@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.obeonetwork.dsl.database.ForeignKeyElement;
 
-import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
+import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
 import org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping;
 
 import org.obeonetwork.dsl.entityrelation.Join;
@@ -84,7 +84,7 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DbermappingPackage.Literals.FOREIGN_KEY_ELEMENT_MAPPING;
+		return DBERMappingPackage.Literals.FOREIGN_KEY_ELEMENT_MAPPING;
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 			foreignKeyElement = (ForeignKeyElement)eResolveProxy(oldForeignKeyElement);
 			if (foreignKeyElement != oldForeignKeyElement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT, oldForeignKeyElement, foreignKeyElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT, oldForeignKeyElement, foreignKeyElement));
 			}
 		}
 		return foreignKeyElement;
@@ -122,7 +122,7 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 		ForeignKeyElement oldForeignKeyElement = foreignKeyElement;
 		foreignKeyElement = newForeignKeyElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT, oldForeignKeyElement, foreignKeyElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT, oldForeignKeyElement, foreignKeyElement));
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 			join = (Join)eResolveProxy(oldJoin);
 			if (join != oldJoin) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN, oldJoin, join));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN, oldJoin, join));
 			}
 		}
 		return join;
@@ -160,7 +160,7 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 		Join oldJoin = join;
 		join = newJoin;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN, oldJoin, join));
+			eNotify(new ENotificationImpl(this, Notification.SET, DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN, oldJoin, join));
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 			role = (Role)eResolveProxy(oldRole);
 			if (role != oldRole) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE, oldRole, role));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE, oldRole, role));
 			}
 		}
 		return role;
@@ -198,7 +198,7 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 		Role oldRole = role;
 		role = newRole;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE, oldRole, role));
+			eNotify(new ENotificationImpl(this, Notification.SET, DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE, oldRole, role));
 	}
 
 	/**
@@ -209,13 +209,13 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT:
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT:
 				if (resolve) return getForeignKeyElement();
 				return basicGetForeignKeyElement();
-			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN:
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN:
 				if (resolve) return getJoin();
 				return basicGetJoin();
-			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE:
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE:
 				if (resolve) return getRole();
 				return basicGetRole();
 		}
@@ -230,13 +230,13 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT:
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT:
 				setForeignKeyElement((ForeignKeyElement)newValue);
 				return;
-			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN:
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN:
 				setJoin((Join)newValue);
 				return;
-			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE:
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE:
 				setRole((Role)newValue);
 				return;
 		}
@@ -251,13 +251,13 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT:
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT:
 				setForeignKeyElement((ForeignKeyElement)null);
 				return;
-			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN:
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN:
 				setJoin((Join)null);
 				return;
-			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE:
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE:
 				setRole((Role)null);
 				return;
 		}
@@ -272,11 +272,11 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT:
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT:
 				return foreignKeyElement != null;
-			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN:
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__JOIN:
 				return join != null;
-			case DbermappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE:
+			case DBERMappingPackage.FOREIGN_KEY_ELEMENT_MAPPING__ROLE:
 				return role != null;
 		}
 		return super.eIsSet(featureID);

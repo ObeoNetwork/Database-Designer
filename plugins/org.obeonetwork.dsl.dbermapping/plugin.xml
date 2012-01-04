@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.obeonetwork.org/dsl/dbermapping/1.0"
-            class="org.obeonetwork.dsl.dbermapping.DbermappingPackage"
+            class="org.obeonetwork.dsl.dbermapping.DBERMappingPackage"
             genModel="model/dbermapping.genmodel"/>
    </extension>
 

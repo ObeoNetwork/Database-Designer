@@ -12,8 +12,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,8 +26,9 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.obeonetwork.dsl.dbermapping.DbermappingFactory;
-import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
+
+import org.obeonetwork.dsl.dbermapping.DBERMappingFactory;
+import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
 import org.obeonetwork.dsl.dbermapping.TableMapping;
 
 /**
@@ -81,7 +85,7 @@ public class TableMappingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_TableMapping_table_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TableMapping_table_feature", "_UI_TableMapping_type"),
-				 DbermappingPackage.Literals.TABLE_MAPPING__TABLE,
+				 DBERMappingPackage.Literals.TABLE_MAPPING__TABLE,
 				 true,
 				 false,
 				 true,
@@ -103,7 +107,7 @@ public class TableMappingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_TableMapping_entity_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TableMapping_entity_feature", "_UI_TableMapping_type"),
-				 DbermappingPackage.Literals.TABLE_MAPPING__ENTITY,
+				 DBERMappingPackage.Literals.TABLE_MAPPING__ENTITY,
 				 true,
 				 false,
 				 true,
@@ -124,9 +128,9 @@ public class TableMappingItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DbermappingPackage.Literals.TABLE_MAPPING__COLUMN_MAPPINGS);
-			childrenFeatures.add(DbermappingPackage.Literals.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS);
-			childrenFeatures.add(DbermappingPackage.Literals.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS);
+			childrenFeatures.add(DBERMappingPackage.Literals.TABLE_MAPPING__COLUMN_MAPPINGS);
+			childrenFeatures.add(DBERMappingPackage.Literals.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS);
+			childrenFeatures.add(DBERMappingPackage.Literals.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS);
 		}
 		return childrenFeatures;
 	}
@@ -178,9 +182,9 @@ public class TableMappingItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TableMapping.class)) {
-			case DbermappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
-			case DbermappingPackage.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS:
-			case DbermappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
+			case DBERMappingPackage.TABLE_MAPPING__COLUMN_MAPPINGS:
+			case DBERMappingPackage.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS:
+			case DBERMappingPackage.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -200,18 +204,18 @@ public class TableMappingItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DbermappingPackage.Literals.TABLE_MAPPING__COLUMN_MAPPINGS,
-				 DbermappingFactory.eINSTANCE.createColumnMapping()));
+				(DBERMappingPackage.Literals.TABLE_MAPPING__COLUMN_MAPPINGS,
+				 DBERMappingFactory.eINSTANCE.createColumnMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DbermappingPackage.Literals.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS,
-				 DbermappingFactory.eINSTANCE.createPrimaryKeyMapping()));
+				(DBERMappingPackage.Literals.TABLE_MAPPING__PRIMARY_KEY_MAPPINGS,
+				 DBERMappingFactory.eINSTANCE.createPrimaryKeyMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DbermappingPackage.Literals.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS,
-				 DbermappingFactory.eINSTANCE.createForeignKeyMapping()));
+				(DBERMappingPackage.Literals.TABLE_MAPPING__FOREIGN_KEY_MAPPINGS,
+				 DBERMappingFactory.eINSTANCE.createForeignKeyMapping()));
 	}
 
 	/**

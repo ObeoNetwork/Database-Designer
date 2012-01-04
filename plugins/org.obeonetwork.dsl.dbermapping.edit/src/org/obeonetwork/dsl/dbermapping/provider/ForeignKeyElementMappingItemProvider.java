@@ -12,7 +12,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,7 +23,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
+
+import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
 
 /**
  * This is the item provider adapter for a {@link org.obeonetwork.dsl.dbermapping.ForeignKeyElementMapping} object.
@@ -78,7 +81,7 @@ public class ForeignKeyElementMappingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ForeignKeyElementMapping_foreignKeyElement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKeyElementMapping_foreignKeyElement_feature", "_UI_ForeignKeyElementMapping_type"),
-				 DbermappingPackage.Literals.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT,
+				 DBERMappingPackage.Literals.FOREIGN_KEY_ELEMENT_MAPPING__FOREIGN_KEY_ELEMENT,
 				 true,
 				 false,
 				 true,
@@ -100,7 +103,7 @@ public class ForeignKeyElementMappingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ForeignKeyElementMapping_join_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKeyElementMapping_join_feature", "_UI_ForeignKeyElementMapping_type"),
-				 DbermappingPackage.Literals.FOREIGN_KEY_ELEMENT_MAPPING__JOIN,
+				 DBERMappingPackage.Literals.FOREIGN_KEY_ELEMENT_MAPPING__JOIN,
 				 true,
 				 false,
 				 true,
@@ -122,7 +125,7 @@ public class ForeignKeyElementMappingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ForeignKeyElementMapping_role_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKeyElementMapping_role_feature", "_UI_ForeignKeyElementMapping_type"),
-				 DbermappingPackage.Literals.FOREIGN_KEY_ELEMENT_MAPPING__ROLE,
+				 DBERMappingPackage.Literals.FOREIGN_KEY_ELEMENT_MAPPING__ROLE,
 				 true,
 				 false,
 				 true,

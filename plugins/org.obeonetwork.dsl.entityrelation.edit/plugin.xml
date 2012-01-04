@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.obeonetwork.org/dsl/entityrelation/1.0"
-            class="org.obeonetwork.dsl.entityrelation.provider.EntityrelationItemProviderAdapterFactory"
+            class="org.obeonetwork.dsl.entityrelation.provider.EntityRelationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

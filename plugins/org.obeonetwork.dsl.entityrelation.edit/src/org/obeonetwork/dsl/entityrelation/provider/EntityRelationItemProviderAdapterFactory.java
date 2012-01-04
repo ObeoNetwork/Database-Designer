@@ -1,12 +1,8 @@
 /**
- * Copyright (c) 2011 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
 package org.obeonetwork.dsl.entityrelation.provider;
 
@@ -16,7 +12,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -28,7 +23,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.obeonetwork.dsl.entityrelation.util.EntityRelationAdapterFactory;
 
 /**
@@ -41,13 +35,6 @@ import org.obeonetwork.dsl.entityrelation.util.EntityRelationAdapterFactory;
  * @generated
  */
 public class EntityRelationItemProviderAdapterFactory extends EntityRelationAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
-
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -225,26 +212,26 @@ public class EntityRelationItemProviderAdapterFactory extends EntityRelationAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.obeonetwork.dsl.entityrelation.Join} instances.
+	 * This keeps track of the one adapter used for all {@link org.obeonetwork.dsl.entityrelation.JoinByIdentifier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected JoinItemProvider joinItemProvider;
+	protected JoinByIdentifierItemProvider joinByIdentifierItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.obeonetwork.dsl.entityrelation.Join}.
+	 * This creates an adapter for a {@link org.obeonetwork.dsl.entityrelation.JoinByIdentifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createJoinAdapter() {
-		if (joinItemProvider == null) {
-			joinItemProvider = new JoinItemProvider(this);
+	public Adapter createJoinByIdentifierAdapter() {
+		if (joinByIdentifierItemProvider == null) {
+			joinByIdentifierItemProvider = new JoinByIdentifierItemProvider(this);
 		}
 
-		return joinItemProvider;
+		return joinByIdentifierItemProvider;
 	}
 
 	/**
@@ -352,7 +339,7 @@ public class EntityRelationItemProviderAdapterFactory extends EntityRelationAdap
 		if (attributeItemProvider != null) attributeItemProvider.dispose();
 		if (roleItemProvider != null) roleItemProvider.dispose();
 		if (identifierItemProvider != null) identifierItemProvider.dispose();
-		if (joinItemProvider != null) joinItemProvider.dispose();
+		if (joinByIdentifierItemProvider != null) joinByIdentifierItemProvider.dispose();
 	}
 
 }

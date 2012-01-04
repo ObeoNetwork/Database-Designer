@@ -28,7 +28,7 @@ import org.obeonetwork.dsl.entityrelation.LogicalModel;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getDatabaseMapping()
+ * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getDatabaseMapping()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface DatabaseMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Database</em>' reference.
 	 * @see #setDatabase(DataBase)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getDatabaseMapping_Database()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getDatabaseMapping_Database()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -69,7 +69,7 @@ public interface DatabaseMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Logical Model</em>' reference.
 	 * @see #setLogicalModel(LogicalModel)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getDatabaseMapping_LogicalModel()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getDatabaseMapping_LogicalModel()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -95,7 +95,7 @@ public interface DatabaseMapping extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Mappings</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getDatabaseMapping_TableMappings()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getDatabaseMapping_TableMappings()
 	 * @model containment="true"
 	 * @generated
 	 */

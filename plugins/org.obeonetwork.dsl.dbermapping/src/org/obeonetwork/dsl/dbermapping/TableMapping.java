@@ -7,6 +7,7 @@
 package org.obeonetwork.dsl.dbermapping;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 import org.obeonetwork.dsl.database.Table;
@@ -29,7 +30,7 @@ import org.obeonetwork.dsl.entityrelation.Entity;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getTableMapping()
+ * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getTableMapping()
  * @model
  * @generated
  */
@@ -44,7 +45,7 @@ public interface TableMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table</em>' reference.
 	 * @see #setTable(Table)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getTableMapping_Table()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getTableMapping_Table()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -70,7 +71,7 @@ public interface TableMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Entity</em>' reference.
 	 * @see #setEntity(Entity)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getTableMapping_Entity()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getTableMapping_Entity()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -96,7 +97,7 @@ public interface TableMapping extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Column Mappings</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getTableMapping_ColumnMappings()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getTableMapping_ColumnMappings()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -112,7 +113,7 @@ public interface TableMapping extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Primary Key Mappings</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getTableMapping_PrimaryKeyMappings()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getTableMapping_PrimaryKeyMappings()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -128,7 +129,7 @@ public interface TableMapping extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Foreign Key Mappings</em>' containment reference list.
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getTableMapping_ForeignKeyMappings()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getTableMapping_ForeignKeyMappings()
 	 * @model containment="true"
 	 * @generated
 	 */

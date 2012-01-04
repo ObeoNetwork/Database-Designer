@@ -25,7 +25,7 @@ import org.obeonetwork.dsl.entityrelation.Attribute;
  * </ul>
  * </p>
  *
- * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getColumnMapping()
+ * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getColumnMapping()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface ColumnMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Column</em>' reference.
 	 * @see #setColumn(Column)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getColumnMapping_Column()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getColumnMapping_Column()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -66,7 +66,7 @@ public interface ColumnMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attribute</em>' reference.
 	 * @see #setAttribute(Attribute)
-	 * @see org.obeonetwork.dsl.dbermapping.DbermappingPackage#getColumnMapping_Attribute()
+	 * @see org.obeonetwork.dsl.dbermapping.DBERMappingPackage#getColumnMapping_Attribute()
 	 * @model required="true"
 	 * @generated
 	 */

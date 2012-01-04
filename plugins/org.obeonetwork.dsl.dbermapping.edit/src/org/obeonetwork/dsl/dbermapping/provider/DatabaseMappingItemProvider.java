@@ -12,8 +12,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,9 +26,10 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.obeonetwork.dsl.dbermapping.DBERMappingFactory;
+import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
 import org.obeonetwork.dsl.dbermapping.DatabaseMapping;
-import org.obeonetwork.dsl.dbermapping.DbermappingFactory;
-import org.obeonetwork.dsl.dbermapping.DbermappingPackage;
 
 /**
  * This is the item provider adapter for a {@link org.obeonetwork.dsl.dbermapping.DatabaseMapping} object.
@@ -81,7 +85,7 @@ public class DatabaseMappingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_DatabaseMapping_database_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_DatabaseMapping_database_feature", "_UI_DatabaseMapping_type"),
-				 DbermappingPackage.Literals.DATABASE_MAPPING__DATABASE,
+				 DBERMappingPackage.Literals.DATABASE_MAPPING__DATABASE,
 				 true,
 				 false,
 				 true,
@@ -103,7 +107,7 @@ public class DatabaseMappingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_DatabaseMapping_logicalModel_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_DatabaseMapping_logicalModel_feature", "_UI_DatabaseMapping_type"),
-				 DbermappingPackage.Literals.DATABASE_MAPPING__LOGICAL_MODEL,
+				 DBERMappingPackage.Literals.DATABASE_MAPPING__LOGICAL_MODEL,
 				 true,
 				 false,
 				 true,
@@ -124,7 +128,7 @@ public class DatabaseMappingItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DbermappingPackage.Literals.DATABASE_MAPPING__TABLE_MAPPINGS);
+			childrenFeatures.add(DBERMappingPackage.Literals.DATABASE_MAPPING__TABLE_MAPPINGS);
 		}
 		return childrenFeatures;
 	}
@@ -176,7 +180,7 @@ public class DatabaseMappingItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DatabaseMapping.class)) {
-			case DbermappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS:
+			case DBERMappingPackage.DATABASE_MAPPING__TABLE_MAPPINGS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -196,8 +200,8 @@ public class DatabaseMappingItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DbermappingPackage.Literals.DATABASE_MAPPING__TABLE_MAPPINGS,
-				 DbermappingFactory.eINSTANCE.createTableMapping()));
+				(DBERMappingPackage.Literals.DATABASE_MAPPING__TABLE_MAPPINGS,
+				 DBERMappingFactory.eINSTANCE.createTableMapping()));
 	}
 
 	/**
