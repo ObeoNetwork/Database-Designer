@@ -13,7 +13,7 @@
         </toolSections>
       </defaultLayer>
     </ownedRepresentations>
-    <ownedRepresentations xsi:type="description:DiagramDescription" name="Database Diagram" titleExpression="&lt;%name%> Database" initialisation="true" domainClass="database.DataBase">
+    <ownedRepresentations xsi:type="description:DiagramDescription" name="Database Diagram" titleExpression="&lt;%name%> Database" initialisation="true" showOnStartup="true" domainClass="database.DataBase">
       <metamodel href="platform:/plugin/org.obeonetwork.dsl.database/model/database.ecore#/"/>
       <metamodel href="platform:/plugin/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#/"/>
       <defaultLayer name="Default">
