@@ -6,6 +6,7 @@
  */
 package org.obeonetwork.dsl.entityrelation.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -15,13 +16,17 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.obeonetwork.dsl.entityrelation.Attribute;
 import org.obeonetwork.dsl.entityrelation.Cardinality;
 import org.obeonetwork.dsl.entityrelation.Entity;
+import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
 import org.obeonetwork.dsl.entityrelation.Relation;
 import org.obeonetwork.dsl.entityrelation.RelationElement;
+import org.obeonetwork.dsl.typeslibrary.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -302,24 +307,28 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 		Cardinality oldSourceCardinality = sourceCardinality;
 		sourceCardinality = newSourceCardinality == null ? SOURCE_CARDINALITY_EDEFAULT : newSourceCardinality;
 		if (sourceCardinality != oldSourceCardinality) {
-			if (oldSourceCardinality == Cardinality.ZERO_ONE || oldSourceCardinality == Cardinality.ONE_ONE) {
-				if (sourceCardinality == Cardinality.ZERO_STAR || sourceCardinality == Cardinality.ONE_STAR) {
-					// Then the source can not be set as composite
-					setSourceIsComposite(false);
-					// And the other side can not be ZERO_STAR or ONE_STAR
-					if (targetCardinality == Cardinality.ZERO_STAR) {
-						setTargetCardinality(Cardinality.ZERO_ONE);
-					} else if (targetCardinality == Cardinality.ONE_STAR) {
-						setTargetCardinality(Cardinality.ONE_ONE);
-					}
-				}
-			} else if (oldSourceCardinality == Cardinality.ZERO_STAR || oldSourceCardinality == Cardinality.ONE_STAR) {
+			// Cardinality has changed
+			if (isStarCardinality(oldSourceCardinality) == false && isStarCardinality(sourceCardinality) == true) {
+				// Cardinality was 0.1 or 1..1 and now is 0..* or 1..*
 				
+				// Then the source can not be set as composite
+				setSourceIsComposite(false);
+				// And the other side can not be 0..* or 1..*
+				if (targetCardinality == Cardinality.ZERO_STAR) {
+					setTargetCardinality(Cardinality.ZERO_ONE);
+				} else if (targetCardinality == Cardinality.ONE_STAR) {
+					setTargetCardinality(Cardinality.ONE_ONE);
+				}
+			} else if (isStarCardinality(oldSourceCardinality) == true && isStarCardinality(sourceCardinality) == false) {
+				// Cardinality was 0.* or 1..* and now is 0..1 or 1..1
+				
+				// Checks if the identifier is still consistent with the cardinality
+				if (isStarCardinality(targetCardinality) == true) {
+					// the previous identifier can not be used anymore
+					setIdentifier(pickBestIdentifier(target));
+				}
 			}
 		}
-		
-		// Checks if the identifier is still consistent with the cardinality
-		// 
 		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__SOURCE_CARDINALITY, oldSourceCardinality, sourceCardinality));
@@ -430,18 +439,30 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	public void setTargetCardinality(Cardinality newTargetCardinality) {
 		Cardinality oldTargetCardinality = targetCardinality;
 		targetCardinality = newTargetCardinality == null ? TARGET_CARDINALITY_EDEFAULT : newTargetCardinality;
-		if (targetCardinality != oldTargetCardinality && !isStarCardinality(oldTargetCardinality)) {
-			if (targetCardinality == Cardinality.ZERO_STAR || targetCardinality == Cardinality.ONE_STAR) {
+		if (targetCardinality != oldTargetCardinality) {
+			// Cardinality has changed
+			if (isStarCardinality(oldTargetCardinality) == false && isStarCardinality(targetCardinality) == true) {
+				// Cardinality was 0.1 or 1..1 and now is 0..* or 1..*
+				
 				// Then the target can not be set as composite
 				setTargetIsComposite(false);
-				// And the other side can not be ZERO_STAR or ONE_STAR
+				// And the other side can not be 0..* or 1..*
 				if (sourceCardinality == Cardinality.ZERO_STAR) {
 					setSourceCardinality(Cardinality.ZERO_ONE);
 				} else if (sourceCardinality == Cardinality.ONE_STAR) {
 					setSourceCardinality(Cardinality.ONE_ONE);
 				}
+			} else if (isStarCardinality(oldTargetCardinality) == true && isStarCardinality(targetCardinality) == false) {
+				// Cardinality was 0.* or 1..* and now is 0..1 or 1..1
+				
+				// Checks if the identifier is still consistent with the cardinality
+				if (isStarCardinality(sourceCardinality) == true) {
+					// the previous identifier can not be used anymore
+					setIdentifier(pickBestIdentifier(source));
+				}
 			}
 		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__TARGET_CARDINALITY, oldTargetCardinality, targetCardinality));
 	}
@@ -516,13 +537,72 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setIdentifier(Identifier newIdentifier) {
 		Identifier oldIdentifier = identifier;
 		identifier = newIdentifier;
+		
+		// We may have to delete and recreate RelationElement instances
+		if ((identifier == null && oldIdentifier != null)
+				|| (identifier != null && oldIdentifier == null)
+				|| (identifier.equals(oldIdentifier) == false)) {
+			// Delete existing RelationElement instances
+			Collection<RelationElement> relationsElements = new ArrayList<RelationElement>(getElements());
+			for (RelationElement relationElement : relationsElements) {				
+				EcoreUtil.delete(relationElement);
+			}
+			
+			// Create new RelationElement instances
+			if (identifier != null) {
+				if (getSource().equals(identifier.eContainer())) {
+					// Identifier is attached to the source
+					for (Attribute identifierAttribute : identifier.getAttributes()) {
+						Attribute otherAttribute = getOrCreateCorrespondingAttribute(getTarget(), identifierAttribute);
+						RelationElement relationElt = EntityRelationFactory.eINSTANCE.createRelationElement();
+						relationElt.setSourceAttribute(identifierAttribute);
+						relationElt.setTargetAttribute(otherAttribute);
+						getElements().add(relationElt);
+					}
+				} else if (getTarget().equals(identifier.eContainer())) {
+					// Identifier is attached to the target
+					for (Attribute identifierAttribute : identifier.getAttributes()) {
+						Attribute otherAttribute = getOrCreateCorrespondingAttribute(getSource(), identifierAttribute);
+						RelationElement relationElt = EntityRelationFactory.eINSTANCE.createRelationElement();
+						relationElt.setSourceAttribute(otherAttribute);
+						relationElt.setTargetAttribute(identifierAttribute);
+						getElements().add(relationElt);
+					}
+				}
+			}
+		}
+		
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__IDENTIFIER, oldIdentifier, identifier));
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	private Attribute getOrCreateCorrespondingAttribute(Entity entity, Attribute reference) {
+		if (reference.getName() != null) {
+			for (Attribute attribute : entity.getAttributes()) {
+				if (reference.getName().equalsIgnoreCase(attribute.getName())) {
+					return attribute;
+				}
+			}
+		}
+		// No attribute found, we have to create a new one
+		if (reference.eContainer() != null) {
+			Entity referenceEntity = (Entity)reference.eContainer();
+			Attribute newAttribute = EntityRelationFactory.eINSTANCE.createAttribute();
+			referenceEntity.getAttributes().add(newAttribute);
+			newAttribute.setName(reference.getName());
+			newAttribute.setType(EcoreUtil.copy(reference.getType()));
+			return newAttribute;
+		}
+		
+		return null;
 	}
 
 	/**
@@ -723,6 +803,21 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 */
 	private boolean isStarCardinality(Cardinality cardinality) {
 		return (cardinality == Cardinality.ZERO_STAR || cardinality == Cardinality.ONE_STAR);
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	private Identifier pickBestIdentifier(Entity entity) {
+		if (entity != null) {
+			if (entity.getPrimaryIdentifier() != null) {
+				return entity.getPrimaryIdentifier();
+			}
+			if (entity.getIdentifiers().isEmpty() == false) {
+				return entity.getIdentifiers().get(0); 
+			}
+		}
+		return null;
 	}
 
 } //RelationImpl
