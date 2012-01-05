@@ -62,11 +62,14 @@ public class RelationItemProvider
 			super.getPropertyDescriptors(object);
 
 			addSourcePropertyDescriptor(object);
+			addSourceRolePropertyDescriptor(object);
 			addSourceCardinalityPropertyDescriptor(object);
 			addSourceIsCompositePropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
+			addTargetRolePropertyDescriptor(object);
 			addTargetCardinalityPropertyDescriptor(object);
 			addTargetIsCompositePropertyDescriptor(object);
+			addIdentifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -89,6 +92,28 @@ public class RelationItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Source Role feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSourceRolePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Relation_sourceRole_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Relation_sourceRole_feature", "_UI_Relation_type"),
+				 EntityRelationPackage.Literals.RELATION__SOURCE_ROLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -160,6 +185,28 @@ public class RelationItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Target Role feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetRolePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Relation_targetRole_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Relation_targetRole_feature", "_UI_Relation_type"),
+				 EntityRelationPackage.Literals.RELATION__TARGET_ROLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Target Cardinality feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -199,6 +246,28 @@ public class RelationItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Relation_identifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Relation_identifier_feature", "_UI_Relation_type"),
+				 EntityRelationPackage.Literals.RELATION__IDENTIFIER,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -270,8 +339,10 @@ public class RelationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Relation.class)) {
+			case EntityRelationPackage.RELATION__SOURCE_ROLE:
 			case EntityRelationPackage.RELATION__SOURCE_CARDINALITY:
 			case EntityRelationPackage.RELATION__SOURCE_IS_COMPOSITE:
+			case EntityRelationPackage.RELATION__TARGET_ROLE:
 			case EntityRelationPackage.RELATION__TARGET_CARDINALITY:
 			case EntityRelationPackage.RELATION__TARGET_IS_COMPOSITE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

@@ -19,16 +19,19 @@
   <eClassifiers xsi:type="ecore:EClass" name="Relation" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceRole" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceCardinality" eType="#//Cardinality"
-        defaultValueLiteral="ZERO_ONE"/>
+        defaultValueLiteral="ZERO_STAR"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceIsComposite" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetRole" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetCardinality" eType="#//Cardinality"
-        defaultValueLiteral="ZERO_STAR"/>
+        defaultValueLiteral="ZERO_ONE"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetIsComposite" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//RelationElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="identifier" eType="#//Identifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RelationElement" eSuperTypes="#//LogicalElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttribute" eType="#//Attribute"/>

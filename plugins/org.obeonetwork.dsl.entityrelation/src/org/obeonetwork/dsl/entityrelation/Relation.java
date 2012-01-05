@@ -17,12 +17,15 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.Relation#getSource <em>Source</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.entityrelation.Relation#getSourceRole <em>Source Role</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.Relation#getSourceCardinality <em>Source Cardinality</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.Relation#isSourceIsComposite <em>Source Is Composite</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.Relation#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.entityrelation.Relation#getTargetRole <em>Target Role</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.Relation#getTargetCardinality <em>Target Cardinality</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.Relation#isTargetIsComposite <em>Target Is Composite</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.Relation#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.entityrelation.Relation#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,8 +61,34 @@ public interface Relation extends NamedElement {
 	void setSource(Entity value);
 
 	/**
+	 * Returns the value of the '<em><b>Source Role</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source Role</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source Role</em>' attribute.
+	 * @see #setSourceRole(String)
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation_SourceRole()
+	 * @model
+	 * @generated
+	 */
+	String getSourceRole();
+
+	/**
+	 * Sets the value of the '{@link org.obeonetwork.dsl.entityrelation.Relation#getSourceRole <em>Source Role</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source Role</em>' attribute.
+	 * @see #getSourceRole()
+	 * @generated
+	 */
+	void setSourceRole(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Source Cardinality</b></em>' attribute.
-	 * The default value is <code>"ZERO_ONE"</code>.
+	 * The default value is <code>"ZERO_STAR"</code>.
 	 * The literals are from the enumeration {@link org.obeonetwork.dsl.entityrelation.Cardinality}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -71,7 +100,7 @@ public interface Relation extends NamedElement {
 	 * @see org.obeonetwork.dsl.entityrelation.Cardinality
 	 * @see #setSourceCardinality(Cardinality)
 	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation_SourceCardinality()
-	 * @model default="ZERO_ONE"
+	 * @model default="ZERO_STAR"
 	 * @generated
 	 */
 	Cardinality getSourceCardinality();
@@ -140,8 +169,34 @@ public interface Relation extends NamedElement {
 	void setTarget(Entity value);
 
 	/**
+	 * Returns the value of the '<em><b>Target Role</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target Role</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target Role</em>' attribute.
+	 * @see #setTargetRole(String)
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation_TargetRole()
+	 * @model
+	 * @generated
+	 */
+	String getTargetRole();
+
+	/**
+	 * Sets the value of the '{@link org.obeonetwork.dsl.entityrelation.Relation#getTargetRole <em>Target Role</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target Role</em>' attribute.
+	 * @see #getTargetRole()
+	 * @generated
+	 */
+	void setTargetRole(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Target Cardinality</b></em>' attribute.
-	 * The default value is <code>"ZERO_STAR"</code>.
+	 * The default value is <code>"ZERO_ONE"</code>.
 	 * The literals are from the enumeration {@link org.obeonetwork.dsl.entityrelation.Cardinality}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -153,7 +208,7 @@ public interface Relation extends NamedElement {
 	 * @see org.obeonetwork.dsl.entityrelation.Cardinality
 	 * @see #setTargetCardinality(Cardinality)
 	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation_TargetCardinality()
-	 * @model default="ZERO_STAR"
+	 * @model default="ZERO_ONE"
 	 * @generated
 	 */
 	Cardinality getTargetCardinality();
@@ -210,5 +265,31 @@ public interface Relation extends NamedElement {
 	 * @generated
 	 */
 	EList<RelationElement> getElements();
+
+	/**
+	 * Returns the value of the '<em><b>Identifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Identifier</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Identifier</em>' reference.
+	 * @see #setIdentifier(Identifier)
+	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation_Identifier()
+	 * @model
+	 * @generated
+	 */
+	Identifier getIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.obeonetwork.dsl.entityrelation.Relation#getIdentifier <em>Identifier</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Identifier</em>' reference.
+	 * @see #getIdentifier()
+	 * @generated
+	 */
+	void setIdentifier(Identifier value);
 
 } // Relation

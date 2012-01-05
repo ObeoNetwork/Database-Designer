@@ -327,13 +327,22 @@ public interface EntityRelationPackage extends EPackage {
 	int RELATION__SOURCE = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Source Role</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION__SOURCE_ROLE = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Source Cardinality</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION__SOURCE_CARDINALITY = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int RELATION__SOURCE_CARDINALITY = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Source Is Composite</b></em>' attribute.
@@ -342,7 +351,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION__SOURCE_IS_COMPOSITE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int RELATION__SOURCE_IS_COMPOSITE = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -351,7 +360,16 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int RELATION__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Target Role</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION__TARGET_ROLE = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Target Cardinality</b></em>' attribute.
@@ -360,7 +378,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION__TARGET_CARDINALITY = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int RELATION__TARGET_CARDINALITY = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Target Is Composite</b></em>' attribute.
@@ -369,7 +387,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION__TARGET_IS_COMPOSITE = NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int RELATION__TARGET_IS_COMPOSITE = NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -378,7 +396,16 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION__ELEMENTS = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int RELATION__ELEMENTS = NAMED_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION__IDENTIFIER = NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>Relation</em>' class.
@@ -387,7 +414,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int RELATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.RelationElementImpl <em>Relation Element</em>}' class.
@@ -680,6 +707,17 @@ public interface EntityRelationPackage extends EPackage {
 	EReference getRelation_Source();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.entityrelation.Relation#getSourceRole <em>Source Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Source Role</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Relation#getSourceRole()
+	 * @see #getRelation()
+	 * @generated
+	 */
+	EAttribute getRelation_SourceRole();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.entityrelation.Relation#getSourceCardinality <em>Source Cardinality</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -713,6 +751,17 @@ public interface EntityRelationPackage extends EPackage {
 	EReference getRelation_Target();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.entityrelation.Relation#getTargetRole <em>Target Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Target Role</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Relation#getTargetRole()
+	 * @see #getRelation()
+	 * @generated
+	 */
+	EAttribute getRelation_TargetRole();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.entityrelation.Relation#getTargetCardinality <em>Target Cardinality</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -744,6 +793,17 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRelation_Elements();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.entityrelation.Relation#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Identifier</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Relation#getIdentifier()
+	 * @see #getRelation()
+	 * @generated
+	 */
+	EReference getRelation_Identifier();
 
 	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.entityrelation.RelationElement <em>Relation Element</em>}'.
@@ -1005,6 +1065,14 @@ public interface EntityRelationPackage extends EPackage {
 		EReference RELATION__SOURCE = eINSTANCE.getRelation_Source();
 
 		/**
+		 * The meta object literal for the '<em><b>Source Role</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RELATION__SOURCE_ROLE = eINSTANCE.getRelation_SourceRole();
+
+		/**
 		 * The meta object literal for the '<em><b>Source Cardinality</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1029,6 +1097,14 @@ public interface EntityRelationPackage extends EPackage {
 		EReference RELATION__TARGET = eINSTANCE.getRelation_Target();
 
 		/**
+		 * The meta object literal for the '<em><b>Target Role</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RELATION__TARGET_ROLE = eINSTANCE.getRelation_TargetRole();
+
+		/**
 		 * The meta object literal for the '<em><b>Target Cardinality</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1051,6 +1127,14 @@ public interface EntityRelationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RELATION__ELEMENTS = eINSTANCE.getRelation_Elements();
+
+		/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RELATION__IDENTIFIER = eINSTANCE.getRelation_Identifier();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.impl.RelationElementImpl <em>Relation Element</em>}' class.

@@ -27,12 +27,15 @@
     </genClasses>
     <genClasses ecoreClass="entityrelation.ecore#//Relation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Relation/source"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//Relation/sourceRole"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//Relation/sourceCardinality"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//Relation/sourceIsComposite"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Relation/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//Relation/targetRole"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//Relation/targetCardinality"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//Relation/targetIsComposite"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Relation/elements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Relation/identifier"/>
     </genClasses>
     <genClasses ecoreClass="entityrelation.ecore#//RelationElement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entityrelation.ecore#//RelationElement/sourceAttribute"/>
