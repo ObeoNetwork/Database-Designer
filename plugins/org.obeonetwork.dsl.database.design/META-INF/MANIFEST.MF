@@ -9,6 +9,6 @@ Require-Bundle: fr.obeo.acceleo.gen,
  fr.obeo.dsl.viewpoint,
  org.obeonetwork.dsl.database,
  fr.obeo.dsl.common,
- fr.obeo.dsl.viewpoint.ui;bundle-version="3.0.0"
+ fr.obeo.dsl.viewpoint.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

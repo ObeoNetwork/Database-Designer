@@ -1,4 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:description="http://www.obeo.fr/dsl/viewpoint/description/1.1.0" name="entityrelation">
-  <ownedViewpoints name="Entity Relation" label="Entity Relation" modelFileExtension="*.entityrelation"/>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.obeo.fr/dsl/viewpoint/description/1.1.0" xmlns:style="http://www.obeo.fr/dsl/viewpoint/description/style/1.1.0" xmlns:tool="http://www.obeo.fr/dsl/viewpoint/description/tool/1.1.0" name="entityrelation">
+  <ownedViewpoints name="Entity Relation" label="Entity Relation" modelFileExtension="*.entityrelation">
+    <ownedRepresentations xsi:type="description:DiagramDescription" name="Reused Description" domainClass="entityrelation.LogicalModel" preconditionExpression="&lt;%false%>">
+      <defaultLayer name="Default">
+        <toolSections name="Reused Tools">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="EDT_LogicalElement">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%current.editLogicalElementLabel($0)%>"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description:DiagramDescription" name="Entity Relation Diagram" titleExpression="&lt;%name%> Entity Relation" domainClass="entityrelation.LogicalModel">
+      <metamodel href="platform:/plugin/org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#/"/>
+      <metamodel href="platform:/plugin/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#/"/>
+      <defaultLayer name="Default">
+        <edgeMappings name="ERD_Relation" labelDirectEdit="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Reused%20Description']/@defaultLayer/@toolSections.0/@ownedTools[name='EDT_LogicalElement']" semanticCandidatesExpression="&lt;%relations%>" sourceMapping="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@defaultLayer/@containerMappings[name='ERD_Entity']" targetMapping="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@defaultLayer/@containerMappings[name='ERD_Entity']" targetFinderExpression="&lt;%target%>" sourceFinderExpression="&lt;%source%>" domainClass="entityrelation.Relation" useDomainElement="true">
+          <style labelExpression="&lt;%name%>" sizeComputationExpression="1">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+          </style>
+        </edgeMappings>
+        <containerMappings name="ERD_Entity" labelDirectEdit="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Reused%20Description']/@defaultLayer/@toolSections.0/@ownedTools[name='EDT_LogicalElement']" semanticCandidatesExpression="&lt;%entities%>" domainClass="entityrelation.Entity" listContainer="true">
+          <subNodeMappings name="ERD_Attribute" labelDirectEdit="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Reused%20Description']/@defaultLayer/@toolSections.0/@ownedTools[name='EDT_LogicalElement']" semanticCandidatesExpression="&lt;%attributes%>" domainClass="entityrelation.Attribute">
+            <style xsi:type="style:SquareDescription">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="ERD_Identifier" labelDirectEdit="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Reused%20Description']/@defaultLayer/@toolSections.0/@ownedTools[name='EDT_LogicalElement']" semanticCandidatesExpression="&lt;%identifiers%>" domainClass="entityrelation.Identifier">
+            <style xsi:type="style:SquareDescription">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='purple']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="Entity Relation">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CRE_Entity" label="Entity" containerMappings="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@defaultLayer/@containerMappings[name='ERD_Entity']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%$container%>">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="entityrelation.Entity" referenceName="entities">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="Entity&lt;%eContainer.entities.nSize%>"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CRE_Attribute" label="Attribute" nodeMappings="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@defaultLayer/@containerMappings[name='ERD_Entity']/@subNodeMappings[name='ERD_Attribute']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%$container%>">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="entityrelation.Attribute" referenceName="attributes">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="attribute&lt;%eContainer.attributes.nSize%>"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CRE_Identifier" label="Identifier" nodeMappings="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@defaultLayer/@containerMappings[name='ERD_Entity']/@subNodeMappings[name='ERD_Identifier']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%$container%>">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="entityrelation.Identifier" referenceName="identifiers">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="identifier_&lt;%eContainer.identifiers.nSize%>"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CRE_Relation" label="Relation" edgeMappings="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@defaultLayer/@edgeMappings[name='ERD_Relation']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%$source.eContainer%>">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="entityrelation.Relation" referenceName="relations" variableName="newRelation">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="source" valueExpression="&lt;%$source%>"/>
+                  <subModelOperations xsi:type="tool:SetValue" featureName="target" valueExpression="&lt;%$target%>"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="org.obeonetwork.dsl.entityrelation.design.services.label.EntityRelationEditLabelServices"/>
+  </ownedViewpoints>
 </description:Group>

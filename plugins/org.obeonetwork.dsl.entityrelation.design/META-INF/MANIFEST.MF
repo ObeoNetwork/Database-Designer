@@ -6,6 +6,9 @@ Bundle-Activator: org.obeonetwork.dsl.entityrelation.design.Activator
 Require-Bundle: fr.obeo.acceleo.gen,
  org.eclipse.ui,
  org.eclipse.core.runtime,
- fr.obeo.dsl.viewpoint
+ fr.obeo.dsl.viewpoint,
+ org.obeonetwork.dsl.entityrelation,
+ fr.obeo.dsl.common,
+ fr.obeo.dsl.viewpoint.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
