@@ -102,8 +102,6 @@ public class PrimaryKeyItemProvider
 					Collection<Column> suggestedColumns = new ArrayList<Column>();
 					PrimaryKey pk = (PrimaryKey)object;
 					suggestedColumns.addAll(pk.getOwner().getColumns());
-					// Remove already associated columns
-					suggestedColumns.removeAll(pk.getColumns());
 					return suggestedColumns;
 				}		
 			});
