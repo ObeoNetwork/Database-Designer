@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.obeonetwork.dsl.dbermapping.*;
 import org.obeonetwork.dsl.dbermapping.ColumnMapping;
 import org.obeonetwork.dsl.dbermapping.DBERMappingPackage;
 import org.obeonetwork.dsl.dbermapping.DatabaseMapping;
