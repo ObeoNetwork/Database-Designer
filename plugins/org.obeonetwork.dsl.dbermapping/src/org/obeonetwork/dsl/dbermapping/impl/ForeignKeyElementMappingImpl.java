@@ -169,7 +169,6 @@ public class ForeignKeyElementMappingImpl extends EObjectImpl implements Foreign
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
