@@ -7,6 +7,7 @@
 package org.obeonetwork.dsl.entityrelation.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,10 +21,12 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.obeonetwork.dsl.entityrelation.Entity;
 import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
+import org.obeonetwork.dsl.entityrelation.Identifier;
 
 /**
  * This is the item provider adapter for a {@link org.obeonetwork.dsl.entityrelation.Entity} object.
@@ -69,11 +72,11 @@ public class EntityItemProvider
 	 * This adds a property descriptor for the Primary Identifier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addPrimaryIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Entity_primaryIdentifier_feature"),
@@ -84,7 +87,13 @@ public class EntityItemProvider
 				 true,
 				 null,
 				 null,
-				 null));
+				 null) {
+				@Override
+				public Collection<?> getChoiceOfValues(Object object) {
+					Entity entity = (Entity)object;
+					return new ArrayList<Identifier>(entity.getIdentifiers());
+				}		
+			});
 	}
 
 	/**

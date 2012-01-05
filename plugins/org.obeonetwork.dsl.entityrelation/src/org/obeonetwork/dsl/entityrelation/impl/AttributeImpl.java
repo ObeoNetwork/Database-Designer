@@ -33,7 +33,7 @@ import org.obeonetwork.dsl.typeslibrary.Type;
  */
 public class AttributeImpl extends NamedElementImpl implements Attribute {
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getType()
@@ -97,14 +97,6 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	 * @generated
 	 */
 	public Type getType() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject)type;
-			type = (Type)eResolveProxy(oldType);
-			if (type != oldType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityRelationPackage.ATTRIBUTE__TYPE, oldType, type));
-			}
-		}
 		return type;
 	}
 
@@ -113,8 +105,14 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetType() {
-		return type;
+	public NotificationChain basicSetType(Type newType, NotificationChain msgs) {
+		Type oldType = type;
+		type = newType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ATTRIBUTE__TYPE, oldType, newType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -123,10 +121,17 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	 * @generated
 	 */
 	public void setType(Type newType) {
-		Type oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ATTRIBUTE__TYPE, oldType, type));
+		if (newType != type) {
+			NotificationChain msgs = null;
+			if (type != null)
+				msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EntityRelationPackage.ATTRIBUTE__TYPE, null, msgs);
+			if (newType != null)
+				msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EntityRelationPackage.ATTRIBUTE__TYPE, null, msgs);
+			msgs = basicSetType(newType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ATTRIBUTE__TYPE, newType, newType));
 	}
 
 	/**
@@ -234,6 +239,8 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case EntityRelationPackage.ATTRIBUTE__TYPE:
+				return basicSetType(null, msgs);
 			case EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER:
 				return basicSetUsedInIdentifier(null, msgs);
 		}
@@ -249,8 +256,7 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case EntityRelationPackage.ATTRIBUTE__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
+				return getType();
 			case EntityRelationPackage.ATTRIBUTE__REQUIRED:
 				return isRequired();
 			case EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER:

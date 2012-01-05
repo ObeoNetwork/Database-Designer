@@ -30,7 +30,7 @@ public enum Cardinality implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ZERO_ONE(0, "ZERO_ONE", "ZERO_ONE"),
+	ZERO_ONE(0, "ZERO_ONE", "0..1"),
 
 	/**
 	 * The '<em><b>ZERO STAR</b></em>' literal object.
@@ -40,7 +40,7 @@ public enum Cardinality implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ZERO_STAR(1, "ZERO_STAR", "ZERO_STAR"),
+	ZERO_STAR(1, "ZERO_STAR", "0..*"),
 
 	/**
 	 * The '<em><b>ONE ONE</b></em>' literal object.
@@ -50,7 +50,7 @@ public enum Cardinality implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ONE_ONE(2, "ONE_ONE", "ONE_ONE"),
+	ONE_ONE(2, "ONE_ONE", "1..1"),
 
 	/**
 	 * The '<em><b>ONE STAR</b></em>' literal object.
@@ -60,7 +60,7 @@ public enum Cardinality implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ONE_STAR(3, "ONE_STAR", "ONE_STAR");
+	ONE_STAR(3, "ONE_STAR", "1..*");
 
 	/**
 	 * The '<em><b>ZERO ONE</b></em>' literal value.
@@ -71,7 +71,7 @@ public enum Cardinality implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ZERO_ONE
-	 * @model
+	 * @model literal="0..1"
 	 * @generated
 	 * @ordered
 	 */
@@ -86,7 +86,7 @@ public enum Cardinality implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ZERO_STAR
-	 * @model
+	 * @model literal="0..*"
 	 * @generated
 	 * @ordered
 	 */
@@ -101,7 +101,7 @@ public enum Cardinality implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ONE_ONE
-	 * @model
+	 * @model literal="1..1"
 	 * @generated
 	 * @ordered
 	 */
@@ -116,7 +116,7 @@ public enum Cardinality implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ONE_STAR
-	 * @model
+	 * @model literal="1..*"
 	 * @generated
 	 * @ordered
 	 */
@@ -261,6 +261,13 @@ public enum Cardinality implements Enumerator {
 	@Override
 	public String toString() {
 		return literal;
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	public boolean isStarCardinality() {
+		return (this == ZERO_STAR || this == ONE_STAR);
 	}
 	
 } //Cardinality

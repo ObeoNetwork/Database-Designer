@@ -7,6 +7,7 @@
 package org.obeonetwork.dsl.entityrelation.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
+import org.obeonetwork.dsl.entityrelation.Identifier;
 import org.obeonetwork.dsl.entityrelation.Relation;
 
 /**
@@ -254,11 +256,11 @@ public class RelationItemProvider
 	 * This adds a property descriptor for the Identifier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Relation_identifier_feature"),
@@ -269,7 +271,37 @@ public class RelationItemProvider
 				 true,
 				 null,
 				 null,
-				 null));
+				 null) {
+				@Override
+				public Collection<?> getChoiceOfValues(Object object) {
+					Relation relation = (Relation)object;
+					
+					if (relation.getSourceCardinality().isStarCardinality() == true) {
+						// Identifier must be one of the source entity
+						if (relation.getSource() != null) {
+							return new ArrayList<Identifier>(relation.getSource().getIdentifiers());
+						}
+					} else if (relation.getTargetCardinality().isStarCardinality() == true) {
+						// Identifier must be one of the target entity
+						if (relation.getTarget() != null) {
+							return new ArrayList<Identifier>(relation.getTarget().getIdentifiers());
+						}
+					} else if (relation.getSourceCardinality().isStarCardinality() == false
+							&& relation.getTargetCardinality().isStarCardinality() == false) {
+						// Identifier may be one of the source or target entity
+						Collection<Identifier> suggestedIdentifiers = new ArrayList<Identifier>();
+						if (relation.getSource() != null) {
+							suggestedIdentifiers.addAll(relation.getSource().getIdentifiers());
+						}
+						if (relation.getTarget() != null) {
+							suggestedIdentifiers.addAll(relation.getTarget().getIdentifiers());
+						}
+						return suggestedIdentifiers;
+					}
+					
+					return null;
+				}		
+			});
 	}
 
 	/**

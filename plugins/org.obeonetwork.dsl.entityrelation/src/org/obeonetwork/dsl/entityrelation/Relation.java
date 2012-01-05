@@ -88,7 +88,7 @@ public interface Relation extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Source Cardinality</b></em>' attribute.
-	 * The default value is <code>"ZERO_STAR"</code>.
+	 * The default value is <code>"0..*"</code>.
 	 * The literals are from the enumeration {@link org.obeonetwork.dsl.entityrelation.Cardinality}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -100,7 +100,7 @@ public interface Relation extends NamedElement {
 	 * @see org.obeonetwork.dsl.entityrelation.Cardinality
 	 * @see #setSourceCardinality(Cardinality)
 	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation_SourceCardinality()
-	 * @model default="ZERO_STAR"
+	 * @model default="0..*"
 	 * @generated
 	 */
 	Cardinality getSourceCardinality();
@@ -196,7 +196,7 @@ public interface Relation extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Target Cardinality</b></em>' attribute.
-	 * The default value is <code>"ZERO_ONE"</code>.
+	 * The default value is <code>"0..1"</code>.
 	 * The literals are from the enumeration {@link org.obeonetwork.dsl.entityrelation.Cardinality}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -208,7 +208,7 @@ public interface Relation extends NamedElement {
 	 * @see org.obeonetwork.dsl.entityrelation.Cardinality
 	 * @see #setTargetCardinality(Cardinality)
 	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getRelation_TargetCardinality()
-	 * @model default="ZERO_ONE"
+	 * @model default="0..1"
 	 * @generated
 	 */
 	Cardinality getTargetCardinality();

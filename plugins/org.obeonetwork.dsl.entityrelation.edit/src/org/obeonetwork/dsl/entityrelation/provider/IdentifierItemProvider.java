@@ -7,6 +7,7 @@
 package org.obeonetwork.dsl.entityrelation.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,6 +20,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.obeonetwork.dsl.entityrelation.Attribute;
+import org.obeonetwork.dsl.entityrelation.Entity;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
 
@@ -66,11 +70,11 @@ public class IdentifierItemProvider
 	 * This adds a property descriptor for the Attributes feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addAttributesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Identifier_attributes_feature"),
@@ -81,7 +85,18 @@ public class IdentifierItemProvider
 				 true,
 				 null,
 				 null,
-				 null));
+				 null) {
+				@Override
+				public Collection<?> getChoiceOfValues(Object object) {
+					Identifier identifier = (Identifier)object;
+					Collection<Attribute> suggestedAttributes = new ArrayList<Attribute>();
+					if (identifier.eContainer() != null) {
+						Entity entity = (Entity)identifier.eContainer();
+						suggestedAttributes.addAll(entity.getAttributes());
+					}
+					return suggestedAttributes;
+				}		
+			});
 	}
 
 	/**
