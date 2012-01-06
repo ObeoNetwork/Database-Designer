@@ -141,7 +141,7 @@ public class TypesLibraryEditor
 	/**
 	 * @generated NOT
 	 */
-	public static final String PROPERTIES_CONTRIBUTOR = "org.obeonetwork.dsl.typeslibrary.properties";
+	public static final String PROPERTIES_CONTRIBUTOR = "org.obeonetwork.dsl.properties";
 	
 	/**
 	 * <!-- begin-user-doc -->

@@ -44,7 +44,7 @@
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor
-            contributorId="org.obeonetwork.dsl.typeslibrary.properties">
+            contributorId="org.obeonetwork.dsl.properties">
          <propertyCategory
                category="default">
          </propertyCategory>
@@ -59,7 +59,7 @@
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
       <propertyTabs
-            contributorId="org.obeonetwork.dsl.typeslibrary.properties">
+            contributorId="org.obeonetwork.dsl.properties">
          <propertyTab
                label="Base"
                category="default"
@@ -70,7 +70,7 @@
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertySections">
       <propertySections
-            contributorId="org.obeonetwork.dsl.typeslibrary.properties">
+            contributorId="org.obeonetwork.dsl.properties">
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.typeslibrary.section.NativeTypesLibrary"
