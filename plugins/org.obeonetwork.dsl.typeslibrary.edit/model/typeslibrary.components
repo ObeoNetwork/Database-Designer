@@ -89,14 +89,17 @@
       <views xmi:id="_SxB-_iouEeGaTeM9McGXjA" name="TypeInstance">
         <elements xsi:type="eef-views:Container" xmi:id="_SxB-_youEeGaTeM9McGXjA" name="properties">
           <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
-          <elements xsi:type="eef-views:ElementEditor" xmi:id="_SxB_ACouEeGaTeM9McGXjA" name="nativeType">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_SxB_ACouEeGaTeM9McGXjA" name="type">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.6"/>
           </elements>
-          <elements xsi:type="eef-views:ElementEditor" xmi:id="_SxB_ASouEeGaTeM9McGXjA" name="length">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
-          </elements>
-          <elements xsi:type="eef-views:ElementEditor" xmi:id="_SxB_AiouEeGaTeM9McGXjA" name="precision">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          <elements xsi:type="eef-views:Container" xmi:id="_9TohEThCEeG1pIWKBr2sCQ" name="typeAttributes">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.6"/>
+            <elements xsi:type="eef-views:ElementEditor" xmi:id="_SxB_ASouEeGaTeM9McGXjA" name="length">
+              <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+            </elements>
+            <elements xsi:type="eef-views:ElementEditor" xmi:id="_SxB_AiouEeGaTeM9McGXjA" name="precision">
+              <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+            </elements>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_SxB_AyouEeGaTeM9McGXjA" name="literals">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.3"/>
