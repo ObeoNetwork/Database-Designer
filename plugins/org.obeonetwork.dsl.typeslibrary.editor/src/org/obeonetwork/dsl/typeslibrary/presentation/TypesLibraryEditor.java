@@ -132,7 +132,7 @@ import org.obeonetwork.dsl.typeslibrary.provider.TypesLibraryItemProviderAdapter
  * This is an example of a TypesLibrary model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * @generated
+ * @generated NOT
  */
 public class TypesLibraryEditor
 	extends MultiPageEditorPart

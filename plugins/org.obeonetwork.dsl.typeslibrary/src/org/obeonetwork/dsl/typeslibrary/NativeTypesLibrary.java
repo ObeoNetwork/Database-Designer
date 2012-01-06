@@ -81,4 +81,12 @@ public interface NativeTypesLibrary extends EObject {
 	 */
 	EList<NativeType> getNativeTypes();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	NativeType findTypeByName(String name);
+
 } // NativeTypesLibrary

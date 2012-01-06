@@ -13,6 +13,7 @@ package org.obeonetwork.dsl.typeslibrary.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -280,6 +281,15 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getNativeType_MapsTo() {
+		return (EReference)nativeTypeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getComplexNamedType() {
 		return complexNamedTypeEClass;
 	}
@@ -433,6 +443,7 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 		nativeTypeEClass = createEClass(NATIVE_TYPE);
 		createEAttribute(nativeTypeEClass, NATIVE_TYPE__NAME);
 		createEAttribute(nativeTypeEClass, NATIVE_TYPE__SPEC);
+		createEReference(nativeTypeEClass, NATIVE_TYPE__MAPS_TO);
 
 		complexNamedTypeEClass = createEClass(COMPLEX_NAMED_TYPE);
 		createEReference(complexNamedTypeEClass, COMPLEX_NAMED_TYPE__TYPES);
@@ -494,6 +505,9 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 		initEAttribute(getNativeTypesLibrary_Name(), ecorePackage.getEString(), "name", null, 0, 1, NativeTypesLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNativeTypesLibrary_NativeTypes(), this.getNativeType(), null, "nativeTypes", null, 0, -1, NativeTypesLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		EOperation op = addEOperation(nativeTypesLibraryEClass, this.getNativeType(), "findTypeByName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(typeInstanceEClass, TypeInstance.class, "TypeInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypeInstance_NativeType(), this.getNativeType(), null, "nativeType", null, 1, 1, TypeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTypeInstance_Length(), ecorePackage.getEInt(), "length", null, 0, 1, TypeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -503,6 +517,7 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 		initEClass(nativeTypeEClass, NativeType.class, "NativeType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNativeType_Name(), ecorePackage.getEString(), "name", null, 0, 1, NativeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNativeType_Spec(), this.getNativeTypeKind(), "spec", null, 0, 1, NativeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNativeType_MapsTo(), this.getNativeType(), null, "mapsTo", null, 0, 1, NativeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(complexNamedTypeEClass, ComplexNamedType.class, "ComplexNamedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComplexNamedType_Types(), this.getUserDefinedType(), null, "types", null, 0, -1, ComplexNamedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

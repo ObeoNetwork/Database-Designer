@@ -9,11 +9,31 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.obeonetwork.dsl.typeslibrary.NativeType;
 import org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary;
+import org.obeonetwork.dsl.typeslibrary.TypeInstance;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 
 public class TypesLibraryUtil {
-
+	
+	public static NativeType findLogicalType(TypeInstance physicalTypeInstance) {
+		NativeType physicalNativeType = physicalTypeInstance.getNativeType();
+		NativeType logicalNativeType = physicalNativeType.getMapsTo();
+		if(logicalNativeType==null){
+			System.err.println("Cannot map physical type: "+physicalNativeType.getName()+" to logical type");	
+		}		
+		return logicalNativeType;		
+	}
+	
+	/*
+	private static NativeTypesLibrary getLogicalTypesLibrary(ResourceSet resourceSet) {		
+		URI typeslibraryURI = URI.createURI("pathmap://LogicalDBTypes");
+		Resource resource = resourceSet.getResource(typeslibraryURI, true);
+		NativeTypesLibrary nativeTypesLibrary = (NativeTypesLibrary) resource.getContents().get(0);
+	    return nativeTypesLibrary;
+	}
+	*/
+	
 	public static NativeTypesLibrary loadNativeTypesLibrary(
 			String databaseProductName, String databaseProductVersion) {
 		ResourceSet resourceSet = new ResourceSetImpl();

@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -30,6 +31,7 @@ import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.typeslibrary.impl.NativeTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.typeslibrary.impl.NativeTypeImpl#getSpec <em>Spec</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.typeslibrary.impl.NativeTypeImpl#getMapsTo <em>Maps To</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,6 +84,16 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	 * @ordered
 	 */
 	protected NativeTypeKind spec = SPEC_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getMapsTo() <em>Maps To</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMapsTo()
+	 * @generated
+	 * @ordered
+	 */
+	protected NativeType mapsTo;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -149,6 +161,44 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public NativeType getMapsTo() {
+		if (mapsTo != null && mapsTo.eIsProxy()) {
+			InternalEObject oldMapsTo = (InternalEObject)mapsTo;
+			mapsTo = (NativeType)eResolveProxy(oldMapsTo);
+			if (mapsTo != oldMapsTo) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesLibraryPackage.NATIVE_TYPE__MAPS_TO, oldMapsTo, mapsTo));
+			}
+		}
+		return mapsTo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NativeType basicGetMapsTo() {
+		return mapsTo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMapsTo(NativeType newMapsTo) {
+		NativeType oldMapsTo = mapsTo;
+		mapsTo = newMapsTo;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.NATIVE_TYPE__MAPS_TO, oldMapsTo, mapsTo));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -156,6 +206,9 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 				return getName();
 			case TypesLibraryPackage.NATIVE_TYPE__SPEC:
 				return getSpec();
+			case TypesLibraryPackage.NATIVE_TYPE__MAPS_TO:
+				if (resolve) return getMapsTo();
+				return basicGetMapsTo();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -173,6 +226,9 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 				return;
 			case TypesLibraryPackage.NATIVE_TYPE__SPEC:
 				setSpec((NativeTypeKind)newValue);
+				return;
+			case TypesLibraryPackage.NATIVE_TYPE__MAPS_TO:
+				setMapsTo((NativeType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -192,6 +248,9 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 			case TypesLibraryPackage.NATIVE_TYPE__SPEC:
 				setSpec(SPEC_EDEFAULT);
 				return;
+			case TypesLibraryPackage.NATIVE_TYPE__MAPS_TO:
+				setMapsTo((NativeType)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -208,6 +267,8 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case TypesLibraryPackage.NATIVE_TYPE__SPEC:
 				return spec != SPEC_EDEFAULT;
+			case TypesLibraryPackage.NATIVE_TYPE__MAPS_TO:
+				return mapsTo != null;
 		}
 		return super.eIsSet(featureID);
 	}

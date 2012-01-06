@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.obeonetwork.dsl.typeslibrary.NativeType#getName <em>Name</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.typeslibrary.NativeType#getSpec <em>Spec</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.typeslibrary.NativeType#getMapsTo <em>Maps To</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,5 +92,31 @@ public interface NativeType extends EObject {
 	 * @generated
 	 */
 	void setSpec(NativeTypeKind value);
+
+	/**
+	 * Returns the value of the '<em><b>Maps To</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maps To</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maps To</em>' reference.
+	 * @see #setMapsTo(NativeType)
+	 * @see org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage#getNativeType_MapsTo()
+	 * @model
+	 * @generated
+	 */
+	NativeType getMapsTo();
+
+	/**
+	 * Sets the value of the '{@link org.obeonetwork.dsl.typeslibrary.NativeType#getMapsTo <em>Maps To</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maps To</em>' reference.
+	 * @see #getMapsTo()
+	 * @generated
+	 */
+	void setMapsTo(NativeType value);
 
 } // NativeType

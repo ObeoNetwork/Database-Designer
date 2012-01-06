@@ -14,18 +14,13 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.obeonetwork.dsl.typeslibrary.NativeType;
 import org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
@@ -132,6 +127,20 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 			nativeTypes = new EObjectContainmentEList<NativeType>(NativeType.class, this, TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NATIVE_TYPES);
 		}
 		return nativeTypes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public NativeType findTypeByName(String name) {
+		for (NativeType type : getNativeTypes()) {
+			if (type.getName().equalsIgnoreCase(name)) {
+				return type;
+			}
+		}
+		return null;
 	}
 
 	/**

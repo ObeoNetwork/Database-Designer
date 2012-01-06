@@ -211,13 +211,22 @@ public interface TypesLibraryPackage extends EPackage {
 	int NATIVE_TYPE__SPEC = 1;
 
 	/**
+	 * The feature id for the '<em><b>Maps To</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NATIVE_TYPE__MAPS_TO = 2;
+
+	/**
 	 * The number of structural features of the '<em>Native Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NATIVE_TYPE_FEATURE_COUNT = 2;
+	int NATIVE_TYPE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.typeslibrary.impl.UserDefinedTypeImpl <em>User Defined Type</em>}' class.
@@ -516,6 +525,17 @@ public interface TypesLibraryPackage extends EPackage {
 	EAttribute getNativeType_Spec();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.obeonetwork.dsl.typeslibrary.NativeType#getMapsTo <em>Maps To</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Maps To</em>'.
+	 * @see org.obeonetwork.dsl.typeslibrary.NativeType#getMapsTo()
+	 * @see #getNativeType()
+	 * @generated
+	 */
+	EReference getNativeType_MapsTo();
+
+	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.typeslibrary.ComplexNamedType <em>Complex Named Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -766,6 +786,14 @@ public interface TypesLibraryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NATIVE_TYPE__SPEC = eINSTANCE.getNativeType_Spec();
+
+		/**
+		 * The meta object literal for the '<em><b>Maps To</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NATIVE_TYPE__MAPS_TO = eINSTANCE.getNativeType_MapsTo();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.typeslibrary.impl.ComplexNamedTypeImpl <em>Complex Named Type</em>}' class.

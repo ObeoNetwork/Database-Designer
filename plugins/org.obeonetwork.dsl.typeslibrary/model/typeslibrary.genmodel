@@ -16,6 +16,9 @@
     <genClasses ecoreClass="typeslibrary.ecore#//NativeTypesLibrary">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute typeslibrary.ecore#//NativeTypesLibrary/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference typeslibrary.ecore#//NativeTypesLibrary/nativeTypes"/>
+      <genOperations ecoreOperation="typeslibrary.ecore#//NativeTypesLibrary/findTypeByName">
+        <genParameters ecoreParameter="typeslibrary.ecore#//NativeTypesLibrary/findTypeByName/name"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="typeslibrary.ecore#//TypeInstance">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference typeslibrary.ecore#//TypeInstance/nativeType"/>
@@ -26,6 +29,7 @@
     <genClasses ecoreClass="typeslibrary.ecore#//NativeType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute typeslibrary.ecore#//NativeType/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute typeslibrary.ecore#//NativeType/spec"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference typeslibrary.ecore#//NativeType/mapsTo"/>
     </genClasses>
     <genClasses ecoreClass="typeslibrary.ecore#//ComplexNamedType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference typeslibrary.ecore#//ComplexNamedType/types"/>

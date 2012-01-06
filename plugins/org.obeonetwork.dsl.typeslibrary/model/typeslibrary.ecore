@@ -4,6 +4,9 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="typeslibrary"
     nsURI="http://www.obeonetwork.org/dsl/typeslibrary/1.0" nsPrefix="typeslibrary">
   <eClassifiers xsi:type="ecore:EClass" name="NativeTypesLibrary">
+    <eOperations name="findTypeByName" eType="#//NativeType">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nativeTypes" upperBound="-1"
         eType="#//NativeType" containment="true"/>
@@ -25,6 +28,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="NativeType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="spec" eType="#//NativeTypeKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mapsTo" eType="#//NativeType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComplexNamedType" eSuperTypes="#//UserDefinedType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
