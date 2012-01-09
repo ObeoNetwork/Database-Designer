@@ -7,4 +7,93 @@
 	       name="database">
     </component>
   </extension>
+  
+     <!-- Tabbed properties views extension -->
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="fr.obeo.dsl.viewpoint.diagram">
+         <propertyCategory
+               category="default">
+         </propertyCategory>
+         <propertyCategory
+               category="extended">
+         </propertyCategory>
+         <propertyCategory
+               category="advanced">
+         </propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="fr.obeo.dsl.viewpoint.diagram">
+         <propertyTab
+               label="Base"
+               category="default"
+               id="Base">
+         </propertyTab>
+         <propertyTab
+               label="Primary Key"
+               category="extended"
+               id="Primary Key"
+               afterTab="Base">
+         </propertyTab>
+         <propertyTab
+               label="Foreign Keys"
+               category="extended"
+               id="Foreign Keys"
+               afterTab="Foreign Keys">
+         </propertyTab>
+         <propertyTab
+               label="Indexes"
+               category="extended"
+               id="Indexes"
+               afterTab="Indexes">
+         </propertyTab>
+         <propertyTab
+               label="Constraints"
+               category="extended"
+               id="Constraints"
+               afterTab="Constraints">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+  
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="fr.obeo.dsl.viewpoint.diagram">
+         <propertySection
+               tab="Base"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               filter="org.obeonetwork.dsl.database.design.properties.BaseTabPropertiesEditionSection"
+               id="org.obeonetwork.dsl.properties.database.tabs">
+         </propertySection>
+         <propertySection
+               tab="Primary Key"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               filter="org.obeonetwork.dsl.database.design.properties.PrimaryKeyTabPropertiesEditionSection"
+               id="org.obeonetwork.dsl.properties.database.primarykey">
+         </propertySection>
+         <propertySection
+               tab="Foreign Keys"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               filter="org.obeonetwork.dsl.database.design.properties.OtherTabPropertiesEditionSection"
+               id="org.obeonetwork.dsl.properties.database.foreignkeys">
+         </propertySection>
+         <propertySection
+               tab="Indexes"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               filter="org.obeonetwork.dsl.database.design.properties.OtherTabPropertiesEditionSection"
+               id="org.obeonetwork.dsl.properties.database.indexes">
+         </propertySection>
+         <propertySection
+               tab="Constraints"
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               filter="org.obeonetwork.dsl.database.design.properties.OtherTabPropertiesEditionSection"
+               id="org.obeonetwork.dsl.properties.database.constraints">
+         </propertySection>
+      </propertySections>
+   </extension>
 </plugin>
