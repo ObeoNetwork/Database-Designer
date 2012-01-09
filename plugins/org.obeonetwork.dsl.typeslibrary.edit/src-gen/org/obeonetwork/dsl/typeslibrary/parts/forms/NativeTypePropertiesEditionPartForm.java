@@ -7,6 +7,7 @@ package org.obeonetwork.dsl.typeslibrary.parts.forms;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
@@ -19,12 +20,16 @@ import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
+import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
+import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
@@ -53,6 +58,7 @@ public class NativeTypePropertiesEditionPartForm extends CompositePropertiesEdit
 
 	protected Text name;
 	protected EMFComboViewer spec;
+	protected EObjectFlatComboViewer mapsTo;
 
 
 
@@ -95,6 +101,7 @@ public class NativeTypePropertiesEditionPartForm extends CompositePropertiesEdit
 		CompositionStep propertiesStep = nativeTypeStep.addStep(TypeslibraryViewsRepository.NativeType.Properties.class);
 		propertiesStep.addStep(TypeslibraryViewsRepository.NativeType.Properties.name);
 		propertiesStep.addStep(TypeslibraryViewsRepository.NativeType.Properties.spec);
+		propertiesStep.addStep(TypeslibraryViewsRepository.NativeType.Properties.mapsTo);
 		
 		
 		composer = new PartComposer(nativeTypeStep) {
@@ -109,6 +116,9 @@ public class NativeTypePropertiesEditionPartForm extends CompositePropertiesEdit
 				}
 				if (key == TypeslibraryViewsRepository.NativeType.Properties.spec) {
 					return createSpecEMFComboViewer(widgetFactory, parent);
+				}
+				if (key == TypeslibraryViewsRepository.NativeType.Properties.mapsTo) {
+					return createMapsToFlatComboViewer(parent, widgetFactory);
 				}
 				return parent;
 			}
@@ -199,6 +209,36 @@ public class NativeTypePropertiesEditionPartForm extends CompositePropertiesEdit
 		return parent;
 	}
 
+	/**
+	 * @param parent the parent composite
+	 * @param widgetFactory factory to use to instanciante widget of the form
+	 * 
+	 */
+	protected Composite createMapsToFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
+		FormUtils.createPartLabel(widgetFactory, parent, TypeslibraryMessages.NativeTypePropertiesEditionPart_MapsToLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.NativeType.Properties.mapsTo, TypeslibraryViewsRepository.FORM_KIND));
+		mapsTo = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.NativeType.Properties.mapsTo, TypeslibraryViewsRepository.FORM_KIND));
+		widgetFactory.adapt(mapsTo);
+		mapsTo.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+		GridData mapsToData = new GridData(GridData.FILL_HORIZONTAL);
+		mapsTo.setLayoutData(mapsToData);
+		mapsTo.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
+			 */
+			public void selectionChanged(SelectionChangedEvent event) {
+				if (propertiesEditionComponent != null)
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(NativeTypePropertiesEditionPartForm.this, TypeslibraryViewsRepository.NativeType.Properties.mapsTo, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getMapsTo()));
+			}
+
+		});
+		mapsTo.setID(TypeslibraryViewsRepository.NativeType.Properties.mapsTo);
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(TypeslibraryViewsRepository.NativeType.Properties.mapsTo, TypeslibraryViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		return parent;
+	}
+
 
 
 	/**
@@ -209,8 +249,8 @@ public class NativeTypePropertiesEditionPartForm extends CompositePropertiesEdit
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-		
-		// End of user code
+
+// End of user code
 	}
 
 	/**
@@ -267,6 +307,77 @@ public class NativeTypePropertiesEditionPartForm extends CompositePropertiesEdit
 	 */
 	public void setSpec(Enumerator newValue) {
 		spec.modelUpdating(new StructuredSelection(newValue));
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.typeslibrary.parts.NativeTypePropertiesEditionPart#getMapsTo()
+	 * 
+	 */
+	public EObject getMapsTo() {
+		if (mapsTo.getSelection() instanceof StructuredSelection) {
+			Object firstElement = ((StructuredSelection) mapsTo.getSelection()).getFirstElement();
+			if (firstElement instanceof EObject)
+				return (EObject) firstElement;
+		}
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.typeslibrary.parts.NativeTypePropertiesEditionPart#initMapsTo(EObjectFlatComboSettings)
+	 */
+	public void initMapsTo(EObjectFlatComboSettings settings) {
+		mapsTo.setInput(settings);
+		if (current != null) {
+			mapsTo.setSelection(new StructuredSelection(settings.getValue()));
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.typeslibrary.parts.NativeTypePropertiesEditionPart#setMapsTo(EObject newValue)
+	 * 
+	 */
+	public void setMapsTo(EObject newValue) {
+		if (newValue != null) {
+			mapsTo.setSelection(new StructuredSelection(newValue));
+		} else {
+			mapsTo.setSelection(new StructuredSelection()); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.typeslibrary.parts.NativeTypePropertiesEditionPart#setMapsToButtonMode(ButtonsModeEnum newValue)
+	 */
+	public void setMapsToButtonMode(ButtonsModeEnum newValue) {
+		mapsTo.setButtonMode(newValue);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.typeslibrary.parts.NativeTypePropertiesEditionPart#addFilterMapsTo(ViewerFilter filter)
+	 * 
+	 */
+	public void addFilterToMapsTo(ViewerFilter filter) {
+		mapsTo.addFilter(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.typeslibrary.parts.NativeTypePropertiesEditionPart#addBusinessFilterMapsTo(ViewerFilter filter)
+	 * 
+	 */
+	public void addBusinessFilterToMapsTo(ViewerFilter filter) {
+		mapsTo.addBusinessRuleFilter(filter);
 	}
 
 

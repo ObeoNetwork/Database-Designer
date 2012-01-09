@@ -5,9 +5,6 @@ package org.obeonetwork.dsl.typeslibrary.parts;
 
 // Start of user code for imports
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
-import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 
@@ -21,50 +18,34 @@ import org.eclipse.jface.viewers.ViewerFilter;
 public interface TypeInstancePropertiesEditionPart {
 
 	/**
-	 * @return the nativeType
+	 * @return the type
 	 * 
 	 */
-	public EObject getNativeType();
+	public Object getType();
 
 	/**
-	 * Init the nativeType
-	 * @param settings the combo setting
+	 * Init the type
+	 * @param input choice of values
+	 * @param currentValue the current value
 	 */
-	public void initNativeType(EObjectFlatComboSettings settings);
+	public void initType(Object input, Object currentValue);
 
 	/**
-	 * Defines a new nativeType
-	 * @param newValue the new nativeType to set
+	 * Defines a new type
+	 * @param newValue the new type to set
 	 * 
 	 */
-	public void setNativeType(EObject newValue);
+	public void setType(Object newValue);
 
 	/**
-	 * Defines the button mode
-	 * @param newValue the new mode to set
-	 * 
-	 */
-	public void setNativeTypeButtonMode(ButtonsModeEnum newValue);
-
-	/**
-	 * Adds the given filter to the nativeType edition editor.
+	 * Adds the given filter to the type edition editor.
 	 * 
 	 * @param filter
 	 *            a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 * 
 	 */
-	public void addFilterToNativeType(ViewerFilter filter);
-
-	/**
-	 * Adds the given filter to the nativeType edition editor.
-	 * 
-	 * @param filter
-	 *            a viewer filter
-	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
-	 * 
-	 */
-	public void addBusinessFilterToNativeType(ViewerFilter filter);
+	public void addFilterToType(ViewerFilter filter);
 
 
 	/**
@@ -133,7 +114,7 @@ public interface TypeInstancePropertiesEditionPart {
 	public String getTitle();
 
 	// Start of user code for additional methods
-	
-	// End of user code
+	public void updateTypeFields(boolean lengthVisible, boolean precisionVisible, boolean literalsVisible);
+// End of user code
 
 }

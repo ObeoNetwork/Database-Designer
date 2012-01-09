@@ -12,7 +12,7 @@
         <model xsi:type="ecore:EClass" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//NativeTypesLibrary"/>
       </bindings>
       <bindings xsi:type="eef-components:PropertiesEditionComponent" xmi:id="_SxB-5SouEeGaTeM9McGXjA" name="TypeInstance" views="_SxB-_iouEeGaTeM9McGXjA">
-        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_SxB-5iouEeGaTeM9McGXjA" name="nativeType" views="_SxB_ACouEeGaTeM9McGXjA">
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_SxB-5iouEeGaTeM9McGXjA" name="type" views="_SxB_ACouEeGaTeM9McGXjA">
           <model xsi:type="ecore:EReference" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypeInstance/nativeType"/>
         </properties>
         <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_SxB-5youEeGaTeM9McGXjA" name="length" views="_SxB_ASouEeGaTeM9McGXjA">
@@ -32,6 +32,9 @@
         </properties>
         <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_SxB-7CouEeGaTeM9McGXjA" name="spec" views="_SxCl8iouEeGaTeM9McGXjA">
           <model xsi:type="ecore:EAttribute" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//NativeType/spec"/>
+        </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_Y7TY8DhJEeG1pIWKBr2sCQ" name="mapsTo" views="_bhfNgDhIEeG1pIWKBr2sCQ" helpID="">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//NativeType/mapsTo"/>
         </properties>
         <model xsi:type="ecore:EClass" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//NativeType"/>
       </bindings>
@@ -114,6 +117,9 @@
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_SxCl8iouEeGaTeM9McGXjA" name="spec">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.2"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_bhfNgDhIEeG1pIWKBr2sCQ" name="mapsTo">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
           </elements>
         </elements>
       </views>

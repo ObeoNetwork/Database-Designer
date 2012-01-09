@@ -40,13 +40,18 @@ public class TypeslibraryViewsRepository {
 		public static class Properties {
 	
 			
-			public static String nativeType = "typeslibrary::TypeInstance::properties::nativeType";
+			public static String type = "typeslibrary::TypeInstance::properties::type";
 			
+				public static class TypeAttributes {
 			
-			public static String length = "typeslibrary::TypeInstance::properties::length";
+					
+					public static String length = "typeslibrary::TypeInstance::properties::typeAttributes::length";
+					
+					
+					public static String precision = "typeslibrary::TypeInstance::properties::typeAttributes::precision";
+					
 			
-			
-			public static String precision = "typeslibrary::TypeInstance::properties::precision";
+				}
 			
 			
 			public static String literals = "typeslibrary::TypeInstance::properties::literals";
@@ -68,6 +73,9 @@ public class TypeslibraryViewsRepository {
 			
 			
 			public static String spec = "typeslibrary::NativeType::properties::spec";
+			
+			
+			public static String mapsTo = "typeslibrary::NativeType::properties::mapsTo";
 			
 	
 		}

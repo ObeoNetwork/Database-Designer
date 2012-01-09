@@ -6,6 +6,10 @@ package org.obeonetwork.dsl.typeslibrary.parts;
 // Start of user code for imports
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
+import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
+import org.eclipse.jface.viewers.ViewerFilter;
 
 
 
@@ -52,6 +56,53 @@ public interface NativeTypePropertiesEditionPart {
 	public void setSpec(Enumerator newValue);
 
 
+	/**
+	 * @return the mapsTo
+	 * 
+	 */
+	public EObject getMapsTo();
+
+	/**
+	 * Init the mapsTo
+	 * @param settings the combo setting
+	 */
+	public void initMapsTo(EObjectFlatComboSettings settings);
+
+	/**
+	 * Defines a new mapsTo
+	 * @param newValue the new mapsTo to set
+	 * 
+	 */
+	public void setMapsTo(EObject newValue);
+
+	/**
+	 * Defines the button mode
+	 * @param newValue the new mode to set
+	 * 
+	 */
+	public void setMapsToButtonMode(ButtonsModeEnum newValue);
+
+	/**
+	 * Adds the given filter to the mapsTo edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 * 
+	 */
+	public void addFilterToMapsTo(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the mapsTo edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 * 
+	 */
+	public void addBusinessFilterToMapsTo(ViewerFilter filter);
+
+
 
 
 
@@ -64,7 +115,7 @@ public interface NativeTypePropertiesEditionPart {
 	public String getTitle();
 
 	// Start of user code for additional methods
-	
-	// End of user code
+
+// End of user code
 
 }

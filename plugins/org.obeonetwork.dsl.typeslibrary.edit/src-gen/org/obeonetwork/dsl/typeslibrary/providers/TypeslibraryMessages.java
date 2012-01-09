@@ -83,7 +83,7 @@ public class TypeslibraryMessages extends NLS {
 	public static String NativeTypesLibraryPropertiesEditionPart_NativeTypesLabel;
 
 	
-	public static String TypeInstancePropertiesEditionPart_NativeTypeLabel;
+	public static String TypeInstancePropertiesEditionPart_TypeLabel;
 
 	
 	public static String TypeInstancePropertiesEditionPart_LengthLabel;
@@ -99,6 +99,9 @@ public class TypeslibraryMessages extends NLS {
 
 	
 	public static String NativeTypePropertiesEditionPart_SpecLabel;
+
+	
+	public static String NativeTypePropertiesEditionPart_MapsToLabel;
 
 	
 	public static String ComplexNamedTypePropertiesEditionPart_NameLabel;
@@ -170,8 +173,8 @@ public class TypeslibraryMessages extends NLS {
 	public static String PropertiesEditionPart_RemoveListViewerLabel;
 
 	// Start of user code for additionnal NLS Constants
-	
-	// End of user code
+
+// End of user code
 
 	static {
 		// initialize resource bundle

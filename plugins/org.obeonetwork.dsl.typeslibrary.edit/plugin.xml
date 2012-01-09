@@ -30,7 +30,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.obeonetwork.org/dsl/typeslibrary/1.0"
-            class="org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryEEFAdapterFactory"
+            class="org.obeonetwork.dsl.typeslibrary.providers.CustomTypeslibraryEEFAdapterFactory"
             supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
    </extension>
    <extension
