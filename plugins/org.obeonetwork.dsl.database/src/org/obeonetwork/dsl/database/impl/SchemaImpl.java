@@ -11,7 +11,6 @@
 package org.obeonetwork.dsl.database.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.Schema;
 

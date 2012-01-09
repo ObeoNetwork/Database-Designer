@@ -13,12 +13,24 @@ package org.obeonetwork.dsl.database.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.obeonetwork.dsl.database.*;
+import org.obeonetwork.dsl.database.Column;
+import org.obeonetwork.dsl.database.Constraint;
+import org.obeonetwork.dsl.database.DataBase;
+import org.obeonetwork.dsl.database.DatabaseFactory;
+import org.obeonetwork.dsl.database.DatabasePackage;
+import org.obeonetwork.dsl.database.ForeignKey;
+import org.obeonetwork.dsl.database.ForeignKeyElement;
+import org.obeonetwork.dsl.database.Index;
+import org.obeonetwork.dsl.database.IndexElement;
+import org.obeonetwork.dsl.database.PrimaryKey;
+import org.obeonetwork.dsl.database.Schema;
+import org.obeonetwork.dsl.database.Sequence;
+import org.obeonetwork.dsl.database.Table;
+import org.obeonetwork.dsl.database.View;
+import org.obeonetwork.dsl.typeslibrary.TypeInstance;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -105,6 +117,8 @@ public class DatabaseFactoryImpl extends EFactoryImpl implements DatabaseFactory
 	 */
 	public Column createColumn() {
 		ColumnImpl column = new ColumnImpl();
+		TypeInstance type = TypesLibraryFactory.eINSTANCE.createTypeInstance();
+		column.setType(type);
 		return column;
 	}
 

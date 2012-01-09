@@ -11,9 +11,7 @@
 package org.obeonetwork.dsl.database;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
-import org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.UserDefinedTypesLibrary;
 
 /**
