@@ -7,6 +7,7 @@
 package org.obeonetwork.dsl.entityrelation;
 
 import org.eclipse.emf.common.util.EList;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface LogicalModel extends NamedElement {
+public interface LogicalModel extends NamedElement, TypesLibraryUser {
 	/**
 	 * Returns the value of the '<em><b>Entities</b></em>' containment reference list.
 	 * The list contents are of type {@link org.obeonetwork.dsl.entityrelation.Entity}.

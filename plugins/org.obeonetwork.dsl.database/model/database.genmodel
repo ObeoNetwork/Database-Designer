@@ -15,7 +15,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute database.ecore#//DataBase/url"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference database.ecore#//DataBase/schemas"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference database.ecore#//DataBase/defines"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference database.ecore#//DataBase/uses"/>
     </genClasses>
     <genClasses ecoreClass="database.ecore#//AbstractTable">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference database.ecore#//AbstractTable/columns"/>

@@ -216,6 +216,14 @@
          </propertySection>
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.PrimaryKey"
+               tab="Primary Key">
+             <input
+                    type="org.obeonetwork.dsl.database.PrimaryKey">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.Table"
                tab="Foreign Keys">
              <input
@@ -236,14 +244,6 @@
                tab="Indexes">
              <input
                     type="org.obeonetwork.dsl.database.Table">
-             </input>
-         </propertySection>
-         <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               id="org.obeonetwork.dsl.database.section.PrimaryKey"
-               tab="Primary Key">
-             <input
-                    type="org.obeonetwork.dsl.database.PrimaryKey">
              </input>
          </propertySection>
          <propertySection

@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.obeonetwork.dsl.entityrelation.*;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
 import org.obeonetwork.dsl.entityrelation.Attribute;
 import org.obeonetwork.dsl.entityrelation.Entity;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
@@ -99,6 +100,7 @@ public class EntityRelationSwitch<T> {
 				LogicalModel logicalModel = (LogicalModel)theEObject;
 				T result = caseLogicalModel(logicalModel);
 				if (result == null) result = caseNamedElement(logicalModel);
+				if (result == null) result = caseTypesLibraryUser(logicalModel);
 				if (result == null) result = caseLogicalElement(logicalModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -276,6 +278,21 @@ public class EntityRelationSwitch<T> {
 	 * @generated
 	 */
 	public T caseIdentifier(Identifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>User</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>User</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypesLibraryUser(TypesLibraryUser object) {
 		return null;
 	}
 

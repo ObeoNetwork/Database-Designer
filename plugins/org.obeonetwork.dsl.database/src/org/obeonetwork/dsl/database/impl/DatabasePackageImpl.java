@@ -287,15 +287,6 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataBase_Uses() {
-		return (EReference)dataBaseEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getAbstractTable() {
 		return abstractTableEClass;
 	}
@@ -866,7 +857,6 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 		createEAttribute(dataBaseEClass, DATA_BASE__URL);
 		createEReference(dataBaseEClass, DATA_BASE__SCHEMAS);
 		createEReference(dataBaseEClass, DATA_BASE__DEFINES);
-		createEReference(dataBaseEClass, DATA_BASE__USES);
 
 		abstractTableEClass = createEClass(ABSTRACT_TABLE);
 		createEReference(abstractTableEClass, ABSTRACT_TABLE__COLUMNS);
@@ -976,6 +966,7 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 		// Add supertypes to classes
 		namedElementEClass.getESuperTypes().add(this.getDatabaseElement());
 		dataBaseEClass.getESuperTypes().add(this.getTableContainer());
+		dataBaseEClass.getESuperTypes().add(theTypesLibraryPackage.getTypesLibraryUser());
 		abstractTableEClass.getESuperTypes().add(this.getNamedElement());
 		columnEClass.getESuperTypes().add(this.getNamedElement());
 		indexEClass.getESuperTypes().add(this.getNamedElement());
@@ -998,7 +989,6 @@ public class DatabasePackageImpl extends EPackageImpl implements DatabasePackage
 		initEAttribute(getDataBase_Url(), ecorePackage.getEString(), "url", null, 0, 1, DataBase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDataBase_Schemas(), this.getSchema(), null, "schemas", null, 0, -1, DataBase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDataBase_Defines(), theTypesLibraryPackage.getUserDefinedTypesLibrary(), null, "defines", null, 0, -1, DataBase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDataBase_Uses(), theTypesLibraryPackage.getNativeTypesLibrary(), null, "uses", null, 0, -1, DataBase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractTableEClass, AbstractTable.class, "AbstractTable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAbstractTable_Columns(), this.getColumn(), this.getColumn_Owner(), "columns", null, 0, -1, AbstractTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

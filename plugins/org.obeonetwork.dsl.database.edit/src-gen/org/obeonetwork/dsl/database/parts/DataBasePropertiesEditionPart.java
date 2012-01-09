@@ -49,43 +49,43 @@ public interface DataBasePropertiesEditionPart {
 
 
 	/**
-	 * Init the uses
-	 * @param settings settings for the uses ReferencesTable 
+	 * Init the usedLibraries
+	 * @param settings settings for the usedLibraries ReferencesTable 
 	 */
-	public void initUses(ReferencesTableSettings settings);
+	public void initUsedLibraries(ReferencesTableSettings settings);
 
 	/**
-	 * Update the uses
-	 * @param newValue the uses to update
+	 * Update the usedLibraries
+	 * @param newValue the usedLibraries to update
 	 * 
 	 */
-	public void updateUses();
+	public void updateUsedLibraries();
 
 	/**
-	 * Adds the given filter to the uses edition editor.
+	 * Adds the given filter to the usedLibraries edition editor.
 	 * 
 	 * @param filter
 	 *            a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 * 
 	 */
-	public void addFilterToUses(ViewerFilter filter);
+	public void addFilterToUsedLibraries(ViewerFilter filter);
 
 	/**
-	 * Adds the given filter to the uses edition editor.
+	 * Adds the given filter to the usedLibraries edition editor.
 	 * 
 	 * @param filter
 	 *            a viewer filter
 	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
 	 * 
 	 */
-	public void addBusinessFilterToUses(ViewerFilter filter);
+	public void addBusinessFilterToUsedLibraries(ViewerFilter filter);
 
 	/**
-	 * @return true if the given element is contained inside the uses table
+	 * @return true if the given element is contained inside the usedLibraries table
 	 * 
 	 */
-	public boolean isContainedInUsesTable(EObject element);
+	public boolean isContainedInUsedLibrariesTable(EObject element);
 
 
 	/**

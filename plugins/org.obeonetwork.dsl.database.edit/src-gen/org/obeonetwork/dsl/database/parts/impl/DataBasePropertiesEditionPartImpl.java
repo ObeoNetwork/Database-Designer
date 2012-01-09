@@ -49,7 +49,7 @@ public class DataBasePropertiesEditionPartImpl extends CompositePropertiesEditio
 
 	protected Text name;
 	protected Text url;
-	protected FlatReferencesTable uses;
+	protected FlatReferencesTable usedLibraries;
 	protected Text comments;
 
 
@@ -91,7 +91,7 @@ public class DataBasePropertiesEditionPartImpl extends CompositePropertiesEditio
 		CompositionStep propertiesStep = dataBase_Step.addStep(DatabaseViewsRepository.DataBase_.Properties.class);
 		propertiesStep.addStep(DatabaseViewsRepository.DataBase_.Properties.name);
 		propertiesStep.addStep(DatabaseViewsRepository.DataBase_.Properties.url);
-		propertiesStep.addStep(DatabaseViewsRepository.DataBase_.Properties.uses);
+		propertiesStep.addStep(DatabaseViewsRepository.DataBase_.Properties.usedLibraries);
 		propertiesStep.addStep(DatabaseViewsRepository.DataBase_.Properties.comments);
 		
 		
@@ -108,8 +108,8 @@ public class DataBasePropertiesEditionPartImpl extends CompositePropertiesEditio
 				if (key == DatabaseViewsRepository.DataBase_.Properties.url) {
 					return createUrlText(parent);
 				}
-				if (key == DatabaseViewsRepository.DataBase_.Properties.uses) {
-					return createUsesFlatReferencesTable(parent);
+				if (key == DatabaseViewsRepository.DataBase_.Properties.usedLibraries) {
+					return createUsedLibrariesFlatReferencesTable(parent);
 				}
 				if (key == DatabaseViewsRepository.DataBase_.Properties.comments) {
 					return createCommentsTextarea(parent);
@@ -231,23 +231,23 @@ public class DataBasePropertiesEditionPartImpl extends CompositePropertiesEditio
 	 * @param parent
 	 * 
 	 */
-	protected Composite createUsesFlatReferencesTable(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.DataBasePropertiesEditionPart_UsesLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.DataBase_.Properties.uses, DatabaseViewsRepository.SWT_KIND));
-		uses = new FlatReferencesTable(parent);
-		uses.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+	protected Composite createUsedLibrariesFlatReferencesTable(Composite parent) {
+		SWTUtils.createPartLabel(parent, DatabaseMessages.DataBasePropertiesEditionPart_UsedLibrariesLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.DataBase_.Properties.usedLibraries, DatabaseViewsRepository.SWT_KIND));
+		usedLibraries = new FlatReferencesTable(parent);
+		usedLibraries.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
-		uses.addSelectionChangedListener(new ISelectionChangedListener() {
+		usedLibraries.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (event.getSelection() instanceof StructuredSelection) 
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DataBasePropertiesEditionPartImpl.this, DatabaseViewsRepository.DataBase_.Properties.uses, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, ((StructuredSelection)event.getSelection()).toList()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DataBasePropertiesEditionPartImpl.this, DatabaseViewsRepository.DataBase_.Properties.usedLibraries, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, ((StructuredSelection)event.getSelection()).toList()));
 			}
 
 		});
-		GridData usesData = new GridData(GridData.FILL_HORIZONTAL);
-		uses.setLayoutData(usesData);
-		uses.setID(DatabaseViewsRepository.DataBase_.Properties.uses);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.DataBase_.Properties.uses, DatabaseViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		GridData usedLibrariesData = new GridData(GridData.FILL_HORIZONTAL);
+		usedLibraries.setLayoutData(usedLibrariesData);
+		usedLibraries.setID(DatabaseViewsRepository.DataBase_.Properties.usedLibraries);
+		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.DataBase_.Properties.usedLibraries, DatabaseViewsRepository.SWT_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
 
@@ -353,52 +353,52 @@ public class DataBasePropertiesEditionPartImpl extends CompositePropertiesEditio
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.obeonetwork.dsl.database.parts.DataBasePropertiesEditionPart#initUses(ReferencesTableSettings)
+	 * @see org.obeonetwork.dsl.database.parts.DataBasePropertiesEditionPart#initUsedLibraries(ReferencesTableSettings)
 	 */
-	public void initUses(ReferencesTableSettings settings) {
+	public void initUsedLibraries(ReferencesTableSettings settings) {
 		if (current.eResource() != null && current.eResource().getResourceSet() != null)
 			this.resourceSet = current.eResource().getResourceSet();
-		uses.setInput(settings);
+		usedLibraries.setInput(settings);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.obeonetwork.dsl.database.parts.DataBasePropertiesEditionPart#updateUses()
+	 * @see org.obeonetwork.dsl.database.parts.DataBasePropertiesEditionPart#updateUsedLibraries()
 	 * 
 	 */
-	public void updateUses() {
-	uses.refresh();
+	public void updateUsedLibraries() {
+	usedLibraries.refresh();
 }
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.obeonetwork.dsl.database.parts.DataBasePropertiesEditionPart#addFilterUses(ViewerFilter filter)
+	 * @see org.obeonetwork.dsl.database.parts.DataBasePropertiesEditionPart#addFilterUsedLibraries(ViewerFilter filter)
 	 * 
 	 */
-	public void addFilterToUses(ViewerFilter filter) {
-		uses.addFilter(filter);
+	public void addFilterToUsedLibraries(ViewerFilter filter) {
+		usedLibraries.addFilter(filter);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.obeonetwork.dsl.database.parts.DataBasePropertiesEditionPart#addBusinessFilterUses(ViewerFilter filter)
+	 * @see org.obeonetwork.dsl.database.parts.DataBasePropertiesEditionPart#addBusinessFilterUsedLibraries(ViewerFilter filter)
 	 * 
 	 */
-	public void addBusinessFilterToUses(ViewerFilter filter) {
-		uses.addBusinessRuleFilter(filter);
+	public void addBusinessFilterToUsedLibraries(ViewerFilter filter) {
+		usedLibraries.addBusinessRuleFilter(filter);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.obeonetwork.dsl.database.parts.DataBasePropertiesEditionPart#isContainedInUsesTable(EObject element)
+	 * @see org.obeonetwork.dsl.database.parts.DataBasePropertiesEditionPart#isContainedInUsedLibrariesTable(EObject element)
 	 * 
 	 */
-	public boolean isContainedInUsesTable(EObject element) {
-		return ((ReferencesTableSettings)uses.getInput()).contains(element);
+	public boolean isContainedInUsedLibrariesTable(EObject element) {
+		return ((ReferencesTableSettings)usedLibraries.getInput()).contains(element);
 	}
 
 

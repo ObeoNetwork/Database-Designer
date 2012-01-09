@@ -560,6 +560,7 @@ public class EntityRelationPackageImpl extends EPackageImpl implements EntityRel
 
 		// Add supertypes to classes
 		logicalModelEClass.getESuperTypes().add(this.getNamedElement());
+		logicalModelEClass.getESuperTypes().add(theTypesLibraryPackage.getTypesLibraryUser());
 		entityEClass.getESuperTypes().add(this.getNamedElement());
 		relationEClass.getESuperTypes().add(this.getNamedElement());
 		relationElementEClass.getESuperTypes().add(this.getLogicalElement());

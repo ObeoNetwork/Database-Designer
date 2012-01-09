@@ -12,8 +12,8 @@
         <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_9dhnUyZDEeGbPrqZPmsr5Q" name="comments" views="_9diOiCZDEeGbPrqZPmsr5Q">
           <model xsi:type="ecore:EAttribute" href="platform:/resource/org.obeonetwork.dsl.database/model/database.ecore#//DatabaseElement/comments"/>
         </properties>
-        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_9dhnWCZDEeGbPrqZPmsr5Q" name="uses" views="_9diOjSZDEeGbPrqZPmsr5Q">
-          <model xsi:type="ecore:EReference" href="platform:/resource/org.obeonetwork.dsl.database/model/database.ecore#//DataBase/uses"/>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_9dhnWCZDEeGbPrqZPmsr5Q" name="usedLibraries" views="_9diOjSZDEeGbPrqZPmsr5Q" helpID="">
+          <model xsi:type="ecore:EReference" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypesLibraryUser/usedLibraries"/>
         </properties>
         <model xsi:type="ecore:EClass" href="platform:/resource/org.obeonetwork.dsl.database/model/database.ecore#//DataBase"/>
       </bindings>
@@ -278,7 +278,7 @@
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_9diOiyZDEeGbPrqZPmsr5Q" name="url">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
           </elements>
-          <elements xsi:type="eef-views:ElementEditor" xmi:id="_9diOjSZDEeGbPrqZPmsr5Q" name="uses">
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_9diOjSZDEeGbPrqZPmsr5Q" name="usedLibraries">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.10"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_9diOiCZDEeGbPrqZPmsr5Q" name="comments">

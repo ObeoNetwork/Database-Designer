@@ -18,6 +18,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.obeonetwork.dsl.database.*;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
 
 /**
  * <!-- begin-user-doc -->
@@ -145,6 +146,10 @@ public class DatabaseAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTableContainer(TableContainer object) {
 				return createTableContainerAdapter();
+			}
+			@Override
+			public Adapter caseTypesLibraryUser(TypesLibraryUser object) {
+				return createTypesLibraryUserAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -387,6 +392,20 @@ public class DatabaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTableContainerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.typeslibrary.TypesLibraryUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.obeonetwork.dsl.typeslibrary.TypesLibraryUser
+	 * @generated
+	 */
+	public Adapter createTypesLibraryUserAdapter() {
 		return null;
 	}
 

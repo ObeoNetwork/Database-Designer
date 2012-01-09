@@ -72,6 +72,25 @@ public interface TypesLibraryPackage extends EPackage {
 	TypesLibraryPackage eINSTANCE = org.obeonetwork.dsl.typeslibrary.impl.TypesLibraryPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link org.obeonetwork.dsl.typeslibrary.TypesLibrary <em>Types Library</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.obeonetwork.dsl.typeslibrary.TypesLibrary
+	 * @see org.obeonetwork.dsl.typeslibrary.impl.TypesLibraryPackageImpl#getTypesLibrary()
+	 * @generated
+	 */
+	int TYPES_LIBRARY = 10;
+
+	/**
+	 * The number of structural features of the '<em>Types Library</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPES_LIBRARY_FEATURE_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.typeslibrary.impl.NativeTypesLibraryImpl <em>Native Types Library</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,7 +107,7 @@ public interface TypesLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NATIVE_TYPES_LIBRARY__NAME = 0;
+	int NATIVE_TYPES_LIBRARY__NAME = TYPES_LIBRARY_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Native Types</b></em>' containment reference list.
@@ -97,7 +116,7 @@ public interface TypesLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NATIVE_TYPES_LIBRARY__NATIVE_TYPES = 1;
+	int NATIVE_TYPES_LIBRARY__NATIVE_TYPES = TYPES_LIBRARY_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Native Types Library</em>' class.
@@ -106,7 +125,7 @@ public interface TypesLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NATIVE_TYPES_LIBRARY_FEATURE_COUNT = 2;
+	int NATIVE_TYPES_LIBRARY_FEATURE_COUNT = TYPES_LIBRARY_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.typeslibrary.impl.TypeImpl <em>Type</em>}' class.
@@ -375,7 +394,7 @@ public interface TypesLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_DEFINED_TYPES_LIBRARY__NAME = 0;
+	int USER_DEFINED_TYPES_LIBRARY__NAME = TYPES_LIBRARY_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>User Defined Types</b></em>' containment reference list.
@@ -384,7 +403,7 @@ public interface TypesLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_DEFINED_TYPES_LIBRARY__USER_DEFINED_TYPES = 1;
+	int USER_DEFINED_TYPES_LIBRARY__USER_DEFINED_TYPES = TYPES_LIBRARY_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>User Defined Types Library</em>' class.
@@ -393,7 +412,35 @@ public interface TypesLibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_DEFINED_TYPES_LIBRARY_FEATURE_COUNT = 2;
+	int USER_DEFINED_TYPES_LIBRARY_FEATURE_COUNT = TYPES_LIBRARY_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.obeonetwork.dsl.typeslibrary.impl.TypesLibraryUserImpl <em>User</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.obeonetwork.dsl.typeslibrary.impl.TypesLibraryUserImpl
+	 * @see org.obeonetwork.dsl.typeslibrary.impl.TypesLibraryPackageImpl#getTypesLibraryUser()
+	 * @generated
+	 */
+	int TYPES_LIBRARY_USER = 9;
+
+	/**
+	 * The feature id for the '<em><b>Used Libraries</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPES_LIBRARY_USER__USED_LIBRARIES = 0;
+
+	/**
+	 * The number of structural features of the '<em>User</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPES_LIBRARY_USER_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.typeslibrary.NativeTypeKind <em>Native Type Kind</em>}' enum.
@@ -403,7 +450,7 @@ public interface TypesLibraryPackage extends EPackage {
 	 * @see org.obeonetwork.dsl.typeslibrary.impl.TypesLibraryPackageImpl#getNativeTypeKind()
 	 * @generated
 	 */
-	int NATIVE_TYPE_KIND = 9;
+	int NATIVE_TYPE_KIND = 11;
 
 
 	/**
@@ -662,6 +709,37 @@ public interface TypesLibraryPackage extends EPackage {
 	EReference getUserDefinedTypesLibrary_UserDefinedTypes();
 
 	/**
+	 * Returns the meta object for class '{@link org.obeonetwork.dsl.typeslibrary.TypesLibraryUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User</em>'.
+	 * @see org.obeonetwork.dsl.typeslibrary.TypesLibraryUser
+	 * @generated
+	 */
+	EClass getTypesLibraryUser();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.obeonetwork.dsl.typeslibrary.TypesLibraryUser#getUsedLibraries <em>Used Libraries</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Used Libraries</em>'.
+	 * @see org.obeonetwork.dsl.typeslibrary.TypesLibraryUser#getUsedLibraries()
+	 * @see #getTypesLibraryUser()
+	 * @generated
+	 */
+	EReference getTypesLibraryUser_UsedLibraries();
+
+	/**
+	 * Returns the meta object for class '{@link org.obeonetwork.dsl.typeslibrary.TypesLibrary <em>Types Library</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Types Library</em>'.
+	 * @see org.obeonetwork.dsl.typeslibrary.TypesLibrary
+	 * @generated
+	 */
+	EClass getTypesLibrary();
+
+	/**
 	 * Returns the meta object for enum '{@link org.obeonetwork.dsl.typeslibrary.NativeTypeKind <em>Native Type Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -902,6 +980,34 @@ public interface TypesLibraryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference USER_DEFINED_TYPES_LIBRARY__USER_DEFINED_TYPES = eINSTANCE.getUserDefinedTypesLibrary_UserDefinedTypes();
+
+		/**
+		 * The meta object literal for the '{@link org.obeonetwork.dsl.typeslibrary.impl.TypesLibraryUserImpl <em>User</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.obeonetwork.dsl.typeslibrary.impl.TypesLibraryUserImpl
+		 * @see org.obeonetwork.dsl.typeslibrary.impl.TypesLibraryPackageImpl#getTypesLibraryUser()
+		 * @generated
+		 */
+		EClass TYPES_LIBRARY_USER = eINSTANCE.getTypesLibraryUser();
+
+		/**
+		 * The meta object literal for the '<em><b>Used Libraries</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPES_LIBRARY_USER__USED_LIBRARIES = eINSTANCE.getTypesLibraryUser_UsedLibraries();
+
+		/**
+		 * The meta object literal for the '{@link org.obeonetwork.dsl.typeslibrary.TypesLibrary <em>Types Library</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.obeonetwork.dsl.typeslibrary.TypesLibrary
+		 * @see org.obeonetwork.dsl.typeslibrary.impl.TypesLibraryPackageImpl#getTypesLibrary()
+		 * @generated
+		 */
+		EClass TYPES_LIBRARY = eINSTANCE.getTypesLibrary();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.typeslibrary.NativeTypeKind <em>Native Type Kind</em>}' enum.

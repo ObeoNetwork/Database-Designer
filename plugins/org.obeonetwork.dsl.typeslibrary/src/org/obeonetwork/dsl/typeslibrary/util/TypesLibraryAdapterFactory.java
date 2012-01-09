@@ -119,6 +119,14 @@ public class TypesLibraryAdapterFactory extends AdapterFactoryImpl {
 				return createUserDefinedTypesLibraryAdapter();
 			}
 			@Override
+			public Adapter caseTypesLibraryUser(TypesLibraryUser object) {
+				return createTypesLibraryUserAdapter();
+			}
+			@Override
+			public Adapter caseTypesLibrary(TypesLibrary object) {
+				return createTypesLibraryAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -261,6 +269,34 @@ public class TypesLibraryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUserDefinedTypesLibraryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.typeslibrary.TypesLibraryUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.obeonetwork.dsl.typeslibrary.TypesLibraryUser
+	 * @generated
+	 */
+	public Adapter createTypesLibraryUserAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.obeonetwork.dsl.typeslibrary.TypesLibrary <em>Types Library</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.obeonetwork.dsl.typeslibrary.TypesLibrary
+	 * @generated
+	 */
+	public Adapter createTypesLibraryAdapter() {
 		return null;
 	}
 

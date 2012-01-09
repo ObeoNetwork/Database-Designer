@@ -28,7 +28,7 @@ public class DatabaseViewsRepository {
 			public static String url = "database::DataBase_::properties::url";
 			
 			
-			public static String uses = "database::DataBase_::properties::uses";
+			public static String usedLibraries = "database::DataBase_::properties::usedLibraries";
 			
 			
 			public static String comments = "database::DataBase_::properties::comments";

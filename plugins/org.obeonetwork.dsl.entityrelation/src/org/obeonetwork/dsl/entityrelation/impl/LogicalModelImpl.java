@@ -13,11 +13,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.obeonetwork.dsl.entityrelation.Entity;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.LogicalModel;
 import org.obeonetwork.dsl.entityrelation.Relation;
+import org.obeonetwork.dsl.typeslibrary.TypesLibrary;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +30,7 @@ import org.obeonetwork.dsl.entityrelation.Relation;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.obeonetwork.dsl.entityrelation.impl.LogicalModelImpl#getUsedLibraries <em>Used Libraries</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.impl.LogicalModelImpl#getEntities <em>Entities</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.impl.LogicalModelImpl#getRelations <em>Relations</em>}</li>
  * </ul>
@@ -34,6 +39,16 @@ import org.obeonetwork.dsl.entityrelation.Relation;
  * @generated
  */
 public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
+	/**
+	 * The cached value of the '{@link #getUsedLibraries() <em>Used Libraries</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUsedLibraries()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TypesLibrary> usedLibraries;
+
 	/**
 	 * The cached value of the '{@link #getEntities() <em>Entities</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -71,6 +86,18 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	@Override
 	protected EClass eStaticClass() {
 		return EntityRelationPackage.Literals.LOGICAL_MODEL;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TypesLibrary> getUsedLibraries() {
+		if (usedLibraries == null) {
+			usedLibraries = new EObjectResolvingEList<TypesLibrary>(TypesLibrary.class, this, EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES);
+		}
+		return usedLibraries;
 	}
 
 	/**
@@ -121,6 +148,8 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES:
+				return getUsedLibraries();
 			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
 				return getEntities();
 			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
@@ -138,6 +167,10 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES:
+				getUsedLibraries().clear();
+				getUsedLibraries().addAll((Collection<? extends TypesLibrary>)newValue);
+				return;
 			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
 				getEntities().clear();
 				getEntities().addAll((Collection<? extends Entity>)newValue);
@@ -158,6 +191,9 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES:
+				getUsedLibraries().clear();
+				return;
 			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
 				getEntities().clear();
 				return;
@@ -176,12 +212,46 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES:
+				return usedLibraries != null && !usedLibraries.isEmpty();
 			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
 				return entities != null && !entities.isEmpty();
 			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
 				return relations != null && !relations.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == TypesLibraryUser.class) {
+			switch (derivedFeatureID) {
+				case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES: return TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == TypesLibraryUser.class) {
+			switch (baseFeatureID) {
+				case TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES: return EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //LogicalModelImpl

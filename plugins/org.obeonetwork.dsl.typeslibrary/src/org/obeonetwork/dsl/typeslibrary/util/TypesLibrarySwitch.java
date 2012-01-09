@@ -101,6 +101,7 @@ public class TypesLibrarySwitch<T> {
 			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY: {
 				NativeTypesLibrary nativeTypesLibrary = (NativeTypesLibrary)theEObject;
 				T result = caseNativeTypesLibrary(nativeTypesLibrary);
+				if (result == null) result = caseTypesLibrary(nativeTypesLibrary);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -153,6 +154,19 @@ public class TypesLibrarySwitch<T> {
 			case TypesLibraryPackage.USER_DEFINED_TYPES_LIBRARY: {
 				UserDefinedTypesLibrary userDefinedTypesLibrary = (UserDefinedTypesLibrary)theEObject;
 				T result = caseUserDefinedTypesLibrary(userDefinedTypesLibrary);
+				if (result == null) result = caseTypesLibrary(userDefinedTypesLibrary);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TypesLibraryPackage.TYPES_LIBRARY_USER: {
+				TypesLibraryUser typesLibraryUser = (TypesLibraryUser)theEObject;
+				T result = caseTypesLibraryUser(typesLibraryUser);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TypesLibraryPackage.TYPES_LIBRARY: {
+				TypesLibrary typesLibrary = (TypesLibrary)theEObject;
+				T result = caseTypesLibrary(typesLibrary);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -292,6 +306,36 @@ public class TypesLibrarySwitch<T> {
 	 * @generated
 	 */
 	public T caseUserDefinedTypesLibrary(UserDefinedTypesLibrary object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>User</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>User</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypesLibraryUser(TypesLibraryUser object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Types Library</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Types Library</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypesLibrary(TypesLibrary object) {
 		return null;
 	}
 

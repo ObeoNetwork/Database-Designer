@@ -11,11 +11,13 @@
 package org.obeonetwork.dsl.typeslibrary.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -26,8 +28,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.obeonetwork.dsl.typeslibrary.NativeType;
+import org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.TypeInstance;
+import org.obeonetwork.dsl.typeslibrary.TypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
 
 /**
  * This is the item provider adapter for a {@link org.obeonetwork.dsl.typeslibrary.TypeInstance} object.
@@ -83,22 +88,76 @@ public class TypeInstanceItemProvider
 	 * This adds a property descriptor for the Native Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addNativeTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TypeInstance_nativeType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TypeInstance_nativeType_feature", "_UI_TypeInstance_type"),
-				 TypesLibraryPackage.Literals.TYPE_INSTANCE__NATIVE_TYPE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		final Collection<NativeTypesLibrary> nativeTypesLibraries = new ArrayList<NativeTypesLibrary>();
+		if (object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			final TypesLibraryUser user = getTypesLibraryUserFromParents(eObject);
+			if (user != null && user.getUsedLibraries().isEmpty() == false) {
+				for (TypesLibrary library : user.getUsedLibraries()) {
+					if (library instanceof NativeTypesLibrary) {
+						nativeTypesLibraries.add((NativeTypesLibrary)library);
+					}
+				}
+			}
+		}
+		// There is no restriction on choices, let's use an unmodified PropertyDescriptor
+		if (nativeTypesLibraries.isEmpty() == false) {
+			itemPropertyDescriptors.add
+				(new ItemPropertyDescriptor
+					(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+					 getResourceLocator(),
+					 getString("_UI_TypeInstance_nativeType_feature"),
+					 getString("_UI_PropertyDescriptor_description", "_UI_TypeInstance_nativeType_feature", "_UI_TypeInstance_type"),
+					 TypesLibraryPackage.Literals.TYPE_INSTANCE__NATIVE_TYPE,
+					 true,
+					 false,
+					 true,
+					 null,
+					 null,
+					 null) {
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+						// We propose the types referenced by the used libraries
+						Collection<NativeType> suggestedTypes = new ArrayList<NativeType>();
+						
+						for (NativeTypesLibrary nativeTypesLibrary : nativeTypesLibraries) {
+							suggestedTypes.addAll(nativeTypesLibrary.getNativeTypes());
+						}
+						return suggestedTypes;
+				}
+			});
+		} else {
+			itemPropertyDescriptors.add
+				(createItemPropertyDescriptor
+					(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+					 getResourceLocator(),
+					 getString("_UI_TypeInstance_nativeType_feature"),
+					 getString("_UI_PropertyDescriptor_description", "_UI_TypeInstance_nativeType_feature", "_UI_TypeInstance_type"),
+					 TypesLibraryPackage.Literals.TYPE_INSTANCE__NATIVE_TYPE,
+					 true,
+					 false,
+					 true,
+					 null,
+					 null,
+					 null));
+		}
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	private TypesLibraryUser getTypesLibraryUserFromParents(EObject object) {
+		if (object.eContainer() != null) {
+			if (object.eContainer() instanceof TypesLibraryUser) {
+				return (TypesLibraryUser)object.eContainer();
+			} else {
+				return getTypesLibraryUserFromParents(object.eContainer());
+			}
+		}
+		return null;
 	}
 
 	/**

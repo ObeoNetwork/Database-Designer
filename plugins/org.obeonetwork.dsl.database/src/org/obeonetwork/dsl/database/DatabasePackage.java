@@ -273,13 +273,22 @@ public interface DatabasePackage extends EPackage {
 	int DATA_BASE__SEQUENCES = TABLE_CONTAINER__SEQUENCES;
 
 	/**
+	 * The feature id for the '<em><b>Used Libraries</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_BASE__USED_LIBRARIES = TABLE_CONTAINER_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_BASE__URL = TABLE_CONTAINER_FEATURE_COUNT + 0;
+	int DATA_BASE__URL = TABLE_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Schemas</b></em>' containment reference list.
@@ -288,7 +297,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_BASE__SCHEMAS = TABLE_CONTAINER_FEATURE_COUNT + 1;
+	int DATA_BASE__SCHEMAS = TABLE_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Defines</b></em>' containment reference list.
@@ -297,16 +306,7 @@ public interface DatabasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_BASE__DEFINES = TABLE_CONTAINER_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Uses</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_BASE__USES = TABLE_CONTAINER_FEATURE_COUNT + 3;
+	int DATA_BASE__DEFINES = TABLE_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Data Base</em>' class.
@@ -1349,17 +1349,6 @@ public interface DatabasePackage extends EPackage {
 	EReference getDataBase_Defines();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.obeonetwork.dsl.database.DataBase#getUses <em>Uses</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Uses</em>'.
-	 * @see org.obeonetwork.dsl.database.DataBase#getUses()
-	 * @see #getDataBase()
-	 * @generated
-	 */
-	EReference getDataBase_Uses();
-
-	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.database.AbstractTable <em>Abstract Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2078,14 +2067,6 @@ public interface DatabasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference DATA_BASE__DEFINES = eINSTANCE.getDataBase_Defines();
-
-		/**
-		 * The meta object literal for the '<em><b>Uses</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_BASE__USES = eINSTANCE.getDataBase_Uses();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.database.impl.AbstractTableImpl <em>Abstract Table</em>}' class.

@@ -7,14 +7,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataBase" eSuperTypes="#//TableContainer">
+  <eClassifiers xsi:type="ecore:EClass" name="DataBase" eSuperTypes="#//TableContainer ../../org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypesLibraryUser">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
         eType="#//Schema" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defines" upperBound="-1"
         eType="ecore:EClass ../../org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//UserDefinedTypesLibrary"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="uses" upperBound="-1" eType="ecore:EClass ../../org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//NativeTypesLibrary"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractTable" abstract="true" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"

@@ -181,13 +181,22 @@ public interface EntityRelationPackage extends EPackage {
 	int LOGICAL_MODEL__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Used Libraries</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOGICAL_MODEL__USED_LIBRARIES = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Entities</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_MODEL__ENTITIES = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int LOGICAL_MODEL__ENTITIES = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Relations</b></em>' containment reference list.
@@ -196,7 +205,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_MODEL__RELATIONS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int LOGICAL_MODEL__RELATIONS = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Logical Model</em>' class.
@@ -205,7 +214,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int LOGICAL_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.EntityImpl <em>Entity</em>}' class.

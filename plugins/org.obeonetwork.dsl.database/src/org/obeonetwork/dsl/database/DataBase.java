@@ -12,6 +12,7 @@ package org.obeonetwork.dsl.database;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
 import org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.UserDefinedTypesLibrary;
 
@@ -26,7 +27,6 @@ import org.obeonetwork.dsl.typeslibrary.UserDefinedTypesLibrary;
  *   <li>{@link org.obeonetwork.dsl.database.DataBase#getUrl <em>Url</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.DataBase#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.DataBase#getDefines <em>Defines</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.database.DataBase#getUses <em>Uses</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,7 +34,7 @@ import org.obeonetwork.dsl.typeslibrary.UserDefinedTypesLibrary;
  * @model
  * @generated
  */
-public interface DataBase extends TableContainer {
+public interface DataBase extends TableContainer, TypesLibraryUser {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -99,21 +99,5 @@ public interface DataBase extends TableContainer {
 	 * @generated
 	 */
 	EList<UserDefinedTypesLibrary> getDefines();
-
-	/**
-	 * Returns the value of the '<em><b>Uses</b></em>' reference list.
-	 * The list contents are of type {@link org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Uses</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Uses</em>' reference list.
-	 * @see org.obeonetwork.dsl.database.DatabasePackage#getDataBase_Uses()
-	 * @model
-	 * @generated
-	 */
-	EList<NativeTypesLibrary> getUses();
 
 } // DataBase

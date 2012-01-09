@@ -26,8 +26,10 @@ import org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.SimpleNamedType;
 import org.obeonetwork.dsl.typeslibrary.Type;
 import org.obeonetwork.dsl.typeslibrary.TypeInstance;
+import org.obeonetwork.dsl.typeslibrary.TypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryFactory;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
 import org.obeonetwork.dsl.typeslibrary.UserDefinedType;
 import org.obeonetwork.dsl.typeslibrary.UserDefinedTypeRef;
 import org.obeonetwork.dsl.typeslibrary.UserDefinedTypesLibrary;
@@ -108,6 +110,20 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 	 * @generated
 	 */
 	private EClass userDefinedTypesLibraryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass typesLibraryUserEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass typesLibraryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -398,6 +414,33 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTypesLibraryUser() {
+		return typesLibraryUserEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTypesLibraryUser_UsedLibraries() {
+		return (EReference)typesLibraryUserEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTypesLibrary() {
+		return typesLibraryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getNativeTypeKind() {
 		return nativeTypeKindEEnum;
 	}
@@ -463,6 +506,11 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 		createEAttribute(userDefinedTypesLibraryEClass, USER_DEFINED_TYPES_LIBRARY__NAME);
 		createEReference(userDefinedTypesLibraryEClass, USER_DEFINED_TYPES_LIBRARY__USER_DEFINED_TYPES);
 
+		typesLibraryUserEClass = createEClass(TYPES_LIBRARY_USER);
+		createEReference(typesLibraryUserEClass, TYPES_LIBRARY_USER__USED_LIBRARIES);
+
+		typesLibraryEClass = createEClass(TYPES_LIBRARY);
+
 		// Create enums
 		nativeTypeKindEEnum = createEEnum(NATIVE_TYPE_KIND);
 	}
@@ -495,10 +543,12 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		nativeTypesLibraryEClass.getESuperTypes().add(this.getTypesLibrary());
 		typeInstanceEClass.getESuperTypes().add(this.getType());
 		complexNamedTypeEClass.getESuperTypes().add(this.getUserDefinedType());
 		simpleNamedTypeEClass.getESuperTypes().add(this.getUserDefinedType());
 		userDefinedTypeRefEClass.getESuperTypes().add(this.getType());
+		userDefinedTypesLibraryEClass.getESuperTypes().add(this.getTypesLibrary());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(nativeTypesLibraryEClass, NativeTypesLibrary.class, "NativeTypesLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -536,6 +586,11 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 		initEClass(userDefinedTypesLibraryEClass, UserDefinedTypesLibrary.class, "UserDefinedTypesLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUserDefinedTypesLibrary_Name(), ecorePackage.getEString(), "name", null, 0, 1, UserDefinedTypesLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUserDefinedTypesLibrary_UserDefinedTypes(), this.getUserDefinedType(), null, "userDefinedTypes", null, 0, -1, UserDefinedTypesLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typesLibraryUserEClass, TypesLibraryUser.class, "TypesLibraryUser", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTypesLibraryUser_UsedLibraries(), this.getTypesLibrary(), null, "usedLibraries", null, 0, -1, TypesLibraryUser.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typesLibraryEClass, TypesLibrary.class, "TypesLibrary", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(nativeTypeKindEEnum, NativeTypeKind.class, "NativeTypeKind");

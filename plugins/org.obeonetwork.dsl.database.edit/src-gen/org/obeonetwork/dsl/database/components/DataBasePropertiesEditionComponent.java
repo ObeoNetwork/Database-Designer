@@ -45,9 +45,9 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 
 	
 	/**
-	 * Settings for uses ReferencesTable
+	 * Settings for usedLibraries ReferencesTable
 	 */
-	private	ReferencesTableSettings usesSettings;
+	private	ReferencesTableSettings usedLibrariesSettings;
 	
 	
 	/**
@@ -83,15 +83,15 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 			
 			if (dataBase.getComments() != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.comments))
 				dataBasePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), dataBase.getComments()));
-			if (isAccessible(DatabaseViewsRepository.DataBase_.Properties.uses)) {
-				usesSettings = new ReferencesTableSettings(dataBase, DatabasePackage.eINSTANCE.getDataBase_Uses());
-				dataBasePart.initUses(usesSettings);
+			if (isAccessible(DatabaseViewsRepository.DataBase_.Properties.usedLibraries)) {
+				usedLibrariesSettings = new ReferencesTableSettings(dataBase, TypesLibraryPackage.eINSTANCE.getTypesLibraryUser_UsedLibraries());
+				dataBasePart.initUsedLibraries(usedLibrariesSettings);
 			}
 			// init filters
 			
 			
 			
-			dataBasePart.addFilterToUses(new ViewerFilter() {
+			dataBasePart.addFilterToUsedLibraries(new ViewerFilter() {
 			
 				/**
 				 * {@inheritDoc}
@@ -100,13 +100,13 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
 					if (element instanceof EObject)
-						return (!dataBasePart.isContainedInUsesTable((EObject)element));
+						return (!dataBasePart.isContainedInUsedLibrariesTable((EObject)element));
 					return element instanceof String && element.equals("");
 				}
 			
 			});
-			dataBasePart.addFilterToUses(new EObjectStrictFilter(TypesLibraryPackage.eINSTANCE.getNativeTypesLibrary()));
-			// Start of user code for additional businessfilters for uses
+			dataBasePart.addFilterToUsedLibraries(new EObjectStrictFilter(TypesLibraryPackage.eINSTANCE.getTypesLibrary()));
+			// Start of user code for additional businessfilters for usedLibraries
 			// End of user code
 			
 			// init values for referenced views
@@ -137,8 +137,8 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 		if (editorKey == DatabaseViewsRepository.DataBase_.Properties.comments) {
 			return DatabasePackage.eINSTANCE.getDatabaseElement_Comments();
 		}
-		if (editorKey == DatabaseViewsRepository.DataBase_.Properties.uses) {
-			return DatabasePackage.eINSTANCE.getDataBase_Uses();
+		if (editorKey == DatabaseViewsRepository.DataBase_.Properties.usedLibraries) {
+			return TypesLibraryPackage.eINSTANCE.getTypesLibraryUser_UsedLibraries();
 		}
 		return super.associatedFeature(editorKey);
 	}
@@ -159,9 +159,9 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 		if (DatabaseViewsRepository.DataBase_.Properties.comments == event.getAffectedEditor()) {
 			dataBase.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
-		if (DatabaseViewsRepository.DataBase_.Properties.uses == event.getAffectedEditor()) {
+		if (DatabaseViewsRepository.DataBase_.Properties.usedLibraries == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET)
-				usesSettings.setToReference((List<EObject>) event.getNewValue());
+				usedLibrariesSettings.setToReference((List<EObject>) event.getNewValue());
 		}
 	}
 
@@ -193,8 +193,8 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 					dataBasePart.setComments("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getDataBase_Uses().equals(msg.getFeature()) && isAccessible(DatabaseViewsRepository.DataBase_.Properties.uses))
-				dataBasePart.updateUses();
+			if (TypesLibraryPackage.eINSTANCE.getTypesLibraryUser_UsedLibraries().equals(msg.getFeature()) && isAccessible(DatabaseViewsRepository.DataBase_.Properties.usedLibraries))
+				dataBasePart.updateUsedLibraries();
 			
 		}
 	}

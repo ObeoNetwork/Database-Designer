@@ -30,6 +30,9 @@ import org.obeonetwork.dsl.database.DataBase;
 import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.Schema;
 
+import org.obeonetwork.dsl.typeslibrary.TypesLibrary;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
 import org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.UserDefinedTypesLibrary;
 
@@ -40,10 +43,10 @@ import org.obeonetwork.dsl.typeslibrary.UserDefinedTypesLibrary;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.obeonetwork.dsl.database.impl.DataBaseImpl#getUsedLibraries <em>Used Libraries</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.DataBaseImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.DataBaseImpl#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.database.impl.DataBaseImpl#getDefines <em>Defines</em>}</li>
- *   <li>{@link org.obeonetwork.dsl.database.impl.DataBaseImpl#getUses <em>Uses</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,6 +59,16 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
+
+	/**
+	 * The cached value of the '{@link #getUsedLibraries() <em>Used Libraries</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUsedLibraries()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TypesLibrary> usedLibraries;
 
 	/**
 	 * The default value of the '{@link #getUrl() <em>Url</em>}' attribute.
@@ -98,16 +111,6 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	protected EList<UserDefinedTypesLibrary> defines;
 
 	/**
-	 * The cached value of the '{@link #getUses() <em>Uses</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<NativeTypesLibrary> uses;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -124,6 +127,18 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	@Override
 	protected EClass eStaticClass() {
 		return DatabasePackage.Literals.DATA_BASE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TypesLibrary> getUsedLibraries() {
+		if (usedLibraries == null) {
+			usedLibraries = new EObjectResolvingEList<TypesLibrary>(TypesLibrary.class, this, DatabasePackage.DATA_BASE__USED_LIBRARIES);
+		}
+		return usedLibraries;
 	}
 
 	/**
@@ -176,18 +191,6 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<NativeTypesLibrary> getUses() {
-		if (uses == null) {
-			uses = new EObjectResolvingEList<NativeTypesLibrary>(NativeTypesLibrary.class, this, DatabasePackage.DATA_BASE__USES);
-		}
-		return uses;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -207,14 +210,14 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case DatabasePackage.DATA_BASE__USED_LIBRARIES:
+				return getUsedLibraries();
 			case DatabasePackage.DATA_BASE__URL:
 				return getUrl();
 			case DatabasePackage.DATA_BASE__SCHEMAS:
 				return getSchemas();
 			case DatabasePackage.DATA_BASE__DEFINES:
 				return getDefines();
-			case DatabasePackage.DATA_BASE__USES:
-				return getUses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -228,6 +231,10 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case DatabasePackage.DATA_BASE__USED_LIBRARIES:
+				getUsedLibraries().clear();
+				getUsedLibraries().addAll((Collection<? extends TypesLibrary>)newValue);
+				return;
 			case DatabasePackage.DATA_BASE__URL:
 				setUrl((String)newValue);
 				return;
@@ -238,10 +245,6 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 			case DatabasePackage.DATA_BASE__DEFINES:
 				getDefines().clear();
 				getDefines().addAll((Collection<? extends UserDefinedTypesLibrary>)newValue);
-				return;
-			case DatabasePackage.DATA_BASE__USES:
-				getUses().clear();
-				getUses().addAll((Collection<? extends NativeTypesLibrary>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -255,6 +258,9 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case DatabasePackage.DATA_BASE__USED_LIBRARIES:
+				getUsedLibraries().clear();
+				return;
 			case DatabasePackage.DATA_BASE__URL:
 				setUrl(URL_EDEFAULT);
 				return;
@@ -263,9 +269,6 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 				return;
 			case DatabasePackage.DATA_BASE__DEFINES:
 				getDefines().clear();
-				return;
-			case DatabasePackage.DATA_BASE__USES:
-				getUses().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -279,16 +282,48 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case DatabasePackage.DATA_BASE__USED_LIBRARIES:
+				return usedLibraries != null && !usedLibraries.isEmpty();
 			case DatabasePackage.DATA_BASE__URL:
 				return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
 			case DatabasePackage.DATA_BASE__SCHEMAS:
 				return schemas != null && !schemas.isEmpty();
 			case DatabasePackage.DATA_BASE__DEFINES:
 				return defines != null && !defines.isEmpty();
-			case DatabasePackage.DATA_BASE__USES:
-				return uses != null && !uses.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == TypesLibraryUser.class) {
+			switch (derivedFeatureID) {
+				case DatabasePackage.DATA_BASE__USED_LIBRARIES: return TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == TypesLibraryUser.class) {
+			switch (baseFeatureID) {
+				case TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES: return DatabasePackage.DATA_BASE__USED_LIBRARIES;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

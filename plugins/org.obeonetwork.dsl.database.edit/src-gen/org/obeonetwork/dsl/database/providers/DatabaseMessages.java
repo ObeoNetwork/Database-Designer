@@ -161,7 +161,7 @@ public class DatabaseMessages extends NLS {
 	public static String DataBasePropertiesEditionPart_UrlLabel;
 
 	
-	public static String DataBasePropertiesEditionPart_UsesLabel;
+	public static String DataBasePropertiesEditionPart_UsedLibrariesLabel;
 
 	
 	public static String DataBasePropertiesEditionPart_CommentsLabel;
