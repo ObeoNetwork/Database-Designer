@@ -29,9 +29,34 @@
       <propertyTabs
             contributorId="fr.obeo.dsl.viewpoint.diagram">
          <propertyTab
-               label="Base"
-               category="default"
-               id="Base">
+               label="DataBase"
+               category="extended"
+               id="DataBase"
+               afterTab="DataBase">
+         </propertyTab>
+         <propertyTab
+               label="Column"
+               category="extended"
+               id="Column"
+               afterTab="Column">
+         </propertyTab>
+         <propertyTab
+               label="Index"
+               category="extended"
+               id="Index"
+               afterTab="Index">
+         </propertyTab>
+         <propertyTab
+               label="View"
+               category="extended"
+               id="View"
+               afterTab="View">
+         </propertyTab>
+         <propertyTab
+               label="Table"
+               category="extended"
+               id="Table"
+               afterTab="Table">
          </propertyTab>
          <propertyTab
                label="Primary Key"
@@ -46,16 +71,58 @@
                afterTab="Foreign Keys">
          </propertyTab>
          <propertyTab
+               label="Constraints"
+               category="extended"
+               id="Constraints"
+               afterTab="Constraints">
+         </propertyTab>
+         <propertyTab
                label="Indexes"
                category="extended"
                id="Indexes"
                afterTab="Indexes">
          </propertyTab>
          <propertyTab
-               label="Constraints"
+               label="Primary Key"
                category="extended"
-               id="Constraints"
-               afterTab="Constraints">
+               id="Primary Key"
+               afterTab="Primary Key">
+         </propertyTab>
+         <propertyTab
+               label="Foreign Key"
+               category="extended"
+               id="Foreign Key"
+               afterTab="Foreign Key">
+         </propertyTab>
+         <propertyTab
+               label="Foreign Key Element"
+               category="extended"
+               id="Foreign Key Element"
+               afterTab="Foreign Key Element">
+         </propertyTab>
+         <propertyTab
+               label="Index Element"
+               category="extended"
+               id="Index Element"
+               afterTab="Index Element">
+         </propertyTab>
+         <propertyTab
+               label="Constraint"
+               category="extended"
+               id="Constraint"
+               afterTab="Constraint">
+         </propertyTab>
+         <propertyTab
+               label="Schema"
+               category="extended"
+               id="Schema"
+               afterTab="Schema">
+         </propertyTab>
+         <propertyTab
+               label="Sequence"
+               category="extended"
+               id="Sequence"
+               afterTab="Sequence">
          </propertyTab>
       </propertyTabs>
    </extension>
@@ -65,34 +132,100 @@
       <propertySections
             contributorId="fr.obeo.dsl.viewpoint.diagram">
          <propertySection
-               tab="Base"
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               filter="org.obeonetwork.dsl.database.design.properties.BaseTabPropertiesEditionSection"
-               id="org.obeonetwork.dsl.properties.database.tabs">
+               id="org.obeonetwork.dsl.database.section.DataBase"
+               filter="org.obeonetwork.dsl.database.design.properties.DataBaseTabPropertiesEditionSection"
+               tab="DataBase">
          </propertySection>
          <propertySection
-               tab="Primary Key"
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.Column"
+               filter="org.obeonetwork.dsl.database.design.properties.ColumnTabPropertiesEditionSection"
+               tab="Column">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.Index"
+               filter="org.obeonetwork.dsl.database.design.properties.IndexTabPropertiesEditionSection"
+               tab="Index">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.View"
+               filter="org.obeonetwork.dsl.database.design.properties.ViewTabPropertiesEditionSection"
+               tab="View">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.Table"
+               filter="org.obeonetwork.dsl.database.design.properties.TableTabPropertiesEditionSection"
+               tab="Table">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.Table.PrimaryKey"
                filter="org.obeonetwork.dsl.database.design.properties.PrimaryKeyTabPropertiesEditionSection"
-               id="org.obeonetwork.dsl.properties.database.primarykey">
+               tab="Primary Key">
          </propertySection>
          <propertySection
-               tab="Foreign Keys"
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               filter="org.obeonetwork.dsl.database.design.properties.OtherTabPropertiesEditionSection"
-               id="org.obeonetwork.dsl.properties.database.foreignkeys">
+               id="org.obeonetwork.dsl.database.section.Table.ForeignKeys"
+               filter="org.obeonetwork.dsl.database.design.properties.TableTabPropertiesEditionSection"
+               tab="Foreign Keys">
          </propertySection>
          <propertySection
-               tab="Indexes"
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               filter="org.obeonetwork.dsl.database.design.properties.OtherTabPropertiesEditionSection"
-               id="org.obeonetwork.dsl.properties.database.indexes">
+               id="org.obeonetwork.dsl.database.section.Table.Constraints"
+               filter="org.obeonetwork.dsl.database.design.properties.TableTabPropertiesEditionSection"
+               tab="Constraints">
          </propertySection>
          <propertySection
-               tab="Constraints"
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
-               filter="org.obeonetwork.dsl.database.design.properties.OtherTabPropertiesEditionSection"
-               id="org.obeonetwork.dsl.properties.database.constraints">
+               id="org.obeonetwork.dsl.database.section.Table.Indexes"
+               filter="org.obeonetwork.dsl.database.design.properties.TableTabPropertiesEditionSection"
+               tab="Indexes">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.PrimaryKey"
+               filter="org.obeonetwork.dsl.database.design.properties.PrimaryKeyTabPropertiesEditionSection"
+               tab="Primary Key">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.ForeignKey"
+               filter="org.obeonetwork.dsl.database.design.properties.ForeignKeyTabPropertiesEditionSection"
+               tab="Foreign Key">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.ForeignKeyElement"
+               filter="org.obeonetwork.dsl.database.design.properties.ForeignKeyElementTabPropertiesEditionSection"
+               tab="Foreign Key Element">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.IndexElement"
+               filter="org.obeonetwork.dsl.database.design.properties.IndexElementTabPropertiesEditionSection"
+               tab="Index Element">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.Constraint"
+               filter="org.obeonetwork.dsl.database.design.properties.ConstraintTabPropertiesEditionSection"
+               tab="Constraint">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.Schema"
+               filter="org.obeonetwork.dsl.database.design.properties.SchemaTabPropertiesEditionSection"
+               tab="Schema">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.Sequence"
+               filter="org.obeonetwork.dsl.database.design.properties.SequenceTabPropertiesEditionSection"
+               tab="Sequence">
          </propertySection>
       </propertySections>
    </extension>
