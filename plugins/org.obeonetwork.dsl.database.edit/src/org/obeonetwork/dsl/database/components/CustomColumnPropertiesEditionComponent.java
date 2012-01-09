@@ -1,5 +1,7 @@
 package org.obeonetwork.dsl.database.components;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -19,15 +21,20 @@ import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
 import org.eclipse.emf.eef.runtime.ui.widgets.settings.EEFEditorSettingsBuilder;
 import org.eclipse.emf.eef.runtime.ui.widgets.settings.EEFEditorSettingsBuilder.EEFEditorSettingsImpl;
 import org.eclipse.emf.eef.runtime.ui.widgets.settings.NavigationStepBuilder;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.obeonetwork.dsl.database.Column;
 import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart;
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.typeslibrary.NativeType;
 import org.obeonetwork.dsl.typeslibrary.NativeTypeKind;
+import org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.TypeInstance;
+import org.obeonetwork.dsl.typeslibrary.TypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryFactory;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
 
 public class CustomColumnPropertiesEditionComponent extends ColumnPropertiesEditionComponent {
 
@@ -62,7 +69,7 @@ public class CustomColumnPropertiesEditionComponent extends ColumnPropertiesEdit
 			editingPart.setContext(elt, allResource);
 			final ColumnPropertiesEditionPart basePart = (ColumnPropertiesEditionPart)editingPart;
 			
-			Column columnObject = (Column)elt;
+			final Column columnObject = (Column)elt;
 			if (columnObject.getType() != null && columnObject.getType() instanceof TypeInstance) {
 				if (isAccessible(DatabaseViewsRepository.Column.Properties.type)) {
 					basePart.initType(allResource, typeSettings.getValue());
@@ -92,6 +99,48 @@ public class CustomColumnPropertiesEditionComponent extends ColumnPropertiesEdit
 					basePart.setPrecision(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), null));
 				}
 			}
+			
+			basePart.addFilterToType(new ViewerFilter() {
+				
+				private TypesLibraryUser getTypesLibraryUserFromParents(EObject object) {
+					if (object.eContainer() != null) {
+						if (object.eContainer() instanceof TypesLibraryUser) {
+							return (TypesLibraryUser)object.eContainer();
+						} else {
+							return getTypesLibraryUserFromParents(object.eContainer());
+						}
+					}
+					return null;
+				}
+				
+				private Collection<NativeTypesLibrary> getNativeTypesLibraries(TypesLibraryUser librariesUser) {
+					Collection<NativeTypesLibrary> nativeTypesLibraries = new ArrayList<NativeTypesLibrary>();
+					if (librariesUser != null) {
+						for (TypesLibrary typesLibrary : librariesUser.getUsedLibraries()) {
+							if (typesLibrary instanceof NativeTypesLibrary) {
+								nativeTypesLibraries.add((NativeTypesLibrary)typesLibrary);
+							}
+						}
+					}
+						
+					return nativeTypesLibraries;
+				}
+				
+				@Override
+				public boolean select(Viewer viewer, Object parentElement, Object element) {
+					TypesLibraryUser typesUser = getTypesLibraryUserFromParents(columnObject);
+					Collection<NativeTypesLibrary> libraries = getNativeTypesLibraries(typesUser);
+					if (libraries.isEmpty() == false) {
+						for (NativeTypesLibrary nativeTypesLibrary : libraries) {
+							if (nativeTypesLibrary.getNativeTypes().contains(element)) {
+								return true;
+							}
+						}
+						return false;
+					}
+					return true;
+				}
+			});
 			
 			updateTypeFieldsVisibility((Column)elt, basePart);
 		}
