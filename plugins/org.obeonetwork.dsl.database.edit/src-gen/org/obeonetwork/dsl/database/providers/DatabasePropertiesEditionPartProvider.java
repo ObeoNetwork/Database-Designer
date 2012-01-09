@@ -9,11 +9,14 @@ import org.eclipse.emf.eef.runtime.api.providers.IPropertiesEditionPartProvider;
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.forms.ColumnPropertiesEditionPartForm;
 import org.obeonetwork.dsl.database.parts.forms.ConstraintPropertiesEditionPartForm;
+import org.obeonetwork.dsl.database.parts.forms.ConstraintsPropertiesEditionPartForm;
 import org.obeonetwork.dsl.database.parts.forms.DataBasePropertiesEditionPartForm;
 import org.obeonetwork.dsl.database.parts.forms.ForeignKeyElementPropertiesEditionPartForm;
 import org.obeonetwork.dsl.database.parts.forms.ForeignKeyPropertiesEditionPartForm;
+import org.obeonetwork.dsl.database.parts.forms.ForeignKeysPropertiesEditionPartForm;
 import org.obeonetwork.dsl.database.parts.forms.IndexElementPropertiesEditionPartForm;
 import org.obeonetwork.dsl.database.parts.forms.IndexPropertiesEditionPartForm;
+import org.obeonetwork.dsl.database.parts.forms.IndexesPropertiesEditionPartForm;
 import org.obeonetwork.dsl.database.parts.forms.PrimaryKeyPropertiesEditionPartForm;
 import org.obeonetwork.dsl.database.parts.forms.SchemaPropertiesEditionPartForm;
 import org.obeonetwork.dsl.database.parts.forms.SequencePropertiesEditionPartForm;
@@ -21,11 +24,14 @@ import org.obeonetwork.dsl.database.parts.forms.TablePropertiesEditionPartForm;
 import org.obeonetwork.dsl.database.parts.forms.ViewPropertiesEditionPartForm;
 import org.obeonetwork.dsl.database.parts.impl.ColumnPropertiesEditionPartImpl;
 import org.obeonetwork.dsl.database.parts.impl.ConstraintPropertiesEditionPartImpl;
+import org.obeonetwork.dsl.database.parts.impl.ConstraintsPropertiesEditionPartImpl;
 import org.obeonetwork.dsl.database.parts.impl.DataBasePropertiesEditionPartImpl;
 import org.obeonetwork.dsl.database.parts.impl.ForeignKeyElementPropertiesEditionPartImpl;
 import org.obeonetwork.dsl.database.parts.impl.ForeignKeyPropertiesEditionPartImpl;
+import org.obeonetwork.dsl.database.parts.impl.ForeignKeysPropertiesEditionPartImpl;
 import org.obeonetwork.dsl.database.parts.impl.IndexElementPropertiesEditionPartImpl;
 import org.obeonetwork.dsl.database.parts.impl.IndexPropertiesEditionPartImpl;
+import org.obeonetwork.dsl.database.parts.impl.IndexesPropertiesEditionPartImpl;
 import org.obeonetwork.dsl.database.parts.impl.PrimaryKeyPropertiesEditionPartImpl;
 import org.obeonetwork.dsl.database.parts.impl.SchemaPropertiesEditionPartImpl;
 import org.obeonetwork.dsl.database.parts.impl.SequencePropertiesEditionPartImpl;
@@ -85,6 +91,24 @@ public class DatabasePropertiesEditionPartProvider implements IPropertiesEdition
 				return new TablePropertiesEditionPartImpl(component);
 			if (kind == DatabaseViewsRepository.FORM_KIND)
 				return new TablePropertiesEditionPartForm(component);
+		}
+		if (key == DatabaseViewsRepository.ForeignKeys.class) {
+			if (kind == DatabaseViewsRepository.SWT_KIND)
+				return new ForeignKeysPropertiesEditionPartImpl(component);
+			if (kind == DatabaseViewsRepository.FORM_KIND)
+				return new ForeignKeysPropertiesEditionPartForm(component);
+		}
+		if (key == DatabaseViewsRepository.Indexes.class) {
+			if (kind == DatabaseViewsRepository.SWT_KIND)
+				return new IndexesPropertiesEditionPartImpl(component);
+			if (kind == DatabaseViewsRepository.FORM_KIND)
+				return new IndexesPropertiesEditionPartForm(component);
+		}
+		if (key == DatabaseViewsRepository.Constraints.class) {
+			if (kind == DatabaseViewsRepository.SWT_KIND)
+				return new ConstraintsPropertiesEditionPartImpl(component);
+			if (kind == DatabaseViewsRepository.FORM_KIND)
+				return new ConstraintsPropertiesEditionPartForm(component);
 		}
 		if (key == DatabaseViewsRepository.PrimaryKey.class) {
 			if (kind == DatabaseViewsRepository.SWT_KIND)

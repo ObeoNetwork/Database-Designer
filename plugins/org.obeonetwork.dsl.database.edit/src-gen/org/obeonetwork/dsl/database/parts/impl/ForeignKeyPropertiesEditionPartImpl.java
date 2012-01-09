@@ -4,7 +4,11 @@
 package org.obeonetwork.dsl.database.parts.impl;
 
 // Start of user code for imports
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
@@ -18,8 +22,12 @@ import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
+import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
+import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -29,6 +37,8 @@ import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -50,6 +60,9 @@ public class ForeignKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 
 	protected Text name;
 	protected EObjectFlatComboViewer target;
+protected ReferencesTable elements;
+protected List<ViewerFilter> elementsBusinessFilters = new ArrayList<ViewerFilter>();
+protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	protected Text comments;
 
 
@@ -91,6 +104,7 @@ public class ForeignKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 		CompositionStep propertiesStep = foreignKeyStep.addStep(DatabaseViewsRepository.ForeignKey.Properties.class);
 		propertiesStep.addStep(DatabaseViewsRepository.ForeignKey.Properties.name);
 		propertiesStep.addStep(DatabaseViewsRepository.ForeignKey.Properties.target);
+		propertiesStep.addStep(DatabaseViewsRepository.ForeignKey.Properties.elements);
 		propertiesStep.addStep(DatabaseViewsRepository.ForeignKey.Properties.comments);
 		
 		
@@ -106,6 +120,9 @@ public class ForeignKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 				}
 				if (key == DatabaseViewsRepository.ForeignKey.Properties.target) {
 					return createTargetFlatComboViewer(parent);
+				}
+				if (key == DatabaseViewsRepository.ForeignKey.Properties.elements) {
+					return createElementsAdvancedTableComposition(parent);
 				}
 				if (key == DatabaseViewsRepository.ForeignKey.Properties.comments) {
 					return createCommentsTextarea(parent);
@@ -197,6 +214,54 @@ public class ForeignKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 		target.setLayoutData(targetData);
 		target.setID(DatabaseViewsRepository.ForeignKey.Properties.target);
 		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.ForeignKey.Properties.target, DatabaseViewsRepository.SWT_KIND), null); //$NON-NLS-1$
+		return parent;
+	}
+
+	/**
+	 * @param container
+	 * 
+	 */
+	protected Composite createElementsAdvancedTableComposition(Composite parent) {
+		this.elements = new ReferencesTable(DatabaseMessages.ForeignKeyPropertiesEditionPart_ElementsLabel, new ReferencesTableListener() {
+			public void handleAdd() { 
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyPropertiesEditionPartImpl.this, DatabaseViewsRepository.ForeignKey.Properties.elements, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
+				elements.refresh();
+			}
+			public void handleEdit(EObject element) {
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyPropertiesEditionPartImpl.this, DatabaseViewsRepository.ForeignKey.Properties.elements, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.EDIT, null, element));
+				elements.refresh();
+			}
+			public void handleMove(EObject element, int oldIndex, int newIndex) { 
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyPropertiesEditionPartImpl.this, DatabaseViewsRepository.ForeignKey.Properties.elements, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.MOVE, element, newIndex));
+				elements.refresh();
+			}
+			public void handleRemove(EObject element) { 
+				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyPropertiesEditionPartImpl.this, DatabaseViewsRepository.ForeignKey.Properties.elements, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.REMOVE, null, element));
+				elements.refresh();
+			}
+			public void navigateTo(EObject element) { }
+		});
+		for (ViewerFilter filter : this.elementsFilters) {
+			this.elements.addFilter(filter);
+		}
+		this.elements.setHelpText(propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.ForeignKey.Properties.elements, DatabaseViewsRepository.SWT_KIND));
+		this.elements.createControls(parent);
+		this.elements.addSelectionListener(new SelectionAdapter() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				if (e.item != null && e.item.getData() instanceof EObject) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyPropertiesEditionPartImpl.this, DatabaseViewsRepository.ForeignKey.Properties.elements, PropertiesEditionEvent.CHANGE, PropertiesEditionEvent.SELECTION_CHANGED, null, e.item.getData()));
+				}
+			}
+			
+		});
+		GridData elementsData = new GridData(GridData.FILL_HORIZONTAL);
+		elementsData.horizontalSpan = 3;
+		this.elements.setLayoutData(elementsData);
+		this.elements.setLowerBound(0);
+		this.elements.setUpperBound(-1);
+		elements.setID(DatabaseViewsRepository.ForeignKey.Properties.elements);
+		elements.setEEFType("eef::AdvancedTableComposition"); //$NON-NLS-1$
 		return parent;
 	}
 
@@ -339,6 +404,65 @@ public class ForeignKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public void addBusinessFilterToTarget(ViewerFilter filter) {
 		target.addBusinessRuleFilter(filter);
+	}
+
+
+
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ForeignKeyPropertiesEditionPart#initElements(EObject current, EReference containingFeature, EReference feature)
+	 */
+	public void initElements(ReferencesTableSettings settings) {
+		if (current.eResource() != null && current.eResource().getResourceSet() != null)
+			this.resourceSet = current.eResource().getResourceSet();
+		ReferencesTableContentProvider contentProvider = new ReferencesTableContentProvider();
+		elements.setContentProvider(contentProvider);
+		elements.setInput(settings);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ForeignKeyPropertiesEditionPart#updateElements()
+	 * 
+	 */
+	public void updateElements() {
+	elements.refresh();
+}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ForeignKeyPropertiesEditionPart#addFilterElements(ViewerFilter filter)
+	 * 
+	 */
+	public void addFilterToElements(ViewerFilter filter) {
+		elementsFilters.add(filter);
+		if (this.elements != null) {
+			this.elements.addFilter(filter);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ForeignKeyPropertiesEditionPart#addBusinessFilterElements(ViewerFilter filter)
+	 * 
+	 */
+	public void addBusinessFilterToElements(ViewerFilter filter) {
+		elementsBusinessFilters.add(filter);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.obeonetwork.dsl.database.parts.ForeignKeyPropertiesEditionPart#isContainedInElementsTable(EObject element)
+	 * 
+	 */
+	public boolean isContainedInElementsTable(EObject element) {
+		return ((ReferencesTableSettings)elements.getInput()).contains(element);
 	}
 
 

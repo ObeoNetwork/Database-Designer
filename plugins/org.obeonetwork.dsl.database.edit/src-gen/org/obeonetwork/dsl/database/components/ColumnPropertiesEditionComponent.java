@@ -51,7 +51,7 @@ import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 public class ColumnPropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String COLUMN_PART = "Column"; //$NON-NLS-1$
 
 	
 	/**
@@ -93,7 +93,7 @@ public class ColumnPropertiesEditionComponent extends SinglePartPropertiesEditin
 	 */
 	public ColumnPropertiesEditionComponent(PropertiesEditingContext editingContext, EObject column, String editing_mode) {
 		super(editingContext, column, editing_mode);
-		parts = new String[] { BASE_PART };
+		parts = new String[] { COLUMN_PART };
 		repositoryKey = DatabaseViewsRepository.class;
 		partKey = DatabaseViewsRepository.Column.class;
 	}
@@ -110,48 +110,48 @@ public class ColumnPropertiesEditionComponent extends SinglePartPropertiesEditin
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
 			final Column column = (Column)elt;
-			final ColumnPropertiesEditionPart basePart = (ColumnPropertiesEditionPart)editingPart;
+			final ColumnPropertiesEditionPart columnPart = (ColumnPropertiesEditionPart)editingPart;
 			// init values
 			if (column.getName() != null && isAccessible(DatabaseViewsRepository.Column.Properties.name))
-				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), column.getName()));
+				columnPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), column.getName()));
 			
 			if (isAccessible(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.nullable)) {
-				basePart.setNullable(column.isNullable());
+				columnPart.setNullable(column.isNullable());
 			}
 			if (isAccessible(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.primaryKey)) {
-				basePart.setPrimaryKey(column.isInPrimaryKey());
+				columnPart.setPrimaryKey(column.isInPrimaryKey());
 			}
 			if (isAccessible(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.unique)) {
-				basePart.setUnique(column.isUnique());
+				columnPart.setUnique(column.isUnique());
 			}
 			if (isAccessible(DatabaseViewsRepository.Column.Properties.Sequence.autoincrement)) {
-				basePart.setAutoincrement(column.isAutoincrement());
+				columnPart.setAutoincrement(column.isAutoincrement());
 			}
 			if (isAccessible(DatabaseViewsRepository.Column.Properties.Sequence.sequence_)) {
 				// init part
 				sequenceSettings = new EObjectFlatComboSettings(column, DatabasePackage.eINSTANCE.getColumn_Sequence());
-				basePart.initSequence(sequenceSettings);
+				columnPart.initSequence(sequenceSettings);
 				// set the button mode
-				basePart.setSequenceButtonMode(ButtonsModeEnum.BROWSE);
+				columnPart.setSequenceButtonMode(ButtonsModeEnum.BROWSE);
 			}
 			if (column.getDefaultValue() != null && isAccessible(DatabaseViewsRepository.Column.Properties.defaultValue))
-				basePart.setDefaultValue(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), column.getDefaultValue()));
+				columnPart.setDefaultValue(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), column.getDefaultValue()));
 			
 			if (column.getComments() != null && isAccessible(DatabaseViewsRepository.Column.Properties.comments))
-				basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), column.getComments()));
+				columnPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), column.getComments()));
 //			if (isAccessible(DatabaseViewsRepository.Column.Properties.type)) {
-//				basePart.initType(allResource, column.getNativeType());
+//				columnPart.initType(allResource, column.getNativeType());
 //			}
-			if (isAccessible(DatabaseViewsRepository.Column.Properties.TypeAttributes.length)) {
-				basePart.setLength(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), lengthSettings.getValue()));
-			}
-			
-			if (isAccessible(DatabaseViewsRepository.Column.Properties.TypeAttributes.precision)) {
-				basePart.setPrecision(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), precisionSettings.getValue()));
-			}
-			
+//			if (isAccessible(DatabaseViewsRepository.Column.Properties.TypeAttributes.length)) {
+//				columnPart.setLength(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), lengthSettings.getValue()));
+//			}
+//			
+//			if (isAccessible(DatabaseViewsRepository.Column.Properties.TypeAttributes.precision)) {
+//				columnPart.setPrecision(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), precisionSettings.getValue()));
+//			}
+//			
 //			if (column.getLiterals() != null && isAccessible(DatabaseViewsRepository.Column.Properties.literals))
-//				basePart.setLiterals(column.getLiterals());
+//				columnPart.setLiterals(column.getLiterals());
 			
 			// init filters
 			
@@ -159,7 +159,7 @@ public class ColumnPropertiesEditionComponent extends SinglePartPropertiesEditin
 			
 			
 			
-			basePart.addFilterToSequence(new ViewerFilter() {
+			columnPart.addFilterToSequence(new ViewerFilter() {
 			
 			/**
 			 * {@inheritDoc}
@@ -176,7 +176,7 @@ public class ColumnPropertiesEditionComponent extends SinglePartPropertiesEditin
 			
 			
 			
-			basePart.addFilterToType(new ViewerFilter() {
+			columnPart.addFilterToType(new ViewerFilter() {
 			
 				/**
 				 * {@inheritDoc}
@@ -310,12 +310,12 @@ public class ColumnPropertiesEditionComponent extends SinglePartPropertiesEditin
 //		if (DatabaseViewsRepository.Column.Properties.type == event.getAffectedEditor()) {
 //			column.setNativeType((NativeType)event.getNewValue());
 //		}
-		if (DatabaseViewsRepository.Column.Properties.TypeAttributes.length == event.getAffectedEditor()) {
-			lengthSettings.setValue((EEFConverterUtil.createIntFromString(EcorePackage.eINSTANCE.getEInt(), (String)event.getNewValue())));
-		}
-		if (DatabaseViewsRepository.Column.Properties.TypeAttributes.precision == event.getAffectedEditor()) {
-			precisionSettings.setValue((EEFConverterUtil.createIntFromString(EcorePackage.eINSTANCE.getEInt(), (String)event.getNewValue())));
-		}
+//		if (DatabaseViewsRepository.Column.Properties.TypeAttributes.length == event.getAffectedEditor()) {
+//			lengthSettings.setValue((EEFConverterUtil.createIntFromString(EcorePackage.eINSTANCE.getEInt(), (String)event.getNewValue())));
+//		}
+//		if (DatabaseViewsRepository.Column.Properties.TypeAttributes.precision == event.getAffectedEditor()) {
+//			precisionSettings.setValue((EEFConverterUtil.createIntFromString(EcorePackage.eINSTANCE.getEInt(), (String)event.getNewValue())));
+//		}
 //		if (DatabaseViewsRepository.Column.Properties.literals == event.getAffectedEditor()) {
 //			if (event.getKind() == PropertiesEditionEvent.SET) {
 //				column.getLiterals().clear();
@@ -330,60 +330,60 @@ public class ColumnPropertiesEditionComponent extends SinglePartPropertiesEditin
 	 */
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
-			ColumnPropertiesEditionPart basePart = (ColumnPropertiesEditionPart)editingPart;
-			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Column.Properties.name)) {
+			ColumnPropertiesEditionPart columnPart = (ColumnPropertiesEditionPart)editingPart;
+			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && columnPart != null && isAccessible(DatabaseViewsRepository.Column.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					columnPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setName("");
+					columnPart.setName("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getColumn_Nullable().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.nullable))
-				basePart.setNullable((Boolean)msg.getNewValue());
+			if (DatabasePackage.eINSTANCE.getColumn_Nullable().equals(msg.getFeature()) && columnPart != null && isAccessible(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.nullable))
+				columnPart.setNullable((Boolean)msg.getNewValue());
 			
-			if (DatabasePackage.eINSTANCE.getColumn_InPrimaryKey().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.primaryKey))
-				basePart.setPrimaryKey((Boolean)msg.getNewValue());
+			if (DatabasePackage.eINSTANCE.getColumn_InPrimaryKey().equals(msg.getFeature()) && columnPart != null && isAccessible(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.primaryKey))
+				columnPart.setPrimaryKey((Boolean)msg.getNewValue());
 			
-			if (DatabasePackage.eINSTANCE.getColumn_Unique().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.unique))
-				basePart.setUnique((Boolean)msg.getNewValue());
+			if (DatabasePackage.eINSTANCE.getColumn_Unique().equals(msg.getFeature()) && columnPart != null && isAccessible(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.unique))
+				columnPart.setUnique((Boolean)msg.getNewValue());
 			
-			if (DatabasePackage.eINSTANCE.getColumn_Autoincrement().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Column.Properties.Sequence.autoincrement))
-				basePart.setAutoincrement((Boolean)msg.getNewValue());
+			if (DatabasePackage.eINSTANCE.getColumn_Autoincrement().equals(msg.getFeature()) && columnPart != null && isAccessible(DatabaseViewsRepository.Column.Properties.Sequence.autoincrement))
+				columnPart.setAutoincrement((Boolean)msg.getNewValue());
 			
-			if (DatabasePackage.eINSTANCE.getColumn_Sequence().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Column.Properties.Sequence.sequence_))
-				basePart.setSequence((EObject)msg.getNewValue());
-			if (DatabasePackage.eINSTANCE.getColumn_DefaultValue().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Column.Properties.defaultValue)) {
+			if (DatabasePackage.eINSTANCE.getColumn_Sequence().equals(msg.getFeature()) && columnPart != null && isAccessible(DatabaseViewsRepository.Column.Properties.Sequence.sequence_))
+				columnPart.setSequence((EObject)msg.getNewValue());
+			if (DatabasePackage.eINSTANCE.getColumn_DefaultValue().equals(msg.getFeature()) && columnPart != null && isAccessible(DatabaseViewsRepository.Column.Properties.defaultValue)) {
 				if (msg.getNewValue() != null) {
-					basePart.setDefaultValue(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					columnPart.setDefaultValue(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setDefaultValue("");
+					columnPart.setDefaultValue("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Column.Properties.comments)){
+			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && columnPart != null && isAccessible(DatabaseViewsRepository.Column.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					columnPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setComments("");
+					columnPart.setComments("");
 				}
 			}
-			if (TypesLibraryPackage.eINSTANCE.getTypeInstance_NativeType().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Column.Properties.type))
-				basePart.setType((Object)msg.getNewValue());
-			if (TypesLibraryPackage.eINSTANCE.getTypeInstance_Length().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Column.Properties.TypeAttributes.length)) {
+			if (TypesLibraryPackage.eINSTANCE.getTypeInstance_NativeType().equals(msg.getFeature()) && columnPart != null && isAccessible(DatabaseViewsRepository.Column.Properties.type))
+				columnPart.setType((Object)msg.getNewValue());
+			if (TypesLibraryPackage.eINSTANCE.getTypeInstance_Length().equals(msg.getFeature()) && columnPart != null && isAccessible(DatabaseViewsRepository.Column.Properties.TypeAttributes.length)) {
 				if (msg.getNewValue() != null) {
-					basePart.setLength(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
+					columnPart.setLength(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
 				} else {
-					basePart.setLength("");
+					columnPart.setLength("");
 				}
 			}
-			if (TypesLibraryPackage.eINSTANCE.getTypeInstance_Precision().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Column.Properties.TypeAttributes.precision)) {
+			if (TypesLibraryPackage.eINSTANCE.getTypeInstance_Precision().equals(msg.getFeature()) && columnPart != null && isAccessible(DatabaseViewsRepository.Column.Properties.TypeAttributes.precision)) {
 				if (msg.getNewValue() != null) {
-					basePart.setPrecision(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
+					columnPart.setPrecision(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
 				} else {
-					basePart.setPrecision("");
+					columnPart.setPrecision("");
 				}
 			}
-//			if (TypesLibraryPackage.eINSTANCE.getTypeInstance_Literals().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Column.Properties.literals)) {
-//				basePart.setLiterals(((Column)semanticObject).getLiterals());
+//			if (TypesLibraryPackage.eINSTANCE.getTypeInstance_Literals().equals(msg.getFeature()) && columnPart != null && isAccessible(DatabaseViewsRepository.Column.Properties.literals)) {
+//				columnPart.setLiterals(((Column)semanticObject).getLiterals());
 //			}
 			
 			

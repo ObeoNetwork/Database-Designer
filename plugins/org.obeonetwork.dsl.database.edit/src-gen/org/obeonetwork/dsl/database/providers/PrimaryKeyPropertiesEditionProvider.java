@@ -50,7 +50,7 @@ public class PrimaryKeyPropertiesEditionProvider extends PropertiesEditingProvid
 	 * 
 	 */
 	public boolean provides(PropertiesEditingContext editingContext, String part) {
-		return (editingContext.getEObject() instanceof PrimaryKey) && (PrimaryKeyPropertiesEditionComponent.BASE_PART.equals(part));
+		return (editingContext.getEObject() instanceof PrimaryKey) && (PrimaryKeyPropertiesEditionComponent.PRIMARYKEY_PART.equals(part));
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class PrimaryKeyPropertiesEditionProvider extends PropertiesEditingProvid
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
-		return (editingContext.getEObject() instanceof PrimaryKey) && ((PrimaryKeyPropertiesEditionComponent.BASE_PART.equals(part) && refinement == PrimaryKeyPropertiesEditionComponent.class));
+		return (editingContext.getEObject() instanceof PrimaryKey) && ((PrimaryKeyPropertiesEditionComponent.PRIMARYKEY_PART.equals(part) && refinement == PrimaryKeyPropertiesEditionComponent.class));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class PrimaryKeyPropertiesEditionProvider extends PropertiesEditingProvid
 	 */
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part) {
 		if (editingContext.getEObject() instanceof PrimaryKey) {
-			if (PrimaryKeyPropertiesEditionComponent.BASE_PART.equals(part))
+			if (PrimaryKeyPropertiesEditionComponent.PRIMARYKEY_PART.equals(part))
 				return new PrimaryKeyPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part);
@@ -105,7 +105,7 @@ public class PrimaryKeyPropertiesEditionProvider extends PropertiesEditingProvid
 	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof PrimaryKey) {
-			if (PrimaryKeyPropertiesEditionComponent.BASE_PART.equals(part)
+			if (PrimaryKeyPropertiesEditionComponent.PRIMARYKEY_PART.equals(part)
 				&& refinement == PrimaryKeyPropertiesEditionComponent.class)
 				return new PrimaryKeyPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}

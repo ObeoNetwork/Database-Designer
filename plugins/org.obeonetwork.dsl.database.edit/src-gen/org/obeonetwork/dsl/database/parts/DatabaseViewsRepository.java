@@ -91,7 +91,7 @@ public class DatabaseViewsRepository {
 				}
 			
 			
-			public static String defaultValue = "database::Column::properties::defaultValue";
+			public static String defaultValue = "database::Column::properties::default value";
 			
 			
 			public static String comments = "database::Column::properties::comments";
@@ -121,7 +121,10 @@ public class DatabaseViewsRepository {
 			public static String cardinality = "database::Index::properties::cardinality";
 			
 			
-			public static String indexType = "database::Index::properties::indexType";
+			public static String indexType = "database::Index::properties::index type";
+			
+			
+			public static String elements = "database::Index::properties::elements";
 			
 			
 			public static String comments = "database::Index::properties::comments";
@@ -174,20 +177,65 @@ public class DatabaseViewsRepository {
 	}
 
 	/**
-	 * PrimaryKey view descriptor
+	 * Foreign Keys view descriptor
+	 * 
+	 */
+	public static class ForeignKeys {
+		public static class Properties {
+	
+			
+			public static String foreignKeys_ = "database::Foreign Keys::properties::foreign keys_";
+			
+	
+		}
+	
+	}
+
+	/**
+	 * Indexes view descriptor
+	 * 
+	 */
+	public static class Indexes {
+		public static class Properties {
+	
+			
+			public static String indexes_ = "database::Indexes::properties::indexes_";
+			
+	
+		}
+	
+	}
+
+	/**
+	 * Constraints view descriptor
+	 * 
+	 */
+	public static class Constraints {
+		public static class Properties {
+	
+			
+			public static String constraints_ = "database::Constraints::properties::constraints_";
+			
+	
+		}
+	
+	}
+
+	/**
+	 * Primary Key view descriptor
 	 * 
 	 */
 	public static class PrimaryKey {
 		public static class Properties {
 	
 			
-			public static String name = "database::PrimaryKey::properties::name";
+			public static String name = "database::Primary Key::properties::name";
 			
 			
-			public static String columns = "database::PrimaryKey::properties::columns";
+			public static String columns = "database::Primary Key::properties::columns";
 			
 			
-			public static String comments = "database::PrimaryKey::properties::comments";
+			public static String comments = "database::Primary Key::properties::comments";
 			
 	
 		}
@@ -195,20 +243,23 @@ public class DatabaseViewsRepository {
 	}
 
 	/**
-	 * ForeignKey view descriptor
+	 * Foreign Key view descriptor
 	 * 
 	 */
 	public static class ForeignKey {
 		public static class Properties {
 	
 			
-			public static String name = "database::ForeignKey::properties::name";
+			public static String name = "database::Foreign Key::properties::name";
 			
 			
-			public static String target = "database::ForeignKey::properties::target";
+			public static String target = "database::Foreign Key::properties::target";
 			
 			
-			public static String comments = "database::ForeignKey::properties::comments";
+			public static String elements = "database::Foreign Key::properties::elements";
+			
+			
+			public static String comments = "database::Foreign Key::properties::comments";
 			
 	
 		}
@@ -216,7 +267,7 @@ public class DatabaseViewsRepository {
 	}
 
 	/**
-	 * ForeignKeyElement view descriptor
+	 * Foreign Key Element view descriptor
 	 * 
 	 */
 	public static class ForeignKeyElement {
@@ -225,10 +276,10 @@ public class DatabaseViewsRepository {
 				public static class SourceTable {
 			
 					
-					public static String sourceTable_ = "database::ForeignKeyElement::properties::Source Table::Source Table_";
+					public static String sourceTable_ = "database::Foreign Key Element::properties::Source Table::source table_";
 					
 					
-					public static String fKColumn = "database::ForeignKeyElement::properties::Source Table::FK Column";
+					public static String fKColumn = "database::Foreign Key Element::properties::Source Table::FK Column";
 					
 			
 				}
@@ -236,16 +287,16 @@ public class DatabaseViewsRepository {
 				public static class TargetTable {
 			
 					
-					public static String targetTable_ = "database::ForeignKeyElement::properties::Target Table::Target Table_";
+					public static String targetTable_ = "database::Foreign Key Element::properties::Target Table::target table_";
 					
 					
-					public static String pKColumn = "database::ForeignKeyElement::properties::Target Table::PK Column";
+					public static String pKColumn = "database::Foreign Key Element::properties::Target Table::PK column";
 					
 			
 				}
 			
 			
-			public static String comments = "database::ForeignKeyElement::properties::comments";
+			public static String comments = "database::Foreign Key Element::properties::comments";
 			
 	
 		}
@@ -253,20 +304,20 @@ public class DatabaseViewsRepository {
 	}
 
 	/**
-	 * IndexElement view descriptor
+	 * Index Element view descriptor
 	 * 
 	 */
 	public static class IndexElement {
 		public static class Properties {
 	
 			
-			public static String column = "database::IndexElement::properties::column";
+			public static String column = "database::Index Element::properties::column";
 			
 			
-			public static String asc = "database::IndexElement::properties::asc";
+			public static String asc = "database::Index Element::properties::asc";
 			
 			
-			public static String comments = "database::IndexElement::properties::comments";
+			public static String comments = "database::Index Element::properties::comments";
 			
 	
 		}
@@ -336,10 +387,10 @@ public class DatabaseViewsRepository {
 				public static class MinMax {
 			
 					
-					public static String minValue = "database::Sequence::properties::MinMax::minValue";
+					public static String minValue = "database::Sequence::properties::MinMax::min value";
 					
 					
-					public static String maxValue = "database::Sequence::properties::MinMax::maxValue";
+					public static String maxValue = "database::Sequence::properties::MinMax::max value";
 					
 			
 				}

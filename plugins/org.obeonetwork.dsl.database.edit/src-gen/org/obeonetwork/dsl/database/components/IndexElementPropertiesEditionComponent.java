@@ -43,7 +43,7 @@ import org.obeonetwork.dsl.database.parts.IndexElementPropertiesEditionPart;
 public class IndexElementPropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String INDEXELEMENT_PART = "Index Element"; //$NON-NLS-1$
 
 	
 	/**
@@ -58,7 +58,7 @@ public class IndexElementPropertiesEditionComponent extends SinglePartProperties
 	 */
 	public IndexElementPropertiesEditionComponent(PropertiesEditingContext editingContext, EObject indexElement, String editing_mode) {
 		super(editingContext, indexElement, editing_mode);
-		parts = new String[] { BASE_PART };
+		parts = new String[] { INDEXELEMENT_PART };
 		repositoryKey = DatabaseViewsRepository.class;
 		partKey = DatabaseViewsRepository.IndexElement.class;
 	}
@@ -75,22 +75,22 @@ public class IndexElementPropertiesEditionComponent extends SinglePartProperties
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
 			final IndexElement indexElement = (IndexElement)elt;
-			final IndexElementPropertiesEditionPart basePart = (IndexElementPropertiesEditionPart)editingPart;
+			final IndexElementPropertiesEditionPart indexElementPart = (IndexElementPropertiesEditionPart)editingPart;
 			// init values
 			if (isAccessible(DatabaseViewsRepository.IndexElement.Properties.column)) {
 				// init part
 				columnSettings = new EObjectFlatComboSettings(indexElement, DatabasePackage.eINSTANCE.getIndexElement_Column());
-				basePart.initColumn(columnSettings);
+				indexElementPart.initColumn(columnSettings);
 				// set the button mode
-				basePart.setColumnButtonMode(ButtonsModeEnum.BROWSE);
+				indexElementPart.setColumnButtonMode(ButtonsModeEnum.BROWSE);
 			}
 			if (isAccessible(DatabaseViewsRepository.IndexElement.Properties.asc)) {
-				basePart.setAsc(indexElement.isAsc());
+				indexElementPart.setAsc(indexElement.isAsc());
 			}
 			if (indexElement.getComments() != null && isAccessible(DatabaseViewsRepository.IndexElement.Properties.comments))
-				basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), indexElement.getComments()));
+				indexElementPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), indexElement.getComments()));
 			// init filters
-			basePart.addFilterToColumn(new ViewerFilter() {
+			indexElementPart.addFilterToColumn(new ViewerFilter() {
 			
 			/**
 			 * {@inheritDoc}
@@ -174,17 +174,17 @@ public class IndexElementPropertiesEditionComponent extends SinglePartProperties
 	 */
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
-			IndexElementPropertiesEditionPart basePart = (IndexElementPropertiesEditionPart)editingPart;
-			if (DatabasePackage.eINSTANCE.getIndexElement_Column().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.IndexElement.Properties.column))
-				basePart.setColumn((EObject)msg.getNewValue());
-			if (DatabasePackage.eINSTANCE.getIndexElement_Asc().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.IndexElement.Properties.asc))
-				basePart.setAsc((Boolean)msg.getNewValue());
+			IndexElementPropertiesEditionPart indexElementPart = (IndexElementPropertiesEditionPart)editingPart;
+			if (DatabasePackage.eINSTANCE.getIndexElement_Column().equals(msg.getFeature()) && indexElementPart != null && isAccessible(DatabaseViewsRepository.IndexElement.Properties.column))
+				indexElementPart.setColumn((EObject)msg.getNewValue());
+			if (DatabasePackage.eINSTANCE.getIndexElement_Asc().equals(msg.getFeature()) && indexElementPart != null && isAccessible(DatabaseViewsRepository.IndexElement.Properties.asc))
+				indexElementPart.setAsc((Boolean)msg.getNewValue());
 			
-			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.IndexElement.Properties.comments)){
+			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && indexElementPart != null && isAccessible(DatabaseViewsRepository.IndexElement.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					indexElementPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setComments("");
+					indexElementPart.setComments("");
 				}
 			}
 			

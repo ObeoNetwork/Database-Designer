@@ -226,11 +226,16 @@ public class IndexItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Index)object).getName();
+		Index index = (Index)object;
+		String label = index.getName();
+		if (index.isUnique()) {
+			label += " " + getString("_UI_Index_Unique_Suffix");
+		}
+		
 		return label == null || label.length() == 0 ?
 			getString("_UI_Index_type") :
 			getString("_UI_Index_type") + " " + label;

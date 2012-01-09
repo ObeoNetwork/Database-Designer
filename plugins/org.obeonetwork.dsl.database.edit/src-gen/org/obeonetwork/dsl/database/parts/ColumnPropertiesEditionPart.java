@@ -223,14 +223,14 @@ public interface ColumnPropertiesEditionPart {
 
 
 	/**
-	 * @return the defaultValue
+	 * @return the default value
 	 * 
 	 */
 	public String getDefaultValue();
 
 	/**
-	 * Defines a new defaultValue
-	 * @param newValue the new defaultValue to set
+	 * Defines a new default value
+	 * @param newValue the new default value to set
 	 * 
 	 */
 	public void setDefaultValue(String newValue);
@@ -262,7 +262,7 @@ public interface ColumnPropertiesEditionPart {
 	public String getTitle();
 
 	// Start of user code for additional methods
-	public void updateTypeFields(boolean lengthVisible, boolean precisionVisible, boolean literalsVisible);
+public void updateTypeFields(boolean lengthVisible, boolean precisionVisible, boolean literalsVisible);
 // End of user code
 
 }

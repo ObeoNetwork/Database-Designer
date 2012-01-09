@@ -50,7 +50,7 @@ public class IndexElementPropertiesEditionProvider extends PropertiesEditingProv
 	 * 
 	 */
 	public boolean provides(PropertiesEditingContext editingContext, String part) {
-		return (editingContext.getEObject() instanceof IndexElement) && (IndexElementPropertiesEditionComponent.BASE_PART.equals(part));
+		return (editingContext.getEObject() instanceof IndexElement) && (IndexElementPropertiesEditionComponent.INDEXELEMENT_PART.equals(part));
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class IndexElementPropertiesEditionProvider extends PropertiesEditingProv
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
-		return (editingContext.getEObject() instanceof IndexElement) && ((IndexElementPropertiesEditionComponent.BASE_PART.equals(part) && refinement == IndexElementPropertiesEditionComponent.class));
+		return (editingContext.getEObject() instanceof IndexElement) && ((IndexElementPropertiesEditionComponent.INDEXELEMENT_PART.equals(part) && refinement == IndexElementPropertiesEditionComponent.class));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class IndexElementPropertiesEditionProvider extends PropertiesEditingProv
 	 */
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part) {
 		if (editingContext.getEObject() instanceof IndexElement) {
-			if (IndexElementPropertiesEditionComponent.BASE_PART.equals(part))
+			if (IndexElementPropertiesEditionComponent.INDEXELEMENT_PART.equals(part))
 				return new IndexElementPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part);
@@ -105,7 +105,7 @@ public class IndexElementPropertiesEditionProvider extends PropertiesEditingProv
 	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof IndexElement) {
-			if (IndexElementPropertiesEditionComponent.BASE_PART.equals(part)
+			if (IndexElementPropertiesEditionComponent.INDEXELEMENT_PART.equals(part)
 				&& refinement == IndexElementPropertiesEditionComponent.class)
 				return new IndexElementPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}

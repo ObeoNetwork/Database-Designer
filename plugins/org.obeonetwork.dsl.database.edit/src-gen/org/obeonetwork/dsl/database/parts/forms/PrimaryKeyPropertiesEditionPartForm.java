@@ -521,7 +521,6 @@ public class PrimaryKeyPropertiesEditionPartForm extends CompositePropertiesEdit
 	}
 
 	// Start of user code additional methods
-	
 	// End of user code
 
 

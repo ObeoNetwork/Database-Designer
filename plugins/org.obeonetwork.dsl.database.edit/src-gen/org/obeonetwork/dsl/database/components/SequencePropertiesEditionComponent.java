@@ -33,7 +33,7 @@ import org.obeonetwork.dsl.database.parts.SequencePropertiesEditionPart;
 public class SequencePropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String SEQUENCE_PART = "Sequence"; //$NON-NLS-1$
 
 	
 	
@@ -43,7 +43,7 @@ public class SequencePropertiesEditionComponent extends SinglePartPropertiesEdit
 	 */
 	public SequencePropertiesEditionComponent(PropertiesEditingContext editingContext, EObject sequence, String editing_mode) {
 		super(editingContext, sequence, editing_mode);
-		parts = new String[] { BASE_PART };
+		parts = new String[] { SEQUENCE_PART };
 		repositoryKey = DatabaseViewsRepository.class;
 		partKey = DatabaseViewsRepository.Sequence.class;
 	}
@@ -60,29 +60,29 @@ public class SequencePropertiesEditionComponent extends SinglePartPropertiesEdit
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
 			final Sequence sequence = (Sequence)elt;
-			final SequencePropertiesEditionPart basePart = (SequencePropertiesEditionPart)editingPart;
+			final SequencePropertiesEditionPart sequencePart = (SequencePropertiesEditionPart)editingPart;
 			// init values
 			if (sequence.getName() != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.name))
-				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), sequence.getName()));
+				sequencePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), sequence.getName()));
 			
 			if (isAccessible(DatabaseViewsRepository.Sequence.Properties.StartIncrement.start)) {
-				basePart.setStart(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), sequence.getStart()));
+				sequencePart.setStart(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), sequence.getStart()));
 			}
 			
 			if (isAccessible(DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment)) {
-				basePart.setIncrement(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), sequence.getIncrement()));
+				sequencePart.setIncrement(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), sequence.getIncrement()));
 			}
 			
 			if (isAccessible(DatabaseViewsRepository.Sequence.Properties.MinMax.minValue)) {
-				basePart.setMinValue(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), sequence.getMinValue()));
+				sequencePart.setMinValue(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), sequence.getMinValue()));
 			}
 			
 			if (isAccessible(DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue)) {
-				basePart.setMaxValue(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), sequence.getMaxValue()));
+				sequencePart.setMaxValue(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), sequence.getMaxValue()));
 			}
 			
 			if (sequence.getComments() != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.comments))
-				basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), sequence.getComments()));
+				sequencePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), sequence.getComments()));
 			// init filters
 			
 			
@@ -165,47 +165,47 @@ public class SequencePropertiesEditionComponent extends SinglePartPropertiesEdit
 	 */
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
-			SequencePropertiesEditionPart basePart = (SequencePropertiesEditionPart)editingPart;
-			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.name)) {
+			SequencePropertiesEditionPart sequencePart = (SequencePropertiesEditionPart)editingPart;
+			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && sequencePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					sequencePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setName("");
+					sequencePart.setName("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getSequence_Start().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.StartIncrement.start)) {
+			if (DatabasePackage.eINSTANCE.getSequence_Start().equals(msg.getFeature()) && sequencePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.StartIncrement.start)) {
 				if (msg.getNewValue() != null) {
-					basePart.setStart(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
+					sequencePart.setStart(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
 				} else {
-					basePart.setStart("");
+					sequencePart.setStart("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getSequence_Increment().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment)) {
+			if (DatabasePackage.eINSTANCE.getSequence_Increment().equals(msg.getFeature()) && sequencePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment)) {
 				if (msg.getNewValue() != null) {
-					basePart.setIncrement(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
+					sequencePart.setIncrement(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
 				} else {
-					basePart.setIncrement("");
+					sequencePart.setIncrement("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getSequence_MinValue().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.MinMax.minValue)) {
+			if (DatabasePackage.eINSTANCE.getSequence_MinValue().equals(msg.getFeature()) && sequencePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.MinMax.minValue)) {
 				if (msg.getNewValue() != null) {
-					basePart.setMinValue(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
+					sequencePart.setMinValue(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
 				} else {
-					basePart.setMinValue("");
+					sequencePart.setMinValue("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getSequence_MaxValue().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue)) {
+			if (DatabasePackage.eINSTANCE.getSequence_MaxValue().equals(msg.getFeature()) && sequencePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue)) {
 				if (msg.getNewValue() != null) {
-					basePart.setMaxValue(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
+					sequencePart.setMaxValue(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
 				} else {
-					basePart.setMaxValue("");
+					sequencePart.setMaxValue("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.comments)){
+			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && sequencePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					sequencePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setComments("");
+					sequencePart.setComments("");
 				}
 			}
 			

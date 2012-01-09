@@ -50,7 +50,7 @@ public class SchemaPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 * 
 	 */
 	public boolean provides(PropertiesEditingContext editingContext, String part) {
-		return (editingContext.getEObject() instanceof Schema) && (SchemaPropertiesEditionComponent.BASE_PART.equals(part));
+		return (editingContext.getEObject() instanceof Schema) && (SchemaPropertiesEditionComponent.SCHEMA_PART.equals(part));
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class SchemaPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
-		return (editingContext.getEObject() instanceof Schema) && ((SchemaPropertiesEditionComponent.BASE_PART.equals(part) && refinement == SchemaPropertiesEditionComponent.class));
+		return (editingContext.getEObject() instanceof Schema) && ((SchemaPropertiesEditionComponent.SCHEMA_PART.equals(part) && refinement == SchemaPropertiesEditionComponent.class));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class SchemaPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 */
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part) {
 		if (editingContext.getEObject() instanceof Schema) {
-			if (SchemaPropertiesEditionComponent.BASE_PART.equals(part))
+			if (SchemaPropertiesEditionComponent.SCHEMA_PART.equals(part))
 				return new SchemaPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part);
@@ -105,7 +105,7 @@ public class SchemaPropertiesEditionProvider extends PropertiesEditingProviderIm
 	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof Schema) {
-			if (SchemaPropertiesEditionComponent.BASE_PART.equals(part)
+			if (SchemaPropertiesEditionComponent.SCHEMA_PART.equals(part)
 				&& refinement == SchemaPropertiesEditionComponent.class)
 				return new SchemaPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}

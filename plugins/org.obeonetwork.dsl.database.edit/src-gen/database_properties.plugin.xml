@@ -21,7 +21,7 @@
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor
-            contributorId="org.obeonetwork.dsl.database.properties">
+            contributorId="org.obeonetwork.dsl.properties">
          <propertyCategory
                category="default">
          </propertyCategory>
@@ -36,22 +36,118 @@
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
       <propertyTabs
-            contributorId="org.obeonetwork.dsl.database.properties">
+            contributorId="org.obeonetwork.dsl.properties">
          <propertyTab
                label="Base"
                category="default"
                id="Base">
+         </propertyTab>
+         <propertyTab
+               label="DataBase"
+               category="extended"
+               id="DataBase"
+               afterTab="DataBase">
+         </propertyTab>
+         <propertyTab
+               label="Column"
+               category="extended"
+               id="Column"
+               afterTab="Column">
+         </propertyTab>
+         <propertyTab
+               label="Index"
+               category="extended"
+               id="Index"
+               afterTab="Index">
+         </propertyTab>
+         <propertyTab
+               label="View"
+               category="extended"
+               id="View"
+               afterTab="View">
+         </propertyTab>
+         <propertyTab
+               label="Table"
+               category="extended"
+               id="Table"
+               afterTab="Table">
+         </propertyTab>
+         <propertyTab
+               label="Primary Key"
+               category="extended"
+               id="Primary Key"
+               afterTab="Base">
+         </propertyTab>
+         <propertyTab
+               label="Foreign Keys"
+               category="extended"
+               id="Foreign Keys"
+               afterTab="Foreign Keys">
+         </propertyTab>
+         <propertyTab
+               label="Constraints"
+               category="extended"
+               id="Constraints"
+               afterTab="Constraints">
+         </propertyTab>
+         <propertyTab
+               label="Indexes"
+               category="extended"
+               id="Indexes"
+               afterTab="Indexes">
+         </propertyTab>
+         <propertyTab
+               label="Primary Key"
+               category="extended"
+               id="Primary Key"
+               afterTab="Primary Key">
+         </propertyTab>
+         <propertyTab
+               label="Foreign Key"
+               category="extended"
+               id="Foreign Key"
+               afterTab="Foreign Key">
+         </propertyTab>
+         <propertyTab
+               label="Foreign Key Element"
+               category="extended"
+               id="Foreign Key Element"
+               afterTab="Foreign Key Element">
+         </propertyTab>
+         <propertyTab
+               label="Index Element"
+               category="extended"
+               id="Index Element"
+               afterTab="Index Element">
+         </propertyTab>
+         <propertyTab
+               label="Constraint"
+               category="extended"
+               id="Constraint"
+               afterTab="Constraint">
+         </propertyTab>
+         <propertyTab
+               label="Schema"
+               category="extended"
+               id="Schema"
+               afterTab="Schema">
+         </propertyTab>
+         <propertyTab
+               label="Sequence"
+               category="extended"
+               id="Sequence"
+               afterTab="Sequence">
          </propertyTab>
       </propertyTabs>
    </extension>
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertySections">
       <propertySections
-            contributorId="org.obeonetwork.dsl.database.properties">
+            contributorId="org.obeonetwork.dsl.properties">
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.DataBase"
-               tab="Base">
+               tab="DataBase">
              <input
                     type="org.obeonetwork.dsl.database.DataBase">
              </input>
@@ -59,7 +155,7 @@
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.Column"
-               tab="Base">
+               tab="Column">
              <input
                     type="org.obeonetwork.dsl.database.Column">
              </input>
@@ -67,7 +163,7 @@
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.Index"
-               tab="Base">
+               tab="Index">
              <input
                     type="org.obeonetwork.dsl.database.Index">
              </input>
@@ -75,7 +171,7 @@
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.View"
-               tab="Base">
+               tab="View">
              <input
                     type="org.obeonetwork.dsl.database.View">
              </input>
@@ -83,7 +179,39 @@
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.Table"
-               tab="Base">
+               tab="Table">
+             <input
+                    type="org.obeonetwork.dsl.database.Table">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.Table"
+               tab="Primary Key">
+             <input
+                    type="org.obeonetwork.dsl.database.Table">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.Table"
+               tab="Foreign Keys">
+             <input
+                    type="org.obeonetwork.dsl.database.Table">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.Table"
+               tab="Constraints">
+             <input
+                    type="org.obeonetwork.dsl.database.Table">
+             </input>
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.database.section.Table"
+               tab="Indexes">
              <input
                     type="org.obeonetwork.dsl.database.Table">
              </input>
@@ -91,7 +219,7 @@
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.PrimaryKey"
-               tab="Base">
+               tab="Primary Key">
              <input
                     type="org.obeonetwork.dsl.database.PrimaryKey">
              </input>
@@ -99,7 +227,7 @@
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.ForeignKey"
-               tab="Base">
+               tab="Foreign Key">
              <input
                     type="org.obeonetwork.dsl.database.ForeignKey">
              </input>
@@ -107,7 +235,7 @@
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.ForeignKeyElement"
-               tab="Base">
+               tab="Foreign Key Element">
              <input
                     type="org.obeonetwork.dsl.database.ForeignKeyElement">
              </input>
@@ -115,7 +243,7 @@
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.IndexElement"
-               tab="Base">
+               tab="Index Element">
              <input
                     type="org.obeonetwork.dsl.database.IndexElement">
              </input>
@@ -123,7 +251,7 @@
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.Constraint"
-               tab="Base">
+               tab="Constraint">
              <input
                     type="org.obeonetwork.dsl.database.Constraint">
              </input>
@@ -131,7 +259,7 @@
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.Schema"
-               tab="Base">
+               tab="Schema">
              <input
                     type="org.obeonetwork.dsl.database.Schema">
              </input>
@@ -139,7 +267,7 @@
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.Sequence"
-               tab="Base">
+               tab="Sequence">
              <input
                     type="org.obeonetwork.dsl.database.Sequence">
              </input>

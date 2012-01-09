@@ -33,7 +33,7 @@ import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 public class ConstraintPropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String CONSTRAINT_PART = "Constraint"; //$NON-NLS-1$
 
 	
 	
@@ -43,7 +43,7 @@ public class ConstraintPropertiesEditionComponent extends SinglePartPropertiesEd
 	 */
 	public ConstraintPropertiesEditionComponent(PropertiesEditingContext editingContext, EObject constraint, String editing_mode) {
 		super(editingContext, constraint, editing_mode);
-		parts = new String[] { BASE_PART };
+		parts = new String[] { CONSTRAINT_PART };
 		repositoryKey = DatabaseViewsRepository.class;
 		partKey = DatabaseViewsRepository.Constraint.class;
 	}
@@ -60,15 +60,15 @@ public class ConstraintPropertiesEditionComponent extends SinglePartPropertiesEd
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
 			final Constraint constraint = (Constraint)elt;
-			final ConstraintPropertiesEditionPart basePart = (ConstraintPropertiesEditionPart)editingPart;
+			final ConstraintPropertiesEditionPart constraintPart = (ConstraintPropertiesEditionPart)editingPart;
 			// init values
 			if (constraint.getName() != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.name))
-				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), constraint.getName()));
+				constraintPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), constraint.getName()));
 			
 			if (constraint.getExpression() != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.expression))
-				basePart.setExpression(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), constraint.getExpression()));
+				constraintPart.setExpression(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), constraint.getExpression()));
 			if (constraint.getComments() != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.comments))
-				basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), constraint.getComments()));
+				constraintPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), constraint.getComments()));
 			// init filters
 			
 			
@@ -127,26 +127,26 @@ public class ConstraintPropertiesEditionComponent extends SinglePartPropertiesEd
 	 */
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
-			ConstraintPropertiesEditionPart basePart = (ConstraintPropertiesEditionPart)editingPart;
-			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.name)) {
+			ConstraintPropertiesEditionPart constraintPart = (ConstraintPropertiesEditionPart)editingPart;
+			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && constraintPart != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					constraintPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setName("");
+					constraintPart.setName("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getConstraint_Expression().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.expression)){
+			if (DatabasePackage.eINSTANCE.getConstraint_Expression().equals(msg.getFeature()) && constraintPart != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.expression)){
 				if (msg.getNewValue() != null) {
-					basePart.setExpression(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					constraintPart.setExpression(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setExpression("");
+					constraintPart.setExpression("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.comments)){
+			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && constraintPart != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					constraintPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setComments("");
+					constraintPart.setComments("");
 				}
 			}
 			

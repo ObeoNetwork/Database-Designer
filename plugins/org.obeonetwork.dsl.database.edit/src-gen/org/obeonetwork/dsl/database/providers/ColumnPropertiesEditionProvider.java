@@ -50,7 +50,7 @@ public class ColumnPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 * 
 	 */
 	public boolean provides(PropertiesEditingContext editingContext, String part) {
-		return (editingContext.getEObject() instanceof Column) && (ColumnPropertiesEditionComponent.BASE_PART.equals(part));
+		return (editingContext.getEObject() instanceof Column) && (ColumnPropertiesEditionComponent.COLUMN_PART.equals(part));
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class ColumnPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
-		return (editingContext.getEObject() instanceof Column) && ((ColumnPropertiesEditionComponent.BASE_PART.equals(part) && refinement == ColumnPropertiesEditionComponent.class));
+		return (editingContext.getEObject() instanceof Column) && ((ColumnPropertiesEditionComponent.COLUMN_PART.equals(part) && refinement == ColumnPropertiesEditionComponent.class));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class ColumnPropertiesEditionProvider extends PropertiesEditingProviderIm
 	 */
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part) {
 		if (editingContext.getEObject() instanceof Column) {
-			if (ColumnPropertiesEditionComponent.BASE_PART.equals(part))
+			if (ColumnPropertiesEditionComponent.COLUMN_PART.equals(part))
 				return new ColumnPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part);
@@ -105,7 +105,7 @@ public class ColumnPropertiesEditionProvider extends PropertiesEditingProviderIm
 	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof Column) {
-			if (ColumnPropertiesEditionComponent.BASE_PART.equals(part)
+			if (ColumnPropertiesEditionComponent.COLUMN_PART.equals(part)
 				&& refinement == ColumnPropertiesEditionComponent.class)
 				return new ColumnPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}

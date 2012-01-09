@@ -59,28 +59,28 @@ public interface SequencePropertiesEditionPart {
 
 
 	/**
-	 * @return the minValue
+	 * @return the min value
 	 * 
 	 */
 	public String getMinValue();
 
 	/**
-	 * Defines a new minValue
-	 * @param newValue the new minValue to set
+	 * Defines a new min value
+	 * @param newValue the new min value to set
 	 * 
 	 */
 	public void setMinValue(String newValue);
 
 
 	/**
-	 * @return the maxValue
+	 * @return the max value
 	 * 
 	 */
 	public String getMaxValue();
 
 	/**
-	 * Defines a new maxValue
-	 * @param newValue the new maxValue to set
+	 * Defines a new max value
+	 * @param newValue the new max value to set
 	 * 
 	 */
 	public void setMaxValue(String newValue);

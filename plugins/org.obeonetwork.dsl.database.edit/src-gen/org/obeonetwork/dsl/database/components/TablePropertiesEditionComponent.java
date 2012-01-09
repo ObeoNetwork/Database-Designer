@@ -4,33 +4,18 @@
 package org.obeonetwork.dsl.database.components;
 
 // Start of user code for imports
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
-import org.eclipse.emf.eef.runtime.context.impl.EObjectPropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.context.impl.EReferencePropertiesEditionContext;
-import org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent;
-import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
-import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
-import org.eclipse.emf.eef.runtime.policies.impl.CreateEditingPolicy;
+import org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
-import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerFilter;
-import org.obeonetwork.dsl.database.Column;
-import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.Table;
+import org.obeonetwork.dsl.database.parts.ConstraintsPropertiesEditionPart;
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
+import org.obeonetwork.dsl.database.parts.ForeignKeysPropertiesEditionPart;
+import org.obeonetwork.dsl.database.parts.IndexesPropertiesEditionPart;
+import org.obeonetwork.dsl.database.parts.PrimaryKeyPropertiesEditionPart;
 import org.obeonetwork.dsl.database.parts.TablePropertiesEditionPart;
 
 
@@ -40,209 +25,180 @@ import org.obeonetwork.dsl.database.parts.TablePropertiesEditionPart;
  * 
  * 
  */
-public class TablePropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
+public class TablePropertiesEditionComponent extends ComposedPropertiesEditionComponent {
 
-	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
-
-	
 	/**
-	 * Settings for columns ReferencesTable
+	 * The Table part
+	 * 
 	 */
-	protected ReferencesTableSettings columnsSettings;
-	
-	
+	private TablePropertiesEditionPart tablePart;
+
 	/**
-	 * Default constructor
+	 * The TableTablePropertiesEditionComponent sub component
+	 * 
+	 */
+	protected TableTablePropertiesEditionComponent tableTablePropertiesEditionComponent;
+
+	/**
+	 * The Primary Key part
+	 * 
+	 */
+	private PrimaryKeyPropertiesEditionPart primaryKeyPart;
+
+	/**
+	 * The TablePrimaryKeyPropertiesEditionComponent sub component
+	 * 
+	 */
+	protected TablePrimaryKeyPropertiesEditionComponent tablePrimaryKeyPropertiesEditionComponent;
+
+	/**
+	 * The Foreign Keys part
+	 * 
+	 */
+	private ForeignKeysPropertiesEditionPart foreignKeysPart;
+
+	/**
+	 * The TableForeignKeysPropertiesEditionComponent sub component
+	 * 
+	 */
+	protected TableForeignKeysPropertiesEditionComponent tableForeignKeysPropertiesEditionComponent;
+
+	/**
+	 * The Constraints part
+	 * 
+	 */
+	private ConstraintsPropertiesEditionPart constraintsPart;
+
+	/**
+	 * The TableConstraintsPropertiesEditionComponent sub component
+	 * 
+	 */
+	protected TableConstraintsPropertiesEditionComponent tableConstraintsPropertiesEditionComponent;
+
+	/**
+	 * The Indexes part
+	 * 
+	 */
+	private IndexesPropertiesEditionPart indexesPart;
+
+	/**
+	 * The TableIndexesPropertiesEditionComponent sub component
+	 * 
+	 */
+	protected TableIndexesPropertiesEditionComponent tableIndexesPropertiesEditionComponent;
+	/**
+	 * Parameterized constructor
+	 * 
+	 * @param table the EObject to edit
 	 * 
 	 */
 	public TablePropertiesEditionComponent(PropertiesEditingContext editingContext, EObject table, String editing_mode) {
-		super(editingContext, table, editing_mode);
-		parts = new String[] { BASE_PART };
-		repositoryKey = DatabaseViewsRepository.class;
-		partKey = DatabaseViewsRepository.Table.class;
+		super(editingContext, editing_mode);
+		if (table instanceof Table) {
+			PropertiesEditingProvider provider = null;
+			provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(table, PropertiesEditingProvider.class);
+			tableTablePropertiesEditionComponent = (TableTablePropertiesEditionComponent)provider.getPropertiesEditingComponent(editingContext, editing_mode, TableTablePropertiesEditionComponent.TABLE_PART, TableTablePropertiesEditionComponent.class);
+			addSubComponent(tableTablePropertiesEditionComponent);
+			provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(table, PropertiesEditingProvider.class);
+			tablePrimaryKeyPropertiesEditionComponent = (TablePrimaryKeyPropertiesEditionComponent)provider.getPropertiesEditingComponent(editingContext, editing_mode, TablePrimaryKeyPropertiesEditionComponent.PRIMARYKEY_PART, TablePrimaryKeyPropertiesEditionComponent.class);
+			addSubComponent(tablePrimaryKeyPropertiesEditionComponent);
+			provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(table, PropertiesEditingProvider.class);
+			tableForeignKeysPropertiesEditionComponent = (TableForeignKeysPropertiesEditionComponent)provider.getPropertiesEditingComponent(editingContext, editing_mode, TableForeignKeysPropertiesEditionComponent.FOREIGNKEYS_PART, TableForeignKeysPropertiesEditionComponent.class);
+			addSubComponent(tableForeignKeysPropertiesEditionComponent);
+			provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(table, PropertiesEditingProvider.class);
+			tableConstraintsPropertiesEditionComponent = (TableConstraintsPropertiesEditionComponent)provider.getPropertiesEditingComponent(editingContext, editing_mode, TableConstraintsPropertiesEditionComponent.CONSTRAINTS_PART, TableConstraintsPropertiesEditionComponent.class);
+			addSubComponent(tableConstraintsPropertiesEditionComponent);
+			provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(table, PropertiesEditingProvider.class);
+			tableIndexesPropertiesEditionComponent = (TableIndexesPropertiesEditionComponent)provider.getPropertiesEditingComponent(editingContext, editing_mode, TableIndexesPropertiesEditionComponent.INDEXES_PART, TableIndexesPropertiesEditionComponent.class);
+			addSubComponent(tableIndexesPropertiesEditionComponent);
+		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#initPart(java.lang.Object, int, org.eclipse.emf.ecore.EObject, 
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
+	 *      getPropertiesEditionPart(int, java.lang.String)
+	 * 
+	 */
+	public IPropertiesEditionPart getPropertiesEditionPart(int kind, String key) {
+		if (TableTablePropertiesEditionComponent.TABLE_PART.equals(key)) {
+			tablePart = (TablePropertiesEditionPart)tableTablePropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)tablePart;
+		}
+		if (TablePrimaryKeyPropertiesEditionComponent.PRIMARYKEY_PART.equals(key)) {
+			primaryKeyPart = (PrimaryKeyPropertiesEditionPart)tablePrimaryKeyPropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)primaryKeyPart;
+		}
+		if (TableForeignKeysPropertiesEditionComponent.FOREIGNKEYS_PART.equals(key)) {
+			foreignKeysPart = (ForeignKeysPropertiesEditionPart)tableForeignKeysPropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)foreignKeysPart;
+		}
+		if (TableConstraintsPropertiesEditionComponent.CONSTRAINTS_PART.equals(key)) {
+			constraintsPart = (ConstraintsPropertiesEditionPart)tableConstraintsPropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)constraintsPart;
+		}
+		if (TableIndexesPropertiesEditionComponent.INDEXES_PART.equals(key)) {
+			indexesPart = (IndexesPropertiesEditionPart)tableIndexesPropertiesEditionComponent.getPropertiesEditionPart(kind, key);
+			return (IPropertiesEditionPart)indexesPart;
+		}
+		return super.getPropertiesEditionPart(kind, key);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
+	 *      setPropertiesEditionPart(java.lang.Object, int,
+	 *      org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart)
+	 * 
+	 */
+	public void setPropertiesEditionPart(java.lang.Object key, int kind, IPropertiesEditionPart propertiesEditionPart) {
+		if (DatabaseViewsRepository.Table.class == key) {
+			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
+			tablePart = (TablePropertiesEditionPart)propertiesEditionPart;
+		}
+		if (DatabaseViewsRepository.PrimaryKey.class == key) {
+			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
+			primaryKeyPart = (PrimaryKeyPropertiesEditionPart)propertiesEditionPart;
+		}
+		if (DatabaseViewsRepository.ForeignKeys.class == key) {
+			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
+			foreignKeysPart = (ForeignKeysPropertiesEditionPart)propertiesEditionPart;
+		}
+		if (DatabaseViewsRepository.Constraints.class == key) {
+			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
+			constraintsPart = (ConstraintsPropertiesEditionPart)propertiesEditionPart;
+		}
+		if (DatabaseViewsRepository.Indexes.class == key) {
+			super.setPropertiesEditionPart(key, kind, propertiesEditionPart);
+			indexesPart = (IndexesPropertiesEditionPart)propertiesEditionPart;
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.eef.runtime.impl.components.ComposedPropertiesEditionComponent#
+	 *      initPart(java.lang.Object, int, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.resource.ResourceSet)
 	 * 
 	 */
-	public void initPart(Object key, int kind, EObject elt, ResourceSet allResource) {
-		setInitializing(true);
-		if (editingPart != null && key == partKey) {
-			editingPart.setContext(elt, allResource);
-			final Table table = (Table)elt;
-			final TablePropertiesEditionPart basePart = (TablePropertiesEditionPart)editingPart;
-			// init values
-			if (table.getName() != null && isAccessible(DatabaseViewsRepository.Table.Properties.name))
-				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), table.getName()));
-			
-			if (isAccessible(DatabaseViewsRepository.Table.Properties.columns)) {
-				columnsSettings = new ReferencesTableSettings(table, DatabasePackage.eINSTANCE.getAbstractTable_Columns());
-				basePart.initColumns(columnsSettings);
-			}
-			if (table.getComments() != null && isAccessible(DatabaseViewsRepository.Table.Properties.comments))
-				basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), table.getComments()));
-			// init filters
-			
-			basePart.addFilterToColumns(new ViewerFilter() {
-			
-					/**
-					 * {@inheritDoc}
-					 * 
-					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-					 */
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						return (element instanceof String && element.equals("")) || (element instanceof Column); //$NON-NLS-1$ 
-					}
-			
-			});
-			// Start of user code for additional businessfilters for columns
-			// End of user code
-			
-			
-			// init values for referenced views
-			
-			// init filters for referenced views
-			
+	public void initPart(java.lang.Object key, int kind, EObject element, ResourceSet allResource) {
+		if (key == DatabaseViewsRepository.Table.class) {
+			super.initPart(key, kind, element, allResource);
 		}
-		setInitializing(false);
-	}
-
-
-
-
-
-
-	/**
-	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
-	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
-		if (editorKey == DatabaseViewsRepository.Table.Properties.name) {
-			return DatabasePackage.eINSTANCE.getNamedElement_Name();
+		if (key == DatabaseViewsRepository.PrimaryKey.class) {
+			super.initPart(key, kind, element, allResource);
 		}
-		if (editorKey == DatabaseViewsRepository.Table.Properties.columns) {
-			return DatabasePackage.eINSTANCE.getAbstractTable_Columns();
+		if (key == DatabaseViewsRepository.ForeignKeys.class) {
+			super.initPart(key, kind, element, allResource);
 		}
-		if (editorKey == DatabaseViewsRepository.Table.Properties.comments) {
-			return DatabasePackage.eINSTANCE.getDatabaseElement_Comments();
+		if (key == DatabaseViewsRepository.Constraints.class) {
+			super.initPart(key, kind, element, allResource);
 		}
-		return super.associatedFeature(editorKey);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updateSemanticModel(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
-	 * 
-	 */
-	public void updateSemanticModel(final IPropertiesEditionEvent event) {
-		Table table = (Table)semanticObject;
-		if (DatabaseViewsRepository.Table.Properties.name == event.getAffectedEditor()) {
-			table.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
-		}
-		if (DatabaseViewsRepository.Table.Properties.columns == event.getAffectedEditor()) {
-			if (event.getKind() == PropertiesEditionEvent.ADD) {
-				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, columnsSettings, editingContext.getAdapterFactory());
-				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
-				if (provider != null) {
-					PropertiesEditingPolicy policy = provider.getPolicy(context);
-					if (policy instanceof CreateEditingPolicy) {
-						policy.execute();
-					}
-				}
-			} else if (event.getKind() == PropertiesEditionEvent.EDIT) {
-				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, (EObject) event.getNewValue(), editingContext.getAdapterFactory());
-				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt((EObject) event.getNewValue(), PropertiesEditingProvider.class);
-				if (provider != null) {
-					PropertiesEditingPolicy editionPolicy = provider.getPolicy(context);
-					if (editionPolicy != null) {
-						editionPolicy.execute();
-					}
-				}
-			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
-				columnsSettings.removeFromReference((EObject) event.getNewValue());
-			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
-				columnsSettings.move(event.getNewIndex(), (Column) event.getNewValue());
-			}
-		}
-		if (DatabaseViewsRepository.Table.Properties.comments == event.getAffectedEditor()) {
-			table.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+		if (key == DatabaseViewsRepository.Indexes.class) {
+			super.initPart(key, kind, element, allResource);
 		}
 	}
-
-	/**
-	 * {@inheritDoc}
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
-	 */
-	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
-			TablePropertiesEditionPart basePart = (TablePropertiesEditionPart)editingPart;
-			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Table.Properties.name)) {
-				if (msg.getNewValue() != null) {
-					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
-				} else {
-					basePart.setName("");
-				}
-			}
-			if (DatabasePackage.eINSTANCE.getAbstractTable_Columns().equals(msg.getFeature()) && isAccessible(DatabaseViewsRepository.Table.Properties.columns))
-				basePart.updateColumns();
-			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Table.Properties.comments)){
-				if (msg.getNewValue() != null) {
-					basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
-				} else {
-					basePart.setComments("");
-				}
-			}
-			
-		}
-	}
-
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#isRequired(java.lang.Object, int)
-	 * 
-	 */
-	public boolean isRequired(Object key, int kind) {
-		return key == DatabaseViewsRepository.Table.Properties.name;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent#validateValue(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
-	 * 
-	 */
-	public Diagnostic validateValue(IPropertiesEditionEvent event) {
-		Diagnostic ret = Diagnostic.OK_INSTANCE;
-		if (event.getNewValue() != null) {
-			try {
-				if (DatabaseViewsRepository.Table.Properties.name == event.getAffectedEditor()) {
-					Object newValue = event.getNewValue();
-					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
-					}
-					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
-				}
-				if (DatabaseViewsRepository.Table.Properties.comments == event.getAffectedEditor()) {
-					Object newValue = event.getNewValue();
-					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
-					}
-					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), newValue);
-				}
-			} catch (IllegalArgumentException iae) {
-				ret = BasicDiagnostic.toDiagnostic(iae);
-			} catch (WrappedException we) {
-				ret = BasicDiagnostic.toDiagnostic(we);
-			}
-		}
-		return ret;
-	}
-
 }

@@ -33,7 +33,7 @@ import org.obeonetwork.dsl.database.parts.ViewPropertiesEditionPart;
 public class ViewPropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String VIEW_PART = "View"; //$NON-NLS-1$
 
 	
 	
@@ -43,7 +43,7 @@ public class ViewPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 */
 	public ViewPropertiesEditionComponent(PropertiesEditingContext editingContext, EObject view, String editing_mode) {
 		super(editingContext, view, editing_mode);
-		parts = new String[] { BASE_PART };
+		parts = new String[] { VIEW_PART };
 		repositoryKey = DatabaseViewsRepository.class;
 		partKey = DatabaseViewsRepository.View.class;
 	}
@@ -60,15 +60,15 @@ public class ViewPropertiesEditionComponent extends SinglePartPropertiesEditingC
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
 			final View view = (View)elt;
-			final ViewPropertiesEditionPart basePart = (ViewPropertiesEditionPart)editingPart;
+			final ViewPropertiesEditionPart viewPart = (ViewPropertiesEditionPart)editingPart;
 			// init values
 			if (view.getName() != null && isAccessible(DatabaseViewsRepository.View.Properties.name))
-				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), view.getName()));
+				viewPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), view.getName()));
 			
 			if (view.getQuery() != null && isAccessible(DatabaseViewsRepository.View.Properties.query))
-				basePart.setQuery(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), view.getQuery()));
+				viewPart.setQuery(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), view.getQuery()));
 			if (view.getComments() != null && isAccessible(DatabaseViewsRepository.View.Properties.comments))
-				basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), view.getComments()));
+				viewPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), view.getComments()));
 			// init filters
 			
 			
@@ -127,26 +127,26 @@ public class ViewPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 */
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
-			ViewPropertiesEditionPart basePart = (ViewPropertiesEditionPart)editingPart;
-			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.View.Properties.name)) {
+			ViewPropertiesEditionPart viewPart = (ViewPropertiesEditionPart)editingPart;
+			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && viewPart != null && isAccessible(DatabaseViewsRepository.View.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					viewPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setName("");
+					viewPart.setName("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getView_Query().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.View.Properties.query)){
+			if (DatabasePackage.eINSTANCE.getView_Query().equals(msg.getFeature()) && viewPart != null && isAccessible(DatabaseViewsRepository.View.Properties.query)){
 				if (msg.getNewValue() != null) {
-					basePart.setQuery(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					viewPart.setQuery(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setQuery("");
+					viewPart.setQuery("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.View.Properties.comments)){
+			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && viewPart != null && isAccessible(DatabaseViewsRepository.View.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					viewPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setComments("");
+					viewPart.setComments("");
 				}
 			}
 			

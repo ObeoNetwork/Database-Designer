@@ -20,14 +20,14 @@ import org.eclipse.jface.viewers.ViewerFilter;
 public interface ForeignKeyElementPropertiesEditionPart {
 
 	/**
-	 * @return the Source Table
+	 * @return the source table
 	 * 
 	 */
 	public String getSourceTable();
 
 	/**
-	 * Defines a new Source Table
-	 * @param newValue the new Source Table to set
+	 * Defines a new source table
+	 * @param newValue the new source table to set
 	 * 
 	 */
 	public void setSourceTable(String newValue);
@@ -81,34 +81,34 @@ public interface ForeignKeyElementPropertiesEditionPart {
 
 
 	/**
-	 * @return the Target Table
+	 * @return the target table
 	 * 
 	 */
 	public String getTargetTable();
 
 	/**
-	 * Defines a new Target Table
-	 * @param newValue the new Target Table to set
+	 * Defines a new target table
+	 * @param newValue the new target table to set
 	 * 
 	 */
 	public void setTargetTable(String newValue);
 
 
 	/**
-	 * @return the PK Column
+	 * @return the PK column
 	 * 
 	 */
 	public EObject getPKColumn();
 
 	/**
-	 * Init the PK Column
+	 * Init the PK column
 	 * @param settings the combo setting
 	 */
 	public void initPKColumn(EObjectFlatComboSettings settings);
 
 	/**
-	 * Defines a new PK Column
-	 * @param newValue the new PK Column to set
+	 * Defines a new PK column
+	 * @param newValue the new PK column to set
 	 * 
 	 */
 	public void setPKColumn(EObject newValue);
@@ -121,7 +121,7 @@ public interface ForeignKeyElementPropertiesEditionPart {
 	public void setPKColumnButtonMode(ButtonsModeEnum newValue);
 
 	/**
-	 * Adds the given filter to the PK Column edition editor.
+	 * Adds the given filter to the PK column edition editor.
 	 * 
 	 * @param filter
 	 *            a viewer filter
@@ -131,7 +131,7 @@ public interface ForeignKeyElementPropertiesEditionPart {
 	public void addFilterToPKColumn(ViewerFilter filter);
 
 	/**
-	 * Adds the given filter to the PK Column edition editor.
+	 * Adds the given filter to the PK column edition editor.
 	 * 
 	 * @param filter
 	 *            a viewer filter

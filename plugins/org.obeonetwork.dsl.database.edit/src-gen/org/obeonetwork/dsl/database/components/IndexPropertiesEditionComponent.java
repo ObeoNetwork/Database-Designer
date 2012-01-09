@@ -16,10 +16,20 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
+import org.eclipse.emf.eef.runtime.context.impl.EObjectPropertiesEditionContext;
+import org.eclipse.emf.eef.runtime.context.impl.EReferencePropertiesEditionContext;
 import org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent;
+import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
+import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
+import org.eclipse.emf.eef.runtime.policies.impl.CreateEditingPolicy;
+import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
+import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.Index;
+import org.obeonetwork.dsl.database.IndexElement;
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.IndexPropertiesEditionPart;
 
@@ -33,8 +43,13 @@ import org.obeonetwork.dsl.database.parts.IndexPropertiesEditionPart;
 public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String INDEX_PART = "Index"; //$NON-NLS-1$
 
+	
+	/**
+	 * Settings for elements ReferencesTable
+	 */
+	protected ReferencesTableSettings elementsSettings;
 	
 	
 	/**
@@ -43,7 +58,7 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 	 */
 	public IndexPropertiesEditionComponent(PropertiesEditingContext editingContext, EObject index, String editing_mode) {
 		super(editingContext, index, editing_mode);
-		parts = new String[] { BASE_PART };
+		parts = new String[] { INDEX_PART };
 		repositoryKey = DatabaseViewsRepository.class;
 		partKey = DatabaseViewsRepository.Index.class;
 	}
@@ -60,32 +75,51 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
 			final Index index = (Index)elt;
-			final IndexPropertiesEditionPart basePart = (IndexPropertiesEditionPart)editingPart;
+			final IndexPropertiesEditionPart indexPart = (IndexPropertiesEditionPart)editingPart;
 			// init values
 			if (index.getName() != null && isAccessible(DatabaseViewsRepository.Index.Properties.name))
-				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), index.getName()));
+				indexPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), index.getName()));
 			
 			if (index.getQualifier() != null && isAccessible(DatabaseViewsRepository.Index.Properties.qualifier))
-				basePart.setQualifier(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), index.getQualifier()));
+				indexPart.setQualifier(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), index.getQualifier()));
 			
 			if (isAccessible(DatabaseViewsRepository.Index.Properties.unique)) {
-				basePart.setUnique(index.isUnique());
+				indexPart.setUnique(index.isUnique());
 			}
 			if (isAccessible(DatabaseViewsRepository.Index.Properties.cardinality)) {
-				basePart.setCardinality(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), index.getCardinality()));
+				indexPart.setCardinality(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), index.getCardinality()));
 			}
 			
 			if (index.getIndexType() != null && isAccessible(DatabaseViewsRepository.Index.Properties.indexType))
-				basePart.setIndexType(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), index.getIndexType()));
+				indexPart.setIndexType(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), index.getIndexType()));
 			
 			if (index.getComments() != null && isAccessible(DatabaseViewsRepository.Index.Properties.comments))
-				basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), index.getComments()));
+				indexPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), index.getComments()));
+			if (isAccessible(DatabaseViewsRepository.Index.Properties.elements)) {
+				elementsSettings = new ReferencesTableSettings(index, DatabasePackage.eINSTANCE.getIndex_Elements());
+				indexPart.initElements(elementsSettings);
+			}
 			// init filters
 			
 			
 			
 			
 			
+			
+			indexPart.addFilterToElements(new ViewerFilter() {
+			
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof IndexElement); //$NON-NLS-1$ 
+					}
+			
+			});
+			// Start of user code for additional businessfilters for elements
+			// End of user code
 			
 			// init values for referenced views
 			
@@ -94,6 +128,7 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 		}
 		setInitializing(false);
 	}
+
 
 
 
@@ -126,6 +161,9 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 		if (editorKey == DatabaseViewsRepository.Index.Properties.comments) {
 			return DatabasePackage.eINSTANCE.getDatabaseElement_Comments();
 		}
+		if (editorKey == DatabaseViewsRepository.Index.Properties.elements) {
+			return DatabasePackage.eINSTANCE.getIndex_Elements();
+		}
 		return super.associatedFeature(editorKey);
 	}
 
@@ -154,6 +192,31 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 		if (DatabaseViewsRepository.Index.Properties.comments == event.getAffectedEditor()) {
 			index.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
+		if (DatabaseViewsRepository.Index.Properties.elements == event.getAffectedEditor()) {
+			if (event.getKind() == PropertiesEditionEvent.ADD) {
+				EReferencePropertiesEditionContext context = new EReferencePropertiesEditionContext(editingContext, this, elementsSettings, editingContext.getAdapterFactory());
+				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt(semanticObject, PropertiesEditingProvider.class);
+				if (provider != null) {
+					PropertiesEditingPolicy policy = provider.getPolicy(context);
+					if (policy instanceof CreateEditingPolicy) {
+						policy.execute();
+					}
+				}
+			} else if (event.getKind() == PropertiesEditionEvent.EDIT) {
+				EObjectPropertiesEditionContext context = new EObjectPropertiesEditionContext(editingContext, this, (EObject) event.getNewValue(), editingContext.getAdapterFactory());
+				PropertiesEditingProvider provider = (PropertiesEditingProvider)editingContext.getAdapterFactory().adapt((EObject) event.getNewValue(), PropertiesEditingProvider.class);
+				if (provider != null) {
+					PropertiesEditingPolicy editionPolicy = provider.getPolicy(context);
+					if (editionPolicy != null) {
+						editionPolicy.execute();
+					}
+				}
+			} else if (event.getKind() == PropertiesEditionEvent.REMOVE) {
+				elementsSettings.removeFromReference((EObject) event.getNewValue());
+			} else if (event.getKind() == PropertiesEditionEvent.MOVE) {
+				elementsSettings.move(event.getNewIndex(), (IndexElement) event.getNewValue());
+			}
+		}
 	}
 
 	/**
@@ -162,45 +225,47 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 	 */
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
-			IndexPropertiesEditionPart basePart = (IndexPropertiesEditionPart)editingPart;
-			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Index.Properties.name)) {
+			IndexPropertiesEditionPart indexPart = (IndexPropertiesEditionPart)editingPart;
+			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && indexPart != null && isAccessible(DatabaseViewsRepository.Index.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					indexPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setName("");
+					indexPart.setName("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getIndex_Qualifier().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Index.Properties.qualifier)) {
+			if (DatabasePackage.eINSTANCE.getIndex_Qualifier().equals(msg.getFeature()) && indexPart != null && isAccessible(DatabaseViewsRepository.Index.Properties.qualifier)) {
 				if (msg.getNewValue() != null) {
-					basePart.setQualifier(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					indexPart.setQualifier(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setQualifier("");
+					indexPart.setQualifier("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getIndex_Unique().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Index.Properties.unique))
-				basePart.setUnique((Boolean)msg.getNewValue());
+			if (DatabasePackage.eINSTANCE.getIndex_Unique().equals(msg.getFeature()) && indexPart != null && isAccessible(DatabaseViewsRepository.Index.Properties.unique))
+				indexPart.setUnique((Boolean)msg.getNewValue());
 			
-			if (DatabasePackage.eINSTANCE.getIndex_Cardinality().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Index.Properties.cardinality)) {
+			if (DatabasePackage.eINSTANCE.getIndex_Cardinality().equals(msg.getFeature()) && indexPart != null && isAccessible(DatabaseViewsRepository.Index.Properties.cardinality)) {
 				if (msg.getNewValue() != null) {
-					basePart.setCardinality(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
+					indexPart.setCardinality(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
 				} else {
-					basePart.setCardinality("");
+					indexPart.setCardinality("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getIndex_IndexType().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Index.Properties.indexType)) {
+			if (DatabasePackage.eINSTANCE.getIndex_IndexType().equals(msg.getFeature()) && indexPart != null && isAccessible(DatabaseViewsRepository.Index.Properties.indexType)) {
 				if (msg.getNewValue() != null) {
-					basePart.setIndexType(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					indexPart.setIndexType(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setIndexType("");
+					indexPart.setIndexType("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Index.Properties.comments)){
+			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && indexPart != null && isAccessible(DatabaseViewsRepository.Index.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					indexPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setComments("");
+					indexPart.setComments("");
 				}
 			}
+			if (DatabasePackage.eINSTANCE.getIndex_Elements().equals(msg.getFeature()) && isAccessible(DatabaseViewsRepository.Index.Properties.elements))
+				indexPart.updateElements();
 			
 		}
 	}

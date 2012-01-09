@@ -8,5 +8,4 @@ public class CustomDatabaseEEFAdapterFactory extends DatabaseEEFAdapterFactory {
 	public Adapter createColumnAdapter() {
 		return new CustomColumnPropertiesEditionProvider();
 	}
-
 }

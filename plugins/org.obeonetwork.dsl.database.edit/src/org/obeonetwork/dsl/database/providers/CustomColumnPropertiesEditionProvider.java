@@ -27,7 +27,7 @@ public class CustomColumnPropertiesEditionProvider extends ColumnPropertiesEditi
 	 */
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part) {
 		if (editingContext.getEObject() instanceof Column) {
-			if (ColumnPropertiesEditionComponent.BASE_PART.equals(part))
+			if (ColumnPropertiesEditionComponent.COLUMN_PART.equals(part))
 				return new CustomColumnPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part);
@@ -40,7 +40,7 @@ public class CustomColumnPropertiesEditionProvider extends ColumnPropertiesEditi
 	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof Column) {
-			if (ColumnPropertiesEditionComponent.BASE_PART.equals(part)
+			if (ColumnPropertiesEditionComponent.COLUMN_PART.equals(part)
 				&& refinement == ColumnPropertiesEditionComponent.class)
 				return new CustomColumnPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}

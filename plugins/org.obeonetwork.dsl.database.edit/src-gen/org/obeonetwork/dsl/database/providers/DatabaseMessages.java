@@ -29,6 +29,15 @@ public class DatabaseMessages extends NLS {
 	public static String TablePropertiesEditionPart_PropertiesGroupLabel;
 
 	
+	public static String ForeignKeysPropertiesEditionPart_PropertiesGroupLabel;
+
+	
+	public static String IndexesPropertiesEditionPart_PropertiesGroupLabel;
+
+	
+	public static String ConstraintsPropertiesEditionPart_PropertiesGroupLabel;
+
+	
 	public static String PrimaryKeyPropertiesEditionPart_PropertiesGroupLabel;
 
 	
@@ -84,6 +93,24 @@ public class DatabaseMessages extends NLS {
 
 	
 	public static String Table_Part_Title;
+
+	
+	public static String ForeignKeys_ReadOnly;
+
+	
+	public static String ForeignKeys_Part_Title;
+
+	
+	public static String Indexes_ReadOnly;
+
+	
+	public static String Indexes_Part_Title;
+
+	
+	public static String Constraints_ReadOnly;
+
+	
+	public static String Constraints_Part_Title;
 
 	
 	public static String PrimaryKey_ReadOnly;
@@ -191,6 +218,9 @@ public class DatabaseMessages extends NLS {
 	public static String IndexPropertiesEditionPart_IndexTypeLabel;
 
 	
+	public static String IndexPropertiesEditionPart_ElementsLabel;
+
+	
 	public static String IndexPropertiesEditionPart_CommentsLabel;
 
 	
@@ -212,6 +242,15 @@ public class DatabaseMessages extends NLS {
 	public static String TablePropertiesEditionPart_CommentsLabel;
 
 	
+	public static String ForeignKeysPropertiesEditionPart_ForeignKeysLabel;
+
+	
+	public static String IndexesPropertiesEditionPart_IndexesLabel;
+
+	
+	public static String ConstraintsPropertiesEditionPart_ConstraintsLabel;
+
+	
 	public static String PrimaryKeyPropertiesEditionPart_NameLabel;
 
 	
@@ -225,6 +264,9 @@ public class DatabaseMessages extends NLS {
 
 	
 	public static String ForeignKeyPropertiesEditionPart_TargetLabel;
+
+	
+	public static String ForeignKeyPropertiesEditionPart_ElementsLabel;
 
 	
 	public static String ForeignKeyPropertiesEditionPart_CommentsLabel;

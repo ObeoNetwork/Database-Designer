@@ -7,6 +7,7 @@ package org.obeonetwork.dsl.database.parts;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
+import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 
@@ -78,6 +79,50 @@ public interface ForeignKeyPropertiesEditionPart {
 	 * 
 	 */
 	public void addBusinessFilterToTarget(ViewerFilter filter);
+
+
+
+
+	/**
+	 * Init the elements
+	 * @param current the current value
+	 * @param containgFeature the feature where to navigate if necessary
+	 * @param feature the feature to manage
+	 */
+	public void initElements(ReferencesTableSettings settings);
+
+	/**
+	 * Update the elements
+	 * @param newValue the elements to update
+	 * 
+	 */
+	public void updateElements();
+
+	/**
+	 * Adds the given filter to the elements edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 * 
+	 */
+	public void addFilterToElements(ViewerFilter filter);
+
+	/**
+	 * Adds the given filter to the elements edition editor.
+	 * 
+	 * @param filter
+	 *            a viewer filter
+	 * @see org.eclipse.jface.viewers.StructuredViewer#addFilter(ViewerFilter)
+	 * 
+	 */
+	public void addBusinessFilterToElements(ViewerFilter filter);
+
+	/**
+	 * @return true if the given element is contained inside the elements table
+	 * 
+	 */
+	public boolean isContainedInElementsTable(EObject element);
 
 
 	/**

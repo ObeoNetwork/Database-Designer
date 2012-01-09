@@ -50,7 +50,7 @@ public class ViewPropertiesEditionProvider extends PropertiesEditingProviderImpl
 	 * 
 	 */
 	public boolean provides(PropertiesEditingContext editingContext, String part) {
-		return (editingContext.getEObject() instanceof View) && (ViewPropertiesEditionComponent.BASE_PART.equals(part));
+		return (editingContext.getEObject() instanceof View) && (ViewPropertiesEditionComponent.VIEW_PART.equals(part));
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class ViewPropertiesEditionProvider extends PropertiesEditingProviderImpl
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
-		return (editingContext.getEObject() instanceof View) && ((ViewPropertiesEditionComponent.BASE_PART.equals(part) && refinement == ViewPropertiesEditionComponent.class));
+		return (editingContext.getEObject() instanceof View) && ((ViewPropertiesEditionComponent.VIEW_PART.equals(part) && refinement == ViewPropertiesEditionComponent.class));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class ViewPropertiesEditionProvider extends PropertiesEditingProviderImpl
 	 */
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part) {
 		if (editingContext.getEObject() instanceof View) {
-			if (ViewPropertiesEditionComponent.BASE_PART.equals(part))
+			if (ViewPropertiesEditionComponent.VIEW_PART.equals(part))
 				return new ViewPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part);
@@ -105,7 +105,7 @@ public class ViewPropertiesEditionProvider extends PropertiesEditingProviderImpl
 	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof View) {
-			if (ViewPropertiesEditionComponent.BASE_PART.equals(part)
+			if (ViewPropertiesEditionComponent.VIEW_PART.equals(part)
 				&& refinement == ViewPropertiesEditionComponent.class)
 				return new ViewPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}

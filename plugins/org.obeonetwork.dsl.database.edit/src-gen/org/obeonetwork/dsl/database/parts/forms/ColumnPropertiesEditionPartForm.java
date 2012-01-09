@@ -80,7 +80,6 @@ public class ColumnPropertiesEditionPartForm extends CompositePropertiesEditionP
 
 
 
-
 	/**
 	 * Default constructor
 	 * @param editionComponent the {@link IPropertiesEditionComponent} that manage this part
@@ -1091,7 +1090,7 @@ public class ColumnPropertiesEditionPartForm extends CompositePropertiesEditionP
 	private static final int LITERALS_BUTTON_INDEX = 8;
 	
 	public void updateTypeFields(boolean lengthVisible, boolean precisionVisible, boolean literalsVisible) {
-		Composite composite = name.getParent();
+		Composite composite = getMainComposite();
 		Composite lengthAndPrecisionComposite = (Composite)composite.getChildren()[LENGHT_AND_PRECISION_COMPOSITE_INDEX];
 		HorizontalBox lengthAndPrecisionHBox = (HorizontalBox)lengthAndPrecisionComposite.getChildren()[0];
 		
@@ -1117,12 +1116,20 @@ public class ColumnPropertiesEditionPartForm extends CompositePropertiesEditionP
 		setVisibilityOnWidget(literalsText, literalsVisible);
 		setVisibilityOnWidget(literalsButton, literalsVisible);
 
+		lengthAndPrecisionHBox.layout();
+		lengthAndPrecisionComposite.layout();
 		composite.layout();
 	}
 	
 	private void setVisibilityOnWidget(Control widget, boolean visible) {
 		((GridData)widget.getLayoutData()).exclude = !visible;
 		widget.setVisible(visible);
+	}
+	
+	private Composite getMainComposite() {
+		Section section = (Section)view.getChildren()[0];
+		Composite content  = (Composite)section.getChildren()[2];
+		return content;
 	}
 	
 	// End of user code

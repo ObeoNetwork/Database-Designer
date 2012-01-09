@@ -50,7 +50,7 @@ public class DataBasePropertiesEditionProvider extends PropertiesEditingProvider
 	 * 
 	 */
 	public boolean provides(PropertiesEditingContext editingContext, String part) {
-		return (editingContext.getEObject() instanceof DataBase) && (DataBasePropertiesEditionComponent.BASE_PART.equals(part));
+		return (editingContext.getEObject() instanceof DataBase) && (DataBasePropertiesEditionComponent.DATABASE_PART.equals(part));
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class DataBasePropertiesEditionProvider extends PropertiesEditingProvider
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
-		return (editingContext.getEObject() instanceof DataBase) && ((DataBasePropertiesEditionComponent.BASE_PART.equals(part) && refinement == DataBasePropertiesEditionComponent.class));
+		return (editingContext.getEObject() instanceof DataBase) && ((DataBasePropertiesEditionComponent.DATABASE_PART.equals(part) && refinement == DataBasePropertiesEditionComponent.class));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class DataBasePropertiesEditionProvider extends PropertiesEditingProvider
 	 */
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part) {
 		if (editingContext.getEObject() instanceof DataBase) {
-			if (DataBasePropertiesEditionComponent.BASE_PART.equals(part))
+			if (DataBasePropertiesEditionComponent.DATABASE_PART.equals(part))
 				return new DataBasePropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part);
@@ -105,7 +105,7 @@ public class DataBasePropertiesEditionProvider extends PropertiesEditingProvider
 	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof DataBase) {
-			if (DataBasePropertiesEditionComponent.BASE_PART.equals(part)
+			if (DataBasePropertiesEditionComponent.DATABASE_PART.equals(part)
 				&& refinement == DataBasePropertiesEditionComponent.class)
 				return new DataBasePropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}

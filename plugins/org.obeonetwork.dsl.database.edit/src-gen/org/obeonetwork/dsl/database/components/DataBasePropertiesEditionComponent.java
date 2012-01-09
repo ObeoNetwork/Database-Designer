@@ -41,7 +41,7 @@ import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String DATABASE_PART = "DataBase"; //$NON-NLS-1$
 
 	
 	/**
@@ -56,7 +56,7 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 	 */
 	public DataBasePropertiesEditionComponent(PropertiesEditingContext editingContext, EObject dataBase, String editing_mode) {
 		super(editingContext, dataBase, editing_mode);
-		parts = new String[] { BASE_PART };
+		parts = new String[] { DATABASE_PART };
 		repositoryKey = DatabaseViewsRepository.class;
 		partKey = DatabaseViewsRepository.DataBase_.class;
 	}
@@ -73,25 +73,25 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
 			final DataBase dataBase = (DataBase)elt;
-			final DataBasePropertiesEditionPart basePart = (DataBasePropertiesEditionPart)editingPart;
+			final DataBasePropertiesEditionPart dataBasePart = (DataBasePropertiesEditionPart)editingPart;
 			// init values
 			if (dataBase.getName() != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.name))
-				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), dataBase.getName()));
+				dataBasePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), dataBase.getName()));
 			
 			if (dataBase.getUrl() != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.url))
-				basePart.setUrl(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), dataBase.getUrl()));
+				dataBasePart.setUrl(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), dataBase.getUrl()));
 			
 			if (dataBase.getComments() != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.comments))
-				basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), dataBase.getComments()));
+				dataBasePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), dataBase.getComments()));
 			if (isAccessible(DatabaseViewsRepository.DataBase_.Properties.uses)) {
 				usesSettings = new ReferencesTableSettings(dataBase, DatabasePackage.eINSTANCE.getDataBase_Uses());
-				basePart.initUses(usesSettings);
+				dataBasePart.initUses(usesSettings);
 			}
 			// init filters
 			
 			
 			
-			basePart.addFilterToUses(new ViewerFilter() {
+			dataBasePart.addFilterToUses(new ViewerFilter() {
 			
 				/**
 				 * {@inheritDoc}
@@ -100,12 +100,12 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 				 */
 				public boolean select(Viewer viewer, Object parentElement, Object element) {
 					if (element instanceof EObject)
-						return (!basePart.isContainedInUsesTable((EObject)element));
+						return (!dataBasePart.isContainedInUsesTable((EObject)element));
 					return element instanceof String && element.equals("");
 				}
 			
 			});
-			basePart.addFilterToUses(new EObjectStrictFilter(TypesLibraryPackage.eINSTANCE.getNativeTypesLibrary()));
+			dataBasePart.addFilterToUses(new EObjectStrictFilter(TypesLibraryPackage.eINSTANCE.getNativeTypesLibrary()));
 			// Start of user code for additional businessfilters for uses
 			// End of user code
 			
@@ -171,30 +171,30 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 	 */
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
-			DataBasePropertiesEditionPart basePart = (DataBasePropertiesEditionPart)editingPart;
-			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.name)) {
+			DataBasePropertiesEditionPart dataBasePart = (DataBasePropertiesEditionPart)editingPart;
+			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && dataBasePart != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					dataBasePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setName("");
+					dataBasePart.setName("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getDataBase_Url().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.url)) {
+			if (DatabasePackage.eINSTANCE.getDataBase_Url().equals(msg.getFeature()) && dataBasePart != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.url)) {
 				if (msg.getNewValue() != null) {
-					basePart.setUrl(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					dataBasePart.setUrl(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setUrl("");
+					dataBasePart.setUrl("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.comments)){
+			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && dataBasePart != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					dataBasePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setComments("");
+					dataBasePart.setComments("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getDataBase_Uses().equals(msg.getFeature()) && isAccessible(DatabaseViewsRepository.DataBase_.Properties.uses))
-				basePart.updateUses();
+				dataBasePart.updateUses();
 			
 		}
 	}

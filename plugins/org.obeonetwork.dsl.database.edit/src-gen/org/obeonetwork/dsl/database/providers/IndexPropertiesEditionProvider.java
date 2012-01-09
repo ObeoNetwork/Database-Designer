@@ -50,7 +50,7 @@ public class IndexPropertiesEditionProvider extends PropertiesEditingProviderImp
 	 * 
 	 */
 	public boolean provides(PropertiesEditingContext editingContext, String part) {
-		return (editingContext.getEObject() instanceof Index) && (IndexPropertiesEditionComponent.BASE_PART.equals(part));
+		return (editingContext.getEObject() instanceof Index) && (IndexPropertiesEditionComponent.INDEX_PART.equals(part));
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class IndexPropertiesEditionProvider extends PropertiesEditingProviderImp
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
-		return (editingContext.getEObject() instanceof Index) && ((IndexPropertiesEditionComponent.BASE_PART.equals(part) && refinement == IndexPropertiesEditionComponent.class));
+		return (editingContext.getEObject() instanceof Index) && ((IndexPropertiesEditionComponent.INDEX_PART.equals(part) && refinement == IndexPropertiesEditionComponent.class));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class IndexPropertiesEditionProvider extends PropertiesEditingProviderImp
 	 */
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part) {
 		if (editingContext.getEObject() instanceof Index) {
-			if (IndexPropertiesEditionComponent.BASE_PART.equals(part))
+			if (IndexPropertiesEditionComponent.INDEX_PART.equals(part))
 				return new IndexPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part);
@@ -105,7 +105,7 @@ public class IndexPropertiesEditionProvider extends PropertiesEditingProviderImp
 	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof Index) {
-			if (IndexPropertiesEditionComponent.BASE_PART.equals(part)
+			if (IndexPropertiesEditionComponent.INDEX_PART.equals(part)
 				&& refinement == IndexPropertiesEditionComponent.class)
 				return new IndexPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}

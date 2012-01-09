@@ -33,7 +33,7 @@ import org.obeonetwork.dsl.database.parts.SchemaPropertiesEditionPart;
 public class SchemaPropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String SCHEMA_PART = "Schema"; //$NON-NLS-1$
 
 	
 	
@@ -43,7 +43,7 @@ public class SchemaPropertiesEditionComponent extends SinglePartPropertiesEditin
 	 */
 	public SchemaPropertiesEditionComponent(PropertiesEditingContext editingContext, EObject schema, String editing_mode) {
 		super(editingContext, schema, editing_mode);
-		parts = new String[] { BASE_PART };
+		parts = new String[] { SCHEMA_PART };
 		repositoryKey = DatabaseViewsRepository.class;
 		partKey = DatabaseViewsRepository.Schema.class;
 	}
@@ -60,13 +60,13 @@ public class SchemaPropertiesEditionComponent extends SinglePartPropertiesEditin
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
 			final Schema schema = (Schema)elt;
-			final SchemaPropertiesEditionPart basePart = (SchemaPropertiesEditionPart)editingPart;
+			final SchemaPropertiesEditionPart schemaPart = (SchemaPropertiesEditionPart)editingPart;
 			// init values
 			if (schema.getName() != null && isAccessible(DatabaseViewsRepository.Schema.Properties.name))
-				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), schema.getName()));
+				schemaPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), schema.getName()));
 			
 			if (schema.getComments() != null && isAccessible(DatabaseViewsRepository.Schema.Properties.comments))
-				basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), schema.getComments()));
+				schemaPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), schema.getComments()));
 			// init filters
 			
 			
@@ -117,19 +117,19 @@ public class SchemaPropertiesEditionComponent extends SinglePartPropertiesEditin
 	 */
 	public void updatePart(Notification msg) {
 		if (editingPart.isVisible()) {	
-			SchemaPropertiesEditionPart basePart = (SchemaPropertiesEditionPart)editingPart;
-			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Schema.Properties.name)) {
+			SchemaPropertiesEditionPart schemaPart = (SchemaPropertiesEditionPart)editingPart;
+			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && schemaPart != null && isAccessible(DatabaseViewsRepository.Schema.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					schemaPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setName("");
+					schemaPart.setName("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && basePart != null && isAccessible(DatabaseViewsRepository.Schema.Properties.comments)){
+			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && schemaPart != null && isAccessible(DatabaseViewsRepository.Schema.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					basePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					schemaPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
-					basePart.setComments("");
+					schemaPart.setComments("");
 				}
 			}
 			
