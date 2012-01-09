@@ -76,6 +76,18 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CRE_PKColumn" label="PK Column" nodeMappings="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@containerMappings[name='DB_Table']/@subNodeMappings[name='DB_Column']" iconPath="/org.obeonetwork.dsl.database.edit/icons/full/obj16/ColumnAndPrimaryKey.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%$container%>">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="database.Column" referenceName="columns">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="column&lt;%eContainer.columns.nSize%>"/>
+                  <subModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%self.addToPrimaryKey()%>"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
           <ownedTools xsi:type="tool:NodeCreationDescription" name="CRE_PrimaryKey" label="Primary Key" precondition="&lt;%primaryKey == null%>" nodeMappings="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@containerMappings[name='DB_Table']/@subNodeMappings[name='DB_PrimaryKey']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
@@ -114,18 +126,6 @@
             <elementView name="elementView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%self%>"/>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:OperationAction" name="ACT_InPrimaryKey" label="Use in Primary Key" precondition="&lt;%current.canExecuteUseInPrimaryKeyAction($views)%>">
-            <view name="views"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%current.executeUseInPrimaryKeyAction($views)%>"/>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:OperationAction" name="ACT_RemoveFromPrimaryKey" label="Remove from Primary Key" precondition="&lt;%current.canExecuteRemoveFromPrimaryKeyAction($views)%>">
-            <view name="views"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%current.executeRemoveFromPrimaryKeyAction($views)%>"/>
             </initialOperation>
           </ownedTools>
         </toolSections>
@@ -194,7 +194,7 @@
       <metamodel href="platform:/plugin/org.obeonetwork.dsl.database/model/database.ecore#/"/>
       <metamodel href="platform:/plugin/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#/"/>
       <defaultLayer name="Default" reusedMappings="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@containerMappings[name='DB_Table'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@edgeMappings[name='DB_ForeignKey'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@containerMappings[name='DB_View']">
-        <toolSections name="Schemas" reusedTools="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_Table'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_Column'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_ForeignKey'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_View'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='ACT_InPrimaryKey'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='ACT_RemoveFromPrimaryKey'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_Sequence']"/>
+        <toolSections name="Schemas" reusedTools="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_Table'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_Column'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_PKColumn'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_ForeignKey'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_View'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_Sequence']"/>
       </defaultLayer>
       <optionalLayers name="Constraints" reusedMappings="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='Constraints']/@containerMappings[name='DB_Constraint'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='Constraints']/@edgeMappings[name='DB_ConstraintToTable']"/>
     </ownedRepresentations>
