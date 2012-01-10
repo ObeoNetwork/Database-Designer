@@ -44,12 +44,12 @@ public class CustomColumnPropertiesEditionComponent extends ColumnPropertiesEdit
 																				.discriminator(TypesLibraryPackage.eINSTANCE.getTypeInstance())
 																				.build())
 																			.build();
-	protected EEFEditorSettingsImpl literalsSettings = (EEFEditorSettingsImpl) EEFEditorSettingsBuilder.create(semanticObject, TypesLibraryPackage.eINSTANCE.getTypeInstance_Literals())
-																			.nextStep(NavigationStepBuilder.create(DatabasePackage.eINSTANCE.getColumn_Type())			
-																				.index(0)			
-																				.discriminator(TypesLibraryPackage.eINSTANCE.getTypeInstance())
-																				.build())
-																			.build();
+//	protected EEFEditorSettingsImpl literalsSettings = (EEFEditorSettingsImpl) EEFEditorSettingsBuilder.create(semanticObject, TypesLibraryPackage.eINSTANCE.getTypeInstance_Literals())
+//																			.nextStep(NavigationStepBuilder.create(DatabasePackage.eINSTANCE.getColumn_Type())			
+//																				.index(0)			
+//																				.discriminator(TypesLibraryPackage.eINSTANCE.getTypeInstance())
+//																				.build())
+//																			.build();
 	
 	public CustomColumnPropertiesEditionComponent(PropertiesEditingContext editingContext, EObject column, String editing_mode) {
 		super(editingContext, column, editing_mode);
