@@ -10,18 +10,16 @@
  *******************************************************************************/
 package org.obeonetwork.dsl.database.design.services.label;
 
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.obeonetwork.dsl.database.Column;
 import org.obeonetwork.dsl.database.DatabaseElement;
 import org.obeonetwork.dsl.database.NamedElement;
 import org.obeonetwork.dsl.database.util.DatabaseSwitch;
+import org.obeonetwork.dsl.typeslibrary.provider.TypesLibraryItemProviderAdapterFactory;
 
 public class DatabaseLabelServices extends DatabaseSwitch<String>{
 	
-	private ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-	private AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(composedAdapterFactory);
-//	private TypesLibraryLabelServices typesLibraryLabelServices = new TypesLibraryLabelServices();
+	private AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new TypesLibraryItemProviderAdapterFactory());
 
 	public String getDatabaseElementLabel(DatabaseElement element) {
 		return doSwitch(element);
@@ -33,7 +31,6 @@ public class DatabaseLabelServices extends DatabaseSwitch<String>{
 		label += " : ";
 		String typeLabel = "undefined";
 		if (column.getType() != null) {
-//			typeLabel = typesLibraryLabelServices.getTypesLibraryElementLabel(column.getType());
 			typeLabel = adapterFactoryLabelProvider.getText(column.getType());
 		}
 		

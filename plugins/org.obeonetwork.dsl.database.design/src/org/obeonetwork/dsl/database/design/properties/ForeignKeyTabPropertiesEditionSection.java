@@ -2,7 +2,6 @@ package org.obeonetwork.dsl.database.design.properties;
 
 import org.eclipse.emf.ecore.EObject;
 import org.obeonetwork.dsl.database.ForeignKey;
-import org.obeonetwork.dsl.database.Table;
 
 public class ForeignKeyTabPropertiesEditionSection extends AbstractDatabasePropertiesEditionSection {
 
