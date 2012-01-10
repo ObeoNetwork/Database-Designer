@@ -132,14 +132,32 @@ public class RelationElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((RelationElement)object).getID();
+		RelationElement relationElt = (RelationElement)object;
+		String label = "";
+		if (relationElt.getSourceAttribute() != null) {
+			String sourceAttrName = relationElt.getSourceAttribute().getName();
+			if (sourceAttrName != null && sourceAttrName.length() != 0) {
+				label = sourceAttrName;
+			} else {
+				label = getString("_UI_Attribute_name_undefined");
+			}
+		}
+		label += " -> ";
+		if (relationElt.getTargetAttribute() != null) {
+			String targetAttrName = relationElt.getTargetAttribute().getName();
+			if (targetAttrName != null && targetAttrName.length() != 0) {
+				label += targetAttrName;
+			} else {
+				label += getString("_UI_Attribute_name_undefined");
+			}
+		}
+		
 		return label == null || label.length() == 0 ?
-			getString("_UI_RelationElement_type") :
-			getString("_UI_RelationElement_type") + " " + label;
+			getString("_UI_ForeignKeyElement_type") : label;
 	}
 
 	/**

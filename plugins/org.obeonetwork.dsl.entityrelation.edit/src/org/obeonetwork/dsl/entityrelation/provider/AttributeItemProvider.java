@@ -23,11 +23,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.obeonetwork.dsl.entityrelation.Attribute;
 import org.obeonetwork.dsl.entityrelation.Entity;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
-import org.obeonetwork.dsl.typeslibrary.TypesLibraryFactory;
 import org.obeonetwork.dsl.entityrelation.Identifier;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryFactory;
+import org.obeonetwork.dsl.typeslibrary.provider.TypesLibraryItemProviderAdapterFactory;
 
 /**
  * This is the item provider adapter for a {@link org.obeonetwork.dsl.entityrelation.Attribute} object.
@@ -202,14 +204,28 @@ public class AttributeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Attribute)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Attribute_type") :
-			getString("_UI_Attribute_type") + " " + label;
+		
+		String label = "";
+		Attribute attribute = (Attribute)object;
+		label += attribute.getName();
+		if (label == null || label.length() == 0) {
+			label = "#NONAME#";
+		}
+		
+		String typeLabel = "";
+		if (attribute.getType() != null) {
+			AdapterFactoryLabelProvider aflp = new AdapterFactoryLabelProvider(new TypesLibraryItemProviderAdapterFactory());
+			typeLabel = aflp.getText(attribute.getType());
+		}
+		if (typeLabel != null && typeLabel.length() != 0) {
+			label += " : " + typeLabel;
+		}
+		
+		return label;
 	}
 
 	/**
