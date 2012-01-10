@@ -194,14 +194,7 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * @generated NOT
 	 */
 	public Table getTargetTable() {
-		for (ForeignKeyElement element : getElements()) {
-			if (element.getPkColumn() != null
-					&& element.getPkColumn().getOwner() != null
-					&& element.getPkColumn().getOwner() instanceof Table) {
-				return (Table)element.getPkColumn().getOwner();
-			}
-		}
-		return null;
+		return getTarget();
 	}
 
 	/**
