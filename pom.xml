@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <prerequisites>
+    <maven>3.0</maven>
+  </prerequisites>
+	
+  <groupId>org.obeonetwork.dsl.database</groupId>
+  <artifactId>database-parent</artifactId>
+  <version>0.7.0-SNAPSHOT</version>    
+  <packaging>pom</packaging>
+  
+  <name>Database-Synchronizer Parent</name>
+  
+  <licenses>
+	  <license>
+		  <name>Eclipse Public License v1.0</name>
+		  <comments>
+  All rights reserved.
+
+  This program and the accompanying materials are made
+  available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.htm
+		  </comments>
+	  </license>
+  </licenses>
+  
+  <properties>
+     <tycho-version>0.12.0</tycho-version>
+    <platform-version-name>helios</platform-version-name>
+    <od-site>http://www.obeo.fr/download/release/designer/5.0.6/update/3.6</od-site>
+    <od-ext-site>http://marketplace.obeonetwork.com/updates/od5/</od-ext-site>
+    <eclipse-site>http://download.eclipse.org/releases/${platform-version-name}</eclipse-site>
+    <eef-site>http://download.eclipse.org/modeling/emft/eef/updates/releases/0.9/</eef-site>
+  </properties>
+  
+  <modules>
+    <module>features/org.obeonetwork.dsl.database.feature</module>
+    <module>features/org.obeonetwork.dsl.database.repository</module>
+    
+    <module>plugins/org.obeonetwork.dsl.database</module>
+    <module>plugins/org.obeonetwork.dsl.database.design</module>
+    <module>plugins/org.obeonetwork.dsl.database.edit</module>
+    <module>plugins/org.obeonetwork.dsl.database.editor</module>
+    <module>plugins/org.obeonetwork.dsl.dbermapping</module>
+    <module>plugins/org.obeonetwork.dsl.dbermapping.edit</module>
+    <module>plugins/org.obeonetwork.dsl.dbermapping.editor</module>
+    <module>plugins/org.obeonetwork.dsl.entityrelation</module>
+    <module>plugins/org.obeonetwork.dsl.entityrelation.design</module>
+    <module>plugins/org.obeonetwork.dsl.entityrelation.edit</module>
+    <module>plugins/org.obeonetwork.dsl.entityrelation.editor</module>
+    <module>plugins/org.obeonetwork.dsl.typeslibrary</module>
+    <module>plugins/org.obeonetwork.dsl.typeslibrary.edit</module>
+    <module>plugins/org.obeonetwork.dsl.typeslibrary.editor</module>
+  </modules>
+  
+  <repositories>
+    <repository>
+	    <id>helios</id>
+	    <layout>p2</layout>
+	    <url>${eclipse-site}</url>
+    </repository>
+    <repository>
+	    <id>obeodesigner</id>
+	    <layout>p2</layout>
+	    <url>${od-site}</url>
+    </repository>
+    <repository>
+	    <id>obeodesignerextension</id>
+	    <layout>p2</layout>
+	    <url>${od-ext-site}</url>
+    </repository>
+    <repository>
+	    <id>eef</id>
+	    <layout>p2</layout>
+	    <url>${eef-site}</url> 
+    </repository>
+  </repositories>
+  
+  <build>
+      <plugins>
+	<plugin>
+	  <!-- enable tycho build extension -->
+	  <groupId>org.eclipse.tycho</groupId>
+	  <artifactId>tycho-maven-plugin</artifactId>
+	  <version>${tycho-version}</version>
+	  <extensions>true</extensions>
+	</plugin>
+	<plugin>
+		<groupId>org.eclipse.tycho</groupId>
+		<artifactId>target-platform-configuration</artifactId>
+		<version>${tycho-version}</version>
+		<configuration>
+			<resolver>p2</resolver>
+		</configuration>
+	</plugin> 
+     </plugins>
+  </build>
+
+</project>
