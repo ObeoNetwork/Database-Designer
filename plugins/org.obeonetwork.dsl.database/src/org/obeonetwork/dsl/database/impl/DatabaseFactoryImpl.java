@@ -113,7 +113,7 @@ public class DatabaseFactoryImpl extends EFactoryImpl implements DatabaseFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Column createColumn() {
 		ColumnImpl column = new ColumnImpl();
