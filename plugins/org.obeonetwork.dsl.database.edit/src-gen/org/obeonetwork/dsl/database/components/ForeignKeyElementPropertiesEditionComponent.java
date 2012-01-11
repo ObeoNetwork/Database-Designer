@@ -121,11 +121,18 @@ public class ForeignKeyElementPropertiesEditionComponent extends SinglePartPrope
 				// set the button mode
 				foreignKeyElementPart.setPKColumnButtonMode(ButtonsModeEnum.BROWSE);
 			}
-			if (sourceTableSettings.getValue() != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable))
-				foreignKeyElementPart.setSourceTable(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), sourceTableSettings.getValue()));
-			
-			if (targetTableSettings.getValue() != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable))
-				foreignKeyElementPart.setTargetTable(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), targetTableSettings.getValue()));
+			// Correction provisoire qui sera supprimée des regénération en attendant une version corrective de EEF
+			// La raison première est que fkColumn est null, mais EEF transforme cela en ""
+			if (!fkColumnSettings.getValue().equals("")) {
+				if (sourceTableSettings.getValue() != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable))
+					foreignKeyElementPart.setSourceTable(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), sourceTableSettings.getValue()));
+			}
+			// Correction provisoire qui sera supprimée des regénération en attendant une version corrective de EEF
+			// La raison première est que pkColumn est null, mais EEF transforme cela en ""
+			if (!pkColumnSettings.getValue().equals("")) {
+				if (targetTableSettings.getValue() != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable))
+					foreignKeyElementPart.setTargetTable(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), targetTableSettings.getValue()));
+			}
 			
 			// init filters
 			
