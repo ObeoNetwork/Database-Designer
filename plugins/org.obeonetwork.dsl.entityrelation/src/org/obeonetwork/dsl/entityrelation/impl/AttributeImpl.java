@@ -302,6 +302,7 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 				// Create a primary identifier
 				primaryIdentifier = EntityRelationFactory.eINSTANCE.createIdentifier();
 				primaryIdentifier.setName(entity.getName() + "_ID");
+				entity.getIdentifiers().add(primaryIdentifier);
 				entity.setPrimaryIdentifier(primaryIdentifier);
 			}
 			
