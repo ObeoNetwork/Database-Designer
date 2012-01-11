@@ -3,7 +3,7 @@
   <editionContexts basePackage="org.obeonetwork.dsl" descriptorsContributorID="org.obeonetwork.dsl.properties" descriptorsGenericPropertiesViews="true">
     <PropertiesEditionContext href="database.components#_9dhnUCZDEeGbPrqZPmsr5Q"/>
   </editionContexts>
-  <viewsRepositories basePackage="org.obeonetwork.dsl.database" swtViews="true" formViews="true">
+  <viewsRepositories basePackage="org.obeonetwork.dsl.database" swtViews="true" formViews="true" partsSuperClass="">
     <viewsRepository href="database.components#_9diOhCZDEeGbPrqZPmsr5Q"/>
   </viewsRepositories>
 </eef-gen:EEFGenModel>

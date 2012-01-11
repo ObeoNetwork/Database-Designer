@@ -273,27 +273,17 @@ public class DatabaseViewsRepository {
 	public static class ForeignKeyElement {
 		public static class Properties {
 	
-				public static class SourceTable {
 			
-					
-					public static String sourceTable_ = "database::Foreign Key Element::properties::Source Table::source table_";
-					
-					
-					public static String fKColumn = "database::Foreign Key Element::properties::Source Table::FK Column";
-					
+			public static String sourceTable = "database::Foreign Key Element::properties::Source table";
 			
-				}
 			
-				public static class TargetTable {
+			public static String fKColumn = "database::Foreign Key Element::properties::FK Column";
 			
-					
-					public static String targetTable_ = "database::Foreign Key Element::properties::Target Table::target table_";
-					
-					
-					public static String pKColumn = "database::Foreign Key Element::properties::Target Table::PK column";
-					
 			
-				}
+			public static String targetTable = "database::Foreign Key Element::properties::Target table";
+			
+			
+			public static String pKColumn = "database::Foreign Key Element::properties::PK column";
 			
 			
 			public static String comments = "database::Foreign Key Element::properties::comments";

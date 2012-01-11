@@ -96,14 +96,10 @@ public class ForeignKeyElementPropertiesEditionPartForm extends CompositePropert
 	public void createControls(final FormToolkit widgetFactory, Composite view) {
 		CompositionSequence foreignKeyElementStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = foreignKeyElementStep.addStep(DatabaseViewsRepository.ForeignKeyElement.Properties.class);
-		CompositionStep sourceTableStep = propertiesStep.addStep(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.class);
-		sourceTableStep.addStep(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.sourceTable_);
-		sourceTableStep.addStep(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.fKColumn);
-		
-		CompositionStep targetTableStep = propertiesStep.addStep(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.class);
-		targetTableStep.addStep(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.targetTable_);
-		targetTableStep.addStep(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.pKColumn);
-		
+		propertiesStep.addStep(DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable);
+		propertiesStep.addStep(DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn);
+		propertiesStep.addStep(DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable);
+		propertiesStep.addStep(DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn);
 		propertiesStep.addStep(DatabaseViewsRepository.ForeignKeyElement.Properties.comments);
 		
 		
@@ -114,22 +110,16 @@ public class ForeignKeyElementPropertiesEditionPartForm extends CompositePropert
 				if (key == DatabaseViewsRepository.ForeignKeyElement.Properties.class) {
 					return createPropertiesGroup(widgetFactory, parent);
 				}
-				if (key == DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.class) {
-					return createSourceTableGroup(widgetFactory, parent);
-				}
-				if (key == DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.sourceTable_) {
+				if (key == DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable) {
 					return 		createSourceTableText(widgetFactory, parent);
 				}
-				if (key == DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.fKColumn) {
+				if (key == DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn) {
 					return createFKColumnFlatComboViewer(parent, widgetFactory);
 				}
-				if (key == DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.class) {
-					return createTargetTableGroup(widgetFactory, parent);
-				}
-				if (key == DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.targetTable_) {
+				if (key == DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable) {
 					return 		createTargetTableText(widgetFactory, parent);
 				}
-				if (key == DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.pKColumn) {
+				if (key == DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn) {
 					return createPKColumnFlatComboViewer(parent, widgetFactory);
 				}
 				if (key == DatabaseViewsRepository.ForeignKeyElement.Properties.comments) {
@@ -157,26 +147,9 @@ public class ForeignKeyElementPropertiesEditionPartForm extends CompositePropert
 		return propertiesGroup;
 	}
 
-	/**
-	 * 
-	 */
-	protected Composite createSourceTableGroup(FormToolkit widgetFactory, final Composite parent) {
-		Section sourceTableSection = widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
-		sourceTableSection.setText(DatabaseMessages.ForeignKeyElementPropertiesEditionPart_SourceTableGroupLabel);
-		GridData sourceTableSectionData = new GridData(GridData.FILL_HORIZONTAL);
-		sourceTableSectionData.horizontalSpan = 3;
-		sourceTableSection.setLayoutData(sourceTableSectionData);
-		Composite sourceTableGroup = widgetFactory.createComposite(sourceTableSection);
-		GridLayout sourceTableGroupLayout = new GridLayout();
-		sourceTableGroupLayout.numColumns = 3;
-		sourceTableGroup.setLayout(sourceTableGroupLayout);
-		sourceTableSection.setClient(sourceTableGroup);
-		return sourceTableGroup;
-	}
-
 	
 	protected Composite createSourceTableText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_SourceTableLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.sourceTable_, DatabaseViewsRepository.FORM_KIND));
+		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_SourceTableLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable, DatabaseViewsRepository.FORM_KIND));
 		sourceTable = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		sourceTable.setEnabled(false);
 		sourceTable.setToolTipText(DatabaseMessages.ForeignKeyElement_ReadOnly);
@@ -193,7 +166,7 @@ public class ForeignKeyElementPropertiesEditionPartForm extends CompositePropert
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyElementPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.sourceTable_, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, sourceTable.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyElementPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, sourceTable.getText()));
 			}
 		});
 		sourceTable.addKeyListener(new KeyAdapter() {
@@ -206,13 +179,13 @@ public class ForeignKeyElementPropertiesEditionPartForm extends CompositePropert
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyElementPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.sourceTable_, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, sourceTable.getText()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyElementPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, sourceTable.getText()));
 				}
 			}
 		});
-		EditingUtils.setID(sourceTable, DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.sourceTable_);
+		EditingUtils.setID(sourceTable, DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable);
 		EditingUtils.setEEFtype(sourceTable, "eef::Text"); //$NON-NLS-1$
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.sourceTable_, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
 
@@ -222,8 +195,8 @@ public class ForeignKeyElementPropertiesEditionPartForm extends CompositePropert
 	 * 
 	 */
 	protected Composite createFKColumnFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_FKColumnLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.fKColumn, DatabaseViewsRepository.FORM_KIND));
-		fKColumn = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.fKColumn, DatabaseViewsRepository.FORM_KIND));
+		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_FKColumnLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn, DatabaseViewsRepository.FORM_KIND));
+		fKColumn = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn, DatabaseViewsRepository.FORM_KIND));
 		widgetFactory.adapt(fKColumn);
 		fKColumn.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		GridData fKColumnData = new GridData(GridData.FILL_HORIZONTAL);
@@ -237,35 +210,18 @@ public class ForeignKeyElementPropertiesEditionPartForm extends CompositePropert
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyElementPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.fKColumn, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getFKColumn()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyElementPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getFKColumn()));
 			}
 
 		});
-		fKColumn.setID(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.fKColumn);
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.fKColumn, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		fKColumn.setID(DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn);
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 		return parent;
-	}
-
-	/**
-	 * 
-	 */
-	protected Composite createTargetTableGroup(FormToolkit widgetFactory, final Composite parent) {
-		Section targetTableSection = widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
-		targetTableSection.setText(DatabaseMessages.ForeignKeyElementPropertiesEditionPart_TargetTableGroupLabel);
-		GridData targetTableSectionData = new GridData(GridData.FILL_HORIZONTAL);
-		targetTableSectionData.horizontalSpan = 3;
-		targetTableSection.setLayoutData(targetTableSectionData);
-		Composite targetTableGroup = widgetFactory.createComposite(targetTableSection);
-		GridLayout targetTableGroupLayout = new GridLayout();
-		targetTableGroupLayout.numColumns = 3;
-		targetTableGroup.setLayout(targetTableGroupLayout);
-		targetTableSection.setClient(targetTableGroup);
-		return targetTableGroup;
 	}
 
 	
 	protected Composite createTargetTableText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_TargetTableLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.targetTable_, DatabaseViewsRepository.FORM_KIND));
+		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_TargetTableLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable, DatabaseViewsRepository.FORM_KIND));
 		targetTable = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		targetTable.setEnabled(false);
 		targetTable.setToolTipText(DatabaseMessages.ForeignKeyElement_ReadOnly);
@@ -282,7 +238,7 @@ public class ForeignKeyElementPropertiesEditionPartForm extends CompositePropert
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyElementPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.targetTable_, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, targetTable.getText()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyElementPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, targetTable.getText()));
 			}
 		});
 		targetTable.addKeyListener(new KeyAdapter() {
@@ -295,13 +251,13 @@ public class ForeignKeyElementPropertiesEditionPartForm extends CompositePropert
 			public void keyPressed(KeyEvent e) {
 				if (e.character == SWT.CR) {
 					if (propertiesEditionComponent != null)
-						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyElementPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.targetTable_, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, targetTable.getText()));
+						propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyElementPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, targetTable.getText()));
 				}
 			}
 		});
-		EditingUtils.setID(targetTable, DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.targetTable_);
+		EditingUtils.setID(targetTable, DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable);
 		EditingUtils.setEEFtype(targetTable, "eef::Text"); //$NON-NLS-1$
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.targetTable_, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
 
@@ -311,8 +267,8 @@ public class ForeignKeyElementPropertiesEditionPartForm extends CompositePropert
 	 * 
 	 */
 	protected Composite createPKColumnFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_PKColumnLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.pKColumn, DatabaseViewsRepository.FORM_KIND));
-		pKColumn = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.pKColumn, DatabaseViewsRepository.FORM_KIND));
+		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_PKColumnLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn, DatabaseViewsRepository.FORM_KIND));
+		pKColumn = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn, DatabaseViewsRepository.FORM_KIND));
 		widgetFactory.adapt(pKColumn);
 		pKColumn.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		GridData pKColumnData = new GridData(GridData.FILL_HORIZONTAL);
@@ -326,12 +282,12 @@ public class ForeignKeyElementPropertiesEditionPartForm extends CompositePropert
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyElementPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.pKColumn, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getPKColumn()));
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeyElementPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getPKColumn()));
 			}
 
 		});
-		pKColumn.setID(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.pKColumn);
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.pKColumn, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
+		pKColumn.setID(DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn);
+		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
 

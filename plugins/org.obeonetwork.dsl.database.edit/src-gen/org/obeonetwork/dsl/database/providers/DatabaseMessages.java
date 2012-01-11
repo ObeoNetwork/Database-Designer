@@ -47,12 +47,6 @@ public class DatabaseMessages extends NLS {
 	public static String ForeignKeyElementPropertiesEditionPart_PropertiesGroupLabel;
 
 	
-	public static String ForeignKeyElementPropertiesEditionPart_SourceTableGroupLabel;
-
-	
-	public static String ForeignKeyElementPropertiesEditionPart_TargetTableGroupLabel;
-
-	
 	public static String IndexElementPropertiesEditionPart_PropertiesGroupLabel;
 
 	

@@ -107,24 +107,24 @@ public class ForeignKeyElementPropertiesEditionComponent extends SinglePartPrope
 			// init values
 			if (foreignKeyElement.getComments() != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.comments))
 				foreignKeyElementPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), foreignKeyElement.getComments()));
-			if (isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.fKColumn)) {
+			if (isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn)) {
 				// init part
 				fkColumnSettings = new EObjectFlatComboSettings(foreignKeyElement, DatabasePackage.eINSTANCE.getForeignKeyElement_FkColumn());
 				foreignKeyElementPart.initFKColumn(fkColumnSettings);
 				// set the button mode
 				foreignKeyElementPart.setFKColumnButtonMode(ButtonsModeEnum.BROWSE);
 			}
-			if (isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.pKColumn)) {
+			if (isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn)) {
 				// init part
 				pkColumnSettings = new EObjectFlatComboSettings(foreignKeyElement, DatabasePackage.eINSTANCE.getForeignKeyElement_PkColumn());
 				foreignKeyElementPart.initPKColumn(pkColumnSettings);
 				// set the button mode
 				foreignKeyElementPart.setPKColumnButtonMode(ButtonsModeEnum.BROWSE);
 			}
-			if (sourceTableSettings.getValue() != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.sourceTable_))
+			if (sourceTableSettings.getValue() != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable))
 				foreignKeyElementPart.setSourceTable(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), sourceTableSettings.getValue()));
 			
-			if (targetTableSettings.getValue() != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.targetTable_))
+			if (targetTableSettings.getValue() != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable))
 				foreignKeyElementPart.setTargetTable(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), targetTableSettings.getValue()));
 			
 			// init filters
@@ -181,10 +181,10 @@ public class ForeignKeyElementPropertiesEditionComponent extends SinglePartPrope
 	 * @see org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent#shouldProcess(org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent)
 	 */
 	protected boolean shouldProcess(IPropertiesEditionEvent event) {
-		if (event.getAffectedEditor() == DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.sourceTable_) {
+		if (event.getAffectedEditor() == DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable) {
 			return (sourceTableSettings.getValue() == null) ? (event.getNewValue() != null) : (!sourceTableSettings.getValue().equals(event.getNewValue()));
 		}
-		if (event.getAffectedEditor() == DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.targetTable_) {
+		if (event.getAffectedEditor() == DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable) {
 			return (targetTableSettings.getValue() == null) ? (event.getNewValue() != null) : (!targetTableSettings.getValue().equals(event.getNewValue()));
 		}
 		return super.shouldProcess(event);
@@ -198,10 +198,10 @@ public class ForeignKeyElementPropertiesEditionComponent extends SinglePartPrope
 		if (editorKey == DatabaseViewsRepository.ForeignKeyElement.Properties.comments) {
 			return DatabasePackage.eINSTANCE.getDatabaseElement_Comments();
 		}
-		if (editorKey == DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.fKColumn) {
+		if (editorKey == DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn) {
 			return DatabasePackage.eINSTANCE.getForeignKeyElement_FkColumn();
 		}
-		if (editorKey == DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.pKColumn) {
+		if (editorKey == DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn) {
 			return DatabasePackage.eINSTANCE.getForeignKeyElement_PkColumn();
 		}
 		return super.associatedFeature(editorKey);
@@ -217,7 +217,7 @@ public class ForeignKeyElementPropertiesEditionComponent extends SinglePartPrope
 		if (DatabaseViewsRepository.ForeignKeyElement.Properties.comments == event.getAffectedEditor()) {
 			foreignKeyElement.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
 		}
-		if (DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.fKColumn == event.getAffectedEditor()) {
+		if (DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
 				fkColumnSettings.setToReference((Column)event.getNewValue());
 			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
@@ -233,7 +233,7 @@ public class ForeignKeyElementPropertiesEditionComponent extends SinglePartPrope
 				fkColumnSettings.setToReference(eObject);
 			}
 		}
-		if (DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.pKColumn == event.getAffectedEditor()) {
+		if (DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
 				pkColumnSettings.setToReference((Column)event.getNewValue());
 			} else if (event.getKind() == PropertiesEditionEvent.ADD) {
@@ -265,18 +265,18 @@ public class ForeignKeyElementPropertiesEditionComponent extends SinglePartPrope
 					foreignKeyElementPart.setComments("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getForeignKeyElement_FkColumn().equals(msg.getFeature()) && foreignKeyElementPart != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.fKColumn))
+			if (DatabasePackage.eINSTANCE.getForeignKeyElement_FkColumn().equals(msg.getFeature()) && foreignKeyElementPart != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn))
 				foreignKeyElementPart.setFKColumn((EObject)msg.getNewValue());
-			if (DatabasePackage.eINSTANCE.getForeignKeyElement_PkColumn().equals(msg.getFeature()) && foreignKeyElementPart != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.pKColumn))
+			if (DatabasePackage.eINSTANCE.getForeignKeyElement_PkColumn().equals(msg.getFeature()) && foreignKeyElementPart != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn))
 				foreignKeyElementPart.setPKColumn((EObject)msg.getNewValue());
-			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && foreignKeyElementPart != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.sourceTable_)) {
+			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && foreignKeyElementPart != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable)) {
 				if (msg.getNewValue() != null) {
 					foreignKeyElementPart.setSourceTable(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
 					foreignKeyElementPart.setSourceTable("");
 				}
 			}
-			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && foreignKeyElementPart != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.targetTable_)) {
+			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && foreignKeyElementPart != null && isAccessible(DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable)) {
 				if (msg.getNewValue() != null) {
 					foreignKeyElementPart.setTargetTable(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
 				} else {
@@ -295,7 +295,7 @@ public class ForeignKeyElementPropertiesEditionComponent extends SinglePartPrope
 	 * 
 	 */
 	public boolean isRequired(Object key, int kind) {
-		return key == DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.sourceTable_ || key == DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.targetTable_;
+		return key == DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable || key == DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable;
 	}
 
 	/**
@@ -315,14 +315,14 @@ public class ForeignKeyElementPropertiesEditionComponent extends SinglePartPrope
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), newValue);
 				}
-				if (DatabaseViewsRepository.ForeignKeyElement.Properties.SourceTable.sourceTable_ == event.getAffectedEditor()) {
+				if (DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
 						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
-				if (DatabaseViewsRepository.ForeignKeyElement.Properties.TargetTable.targetTable_ == event.getAffectedEditor()) {
+				if (DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
 						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);

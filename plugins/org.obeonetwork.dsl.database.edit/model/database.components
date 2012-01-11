@@ -448,23 +448,17 @@
       <views xmi:id="_9di1gSZDEeGbPrqZPmsr5Q" name="Foreign Key Element">
         <elements xsi:type="eef-views:Container" xmi:id="_9di1giZDEeGbPrqZPmsr5Q" name="properties">
           <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
-          <elements xsi:type="eef-views:Container" xmi:id="_QrR0oSsxEeGDoZnN6mIKWg" name="Source Table">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
-            <elements xsi:type="eef-views:ElementEditor" xmi:id="_VlnnsCsxEeGDoZnN6mIKWg" name="source table" readOnly="true">
-              <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
-            </elements>
-            <elements xsi:type="eef-views:ElementEditor" xmi:id="_9djcgCZDEeGbPrqZPmsr5Q" name="FK Column">
-              <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
-            </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_VlnnsCsxEeGDoZnN6mIKWg" name="Source table" readOnly="true">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
           </elements>
-          <elements xsi:type="eef-views:Container" xmi:id="_TGONECsxEeGDoZnN6mIKWg" name="Target Table">
-            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
-            <elements xsi:type="eef-views:ElementEditor" xmi:id="_bJSroCsxEeGDoZnN6mIKWg" name="target table" readOnly="true">
-              <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
-            </elements>
-            <elements xsi:type="eef-views:ElementEditor" xmi:id="_9djcgSZDEeGbPrqZPmsr5Q" name="PK column">
-              <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
-            </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_9djcgCZDEeGbPrqZPmsr5Q" name="FK Column">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_bJSroCsxEeGDoZnN6mIKWg" name="Target table" readOnly="true">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_9djcgSZDEeGbPrqZPmsr5Q" name="PK column">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.0"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_9di1gyZDEeGbPrqZPmsr5Q" name="comments">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.2"/>

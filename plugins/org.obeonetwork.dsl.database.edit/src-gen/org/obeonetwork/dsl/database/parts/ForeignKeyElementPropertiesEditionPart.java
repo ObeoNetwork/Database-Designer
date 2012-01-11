@@ -20,14 +20,14 @@ import org.eclipse.jface.viewers.ViewerFilter;
 public interface ForeignKeyElementPropertiesEditionPart {
 
 	/**
-	 * @return the source table
+	 * @return the Source table
 	 * 
 	 */
 	public String getSourceTable();
 
 	/**
-	 * Defines a new source table
-	 * @param newValue the new source table to set
+	 * Defines a new Source table
+	 * @param newValue the new Source table to set
 	 * 
 	 */
 	public void setSourceTable(String newValue);
@@ -81,14 +81,14 @@ public interface ForeignKeyElementPropertiesEditionPart {
 
 
 	/**
-	 * @return the target table
+	 * @return the Target table
 	 * 
 	 */
 	public String getTargetTable();
 
 	/**
-	 * Defines a new target table
-	 * @param newValue the new target table to set
+	 * Defines a new Target table
+	 * @param newValue the new Target table to set
 	 * 
 	 */
 	public void setTargetTable(String newValue);
