@@ -7,4 +7,117 @@
 	       name="entityrelation">
     </component>
   </extension>
+  
+   <!-- Tabbed properties views extension -->
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="fr.obeo.dsl.viewpoint.diagram">
+         <propertyCategory
+               category="default">
+         </propertyCategory>
+         <propertyCategory
+               category="extended">
+         </propertyCategory>
+         <propertyCategory
+               category="advanced">
+         </propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="fr.obeo.dsl.viewpoint.diagram">
+         <propertyTab
+               label="LogicalModel"
+               category="extended"
+               id="LogicalModel"
+               afterTab="LogicalModel">
+         </propertyTab>
+         <propertyTab
+               label="Entity"
+               category="extended"
+               id="Entity"
+               afterTab="Entity">
+         </propertyTab>
+         <propertyTab
+               label="Identifiers"
+               category="extended"
+               id="Identifiers"
+               afterTab="Base">
+         </propertyTab>
+         <propertyTab
+               label="Relation"
+               category="extended"
+               id="Relation"
+               afterTab="Relation">
+         </propertyTab>
+         <propertyTab
+               label="Relation Element"
+               category="extended"
+               id="Relation Element"
+               afterTab="Relation Element">
+         </propertyTab>
+         <propertyTab
+               label="Attribute"
+               category="extended"
+               id="Attribute"
+               afterTab="Attribute">
+         </propertyTab>
+         <propertyTab
+               label="Identifier"
+               category="extended"
+               id="Identifier"
+               afterTab="Identifier">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="fr.obeo.dsl.viewpoint.diagram">
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.entityrelation.section.LogicalModel"
+               filter="org.obeonetwork.dsl.entityrelation.design.properties.LogicalModelTabPropertiesEditionSection"
+               tab="LogicalModel">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.entityrelation.section.Entity"
+               filter="org.obeonetwork.dsl.entityrelation.design.properties.EntityTabPropertiesEditionSection"
+               tab="Entity">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.entityrelation.section.Entity"
+               filter="org.obeonetwork.dsl.entityrelation.design.properties.EntityTabPropertiesEditionSection"
+               tab="Identifiers">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.entityrelation.section.Relation"
+               filter="org.obeonetwork.dsl.entityrelation.design.properties.RelationTabPropertiesEditionSection"
+               tab="Relation">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.entityrelation.section.RelationElement"
+               filter="org.obeonetwork.dsl.entityrelation.design.properties.RelationElementTabPropertiesEditionSection"
+               tab="Relation Element">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.entityrelation.section.Attribute"
+               filter="org.obeonetwork.dsl.entityrelation.design.properties.AttributeTabPropertiesEditionSection"
+               tab="Attribute">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               id="org.obeonetwork.dsl.entityrelation.section.Identifier"
+               filter="org.obeonetwork.dsl.entityrelation.design.properties.IdentifierTabPropertiesEditionSection"
+               tab="Identifier">
+         </propertySection>
+      </propertySections>
+   </extension>
 </plugin>
