@@ -261,7 +261,7 @@ public class TypeInstanceItemProvider
 		if (nativeType != null) {
 			label = nativeType.getName();
 			if (label == null || label.length() == 0) {
-				label = "#NONAME#";
+				label = "<undefined>";
 			}
 			switch(nativeType.getSpec()) {
 			case LENGTH :
@@ -297,7 +297,7 @@ public class TypeInstanceItemProvider
 				break;
 			}
 		} else {
-			label = "#NONAME#";
+			label = "<undefined>";
 		}
 		
 		return label;
