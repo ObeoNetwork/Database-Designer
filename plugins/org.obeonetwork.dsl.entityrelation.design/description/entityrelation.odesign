@@ -17,7 +17,7 @@
       <metamodel href="platform:/plugin/org.obeonetwork.dsl.entityrelation/model/entityrelation.ecore#/"/>
       <metamodel href="platform:/plugin/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#/"/>
       <defaultLayer name="Default">
-        <edgeMappings name="ERD_Relation" labelDirectEdit="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Reused%20Description']/@defaultLayer/@toolSections.0/@ownedTools[name='EDT_LogicalElement']" semanticCandidatesExpression="&lt;%relations%>" semanticElements="&lt;%self%>" sourceMapping="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@defaultLayer/@containerMappings[name='ERD_Entity']" targetMapping="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@defaultLayer/@containerMappings[name='ERD_Entity']" targetFinderExpression="&lt;%target%>" sourceFinderExpression="&lt;%source%>" domainClass="entityrelation.Relation" useDomainElement="true">
+        <edgeMappings name="ERD_Relation" labelDirectEdit="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Reused%20Description']/@defaultLayer/@toolSections.0/@ownedTools[name='EDT_LogicalElement']" semanticCandidatesExpression="&lt;%relations%>" semanticElements="&lt;%self%>" sourceMapping="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@defaultLayer/@containerMappings[name='ERD_Entity']" targetMapping="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@defaultLayer/@containerMappings[name='ERD_Entity'] //@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@optionalLayers[name='External%20Entities']/@containerMappings[name='ERD_Non_Referenced_External_Entity'] //@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@optionalLayers[name='External%20Entities']/@containerMappings[name='ERD_Referenced_External_Entity']" targetFinderExpression="&lt;%target%>" sourceFinderExpression="&lt;%source%>" domainClass="entityrelation.Relation" useDomainElement="true">
           <style showIcon="false" labelExpression="&lt;%name%>" sizeComputationExpression="1">
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
@@ -25,7 +25,7 @@
         </edgeMappings>
         <containerMappings name="ERD_Entity" labelDirectEdit="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Reused%20Description']/@defaultLayer/@toolSections.0/@ownedTools[name='EDT_LogicalElement']" semanticCandidatesExpression="&lt;%entities%>" semanticElements="&lt;%self%>" domainClass="entityrelation.Entity" listContainer="true">
           <subNodeMappings name="ERD_Attribute" labelDirectEdit="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Reused%20Description']/@defaultLayer/@toolSections.0/@ownedTools[name='EDT_LogicalElement']" semanticCandidatesExpression="&lt;%attributes%>" semanticElements="&lt;%self%>" domainClass="entityrelation.Attribute">
-            <style xsi:type="style:SquareDescription">
+            <style xsi:type="style:SquareDescription" labelExpression="&lt;%getLogicalElementLabel()%>">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
@@ -85,24 +85,93 @@
             <sourceViewVariable name="sourceView"/>
             <targetViewVariable name="targetView"/>
             <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%$source.createRelation($target)%>">
+                <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="Relation &lt;%eContainer.nSize()%>"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CRE_RelationNN" label="Relation n..n" edgeMappings="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@defaultLayer/@edgeMappings[name='ERD_Relation']" iconPath="/org.obeonetwork.dsl.entityrelation.edit/icons/full/obj16/RelationNN.gif">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
               <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%$source.eContainer%>">
-                <subModelOperations xsi:type="tool:CreateInstance" typeName="entityrelation.Relation" referenceName="relations" variableName="newRelation">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="entityrelation.Entity" referenceName="entities" variableName="newEntity">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="Relation_&lt;%eContainer.entities.nSize()%>"/>
+                </subModelOperations>
+                <subModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%$source.createRelation($newEntity)%>">
                   <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="Relation &lt;%eContainer.nSize()%>"/>
-                  <subModelOperations xsi:type="tool:SetValue" featureName="source" valueExpression="&lt;%$source%>"/>
-                  <subModelOperations xsi:type="tool:SetValue" featureName="target" valueExpression="&lt;%$target%>"/>
-                  <subModelOperations xsi:type="tool:If" conditionExpression="&lt;%$source.primaryIdentifier != null%>">
-                    <subModelOperations xsi:type="tool:SetValue" featureName="identifier" valueExpression="&lt;%$source.primaryIdentifier%>"/>
-                  </subModelOperations>
-                  <subModelOperations xsi:type="tool:If" conditionExpression="&lt;%$source.primaryIdentifier == null%>">
-                    <subModelOperations xsi:type="tool:SetValue" featureName="identifier" valueExpression="&lt;%$source.identifiers.nFirst%>"/>
-                  </subModelOperations>
+                  <subModelOperations xsi:type="tool:SetValue" featureName="targetCardinality" valueExpression="1..1"/>
+                  <subModelOperations xsi:type="tool:SetValue" featureName="targetIsComposite" valueExpression="true"/>
+                </subModelOperations>
+                <subModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%$target.createRelation($newEntity)%>">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="Relation &lt;%eContainer.nSize()%>"/>
+                  <subModelOperations xsi:type="tool:SetValue" featureName="targetCardinality" valueExpression="1..1"/>
+                  <subModelOperations xsi:type="tool:SetValue" featureName="targetIsComposite" valueExpression="true"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
         </toolSections>
       </defaultLayer>
+      <optionalLayers name="External Entities" activeByDefault="true">
+        <containerMappings name="ERD_Non_Referenced_External_Entity" deletionDescription="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@optionalLayers[name='External%20Entities']/@toolSections.0/@ownedTools[name='DEL_Prevent_Deletion_Ext_Entities']" semanticCandidatesExpression="&lt;%allNonReferencedExternalEntities%>" createElements="false" semanticElements="&lt;%self%>" domainClass="entityrelation.Entity" listContainer="true">
+          <subNodeMappings name="ERD_Ext_Attribute" deletionDescription="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@optionalLayers[name='External%20Entities']/@toolSections.0/@ownedTools[name='DEL_Prevent_Deletion_Ext_Entities']" labelDirectEdit="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Reused%20Description']/@defaultLayer/@toolSections.0/@ownedTools[name='EDT_LogicalElement']" semanticCandidatesExpression="&lt;%attributes%>" semanticElements="&lt;%self%>" domainClass="entityrelation.Attribute">
+            <style xsi:type="style:SquareDescription" labelExpression="&lt;%getLogicalElementLabel()%>">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="ERD_Ext_Identifier" deletionDescription="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@optionalLayers[name='External%20Entities']/@toolSections.0/@ownedTools[name='DEL_Prevent_Deletion_Ext_Entities']" labelDirectEdit="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Reused%20Description']/@defaultLayer/@toolSections.0/@ownedTools[name='EDT_LogicalElement']" semanticCandidatesExpression="&lt;%identifiers%>" semanticElements="&lt;%self%>" domainClass="entityrelation.Identifier">
+            <style xsi:type="style:SquareDescription">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" labelExpression="&lt;%eContainer.name%>::&lt;%name%>">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_green']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="ERD_Referenced_External_Entity" deletionDescription="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@optionalLayers[name='External%20Entities']/@toolSections.0/@ownedTools[name='DEL_Prevent_Deletion_Ext_Entities']" semanticCandidatesExpression="&lt;%allReferencedExternalEntities%>" semanticElements="&lt;%self%>" domainClass="entityrelation.Entity" reusedNodeMappings="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@optionalLayers[name='External%20Entities']/@containerMappings[name='ERD_Non_Referenced_External_Entity']/@subNodeMappings[name='ERD_Ext_Attribute'] //@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@optionalLayers[name='External%20Entities']/@containerMappings[name='ERD_Non_Referenced_External_Entity']/@subNodeMappings[name='ERD_Ext_Identifier']" listContainer="true">
+          <style xsi:type="style:FlatContainerStyleDescription" labelExpression="&lt;%eContainer.name%>::&lt;%name%>">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_green']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="External Entities">
+          <ownedTools xsi:type="tool:SelectionWizardDescription" name="WIZ_ExternalEntity" label="External Entity" precondition="&lt;%filter(&quot;entityrelation.LogicalModel&quot;)%>" forceRefresh="true" candidatesExpression="&lt;%(allSelectableExternalEntities($diagram) + allSelectableExternalEntities($diagram).ancestor).nMinimize()%>" tree="true" rootExpression="&lt;%allRoots()%>" childrenExpression="&lt;%eContents()%>" message="Select an external entity" iconPath="/org.obeonetwork.dsl.entityrelation.edit/icons/full/obj16/Entity.gif" windowTitle="Import external entity" windowImagePath="/org.obeonetwork.dsl.entityrelation.edit/icons/full/obj16/Entity.gif">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%$element%>">
+                <subModelOperations xsi:type="tool:CreateView" mapping="//@ownedViewpoints[name='Entity%20Relation']/@ownedRepresentations[name='Entity%20Relation%20Diagram']/@optionalLayers[name='External%20Entities']/@containerMappings[name='ERD_Non_Referenced_External_Entity']" containerViewExpression="&lt;%$diagram%>"/>
+              </firstModelOperations>
+            </initialOperation>
+            <element name="element"/>
+            <containerView name="containerView"/>
+            <container name="container"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="DEL_Prevent_Deletion_Ext_Entities">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%self%>"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </optionalLayers>
     </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="org.obeonetwork.dsl.entityrelation.design.services.EntityRelationServices"/>
     <ownedJavaExtensions qualifiedClassName="org.obeonetwork.dsl.entityrelation.design.services.label.EntityRelationEditLabelServices"/>
+    <ownedJavaExtensions qualifiedClassName="org.obeonetwork.dsl.entityrelation.design.services.label.EntityRelationLabelServices"/>
+    <ownedJavaExtensions qualifiedClassName="org.obeonetwork.dsl.entityrelation.design.services.EcoreServices"/>
+    <ownedJavaExtensions qualifiedClassName="org.obeonetwork.dsl.entityrelation.design.templates.entities"/>
   </ownedViewpoints>
 </description:Group>
