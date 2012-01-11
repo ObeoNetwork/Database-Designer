@@ -57,11 +57,6 @@
       <propertyTabs
             contributorId="org.obeonetwork.dsl.properties">
          <propertyTab
-               label="Base"
-               category="default"
-               id="Base">
-         </propertyTab>
-         <propertyTab
                label="LogicalModel"
                category="extended"
                id="LogicalModel"
