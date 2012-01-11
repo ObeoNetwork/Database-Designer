@@ -9,7 +9,7 @@
     usedGenPackages="../../org.obeonetwork.dsl.typeslibrary/model/typeslibrary.genmodel#//typeslibrary">
   <foreignModel>entityrelation.ecore</foreignModel>
   <genPackages prefix="EntityRelation" basePackage="org.obeonetwork.dsl" disposableProviderFactory="true"
-      ecorePackage="entityrelation.ecore#/">
+      multipleEditorPages="false" ecorePackage="entityrelation.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="entityrelation.ecore#//Cardinality">
       <genEnumLiterals ecoreEnumLiteral="entityrelation.ecore#//Cardinality/ZERO_ONE"/>
       <genEnumLiterals ecoreEnumLiteral="entityrelation.ecore#//Cardinality/ZERO_STAR"/>
@@ -42,9 +42,13 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entityrelation.ecore#//RelationElement/targetAttribute"/>
     </genClasses>
     <genClasses ecoreClass="entityrelation.ecore#//Attribute">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference entityrelation.ecore#//Attribute/owner"/>
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Attribute/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//Attribute/required"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference entityrelation.ecore#//Attribute/usedInIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//Attribute/inPrimaryIdentifier"/>
+      <genOperations ecoreOperation="entityrelation.ecore#//Attribute/addToPrimaryIdentifier"/>
+      <genOperations ecoreOperation="entityrelation.ecore#//Attribute/removeFromPrimaryIdentifier"/>
     </genClasses>
     <genClasses image="false" ecoreClass="entityrelation.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute entityrelation.ecore#//NamedElement/name"/>

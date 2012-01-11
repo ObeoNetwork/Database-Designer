@@ -518,13 +518,22 @@ public interface EntityRelationPackage extends EPackage {
 	int ATTRIBUTE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__OWNER = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int ATTRIBUTE__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
@@ -533,7 +542,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__REQUIRED = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int ATTRIBUTE__REQUIRED = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Used In Identifier</b></em>' reference.
@@ -542,7 +551,16 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__USED_IN_IDENTIFIER = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int ATTRIBUTE__USED_IN_IDENTIFIER = NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>In Primary Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__IN_PRIMARY_IDENTIFIER = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Attribute</em>' class.
@@ -551,7 +569,7 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int ATTRIBUTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.entityrelation.impl.IdentifierImpl <em>Identifier</em>}' class.
@@ -857,6 +875,17 @@ public interface EntityRelationPackage extends EPackage {
 	EClass getAttribute();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.obeonetwork.dsl.entityrelation.Attribute#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Attribute#getOwner()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EReference getAttribute_Owner();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.obeonetwork.dsl.entityrelation.Attribute#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -888,6 +917,17 @@ public interface EntityRelationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAttribute_UsedInIdentifier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.entityrelation.Attribute#isInPrimaryIdentifier <em>In Primary Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>In Primary Identifier</em>'.
+	 * @see org.obeonetwork.dsl.entityrelation.Attribute#isInPrimaryIdentifier()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_InPrimaryIdentifier();
 
 	/**
 	 * Returns the meta object for class '{@link org.obeonetwork.dsl.entityrelation.NamedElement <em>Named Element</em>}'.
@@ -1182,6 +1222,14 @@ public interface EntityRelationPackage extends EPackage {
 		EClass ATTRIBUTE = eINSTANCE.getAttribute();
 
 		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE__OWNER = eINSTANCE.getAttribute_Owner();
+
+		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1204,6 +1252,14 @@ public interface EntityRelationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ATTRIBUTE__USED_IN_IDENTIFIER = eINSTANCE.getAttribute_UsedInIdentifier();
+
+		/**
+		 * The meta object literal for the '<em><b>In Primary Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__IN_PRIMARY_IDENTIFIER = eINSTANCE.getAttribute_InPrimaryIdentifier();
 
 		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.entityrelation.impl.NamedElementImpl <em>Named Element</em>}' class.

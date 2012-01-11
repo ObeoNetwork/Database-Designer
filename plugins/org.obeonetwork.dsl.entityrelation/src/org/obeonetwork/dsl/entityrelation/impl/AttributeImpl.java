@@ -11,7 +11,10 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.obeonetwork.dsl.entityrelation.Attribute;
+import org.obeonetwork.dsl.entityrelation.Entity;
+import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
 import org.obeonetwork.dsl.typeslibrary.Type;
@@ -23,9 +26,11 @@ import org.obeonetwork.dsl.typeslibrary.Type;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.obeonetwork.dsl.entityrelation.impl.AttributeImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.impl.AttributeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.impl.AttributeImpl#isRequired <em>Required</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.entityrelation.impl.AttributeImpl#getUsedInIdentifier <em>Used In Identifier</em>}</li>
+ *   <li>{@link org.obeonetwork.dsl.entityrelation.impl.AttributeImpl#isInPrimaryIdentifier <em>In Primary Identifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,6 +78,16 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	protected Identifier usedInIdentifier;
 
 	/**
+	 * The default value of the '{@link #isInPrimaryIdentifier() <em>In Primary Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isInPrimaryIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IN_PRIMARY_IDENTIFIER_EDEFAULT = false;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -89,6 +104,47 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	@Override
 	protected EClass eStaticClass() {
 		return EntityRelationPackage.Literals.ATTRIBUTE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Entity getOwner() {
+		if (eContainerFeatureID() != EntityRelationPackage.ATTRIBUTE__OWNER) return null;
+		return (Entity)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(Entity newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, EntityRelationPackage.ATTRIBUTE__OWNER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwner(Entity newOwner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != EntityRelationPackage.ATTRIBUTE__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, EntityRelationPackage.ENTITY__ATTRIBUTES, Entity.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ATTRIBUTE__OWNER, newOwner, newOwner));
 	}
 
 	/**
@@ -218,11 +274,65 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isInPrimaryIdentifier() {
+		if (getOwner() != null) {
+			Identifier primaryIdentifier = getOwner().getPrimaryIdentifier();
+			if (primaryIdentifier != null) {
+				return primaryIdentifier.getAttributes().contains(this);
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void addToPrimaryIdentifier() {
+		// Do nothing if the attribute is already in the primary identifier or if it does not belong to a table
+		if (isInPrimaryIdentifier() == false
+				&& getOwner() != null) {
+			Entity entity = getOwner();
+			// First, ensure there is a primary identifier defined on this entity
+			Identifier primaryIdentifier = entity.getPrimaryIdentifier();
+			if (primaryIdentifier == null) {
+				// Create a primary identifier
+				primaryIdentifier = EntityRelationFactory.eINSTANCE.createIdentifier();
+				primaryIdentifier.setName(entity.getName() + "_ID");
+				entity.setPrimaryIdentifier(primaryIdentifier);
+			}
+			
+			// Then attach the attribute to the primary identifier
+			primaryIdentifier.getAttributes().add(this);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void removeFromPrimaryIdentifier() {
+		if (isInPrimaryIdentifier() == true) {
+			getOwner().getPrimaryIdentifier().getAttributes().remove(this);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case EntityRelationPackage.ATTRIBUTE__OWNER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwner((Entity)otherEnd, msgs);
 			case EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER:
 				if (usedInIdentifier != null)
 					msgs = ((InternalEObject)usedInIdentifier).eInverseRemove(this, EntityRelationPackage.IDENTIFIER__ATTRIBUTES, Identifier.class, msgs);
@@ -239,6 +349,8 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case EntityRelationPackage.ATTRIBUTE__OWNER:
+				return basicSetOwner(null, msgs);
 			case EntityRelationPackage.ATTRIBUTE__TYPE:
 				return basicSetType(null, msgs);
 			case EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER:
@@ -253,8 +365,24 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case EntityRelationPackage.ATTRIBUTE__OWNER:
+				return eInternalContainer().eInverseRemove(this, EntityRelationPackage.ENTITY__ATTRIBUTES, Entity.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case EntityRelationPackage.ATTRIBUTE__OWNER:
+				return getOwner();
 			case EntityRelationPackage.ATTRIBUTE__TYPE:
 				return getType();
 			case EntityRelationPackage.ATTRIBUTE__REQUIRED:
@@ -262,6 +390,8 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 			case EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER:
 				if (resolve) return getUsedInIdentifier();
 				return basicGetUsedInIdentifier();
+			case EntityRelationPackage.ATTRIBUTE__IN_PRIMARY_IDENTIFIER:
+				return isInPrimaryIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,6 +404,9 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case EntityRelationPackage.ATTRIBUTE__OWNER:
+				setOwner((Entity)newValue);
+				return;
 			case EntityRelationPackage.ATTRIBUTE__TYPE:
 				setType((Type)newValue);
 				return;
@@ -295,6 +428,9 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case EntityRelationPackage.ATTRIBUTE__OWNER:
+				setOwner((Entity)null);
+				return;
 			case EntityRelationPackage.ATTRIBUTE__TYPE:
 				setType((Type)null);
 				return;
@@ -316,12 +452,16 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case EntityRelationPackage.ATTRIBUTE__OWNER:
+				return getOwner() != null;
 			case EntityRelationPackage.ATTRIBUTE__TYPE:
 				return type != null;
 			case EntityRelationPackage.ATTRIBUTE__REQUIRED:
 				return required != REQUIRED_EDEFAULT;
 			case EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER:
 				return usedInIdentifier != null;
+			case EntityRelationPackage.ATTRIBUTE__IN_PRIMARY_IDENTIFIER:
+				return isInPrimaryIdentifier() != IN_PRIMARY_IDENTIFIER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

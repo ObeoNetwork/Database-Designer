@@ -30,6 +30,7 @@ public interface Entity extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
 	 * The list contents are of type {@link org.obeonetwork.dsl.entityrelation.Attribute}.
+	 * It is bidirectional and its opposite is '{@link org.obeonetwork.dsl.entityrelation.Attribute#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
@@ -38,7 +39,8 @@ public interface Entity extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
 	 * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getEntity_Attributes()
-	 * @model containment="true"
+	 * @see org.obeonetwork.dsl.entityrelation.Attribute#getOwner
+	 * @model opposite="owner" containment="true"
 	 * @generated
 	 */
 	EList<Attribute> getAttributes();

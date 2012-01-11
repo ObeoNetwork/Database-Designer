@@ -1,32 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 
-<!--
- <copyright>
- </copyright>
+ <plugin>
 
- $Id$
--->
-
-<plugin>
-
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
-            uri="http://www.obeonetwork.org/dsl/entityrelation/1.0"
-            class="org.obeonetwork.dsl.entityrelation.provider.EntityRelationItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-   
   <!-- EEF extensions -->
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.obeonetwork.org/dsl/entityrelation/1.0"
-            class="org.obeonetwork.dsl.entityrelation.providers.CustomEntityrelationEEFAdapterFactory"
+            class="org.obeonetwork.dsl.entityrelation.providers.EntityrelationEEFAdapterFactory"
             supportedTypes="org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider"/>
    </extension>
    <extension
@@ -35,7 +16,7 @@
             providerClass="org.obeonetwork.dsl.entityrelation.providers.EntityrelationPropertiesEditionPartProvider">
       </PropertiesEditionPartProvider>
    </extension>
-   
+
    <!-- Tabbed properties views extension -->
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
@@ -167,4 +148,4 @@
          </propertySection>
       </propertySections>
    </extension>
-</plugin>
+ </plugin>

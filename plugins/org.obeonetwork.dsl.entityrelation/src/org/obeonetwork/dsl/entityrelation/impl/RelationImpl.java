@@ -348,12 +348,12 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated NOT
 	 */
 	public void setSourceIsComposite(boolean newSourceIsComposite) {
-		boolean oldSourceIsComposite = sourceIsComposite;
-		sourceIsComposite = newSourceIsComposite;
-		if (sourceIsComposite == true && sourceCardinality != Cardinality.ONE_ONE && sourceCardinality != Cardinality.ZERO_ONE) {
+		if (newSourceIsComposite == true && sourceCardinality != Cardinality.ONE_ONE && sourceCardinality != Cardinality.ZERO_ONE) {
 			// Only roles with 1 as upper cardinality can be set as composite 
 			return;
 		}
+		boolean oldSourceIsComposite = sourceIsComposite;
+		sourceIsComposite = newSourceIsComposite;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__SOURCE_IS_COMPOSITE, oldSourceIsComposite, sourceIsComposite));
 		if (sourceIsComposite == true && targetIsComposite == true) {
@@ -481,12 +481,12 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated NOT
 	 */
 	public void setTargetIsComposite(boolean newTargetIsComposite) {
-		boolean oldTargetIsComposite = targetIsComposite;
-		targetIsComposite = newTargetIsComposite;
-		if (targetIsComposite == true && targetCardinality != Cardinality.ONE_ONE && targetCardinality != Cardinality.ZERO_ONE) {
+		if (newTargetIsComposite == true && targetCardinality != Cardinality.ONE_ONE && targetCardinality != Cardinality.ZERO_ONE) {
 			// Only roles with 1 as upper cardinality can be set as composite 
 			return;
 		}
+		boolean oldTargetIsComposite = targetIsComposite;
+		targetIsComposite = newTargetIsComposite;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__TARGET_IS_COMPOSITE, oldTargetIsComposite, targetIsComposite));
 		if (targetIsComposite == true && sourceIsComposite == true) {

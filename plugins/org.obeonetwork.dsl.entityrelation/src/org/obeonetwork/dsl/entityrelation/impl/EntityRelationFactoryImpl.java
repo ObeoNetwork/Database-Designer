@@ -12,15 +12,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.obeonetwork.dsl.entityrelation.Attribute;
-import org.obeonetwork.dsl.entityrelation.Cardinality;
-import org.obeonetwork.dsl.entityrelation.Entity;
-import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
-import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
-import org.obeonetwork.dsl.entityrelation.Identifier;
-import org.obeonetwork.dsl.entityrelation.LogicalModel;
-import org.obeonetwork.dsl.entityrelation.Relation;
-import org.obeonetwork.dsl.entityrelation.RelationElement;
+import org.obeonetwork.dsl.entityrelation.*;
+import org.obeonetwork.dsl.typeslibrary.TypeInstance;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -150,10 +144,12 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Attribute createAttribute() {
 		AttributeImpl attribute = new AttributeImpl();
+		TypeInstance type = TypesLibraryFactory.eINSTANCE.createTypeInstance();
+		attribute.setType(type);
 		return attribute;
 	}
 
