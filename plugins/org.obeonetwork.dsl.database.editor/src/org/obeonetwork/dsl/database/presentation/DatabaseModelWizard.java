@@ -77,9 +77,11 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
+import org.obeonetwork.dsl.database.DataBase;
 import org.obeonetwork.dsl.database.DatabaseFactory;
 import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.provider.DatabaseEditPlugin;
+import org.obeonetwork.dsl.typeslibrary.TypesLibrary;
 
 
 import org.eclipse.core.runtime.Path;
@@ -100,6 +102,11 @@ import org.eclipse.ui.PartInitException;
  * @generated
  */
 public class DatabaseModelWizard extends Wizard implements INewWizard {
+	private static final String PATHMAP_ORACLE_11G = "pathmap://NativeDBTypes/Oracle-11g";
+	private static final String PATHMAP_MY_SQL_5 = "pathmap://NativeDBTypes/MySQL-5";
+	private static final String DB_ORACLE_11G = "Oracle-11g";
+	private static final String DB_MY_SQL_5 = "MySQL-5";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -232,7 +239,7 @@ public class DatabaseModelWizard extends Wizard implements INewWizard {
 	 * Do the work after everything is specified.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean performFinish() {
@@ -265,6 +272,24 @@ public class DatabaseModelWizard extends Wizard implements INewWizard {
 							EObject rootObject = createInitialModel();
 							if (rootObject != null) {
 								resource.getContents().add(rootObject);
+							}
+							
+							// Set the types library
+							if (rootObject instanceof DataBase) {
+								Resource typesLibraryResource = null; 
+								// We set the types library
+								String dbVendor = initialObjectCreationPage.dbVendorField.getText();
+								if (DB_MY_SQL_5.equals(dbVendor)) {
+									typesLibraryResource = resourceSet.getResource(URI.createURI(PATHMAP_MY_SQL_5), true);
+								} else if (DB_ORACLE_11G.equals(dbVendor)) {
+									typesLibraryResource = resourceSet.getResource(URI.createURI(PATHMAP_ORACLE_11G), true);
+								}
+								if (typesLibraryResource != null) {
+									EObject typesRoot = typesLibraryResource.getContents().get(0);
+									if (typesRoot instanceof TypesLibrary) {
+										((DataBase)rootObject).getUsedLibraries().add((TypesLibrary)typesRoot);
+									}
+								}
 							}
 
 							// Save the contents of the resource to the file system.
@@ -379,6 +404,16 @@ public class DatabaseModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		protected Combo initialObjectField;
+		
+		/**
+		 * @generated NOT
+		 */
+		protected Combo dbVendorField;
+		
+		/**
+		 * @generated NOT
+		 */
+		protected List<String> dbVendors;
 
 		/**
 		 * @generated
@@ -407,7 +442,7 @@ public class DatabaseModelWizard extends Wizard implements INewWizard {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
+		 * @generated NOT
 		 */
 		public void createControl(Composite parent) {
 			Composite composite = new Composite(parent, SWT.NONE); {
@@ -440,15 +475,32 @@ public class DatabaseModelWizard extends Wizard implements INewWizard {
 				initialObjectField.setLayoutData(data);
 			}
 
-			for (String objectName : getInitialObjectNames()) {
-				initialObjectField.add(getLabel(objectName));
-			}
-
-			if (initialObjectField.getItemCount() == 1) {
-				initialObjectField.select(0);
-			}
+			initialObjectField.add("Data Base");
+			initialObjectField.select(0);
+			
 			initialObjectField.addModifyListener(validator);
 
+			Label dbVendorLabel = new Label(composite, SWT.LEFT);
+			{
+				dbVendorLabel.setText(DatabaseEditorPlugin.INSTANCE.getString("_UI_DbVendor"));
+
+				GridData data = new GridData();
+				data.horizontalAlignment = GridData.FILL;
+				dbVendorLabel.setLayoutData(data);
+			}
+			dbVendorField = new Combo(composite, SWT.BORDER);
+			{
+				GridData data = new GridData();
+				data.horizontalAlignment = GridData.FILL;
+				data.grabExcessHorizontalSpace = true;
+				dbVendorField.setLayoutData(data);
+			}
+			for (String dbVendor : getDBVendors()) {
+				dbVendorField.add(dbVendor);
+			}
+			dbVendorField.select(0);
+			dbVendorField.addModifyListener(validator);
+			
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
 				encodingLabel.setText(DatabaseEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
@@ -491,10 +543,10 @@ public class DatabaseModelWizard extends Wizard implements INewWizard {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
+		 * @generated NOT
 		 */
 		protected boolean validatePage() {
-			return getInitialObjectName() != null && getEncodings().contains(encodingField.getText());
+			return getInitialObjectName() != null && getEncodings().contains(encodingField.getText()) && getDBVendors().contains(dbVendorField.getText());
 		}
 
 		/**
@@ -570,7 +622,20 @@ public class DatabaseModelWizard extends Wizard implements INewWizard {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
-			return encodings;
+			return encodings;			
+		}
+		
+		/**
+		 * @generated NOT
+		 */
+		protected Collection<String> getDBVendors() {
+			if (dbVendors == null) {
+				dbVendors = new ArrayList<String>();
+				for (StringTokenizer stringTokenizer = new StringTokenizer(DatabaseEditorPlugin.INSTANCE.getString("_UI_DbVendorChoices")); stringTokenizer.hasMoreTokens(); ) {
+					dbVendors.add(stringTokenizer.nextToken());
+				}
+			}
+			return dbVendors;
 		}
 	}
 

@@ -15,14 +15,11 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
       <wizard
             id="org.obeonetwork.dsl.typeslibrary.presentation.TypesLibraryModelWizardID"
             name="%_UI_TypesLibraryModelWizard_label"
             class="org.obeonetwork.dsl.typeslibrary.presentation.TypesLibraryModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.obeonetwork.dsl.is.ui.categoryID"
             icon="icons/full/obj16/TypesLibraryModelFile.gif">
          <description>%_UI_TypesLibraryModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

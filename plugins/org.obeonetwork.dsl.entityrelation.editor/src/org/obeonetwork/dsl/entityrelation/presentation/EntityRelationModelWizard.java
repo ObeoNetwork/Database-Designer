@@ -61,7 +61,9 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
+import org.obeonetwork.dsl.entityrelation.LogicalModel;
 import org.obeonetwork.dsl.entityrelation.provider.EntityRelationEditPlugin;
+import org.obeonetwork.dsl.typeslibrary.TypesLibrary;
 
 
 /**
@@ -88,6 +90,11 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
 		EntityRelationEditorPlugin.INSTANCE.getString("_UI_EntityRelationEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+
+	/**
+	 * @generated NOT
+	 */
+	protected static final String PATHMAP_LOGICAL_TYPES = "pathmap://LogicalDBTypes";
 
 	/**
 	 * This caches an instance of the model package.
@@ -196,7 +203,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 	 * Do the work after everything is specified.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean performFinish() {
@@ -229,6 +236,19 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 							EObject rootObject = createInitialModel();
 							if (rootObject != null) {
 								resource.getContents().add(rootObject);
+							}
+							
+							// Set the types library
+							if (rootObject instanceof LogicalModel) {
+								Resource typesLibraryResource = null; 
+								// We set the types library
+								typesLibraryResource = resourceSet.getResource(URI.createURI(PATHMAP_LOGICAL_TYPES), true);
+								if (typesLibraryResource != null) {
+									EObject typesRoot = typesLibraryResource.getContents().get(0);
+									if (typesRoot instanceof TypesLibrary) {
+										((LogicalModel)rootObject).getUsedLibraries().add((TypesLibrary)typesRoot);
+									}
+								}
 							}
 
 							// Save the contents of the resource to the file system.
@@ -371,7 +391,7 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
+		 * @generated NOT
 		 */
 		public void createControl(Composite parent) {
 			Composite composite = new Composite(parent, SWT.NONE); {
@@ -404,13 +424,9 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 				initialObjectField.setLayoutData(data);
 			}
 
-			for (String objectName : getInitialObjectNames()) {
-				initialObjectField.add(getLabel(objectName));
-			}
+			initialObjectField.add("Logical Model");
+			initialObjectField.select(0);
 
-			if (initialObjectField.getItemCount() == 1) {
-				initialObjectField.select(0);
-			}
 			initialObjectField.addModifyListener(validator);
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);

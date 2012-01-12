@@ -11,14 +11,11 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
       <wizard
             id="org.obeonetwork.dsl.entityrelation.presentation.EntityrelationModelWizardID"
             name="%_UI_EntityrelationModelWizard_label"
             class="org.obeonetwork.dsl.entityrelation.presentation.EntityRelationModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.obeonetwork.dsl.is.ui.categoryID"
             icon="icons/full/obj16/EntityRelationModelFile.gif">
          <description>%_UI_EntityrelationModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
