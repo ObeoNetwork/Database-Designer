@@ -27,5 +27,13 @@
          class="org.obeonetwork.dsl.entityrelation.util.EntityRelationResourceFactoryImpl">
       </parser>
    </extension>
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <file-association
+            content-type="org.eclipse.emf.compare.ui.contenttype.ModelContentType"
+            file-extensions="entityrelation"
+            file-names="*">
+      </file-association>
+   </extension>
    
 </plugin>

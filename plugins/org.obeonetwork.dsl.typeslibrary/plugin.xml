@@ -42,5 +42,13 @@
 		    target="platform:/plugin/org.obeonetwork.dsl.typeslibrary/resources/Oracle-11g.typeslibrary">
 		</mapping>
 	</extension>
+ <extension
+       point="org.eclipse.core.contenttype.contentTypes">
+    <file-association
+          content-type="org.eclipse.emf.compare.ui.contenttype.ModelContentType"
+          file-extensions="typeslibrary"
+          file-names="*">
+    </file-association>
+ </extension>
 
 </plugin>
