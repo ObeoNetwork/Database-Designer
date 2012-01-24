@@ -62,6 +62,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.LogicalModel;
+import org.obeonetwork.dsl.entityrelation.NamedElement;
 import org.obeonetwork.dsl.entityrelation.provider.EntityRelationEditPlugin;
 import org.obeonetwork.dsl.typeslibrary.TypesLibrary;
 
@@ -236,6 +237,13 @@ public class EntityRelationModelWizard extends Wizard implements INewWizard {
 							EObject rootObject = createInitialModel();
 							if (rootObject != null) {
 								resource.getContents().add(rootObject);
+							}
+							
+							if (rootObject instanceof NamedElement) {
+								// Compute default name from model file path
+								String defaultName = modelFile.getName();
+								defaultName = defaultName.substring(0, defaultName.length() - modelFile.getFileExtension().length() - 1);
+								((NamedElement)rootObject).setName(defaultName);
 							}
 							
 							// Set the types library
