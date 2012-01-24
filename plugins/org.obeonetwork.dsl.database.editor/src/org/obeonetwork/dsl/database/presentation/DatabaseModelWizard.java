@@ -80,6 +80,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 import org.obeonetwork.dsl.database.DataBase;
 import org.obeonetwork.dsl.database.DatabaseFactory;
 import org.obeonetwork.dsl.database.DatabasePackage;
+import org.obeonetwork.dsl.database.NamedElement;
 import org.obeonetwork.dsl.database.provider.DatabaseEditPlugin;
 import org.obeonetwork.dsl.typeslibrary.TypesLibrary;
 
@@ -104,8 +105,10 @@ import org.eclipse.ui.PartInitException;
 public class DatabaseModelWizard extends Wizard implements INewWizard {
 	private static final String PATHMAP_ORACLE_11G = "pathmap://NativeDBTypes/Oracle-11g";
 	private static final String PATHMAP_MY_SQL_5 = "pathmap://NativeDBTypes/MySQL-5";
+	private static final String PATHMAP_LOGICAL_TYPES = "pathmap://LogicalDBTypes";
 	private static final String DB_ORACLE_11G = "Oracle-11g";
 	private static final String DB_MY_SQL_5 = "MySQL-5";
+	private static final String DB_LOGICAL_TYPES = "Logical Types";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -270,6 +273,13 @@ public class DatabaseModelWizard extends Wizard implements INewWizard {
 							// Add the initial model object to the contents.
 							//
 							EObject rootObject = createInitialModel();
+							// Set a default name on the root object
+							if (rootObject instanceof NamedElement) {
+								// Compute default name from model file path
+								String defaultName = modelFile.getName();
+								defaultName = defaultName.substring(0, defaultName.length() - modelFile.getFileExtension().length() - 1);
+								((NamedElement)rootObject).setName(defaultName);
+							}
 							if (rootObject != null) {
 								resource.getContents().add(rootObject);
 							}
@@ -283,6 +293,8 @@ public class DatabaseModelWizard extends Wizard implements INewWizard {
 									typesLibraryResource = resourceSet.getResource(URI.createURI(PATHMAP_MY_SQL_5), true);
 								} else if (DB_ORACLE_11G.equals(dbVendor)) {
 									typesLibraryResource = resourceSet.getResource(URI.createURI(PATHMAP_ORACLE_11G), true);
+								} else if (DB_LOGICAL_TYPES.equals(dbVendor)) {
+									typesLibraryResource = resourceSet.getResource(URI.createURI(PATHMAP_LOGICAL_TYPES), true);
 								}
 								if (typesLibraryResource != null) {
 									EObject typesRoot = typesLibraryResource.getContents().get(0);
@@ -631,9 +643,9 @@ public class DatabaseModelWizard extends Wizard implements INewWizard {
 		protected Collection<String> getDBVendors() {
 			if (dbVendors == null) {
 				dbVendors = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(DatabaseEditorPlugin.INSTANCE.getString("_UI_DbVendorChoices")); stringTokenizer.hasMoreTokens(); ) {
-					dbVendors.add(stringTokenizer.nextToken());
-				}
+				dbVendors.add(DB_MY_SQL_5);
+				dbVendors.add(DB_ORACLE_11G);
+				dbVendors.add(DB_LOGICAL_TYPES);
 			}
 			return dbVendors;
 		}
