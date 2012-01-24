@@ -30,99 +30,91 @@
             contributorId="fr.obeo.dsl.viewpoint.diagram">
          <propertyTab
                label="DataBase"
-               category="extended"
+               category="semantic &amp; extension"
                id="DataBase"
-               afterTab="DataBase">
+               afterTab="top">
          </propertyTab>
          <propertyTab
                label="Column"
-               category="extended"
+               category="semantic &amp; extension"
                id="Column"
-               afterTab="Column">
+               afterTab="top">
          </propertyTab>
          <propertyTab
                label="Index"
-               category="extended"
+               category="semantic &amp; extension"
                id="Index"
-               afterTab="Index">
+               afterTab="top">
          </propertyTab>
          <propertyTab
                label="View"
-               category="extended"
+               category="semantic &amp; extension"
                id="View"
-               afterTab="View">
+               afterTab="top">
          </propertyTab>
          <propertyTab
                label="Table"
-               category="extended"
-               id="Table"
+               category="semantic &amp; extension"
+               id="Table">
+         </propertyTab>
+         <propertyTab
+               label="Primary Key"
+               category="semantic &amp; extension"
+               id="Primary Key For Table"
                afterTab="Table">
          </propertyTab>
          <propertyTab
-               label="Primary Key"
-               category="extended"
-               id="Primary Key"
-               afterTab="Base">
-         </propertyTab>
-         <propertyTab
                label="Foreign Keys"
-               category="extended"
-               id="Foreign Keys"
-               afterTab="Foreign Keys">
-         </propertyTab>
-         <propertyTab
-               label="Constraints"
-               category="extended"
-               id="Constraints"
-               afterTab="Constraints">
+               category="semantic &amp; extension"
+               id="Foreign Keys For Table"
+               afterTab="Primary Key For Table">
          </propertyTab>
          <propertyTab
                label="Indexes"
-               category="extended"
-               id="Indexes"
-               afterTab="Indexes">
+               category="semantic &amp; extension"
+               id="Indexes For Table"
+               afterTab="Foreign Keys For Table">
+         </propertyTab>
+         <propertyTab
+               label="Constraints"
+               category="semantic &amp; extension"
+               id="Constraints For Table"
+               afterTab="Indexes For Table">
          </propertyTab>
          <propertyTab
                label="Primary Key"
-               category="extended"
-               id="Primary Key"
-               afterTab="Primary Key">
+               category="semantic &amp; extension"
+               id="Primary Key">
          </propertyTab>
          <propertyTab
                label="Foreign Key"
-               category="extended"
-               id="Foreign Key"
-               afterTab="Foreign Key">
+               category="semantic &amp; extension"
+               id="Foreign Key">
          </propertyTab>
          <propertyTab
                label="Foreign Key Element"
-               category="extended"
-               id="Foreign Key Element"
-               afterTab="Foreign Key Element">
+               category="semantic &amp; extension"
+               id="Foreign Key Element">
          </propertyTab>
          <propertyTab
                label="Index Element"
-               category="extended"
-               id="Index Element"
-               afterTab="Index Element">
+               category="semantic &amp; extension"
+               id="Index Element">
          </propertyTab>
          <propertyTab
                label="Constraint"
-               category="extended"
-               id="Constraint"
-               afterTab="Constraint">
+               category="semantic &amp; extension"
+               id="Constraint">
          </propertyTab>
          <propertyTab
                label="Schema"
-               category="extended"
-               id="Schema"
-               afterTab="Schema">
+               category="semantic &amp; extension"
+               id="Schema">
          </propertyTab>
          <propertyTab
                label="Sequence"
-               category="extended"
-               id="Sequence"
-               afterTab="Sequence">
+               category="semantic &amp; extension"
+               id="Sequence">
          </propertyTab>
       </propertyTabs>
    </extension>
@@ -164,26 +156,26 @@
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.Table.PrimaryKey"
-               filter="org.obeonetwork.dsl.database.design.properties.PrimaryKeyTabPropertiesEditionSection"
-               tab="Primary Key">
+               filter="org.obeonetwork.dsl.database.design.properties.PrimaryKeyForTableTabPropertiesEditionSection"
+               tab="Primary Key For Table">
          </propertySection>
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.Table.ForeignKeys"
                filter="org.obeonetwork.dsl.database.design.properties.TableTabPropertiesEditionSection"
-               tab="Foreign Keys">
+               tab="Foreign Keys For Table">
          </propertySection>
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.Table.Constraints"
                filter="org.obeonetwork.dsl.database.design.properties.TableTabPropertiesEditionSection"
-               tab="Constraints">
+               tab="Constraints For Table">
          </propertySection>
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.database.section.Table.Indexes"
                filter="org.obeonetwork.dsl.database.design.properties.TableTabPropertiesEditionSection"
-               tab="Indexes">
+               tab="Indexes For Table">
          </propertySection>
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
