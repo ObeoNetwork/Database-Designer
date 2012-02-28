@@ -25,14 +25,13 @@ public class TypesLibraryUtil {
 		return logicalNativeType;		
 	}
 	
-	/*
-	private static NativeTypesLibrary getLogicalTypesLibrary(ResourceSet resourceSet) {		
+	
+	public static NativeTypesLibrary getLogicalTypesLibrary(ResourceSet resourceSet) {		
 		URI typeslibraryURI = URI.createURI("pathmap://LogicalDBTypes");
 		Resource resource = resourceSet.getResource(typeslibraryURI, true);
 		NativeTypesLibrary nativeTypesLibrary = (NativeTypesLibrary) resource.getContents().get(0);
 	    return nativeTypesLibrary;
-	}
-	*/
+	}	
 	
 	public static NativeTypesLibrary loadNativeTypesLibrary(
 			String databaseProductName, String databaseProductVersion) {
@@ -51,8 +50,8 @@ public class TypesLibraryUtil {
 		return (NativeTypesLibrary) resource.getContents().get(0);
 	}
 
-	private static final String ORACLE_PATHMAP = "pathmap://NativeDBTypes/Oracle-11g";
-	private static final String MYSQL_PATHMAP = "pathmap://NativeDBTypes/MySQL-5";
+	public static final String ORACLE_PATHMAP = "pathmap://NativeDBTypes/Oracle-11g";
+	public static final String MYSQL_PATHMAP = "pathmap://NativeDBTypes/MySQL-5";
 
 	private static void standaloneBootStrap(ResourceSet resourceSet) {
 		resourceSet
