@@ -255,55 +255,6 @@ litigation.
          unpack="false"/>
 
    <plugin
-         id="org.obeonetwork.dsl.dbermapping"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.obeonetwork.dsl.dbermapping.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.obeonetwork.dsl.dbermapping.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.obeonetwork.dsl.entityrelation"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.obeonetwork.dsl.entityrelation.design"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.obeonetwork.dsl.entityrelation.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.obeonetwork.dsl.entityrelation.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.obeonetwork.dsl.typeslibrary"
          download-size="0"
          install-size="0"

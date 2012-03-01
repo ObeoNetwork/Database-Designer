@@ -44,13 +44,6 @@
     <module>plugins/org.obeonetwork.dsl.database.design</module>
     <module>plugins/org.obeonetwork.dsl.database.edit</module>
     <module>plugins/org.obeonetwork.dsl.database.editor</module>
-    <module>plugins/org.obeonetwork.dsl.dbermapping</module>
-    <module>plugins/org.obeonetwork.dsl.dbermapping.edit</module>
-    <module>plugins/org.obeonetwork.dsl.dbermapping.editor</module>
-    <module>plugins/org.obeonetwork.dsl.entityrelation</module>
-    <module>plugins/org.obeonetwork.dsl.entityrelation.design</module>
-    <module>plugins/org.obeonetwork.dsl.entityrelation.edit</module>
-    <module>plugins/org.obeonetwork.dsl.entityrelation.editor</module>
     <module>plugins/org.obeonetwork.dsl.typeslibrary</module>
     <module>plugins/org.obeonetwork.dsl.typeslibrary.edit</module>
     <module>plugins/org.obeonetwork.dsl.typeslibrary.editor</module>
