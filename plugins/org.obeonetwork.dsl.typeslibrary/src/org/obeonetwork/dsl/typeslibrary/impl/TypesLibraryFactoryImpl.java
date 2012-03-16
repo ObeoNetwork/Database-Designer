@@ -94,6 +94,8 @@ public class TypesLibraryFactoryImpl extends EFactoryImpl implements TypesLibrar
 		switch (eDataType.getClassifierID()) {
 			case TypesLibraryPackage.NATIVE_TYPE_KIND:
 				return createNativeTypeKindFromString(eDataType, initialValue);
+			case TypesLibraryPackage.TYPES_LIBRARY_KIND:
+				return createTypesLibraryKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -109,6 +111,8 @@ public class TypesLibraryFactoryImpl extends EFactoryImpl implements TypesLibrar
 		switch (eDataType.getClassifierID()) {
 			case TypesLibraryPackage.NATIVE_TYPE_KIND:
 				return convertNativeTypeKindToString(eDataType, instanceValue);
+			case TypesLibraryPackage.TYPES_LIBRARY_KIND:
+				return convertTypesLibraryKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -201,6 +205,26 @@ public class TypesLibraryFactoryImpl extends EFactoryImpl implements TypesLibrar
 	 * @generated
 	 */
 	public String convertNativeTypeKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypesLibraryKind createTypesLibraryKindFromString(EDataType eDataType, String initialValue) {
+		TypesLibraryKind result = TypesLibraryKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTypesLibraryKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

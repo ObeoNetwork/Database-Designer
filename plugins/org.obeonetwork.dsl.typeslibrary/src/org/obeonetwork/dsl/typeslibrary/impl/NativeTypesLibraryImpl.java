@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.obeonetwork.dsl.typeslibrary.NativeType;
 import org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryKind;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 
 /**
@@ -32,6 +33,7 @@ import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.obeonetwork.dsl.typeslibrary.impl.NativeTypesLibraryImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.typeslibrary.impl.NativeTypesLibraryImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.typeslibrary.impl.NativeTypesLibraryImpl#getNativeTypes <em>Native Types</em>}</li>
  * </ul>
@@ -46,6 +48,26 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
+
+	/**
+	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final TypesLibraryKind KIND_EDEFAULT = TypesLibraryKind.LOGICAL_TYPES;
+
+	/**
+	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypesLibraryKind kind = KIND_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -94,6 +116,27 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	@Override
 	protected EClass eStaticClass() {
 		return TypesLibraryPackage.Literals.NATIVE_TYPES_LIBRARY;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypesLibraryKind getKind() {
+		return kind;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setKind(TypesLibraryKind newKind) {
+		TypesLibraryKind oldKind = kind;
+		kind = newKind == null ? KIND_EDEFAULT : newKind;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.NATIVE_TYPES_LIBRARY__KIND, oldKind, kind));
 	}
 
 	/**
@@ -165,6 +208,8 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__KIND:
+				return getKind();
 			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NAME:
 				return getName();
 			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NATIVE_TYPES:
@@ -182,6 +227,9 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__KIND:
+				setKind((TypesLibraryKind)newValue);
+				return;
 			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NAME:
 				setName((String)newValue);
 				return;
@@ -201,6 +249,9 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__KIND:
+				setKind(KIND_EDEFAULT);
+				return;
 			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -219,6 +270,8 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__KIND:
+				return kind != KIND_EDEFAULT;
 			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NATIVE_TYPES:
@@ -237,7 +290,9 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (kind: ");
+		result.append(kind);
+		result.append(", name: ");
 		result.append(name);
 		result.append(')');
 		return result.toString();

@@ -82,13 +82,22 @@ public interface TypesLibraryPackage extends EPackage {
 	int TYPES_LIBRARY = 10;
 
 	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPES_LIBRARY__KIND = 0;
+
+	/**
 	 * The number of structural features of the '<em>Types Library</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPES_LIBRARY_FEATURE_COUNT = 0;
+	int TYPES_LIBRARY_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.obeonetwork.dsl.typeslibrary.impl.NativeTypesLibraryImpl <em>Native Types Library</em>}' class.
@@ -99,6 +108,15 @@ public interface TypesLibraryPackage extends EPackage {
 	 * @generated
 	 */
 	int NATIVE_TYPES_LIBRARY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NATIVE_TYPES_LIBRARY__KIND = TYPES_LIBRARY__KIND;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -388,6 +406,15 @@ public interface TypesLibraryPackage extends EPackage {
 	int USER_DEFINED_TYPES_LIBRARY = 8;
 
 	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_DEFINED_TYPES_LIBRARY__KIND = TYPES_LIBRARY__KIND;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -451,6 +478,17 @@ public interface TypesLibraryPackage extends EPackage {
 	 * @generated
 	 */
 	int NATIVE_TYPE_KIND = 11;
+
+
+	/**
+	 * The meta object id for the '{@link org.obeonetwork.dsl.typeslibrary.TypesLibraryKind <em>Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.obeonetwork.dsl.typeslibrary.TypesLibraryKind
+	 * @see org.obeonetwork.dsl.typeslibrary.impl.TypesLibraryPackageImpl#getTypesLibraryKind()
+	 * @generated
+	 */
+	int TYPES_LIBRARY_KIND = 12;
 
 
 	/**
@@ -740,6 +778,17 @@ public interface TypesLibraryPackage extends EPackage {
 	EClass getTypesLibrary();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.obeonetwork.dsl.typeslibrary.TypesLibrary#getKind <em>Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Kind</em>'.
+	 * @see org.obeonetwork.dsl.typeslibrary.TypesLibrary#getKind()
+	 * @see #getTypesLibrary()
+	 * @generated
+	 */
+	EAttribute getTypesLibrary_Kind();
+
+	/**
 	 * Returns the meta object for enum '{@link org.obeonetwork.dsl.typeslibrary.NativeTypeKind <em>Native Type Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -748,6 +797,16 @@ public interface TypesLibraryPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getNativeTypeKind();
+
+	/**
+	 * Returns the meta object for enum '{@link org.obeonetwork.dsl.typeslibrary.TypesLibraryKind <em>Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Kind</em>'.
+	 * @see org.obeonetwork.dsl.typeslibrary.TypesLibraryKind
+	 * @generated
+	 */
+	EEnum getTypesLibraryKind();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1010,6 +1069,14 @@ public interface TypesLibraryPackage extends EPackage {
 		EClass TYPES_LIBRARY = eINSTANCE.getTypesLibrary();
 
 		/**
+		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPES_LIBRARY__KIND = eINSTANCE.getTypesLibrary_Kind();
+
+		/**
 		 * The meta object literal for the '{@link org.obeonetwork.dsl.typeslibrary.NativeTypeKind <em>Native Type Kind</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1018,6 +1085,16 @@ public interface TypesLibraryPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum NATIVE_TYPE_KIND = eINSTANCE.getNativeTypeKind();
+
+		/**
+		 * The meta object literal for the '{@link org.obeonetwork.dsl.typeslibrary.TypesLibraryKind <em>Kind</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.obeonetwork.dsl.typeslibrary.TypesLibraryKind
+		 * @see org.obeonetwork.dsl.typeslibrary.impl.TypesLibraryPackageImpl#getTypesLibraryKind()
+		 * @generated
+		 */
+		EEnum TYPES_LIBRARY_KIND = eINSTANCE.getTypesLibraryKind();
 
 	}
 

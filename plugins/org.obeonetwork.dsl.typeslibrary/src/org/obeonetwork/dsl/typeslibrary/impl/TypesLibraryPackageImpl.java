@@ -28,6 +28,7 @@ import org.obeonetwork.dsl.typeslibrary.Type;
 import org.obeonetwork.dsl.typeslibrary.TypeInstance;
 import org.obeonetwork.dsl.typeslibrary.TypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryFactory;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryKind;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
 import org.obeonetwork.dsl.typeslibrary.UserDefinedType;
@@ -131,6 +132,13 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 	 * @generated
 	 */
 	private EEnum nativeTypeKindEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum typesLibraryKindEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -441,8 +449,26 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTypesLibrary_Kind() {
+		return (EAttribute)typesLibraryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getNativeTypeKind() {
 		return nativeTypeKindEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getTypesLibraryKind() {
+		return typesLibraryKindEEnum;
 	}
 
 	/**
@@ -510,9 +536,11 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 		createEReference(typesLibraryUserEClass, TYPES_LIBRARY_USER__USED_LIBRARIES);
 
 		typesLibraryEClass = createEClass(TYPES_LIBRARY);
+		createEAttribute(typesLibraryEClass, TYPES_LIBRARY__KIND);
 
 		// Create enums
 		nativeTypeKindEEnum = createEEnum(NATIVE_TYPE_KIND);
+		typesLibraryKindEEnum = createEEnum(TYPES_LIBRARY_KIND);
 	}
 
 	/**
@@ -591,6 +619,7 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 		initEReference(getTypesLibraryUser_UsedLibraries(), this.getTypesLibrary(), null, "usedLibraries", null, 0, -1, TypesLibraryUser.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typesLibraryEClass, TypesLibrary.class, "TypesLibrary", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTypesLibrary_Kind(), this.getTypesLibraryKind(), "kind", null, 0, 1, TypesLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(nativeTypeKindEEnum, NativeTypeKind.class, "NativeTypeKind");
@@ -598,6 +627,10 @@ public class TypesLibraryPackageImpl extends EPackageImpl implements TypesLibrar
 		addEEnumLiteral(nativeTypeKindEEnum, NativeTypeKind.LENGTH);
 		addEEnumLiteral(nativeTypeKindEEnum, NativeTypeKind.LENGTH_AND_PRECISION);
 		addEEnumLiteral(nativeTypeKindEEnum, NativeTypeKind.ENUM);
+
+		initEEnum(typesLibraryKindEEnum, TypesLibraryKind.class, "TypesLibraryKind");
+		addEEnumLiteral(typesLibraryKindEEnum, TypesLibraryKind.LOGICAL_TYPES);
+		addEEnumLiteral(typesLibraryKindEEnum, TypesLibraryKind.PHYSICAL_TYPES);
 
 		// Create resource
 		createResource(eNS_URI);

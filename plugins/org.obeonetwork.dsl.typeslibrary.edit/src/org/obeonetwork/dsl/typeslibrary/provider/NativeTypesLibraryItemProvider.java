@@ -78,9 +78,32 @@ public class NativeTypesLibraryItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addKindPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Kind feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addKindPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TypesLibrary_kind_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TypesLibrary_kind_feature", "_UI_TypesLibrary_type"),
+				 TypesLibraryPackage.Literals.TYPES_LIBRARY__KIND,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -182,6 +205,7 @@ public class NativeTypesLibraryItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(NativeTypesLibrary.class)) {
+			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__KIND:
 			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

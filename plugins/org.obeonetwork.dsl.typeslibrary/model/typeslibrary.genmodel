@@ -13,6 +13,10 @@
       <genEnumLiterals ecoreEnumLiteral="typeslibrary.ecore#//NativeTypeKind/LengthAndPrecision"/>
       <genEnumLiterals ecoreEnumLiteral="typeslibrary.ecore#//NativeTypeKind/Enum"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="typeslibrary.ecore#//TypesLibraryKind">
+      <genEnumLiterals ecoreEnumLiteral="typeslibrary.ecore#//TypesLibraryKind/logicalTypes"/>
+      <genEnumLiterals ecoreEnumLiteral="typeslibrary.ecore#//TypesLibraryKind/physicalTypes"/>
+    </genEnums>
     <genClasses ecoreClass="typeslibrary.ecore#//NativeTypesLibrary">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute typeslibrary.ecore#//NativeTypesLibrary/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference typeslibrary.ecore#//NativeTypesLibrary/nativeTypes"/>
@@ -51,6 +55,8 @@
     <genClasses image="false" ecoreClass="typeslibrary.ecore#//TypesLibraryUser">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference typeslibrary.ecore#//TypesLibraryUser/usedLibraries"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="typeslibrary.ecore#//TypesLibrary"/>
+    <genClasses image="false" ecoreClass="typeslibrary.ecore#//TypesLibrary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute typeslibrary.ecore#//TypesLibrary/kind"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

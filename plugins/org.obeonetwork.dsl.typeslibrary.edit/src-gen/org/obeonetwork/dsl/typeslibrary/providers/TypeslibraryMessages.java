@@ -80,6 +80,9 @@ public class TypeslibraryMessages extends NLS {
 	public static String NativeTypesLibraryPropertiesEditionPart_NameLabel;
 
 	
+	public static String NativeTypesLibraryPropertiesEditionPart_KindLabel;
+
+	
 	public static String NativeTypesLibraryPropertiesEditionPart_NativeTypesLabel;
 
 	
@@ -120,6 +123,9 @@ public class TypeslibraryMessages extends NLS {
 
 	
 	public static String UserDefinedTypesLibraryPropertiesEditionPart_NameLabel;
+
+	
+	public static String UserDefinedTypesLibraryPropertiesEditionPart_KindLabel;
 
 	
 	public static String UserDefinedTypesLibraryPropertiesEditionPart_UserDefinedTypesLabel;

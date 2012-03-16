@@ -6,6 +6,9 @@
         <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_SxB-4youEeGaTeM9McGXjA" name="name" views="_SxB-_CouEeGaTeM9McGXjA">
           <model xsi:type="ecore:EAttribute" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//NativeTypesLibrary/name"/>
         </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_z6lKIG7AEeGjxe0IiskHyQ" name="kind" views="_v8XBEW7AEeGjxe0IiskHyQ" helpID="">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypesLibrary/kind"/>
+        </properties>
         <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_SxB-5CouEeGaTeM9McGXjA" name="nativeTypes" views="_SxB-_SouEeGaTeM9McGXjA">
           <model xsi:type="ecore:EReference" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//NativeTypesLibrary/nativeTypes"/>
         </properties>
@@ -66,6 +69,9 @@
         <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_SxB-9iouEeGaTeM9McGXjA" name="name" views="_SxCmACouEeGaTeM9McGXjA">
           <model xsi:type="ecore:EAttribute" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//UserDefinedTypesLibrary/name"/>
         </properties>
+        <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_2yfycG7AEeGjxe0IiskHyQ" name="kind" views="_ysb8AG7AEeGjxe0IiskHyQ" helpID="">
+          <model xsi:type="ecore:EAttribute" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//TypesLibrary/kind"/>
+        </properties>
         <properties xsi:type="eef-components:PropertiesEditionElement" xmi:id="_SxB-9youEeGaTeM9McGXjA" name="userDefinedTypes" views="_SxCmASouEeGaTeM9McGXjA">
           <model xsi:type="ecore:EReference" href="platform:/resource/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#//UserDefinedTypesLibrary/userDefinedTypes"/>
         </properties>
@@ -83,6 +89,9 @@
           <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_SxB-_CouEeGaTeM9McGXjA" name="name">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_v8XBEW7AEeGjxe0IiskHyQ" name="kind">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.2"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_SxB-_SouEeGaTeM9McGXjA" name="nativeTypes">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>
@@ -158,6 +167,9 @@
           <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.4"/>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_SxCmACouEeGaTeM9McGXjA" name="name">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/SWT.toolkits#//@widgets.0"/>
+          </elements>
+          <elements xsi:type="eef-views:ElementEditor" xmi:id="_ysb8AG7AEeGjxe0IiskHyQ" name="kind">
+            <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.2"/>
           </elements>
           <elements xsi:type="eef-views:ElementEditor" xmi:id="_SxCmASouEeGaTeM9McGXjA" name="userDefinedTypes">
             <representation href="platform:/plugin/org.eclipse.emf.eef.views/std/EMFProperties.toolkits#//@widgets.7"/>

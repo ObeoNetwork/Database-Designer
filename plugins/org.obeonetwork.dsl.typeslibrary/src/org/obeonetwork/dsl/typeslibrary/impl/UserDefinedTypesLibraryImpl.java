@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryKind;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 import org.obeonetwork.dsl.typeslibrary.UserDefinedType;
 import org.obeonetwork.dsl.typeslibrary.UserDefinedTypesLibrary;
@@ -37,6 +38,7 @@ import org.obeonetwork.dsl.typeslibrary.UserDefinedTypesLibrary;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.obeonetwork.dsl.typeslibrary.impl.UserDefinedTypesLibraryImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.typeslibrary.impl.UserDefinedTypesLibraryImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.obeonetwork.dsl.typeslibrary.impl.UserDefinedTypesLibraryImpl#getUserDefinedTypes <em>User Defined Types</em>}</li>
  * </ul>
@@ -51,6 +53,26 @@ public class UserDefinedTypesLibraryImpl extends EObjectImpl implements UserDefi
 	 * @generated
 	 */
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
+
+	/**
+	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final TypesLibraryKind KIND_EDEFAULT = TypesLibraryKind.LOGICAL_TYPES;
+
+	/**
+	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypesLibraryKind kind = KIND_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -99,6 +121,27 @@ public class UserDefinedTypesLibraryImpl extends EObjectImpl implements UserDefi
 	@Override
 	protected EClass eStaticClass() {
 		return TypesLibraryPackage.Literals.USER_DEFINED_TYPES_LIBRARY;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypesLibraryKind getKind() {
+		return kind;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setKind(TypesLibraryKind newKind) {
+		TypesLibraryKind oldKind = kind;
+		kind = newKind == null ? KIND_EDEFAULT : newKind;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.USER_DEFINED_TYPES_LIBRARY__KIND, oldKind, kind));
 	}
 
 	/**
@@ -156,6 +199,8 @@ public class UserDefinedTypesLibraryImpl extends EObjectImpl implements UserDefi
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case TypesLibraryPackage.USER_DEFINED_TYPES_LIBRARY__KIND:
+				return getKind();
 			case TypesLibraryPackage.USER_DEFINED_TYPES_LIBRARY__NAME:
 				return getName();
 			case TypesLibraryPackage.USER_DEFINED_TYPES_LIBRARY__USER_DEFINED_TYPES:
@@ -173,6 +218,9 @@ public class UserDefinedTypesLibraryImpl extends EObjectImpl implements UserDefi
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case TypesLibraryPackage.USER_DEFINED_TYPES_LIBRARY__KIND:
+				setKind((TypesLibraryKind)newValue);
+				return;
 			case TypesLibraryPackage.USER_DEFINED_TYPES_LIBRARY__NAME:
 				setName((String)newValue);
 				return;
@@ -192,6 +240,9 @@ public class UserDefinedTypesLibraryImpl extends EObjectImpl implements UserDefi
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case TypesLibraryPackage.USER_DEFINED_TYPES_LIBRARY__KIND:
+				setKind(KIND_EDEFAULT);
+				return;
 			case TypesLibraryPackage.USER_DEFINED_TYPES_LIBRARY__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -210,6 +261,8 @@ public class UserDefinedTypesLibraryImpl extends EObjectImpl implements UserDefi
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case TypesLibraryPackage.USER_DEFINED_TYPES_LIBRARY__KIND:
+				return kind != KIND_EDEFAULT;
 			case TypesLibraryPackage.USER_DEFINED_TYPES_LIBRARY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case TypesLibraryPackage.USER_DEFINED_TYPES_LIBRARY__USER_DEFINED_TYPES:
@@ -228,7 +281,9 @@ public class UserDefinedTypesLibraryImpl extends EObjectImpl implements UserDefi
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (kind: ");
+		result.append(kind);
+		result.append(", name: ");
 		result.append(name);
 		result.append(')');
 		return result.toString();

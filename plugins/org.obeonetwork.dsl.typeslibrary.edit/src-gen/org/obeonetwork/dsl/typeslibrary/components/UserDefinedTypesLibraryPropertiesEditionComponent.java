@@ -7,7 +7,9 @@ package org.obeonetwork.dsl.typeslibrary.components;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -27,6 +29,7 @@ import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryKind;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 import org.obeonetwork.dsl.typeslibrary.UserDefinedType;
 import org.obeonetwork.dsl.typeslibrary.UserDefinedTypesLibrary;
@@ -80,11 +83,15 @@ public class UserDefinedTypesLibraryPropertiesEditionComponent extends SinglePar
 			if (userDefinedTypesLibrary.getName() != null && isAccessible(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.name))
 				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), userDefinedTypesLibrary.getName()));
 			
+			if (isAccessible(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.kind)) {
+				basePart.initKind((EEnum) TypesLibraryPackage.eINSTANCE.getTypesLibrary_Kind().getEType(), userDefinedTypesLibrary.getKind());
+			}
 			if (isAccessible(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.userDefinedTypes)) {
 				userDefinedTypesSettings = new ReferencesTableSettings(userDefinedTypesLibrary, TypesLibraryPackage.eINSTANCE.getUserDefinedTypesLibrary_UserDefinedTypes());
 				basePart.initUserDefinedTypes(userDefinedTypesSettings);
 			}
 			// init filters
+			
 			
 			basePart.addFilterToUserDefinedTypes(new ViewerFilter() {
 			
@@ -113,6 +120,7 @@ public class UserDefinedTypesLibraryPropertiesEditionComponent extends SinglePar
 
 
 
+
 	/**
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
@@ -120,6 +128,9 @@ public class UserDefinedTypesLibraryPropertiesEditionComponent extends SinglePar
 	protected EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.name) {
 			return TypesLibraryPackage.eINSTANCE.getUserDefinedTypesLibrary_Name();
+		}
+		if (editorKey == TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.kind) {
+			return TypesLibraryPackage.eINSTANCE.getTypesLibrary_Kind();
 		}
 		if (editorKey == TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.userDefinedTypes) {
 			return TypesLibraryPackage.eINSTANCE.getUserDefinedTypesLibrary_UserDefinedTypes();
@@ -136,6 +147,9 @@ public class UserDefinedTypesLibraryPropertiesEditionComponent extends SinglePar
 		UserDefinedTypesLibrary userDefinedTypesLibrary = (UserDefinedTypesLibrary)semanticObject;
 		if (TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.name == event.getAffectedEditor()) {
 			userDefinedTypesLibrary.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+		}
+		if (TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.kind == event.getAffectedEditor()) {
+			userDefinedTypesLibrary.setKind((TypesLibraryKind)event.getNewValue());
 		}
 		if (TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.userDefinedTypes == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.ADD) {
@@ -178,6 +192,9 @@ public class UserDefinedTypesLibraryPropertiesEditionComponent extends SinglePar
 					basePart.setName("");
 				}
 			}
+			if (TypesLibraryPackage.eINSTANCE.getTypesLibrary_Kind().equals(msg.getFeature()) && isAccessible(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.kind))
+				basePart.setKind((Enumerator)msg.getNewValue());
+			
 			if (TypesLibraryPackage.eINSTANCE.getUserDefinedTypesLibrary_UserDefinedTypes().equals(msg.getFeature()) && isAccessible(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.userDefinedTypes))
 				basePart.updateUserDefinedTypes();
 			
@@ -201,6 +218,13 @@ public class UserDefinedTypesLibraryPropertiesEditionComponent extends SinglePar
 						newValue = EcoreUtil.createFromString(TypesLibraryPackage.eINSTANCE.getUserDefinedTypesLibrary_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(TypesLibraryPackage.eINSTANCE.getUserDefinedTypesLibrary_Name().getEAttributeType(), newValue);
+				}
+				if (TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.kind == event.getAffectedEditor()) {
+					Object newValue = event.getNewValue();
+					if (newValue instanceof String) {
+						newValue = EcoreUtil.createFromString(TypesLibraryPackage.eINSTANCE.getTypesLibrary_Kind().getEAttributeType(), (String)newValue);
+					}
+					ret = Diagnostician.INSTANCE.validate(TypesLibraryPackage.eINSTANCE.getTypesLibrary_Kind().getEAttributeType(), newValue);
 				}
 			} catch (IllegalArgumentException iae) {
 				ret = BasicDiagnostic.toDiagnostic(iae);
