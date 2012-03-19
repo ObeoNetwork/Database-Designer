@@ -898,5 +898,12 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 		result.append(')');
 		return result.toString();
 	}
+	
+	/**
+	 * @generated NOT
+	 */	
+	public String getID() {		
+		return getOwner().getName()+"::"+getName();
+	}
 
 } //ColumnImpl
