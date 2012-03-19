@@ -122,6 +122,9 @@
             </initialOperation>
           </ownedTools>
         </toolSections>
+        <decorationDescriptionsSet>
+          <decorationDescriptions xsi:type="description:MappingBasedDecoration" name="DEC_Table_HasConstraints" position="NORTH_EAST" decoratorPath="/org.obeonetwork.dsl.database.design/icons/decorator/Constraint.gif" preconditionExpression="&lt;%constraints.nSize > 0%>" mappings="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@containerMappings[name='DB_Table'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='External%20Tables']/@containerMappings[name='DB_Referenced_External_Table'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='External%20Tables']/@containerMappings[name='DB_Non_Referenced_External_Table'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='Index']/@containerMappings[name='DB_TableWithIndex']"/>
+        </decorationDescriptionsSet>
       </defaultLayer>
       <optionalLayers name="Schemas" activeByDefault="true">
         <containerMappings name="DB_Schema" detailDescriptions="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='Schemas']/@toolSections.0/@subSections[name='Usability%20tools']/@ownedTools[name='CRE_SchemaDiagram']" labelDirectEdit="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Reused%20Description']/@defaultLayer/@toolSections.0/@ownedTools[name='EDT_DatabaseElement']" semanticCandidatesExpression="&lt;%schemas%>" semanticElements="&lt;%self%>" doubleClickDescription="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='Schemas']/@toolSections.0/@subSections[name='Usability%20tools']/@ownedTools[name='DBL_NavigateToSchemaDiagram']" domainClass="database.Schema">
@@ -158,29 +161,6 @@
             </ownedTools>
           </subSections>
         </toolSections>
-      </optionalLayers>
-      <optionalLayers name="Constraints">
-        <edgeMappings name="DB_ConstraintToTable" semanticElements="&lt;%self%>" sourceMapping="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='Constraints']/@containerMappings[name='DB_Constraint']" targetMapping="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@containerMappings[name='DB_Table']" targetFinderExpression="&lt;%owner%>">
-          <style showIcon="false" sizeComputationExpression="1">
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-          </style>
-        </edgeMappings>
-        <containerMappings name="DB_Constraint" labelDirectEdit="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Reused%20Description']/@defaultLayer/@toolSections.0/@ownedTools[name='EDT_DatabaseElement']" semanticCandidatesExpression="&lt;%tables.constraints%>" domainClass="database.Constraint" listContainer="true">
-          <subNodeMappings name="DB_ConstraintExpression" semanticCandidatesExpression="&lt;%self%>" domainClass="database.Constraint">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="&lt;%expression%>" tooltipExpression="&lt;%expression%>">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            </style>
-          </subNodeMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" tooltipExpression="&lt;%name%>">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
-          </style>
-        </containerMappings>
       </optionalLayers>
       <optionalLayers name="External Tables" activeByDefault="true">
         <containerMappings name="DB_Non_Referenced_External_Table" deletionDescription="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='External%20Tables']/@toolSections.0/@ownedTools[name='DEL_Prevent_Deletion_Ext_Tables']" semanticCandidatesExpression="&lt;%allNonReferencedExternalTables%>" createElements="false" semanticElements="&lt;%self%>" domainClass="database.Table" listContainer="true">
@@ -278,8 +258,10 @@
       <metamodel href="platform:/plugin/org.obeonetwork.dsl.typeslibrary/model/typeslibrary.ecore#/"/>
       <defaultLayer name="Default" reusedMappings="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@containerMappings[name='DB_Table'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@edgeMappings[name='DB_ForeignKey'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@containerMappings[name='DB_View']">
         <toolSections name="Schemas" reusedTools="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_Table'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_View'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_Column'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_PKColumn'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_PrimaryKey'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CRE_ForeignKey']"/>
+        <decorationDescriptionsSet>
+          <decorationDescriptions xsi:type="description:MappingBasedDecoration" name="DEC_Table_HasConstraints" position="NORTH_EAST" decoratorPath="/org.obeonetwork.dsl.database.design/icons/decorator/Constraint.gif" preconditionExpression="&lt;%constraints.nSize > 0%>" mappings="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@defaultLayer/@containerMappings[name='DB_Table'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='External%20Tables']/@containerMappings[name='DB_Referenced_External_Table'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='External%20Tables']/@containerMappings[name='DB_Non_Referenced_External_Table'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='Index']/@containerMappings[name='DB_TableWithIndex']"/>
+        </decorationDescriptionsSet>
       </defaultLayer>
-      <optionalLayers name="Constraints" reusedMappings="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='Constraints']/@containerMappings[name='DB_Constraint'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='Constraints']/@edgeMappings[name='DB_ConstraintToTable']"/>
       <optionalLayers name="External Tables" reusedMappings="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='External%20Tables']/@containerMappings[name='DB_Non_Referenced_External_Table'] //@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='External%20Tables']/@containerMappings[name='DB_Referenced_External_Table']" activeByDefault="true">
         <toolSections name="External Tables" reusedTools="//@ownedViewpoints[name='Database']/@ownedRepresentations[name='Database%20Diagram']/@optionalLayers[name='External%20Tables']/@toolSections.0/@ownedTools[name='WIZ_ExternalTable']"/>
       </optionalLayers>
