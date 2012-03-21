@@ -16,9 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.obeonetwork.dsl.database.Column;
-import org.obeonetwork.dsl.database.DatabaseElement;
 import org.obeonetwork.dsl.database.DatabasePackage;
-import org.obeonetwork.dsl.database.ForeignKey;
 import org.obeonetwork.dsl.database.ForeignKeyElement;
 
 /**
@@ -280,26 +278,5 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 		}
 		return super.eIsSet(featureID);
 	}
-
-	@Override
-	public String getID() {
-		String id = null;
-		int ownId = -1;
-		if (eContainer() != null && eContainer() instanceof DatabaseElement) {
-			id = ((DatabaseElement)eContainer()).getID();
-			if (eContainer() instanceof ForeignKey) {
-				ForeignKey fk = (ForeignKey)eContainer();
-				ownId = fk.getElements().indexOf(this);
-			}
-		}
-		if (id != null) {
-			id += "::" + ownId;
-		} else {
-			id = Integer.toString(ownId);
-		}
-		return id;
-	}
-	
-	
 
 } //ForeignKeyElementImpl

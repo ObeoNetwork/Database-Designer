@@ -95,8 +95,21 @@ public abstract class DatabaseElementImpl extends EObjectImpl implements Databas
 	 * @generated NOT
 	 */
 	public String getID() {
-		
-		throw new UnsupportedOperationException("Required by Database Compare");
+		eContainer.eURIFragmentSegment(eContainingFeature(), this);
+		String id = null;
+		String ownId = "";
+		if (eContainer() != null) {
+			if (eContainer() instanceof DatabaseElement) {
+				id = ((DatabaseElement)eContainer()).getID();				
+			}
+			ownId = eContainer.eURIFragmentSegment(eContainingFeature(), this);
+		}
+		if (id != null) {
+			id += "::" + ownId;
+		} else {
+			id = ownId;
+		}
+		return id;
 	}
 
 	/**

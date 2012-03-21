@@ -16,9 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.obeonetwork.dsl.database.Column;
-import org.obeonetwork.dsl.database.DatabaseElement;
 import org.obeonetwork.dsl.database.DatabasePackage;
-import org.obeonetwork.dsl.database.Index;
 import org.obeonetwork.dsl.database.IndexElement;
 
 /**
@@ -288,22 +286,4 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 		return result.toString();
 	}
 
-	@Override
-	public String getID() {
-		String id = null;
-		int ownId = -1;
-		if (eContainer() != null && eContainer() instanceof DatabaseElement) {
-			id = ((DatabaseElement)eContainer()).getID();
-			if (eContainer() instanceof Index) {
-				Index index = (Index)eContainer();
-				ownId = index.getElements().indexOf(this);
-			}
-		}
-		if (id != null) {
-			id += "::" + ownId;
-		} else {
-			id = Integer.toString(ownId);
-		}
-		return id;
-	}
 } //IndexElementImpl
