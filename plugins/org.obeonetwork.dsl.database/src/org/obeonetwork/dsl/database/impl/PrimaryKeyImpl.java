@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.obeonetwork.dsl.database.Column;
+import org.obeonetwork.dsl.database.DatabaseElement;
 import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.PrimaryKey;
 import org.obeonetwork.dsl.database.Table;
@@ -249,4 +250,19 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 		return super.eIsSet(featureID);
 	}
 
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getID() {
+		String id = null;		
+		if (getOwner() != null) {
+			id = getOwner().getID();		
+			id += "::"+PrimaryKey.class.getSimpleName();
+		}
+		return id;
+	}
+	
 } //PrimaryKeyImpl

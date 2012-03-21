@@ -21,9 +21,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.obeonetwork.dsl.database.DatabaseElement;
 import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.ForeignKey;
 import org.obeonetwork.dsl.database.ForeignKeyElement;
+import org.obeonetwork.dsl.database.PrimaryKey;
 import org.obeonetwork.dsl.database.Table;
 
 /**
@@ -322,6 +324,21 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 				return target != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getID() {
+		String id = null;		
+		if (getOwner() != null) {
+			id = getOwner().getID();		
+			int index = getOwner().getForeignKeys().indexOf(this);
+			id += "::"+ForeignKey.class.getSimpleName()+"_"+index;
+		}
+		return id;
 	}
 
 } //ForeignKeyImpl

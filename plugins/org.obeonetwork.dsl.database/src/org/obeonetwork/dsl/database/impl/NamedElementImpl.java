@@ -13,9 +13,11 @@ package org.obeonetwork.dsl.database.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.obeonetwork.dsl.database.DataBase;
 import org.obeonetwork.dsl.database.DatabaseElement;
 import org.obeonetwork.dsl.database.DatabasePackage;
 import org.obeonetwork.dsl.database.NamedElement;
+import org.obeonetwork.dsl.database.Schema;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,7 +83,7 @@ public abstract class NamedElementImpl extends DatabaseElementImpl implements Na
 	 * @generated NOT
 	 */	
 	public String getID() {
-		String id = null;
+		String id = null;		
 		if (eContainer() != null && eContainer() instanceof DatabaseElement) {
 			id = ((DatabaseElement)eContainer()).getID();
 		}
