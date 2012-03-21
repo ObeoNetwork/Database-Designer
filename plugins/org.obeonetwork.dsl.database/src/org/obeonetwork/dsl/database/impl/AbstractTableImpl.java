@@ -78,13 +78,6 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	}
 	
 	/**
-	 * @generated NOT
-	 */	
-	public String getID() {		
-		return getOwner().getName()+"::"+getName();
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

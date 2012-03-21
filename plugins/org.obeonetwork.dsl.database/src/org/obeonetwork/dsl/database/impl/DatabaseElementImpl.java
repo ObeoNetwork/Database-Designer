@@ -51,16 +51,6 @@ public abstract class DatabaseElementImpl extends EObjectImpl implements Databas
 	protected static final String ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getID()
-	 * @generated
-	 * @ordered
-	 */
-	protected String id = ID_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getComments() <em>Comments</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,10 +92,11 @@ public abstract class DatabaseElementImpl extends EObjectImpl implements Databas
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getID() {
-		return id;
+		
+		throw new UnsupportedOperationException("Required by Database Compare");
 	}
 
 	/**
@@ -184,7 +175,7 @@ public abstract class DatabaseElementImpl extends EObjectImpl implements Databas
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.DATABASE_ELEMENT__ID:
-				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+				return ID_EDEFAULT == null ? getID() != null : !ID_EDEFAULT.equals(getID());
 			case DatabasePackage.DATABASE_ELEMENT__COMMENTS:
 				return COMMENTS_EDEFAULT == null ? comments != null : !COMMENTS_EDEFAULT.equals(comments);
 		}
@@ -201,9 +192,7 @@ public abstract class DatabaseElementImpl extends EObjectImpl implements Databas
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (ID: ");
-		result.append(id);
-		result.append(", comments: ");
+		result.append(" (comments: ");
 		result.append(comments);
 		result.append(')');
 		return result.toString();

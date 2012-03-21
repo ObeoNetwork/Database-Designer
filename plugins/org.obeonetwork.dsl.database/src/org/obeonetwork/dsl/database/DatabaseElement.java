@@ -47,7 +47,7 @@ public interface DatabaseElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>ID</em>' attribute.
 	 * @see org.obeonetwork.dsl.database.DatabasePackage#getDatabaseElement_ID()
-	 * @model id="true" transient="true" changeable="false" derived="true"
+	 * @model id="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	String getID();
