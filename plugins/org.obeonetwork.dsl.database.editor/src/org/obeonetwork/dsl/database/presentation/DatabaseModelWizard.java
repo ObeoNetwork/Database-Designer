@@ -634,7 +634,7 @@ public class DatabaseModelWizard extends Wizard implements INewWizard {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
-			return encodings;			
+			return encodings;
 		}
 		
 		/**
