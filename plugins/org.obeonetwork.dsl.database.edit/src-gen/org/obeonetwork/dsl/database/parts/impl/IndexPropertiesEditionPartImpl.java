@@ -8,41 +8,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
+
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.IndexPropertiesEditionPart;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
 // End of user code
 
@@ -57,9 +74,9 @@ public class IndexPropertiesEditionPartImpl extends CompositePropertiesEditionPa
 	protected Button unique;
 	protected Text cardinality;
 	protected Text indexType;
-protected ReferencesTable elements;
-protected List<ViewerFilter> elementsBusinessFilters = new ArrayList<ViewerFilter>();
-protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
+	protected ReferencesTable elements;
+	protected List<ViewerFilter> elementsBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	protected Text comments;
 
 
@@ -159,8 +176,8 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.IndexPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Index.Properties.name, DatabaseViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Index.Properties.name, DatabaseMessages.IndexPropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -205,8 +222,8 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createQualifierText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.IndexPropertiesEditionPart_QualifierLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Index.Properties.qualifier, DatabaseViewsRepository.SWT_KIND));
-		qualifier = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Index.Properties.qualifier, DatabaseMessages.IndexPropertiesEditionPart_QualifierLabel);
+		qualifier = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData qualifierData = new GridData(GridData.FILL_HORIZONTAL);
 		qualifier.setLayoutData(qualifierData);
 		qualifier.addFocusListener(new FocusAdapter() {
@@ -252,7 +269,7 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	
 	protected Composite createUniqueCheckbox(Composite parent) {
 		unique = new Button(parent, SWT.CHECK);
-		unique.setText(DatabaseMessages.IndexPropertiesEditionPart_UniqueLabel);
+		unique.setText(getDescription(DatabaseViewsRepository.Index.Properties.unique, DatabaseMessages.IndexPropertiesEditionPart_UniqueLabel));
 		unique.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -278,8 +295,8 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createCardinalityText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.IndexPropertiesEditionPart_CardinalityLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Index.Properties.cardinality, DatabaseViewsRepository.SWT_KIND));
-		cardinality = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Index.Properties.cardinality, DatabaseMessages.IndexPropertiesEditionPart_CardinalityLabel);
+		cardinality = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData cardinalityData = new GridData(GridData.FILL_HORIZONTAL);
 		cardinality.setLayoutData(cardinalityData);
 		cardinality.addFocusListener(new FocusAdapter() {
@@ -324,8 +341,8 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createIndexTypeText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.IndexPropertiesEditionPart_IndexTypeLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Index.Properties.indexType, DatabaseViewsRepository.SWT_KIND));
-		indexType = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Index.Properties.indexType, DatabaseMessages.IndexPropertiesEditionPart_IndexTypeLabel);
+		indexType = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData indexTypeData = new GridData(GridData.FILL_HORIZONTAL);
 		indexType.setLayoutData(indexTypeData);
 		indexType.addFocusListener(new FocusAdapter() {
@@ -373,7 +390,7 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	 * 
 	 */
 	protected Composite createElementsAdvancedTableComposition(Composite parent) {
-		this.elements = new ReferencesTable(DatabaseMessages.IndexPropertiesEditionPart_ElementsLabel, new ReferencesTableListener() {
+		this.elements = new ReferencesTable(getDescription(DatabaseViewsRepository.Index.Properties.elements, DatabaseMessages.IndexPropertiesEditionPart_ElementsLabel), new ReferencesTableListener() {
 			public void handleAdd() { 
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(IndexPropertiesEditionPartImpl.this, DatabaseViewsRepository.Index.Properties.elements, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				elements.refresh();
@@ -418,11 +435,11 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createCommentsTextarea(Composite parent) {
-		Label commentsLabel = SWTUtils.createPartLabel(parent, DatabaseMessages.IndexPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Index.Properties.comments, DatabaseViewsRepository.SWT_KIND));
+		Label commentsLabel = createDescription(parent, DatabaseViewsRepository.Index.Properties.comments, DatabaseMessages.IndexPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
-		comments = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
+		comments = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData commentsData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsData.horizontalSpan = 2;
 		commentsData.heightHint = 80;
@@ -449,7 +466,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -458,8 +474,8 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -486,7 +502,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -510,7 +525,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 			qualifier.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -536,7 +550,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -561,7 +574,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -585,7 +597,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 			indexType.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 
@@ -645,7 +656,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 		return ((ReferencesTableSettings)elements.getInput()).contains(element);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -669,7 +679,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 

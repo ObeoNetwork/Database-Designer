@@ -58,6 +58,7 @@ public class DatabaseMessages extends NLS {
 	
 	public static String SequencePropertiesEditionPart_PropertiesGroupLabel;
 
+
 	
 	public static String DataBase_ReadOnly;
 
@@ -147,6 +148,7 @@ public class DatabaseMessages extends NLS {
 
 	
 	public static String Sequence_Part_Title;
+
 
 	
 	public static String DataBasePropertiesEditionPart_NameLabel;
@@ -322,6 +324,7 @@ public class DatabaseMessages extends NLS {
 	
 	public static String SequencePropertiesEditionPart_CommentsLabel;
 
+
 	
 	public static String PropertiesEditionPart_DocumentationLabel;
 
@@ -371,8 +374,8 @@ public class DatabaseMessages extends NLS {
 	public static String PropertiesEditionPart_RemoveListViewerLabel;
 
 	// Start of user code for additionnal NLS Constants
-
-// End of user code
+	
+	// End of user code
 
 	static {
 		// initialize resource bundle

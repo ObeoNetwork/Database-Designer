@@ -78,23 +78,23 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 			final IndexPropertiesEditionPart indexPart = (IndexPropertiesEditionPart)editingPart;
 			// init values
 			if (index.getName() != null && isAccessible(DatabaseViewsRepository.Index.Properties.name))
-				indexPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), index.getName()));
+				indexPart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, index.getName()));
 			
 			if (index.getQualifier() != null && isAccessible(DatabaseViewsRepository.Index.Properties.qualifier))
-				indexPart.setQualifier(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), index.getQualifier()));
+				indexPart.setQualifier(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, index.getQualifier()));
 			
 			if (isAccessible(DatabaseViewsRepository.Index.Properties.unique)) {
 				indexPart.setUnique(index.isUnique());
 			}
 			if (isAccessible(DatabaseViewsRepository.Index.Properties.cardinality)) {
-				indexPart.setCardinality(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), index.getCardinality()));
+				indexPart.setCardinality(EEFConverterUtil.convertToString(EcorePackage.Literals.EINT, index.getCardinality()));
 			}
 			
 			if (index.getIndexType() != null && isAccessible(DatabaseViewsRepository.Index.Properties.indexType))
-				indexPart.setIndexType(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), index.getIndexType()));
+				indexPart.setIndexType(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, index.getIndexType()));
 			
 			if (index.getComments() != null && isAccessible(DatabaseViewsRepository.Index.Properties.comments))
-				indexPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), index.getComments()));
+				indexPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, index.getComments()));
 			if (isAccessible(DatabaseViewsRepository.Index.Properties.elements)) {
 				elementsSettings = new ReferencesTableSettings(index, DatabasePackage.eINSTANCE.getIndex_Elements());
 				indexPart.initElements(elementsSettings);
@@ -106,8 +106,8 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 			
 			
 			
-			indexPart.addFilterToElements(new ViewerFilter() {
-			
+			if (isAccessible(DatabaseViewsRepository.Index.Properties.elements)) {
+				indexPart.addFilterToElements(new ViewerFilter() {
 					/**
 					 * {@inheritDoc}
 					 * 
@@ -117,10 +117,10 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 						return (element instanceof String && element.equals("")) || (element instanceof IndexElement); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for elements
-			// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for elements
+				// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -142,7 +142,7 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == DatabaseViewsRepository.Index.Properties.name) {
 			return DatabasePackage.eINSTANCE.getNamedElement_Name();
 		}
@@ -175,22 +175,22 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		Index index = (Index)semanticObject;
 		if (DatabaseViewsRepository.Index.Properties.name == event.getAffectedEditor()) {
-			index.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			index.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.Index.Properties.qualifier == event.getAffectedEditor()) {
-			index.setQualifier((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			index.setQualifier((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.Index.Properties.unique == event.getAffectedEditor()) {
 			index.setUnique((Boolean)event.getNewValue());
 		}
 		if (DatabaseViewsRepository.Index.Properties.cardinality == event.getAffectedEditor()) {
-			index.setCardinality((EEFConverterUtil.createIntFromString(EcorePackage.eINSTANCE.getEInt(), (String)event.getNewValue())));
+			index.setCardinality((EEFConverterUtil.createIntFromString(EcorePackage.Literals.EINT, (String)event.getNewValue())));
 		}
 		if (DatabaseViewsRepository.Index.Properties.indexType == event.getAffectedEditor()) {
-			index.setIndexType((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			index.setIndexType((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.Index.Properties.comments == event.getAffectedEditor()) {
-			index.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			index.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.Index.Properties.elements == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.ADD) {
@@ -224,18 +224,18 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			IndexPropertiesEditionPart indexPart = (IndexPropertiesEditionPart)editingPart;
 			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && indexPart != null && isAccessible(DatabaseViewsRepository.Index.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					indexPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					indexPart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					indexPart.setName("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getIndex_Qualifier().equals(msg.getFeature()) && indexPart != null && isAccessible(DatabaseViewsRepository.Index.Properties.qualifier)) {
 				if (msg.getNewValue() != null) {
-					indexPart.setQualifier(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					indexPart.setQualifier(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					indexPart.setQualifier("");
 				}
@@ -245,21 +245,21 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 			
 			if (DatabasePackage.eINSTANCE.getIndex_Cardinality().equals(msg.getFeature()) && indexPart != null && isAccessible(DatabaseViewsRepository.Index.Properties.cardinality)) {
 				if (msg.getNewValue() != null) {
-					indexPart.setCardinality(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
+					indexPart.setCardinality(EcoreUtil.convertToString(EcorePackage.Literals.EINT, msg.getNewValue()));
 				} else {
 					indexPart.setCardinality("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getIndex_IndexType().equals(msg.getFeature()) && indexPart != null && isAccessible(DatabaseViewsRepository.Index.Properties.indexType)) {
 				if (msg.getNewValue() != null) {
-					indexPart.setIndexType(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					indexPart.setIndexType(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					indexPart.setIndexType("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && indexPart != null && isAccessible(DatabaseViewsRepository.Index.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					indexPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					indexPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					indexPart.setComments("");
 				}
@@ -294,42 +294,42 @@ public class IndexPropertiesEditionComponent extends SinglePartPropertiesEditing
 				if (DatabaseViewsRepository.Index.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Index.Properties.qualifier == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getIndex_Qualifier().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getIndex_Qualifier().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getIndex_Qualifier().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Index.Properties.unique == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getIndex_Unique().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getIndex_Unique().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getIndex_Unique().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Index.Properties.cardinality == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getIndex_Cardinality().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getIndex_Cardinality().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getIndex_Cardinality().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Index.Properties.indexType == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getIndex_IndexType().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getIndex_IndexType().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getIndex_IndexType().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Index.Properties.comments == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), newValue);
 				}

@@ -34,6 +34,7 @@ public class TypeslibraryMessages extends NLS {
 	
 	public static String UserDefinedTypesLibraryPropertiesEditionPart_PropertiesGroupLabel;
 
+
 	
 	public static String NativeTypesLibrary_ReadOnly;
 
@@ -76,11 +77,9 @@ public class TypeslibraryMessages extends NLS {
 	
 	public static String UserDefinedTypesLibrary_Part_Title;
 
-	
-	public static String NativeTypesLibraryPropertiesEditionPart_NameLabel;
 
 	
-	public static String NativeTypesLibraryPropertiesEditionPart_KindLabel;
+	public static String NativeTypesLibraryPropertiesEditionPart_NameLabel;
 
 	
 	public static String NativeTypesLibraryPropertiesEditionPart_NativeTypesLabel;
@@ -125,10 +124,8 @@ public class TypeslibraryMessages extends NLS {
 	public static String UserDefinedTypesLibraryPropertiesEditionPart_NameLabel;
 
 	
-	public static String UserDefinedTypesLibraryPropertiesEditionPart_KindLabel;
-
-	
 	public static String UserDefinedTypesLibraryPropertiesEditionPart_UserDefinedTypesLabel;
+
 
 	
 	public static String PropertiesEditionPart_DocumentationLabel;
@@ -179,8 +176,8 @@ public class TypeslibraryMessages extends NLS {
 	public static String PropertiesEditionPart_RemoveListViewerLabel;
 
 	// Start of user code for additionnal NLS Constants
-
-// End of user code
+	
+	// End of user code
 
 	static {
 		// initialize resource bundle

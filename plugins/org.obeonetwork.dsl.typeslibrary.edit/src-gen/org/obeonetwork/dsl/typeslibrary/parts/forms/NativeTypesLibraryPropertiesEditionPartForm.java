@@ -7,33 +7,23 @@ package org.obeonetwork.dsl.typeslibrary.parts.forms;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
-import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusAdapter;
@@ -50,10 +40,10 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.views.properties.tabbed.ISection;
 import org.obeonetwork.dsl.typeslibrary.parts.NativeTypesLibraryPropertiesEditionPart;
 import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
 import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
-
 
 // End of user code
 
@@ -61,15 +51,19 @@ import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
  * 
  * 
  */
-public class NativeTypesLibraryPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, NativeTypesLibraryPropertiesEditionPart {
+public class NativeTypesLibraryPropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, NativeTypesLibraryPropertiesEditionPart {
 
 	protected Text name;
-	protected EMFComboViewer kind;
 	protected ReferencesTable nativeTypes;
 	protected List<ViewerFilter> nativeTypesBusinessFilters = new ArrayList<ViewerFilter>();
 	protected List<ViewerFilter> nativeTypesFilters = new ArrayList<ViewerFilter>();
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public NativeTypesLibraryPropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -109,7 +103,6 @@ public class NativeTypesLibraryPropertiesEditionPartForm extends CompositeProper
 		CompositionSequence nativeTypesLibraryStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = nativeTypesLibraryStep.addStep(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.class);
 		propertiesStep.addStep(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name);
-		propertiesStep.addStep(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.kind);
 		propertiesStep.addStep(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.nativeTypes);
 		
 		
@@ -121,10 +114,7 @@ public class NativeTypesLibraryPropertiesEditionPartForm extends CompositeProper
 					return createPropertiesGroup(widgetFactory, parent);
 				}
 				if (key == TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name) {
-					return 		createNameText(widgetFactory, parent);
-				}
-				if (key == TypeslibraryViewsRepository.NativeTypesLibrary.Properties.kind) {
-					return createKindEMFComboViewer(widgetFactory, parent);
+					return createNameText(widgetFactory, parent);
 				}
 				if (key == TypeslibraryViewsRepository.NativeTypesLibrary.Properties.nativeTypes) {
 					return createNativeTypesTableComposition(widgetFactory, parent);
@@ -153,7 +143,7 @@ public class NativeTypesLibraryPropertiesEditionPartForm extends CompositeProper
 
 	
 	protected Composite createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, TypeslibraryMessages.NativeTypesLibraryPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name, TypeslibraryViewsRepository.FORM_KIND));
+		createDescription(parent, TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name, TypeslibraryMessages.NativeTypesLibraryPropertiesEditionPart_NameLabel);
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -167,8 +157,33 @@ public class NativeTypesLibraryPropertiesEditionPartForm extends CompositeProper
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(NativeTypesLibraryPropertiesEditionPartForm.this, TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							NativeTypesLibraryPropertiesEditionPartForm.this,
+							TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									NativeTypesLibraryPropertiesEditionPartForm.this,
+									TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, name.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									NativeTypesLibraryPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		name.addKeyListener(new KeyAdapter() {
@@ -191,39 +206,12 @@ public class NativeTypesLibraryPropertiesEditionPartForm extends CompositeProper
 		return parent;
 	}
 
-	
-	protected Composite createKindEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, TypeslibraryMessages.NativeTypesLibraryPropertiesEditionPart_KindLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.kind, TypeslibraryViewsRepository.FORM_KIND));
-		kind = new EMFComboViewer(parent);
-		kind.setContentProvider(new ArrayContentProvider());
-		kind.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
-		GridData kindData = new GridData(GridData.FILL_HORIZONTAL);
-		kind.getCombo().setLayoutData(kindData);
-		kind.addSelectionChangedListener(new ISelectionChangedListener() {
-
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
-			 * 	
-			 */
-			public void selectionChanged(SelectionChangedEvent event) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(NativeTypesLibraryPropertiesEditionPartForm.this, TypeslibraryViewsRepository.NativeTypesLibrary.Properties.kind, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getKind()));
-			}
-
-		});
-		kind.setID(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.kind);
-		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.kind, TypeslibraryViewsRepository.FORM_KIND), null); //$NON-NLS-1$
-		return parent;
-	}
-
 	/**
 	 * @param container
 	 * 
 	 */
 	protected Composite createNativeTypesTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.nativeTypes = new ReferencesTable(TypeslibraryMessages.NativeTypesLibraryPropertiesEditionPart_NativeTypesLabel, new ReferencesTableListener() {
+		this.nativeTypes = new ReferencesTable(getDescription(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.nativeTypes, TypeslibraryMessages.NativeTypesLibraryPropertiesEditionPart_NativeTypesLabel), new ReferencesTableListener() {
 			public void handleAdd() {
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(NativeTypesLibraryPropertiesEditionPartForm.this, TypeslibraryViewsRepository.NativeTypesLibrary.Properties.nativeTypes, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				nativeTypes.refresh();
@@ -267,7 +255,6 @@ public class NativeTypesLibraryPropertiesEditionPartForm extends CompositeProper
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -276,8 +263,8 @@ public class NativeTypesLibraryPropertiesEditionPartForm extends CompositeProper
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -303,39 +290,6 @@ public class NativeTypesLibraryPropertiesEditionPartForm extends CompositeProper
 			name.setText(""); //$NON-NLS-1$
 		}
 	}
-
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.obeonetwork.dsl.typeslibrary.parts.NativeTypesLibraryPropertiesEditionPart#getKind()
-	 * 
-	 */
-	public Enumerator getKind() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) kind.getSelection()).getFirstElement();
-		return selection.getInstance();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.obeonetwork.dsl.typeslibrary.parts.NativeTypesLibraryPropertiesEditionPart#initKind(EEnum eenum, Enumerator current)
-	 */
-	public void initKind(EEnum eenum, Enumerator current) {
-		kind.setInput(eenum.getELiterals());
-		kind.modelUpdating(new StructuredSelection(current));
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.obeonetwork.dsl.typeslibrary.parts.NativeTypesLibraryPropertiesEditionPart#setKind(Enumerator newValue)
-	 * 
-	 */
-	public void setKind(Enumerator newValue) {
-		kind.modelUpdating(new StructuredSelection(newValue));
-	}
-
 
 
 
@@ -394,6 +348,8 @@ public class NativeTypesLibraryPropertiesEditionPartForm extends CompositeProper
 	public boolean isContainedInNativeTypesTable(EObject element) {
 		return ((ReferencesTableSettings)nativeTypes.getInput()).contains(element);
 	}
+
+
 
 
 

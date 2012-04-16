@@ -5,10 +5,12 @@ package org.obeonetwork.dsl.typeslibrary.providers;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.providers.impl.PropertiesEditingProviderImpl;
+import org.eclipse.jface.viewers.IFilter;
 import org.obeonetwork.dsl.typeslibrary.TypeInstance;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 import org.obeonetwork.dsl.typeslibrary.components.TypeInstancePropertiesEditionComponent;
@@ -41,7 +43,7 @@ public class TypeInstancePropertiesEditionProvider extends PropertiesEditingProv
 	 */
 	public boolean provides(PropertiesEditingContext editingContext) {
 		return (editingContext.getEObject() instanceof TypeInstance) 
-					&& (TypesLibraryPackage.eINSTANCE.getTypeInstance() == editingContext.getEObject().eClass());
+					&& (TypesLibraryPackage.Literals.TYPE_INSTANCE == editingContext.getEObject().eClass());
 	}
 
 	/**
@@ -50,7 +52,7 @@ public class TypeInstancePropertiesEditionProvider extends PropertiesEditingProv
 	 * 
 	 */
 	public boolean provides(PropertiesEditingContext editingContext, String part) {
-		return (editingContext.getEObject() instanceof TypeInstance) && (TypeInstancePropertiesEditionComponent.BASE_PART.equals(part));
+		return (editingContext.getEObject() instanceof TypeInstance) && (TypeInstancePropertiesEditionComponent.TYPEINSTANCE_PART.equals(part));
 	}
 
 	/**
@@ -70,7 +72,7 @@ public class TypeInstancePropertiesEditionProvider extends PropertiesEditingProv
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean provides(PropertiesEditingContext editingContext, String part, java.lang.Class refinement) {
-		return (editingContext.getEObject() instanceof TypeInstance) && ((TypeInstancePropertiesEditionComponent.BASE_PART.equals(part) && refinement == TypeInstancePropertiesEditionComponent.class));
+		return (editingContext.getEObject() instanceof TypeInstance) && ((TypeInstancePropertiesEditionComponent.TYPEINSTANCE_PART.equals(part) && refinement == TypeInstancePropertiesEditionComponent.class));
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class TypeInstancePropertiesEditionProvider extends PropertiesEditingProv
 	 */
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part) {
 		if (editingContext.getEObject() instanceof TypeInstance) {
-			if (TypeInstancePropertiesEditionComponent.BASE_PART.equals(part))
+			if (TypeInstancePropertiesEditionComponent.TYPEINSTANCE_PART.equals(part))
 				return new TypeInstancePropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part);
@@ -105,11 +107,27 @@ public class TypeInstancePropertiesEditionProvider extends PropertiesEditingProv
 	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof TypeInstance) {
-			if (TypeInstancePropertiesEditionComponent.BASE_PART.equals(part)
+			if (TypeInstancePropertiesEditionComponent.TYPEINSTANCE_PART.equals(part)
 				&& refinement == TypeInstancePropertiesEditionComponent.class)
 				return new TypeInstancePropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part, refinement);
+	}
+
+	/**
+	 * Provides the filter used by the plugin.xml to assign part forms.
+	 */
+	public static class EditionFilter implements IFilter {
+		
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.jface.viewers.IFilter#select(java.lang.Object)
+		 */
+		public boolean select(Object toTest) {
+			return toTest instanceof EObject && TypesLibraryPackage.Literals.TYPE_INSTANCE == ((EObject)toTest).eClass();
+		}
+		
 	}
 
 }

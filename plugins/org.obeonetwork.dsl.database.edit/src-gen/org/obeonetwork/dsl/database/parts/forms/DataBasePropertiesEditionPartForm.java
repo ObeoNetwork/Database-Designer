@@ -5,42 +5,60 @@ package org.obeonetwork.dsl.database.parts.forms;
 
 // Start of user code for imports
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.FlatReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
+
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+
 import org.obeonetwork.dsl.database.parts.DataBasePropertiesEditionPart;
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
 // End of user code
 
@@ -48,14 +66,19 @@ import org.obeonetwork.dsl.database.providers.DatabaseMessages;
  * 
  * 
  */
-public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, DataBasePropertiesEditionPart {
+public class DataBasePropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, DataBasePropertiesEditionPart {
 
 	protected Text name;
 	protected Text url;
-		protected FlatReferencesTable usedLibraries;
+	protected FlatReferencesTable usedLibraries;
 	protected Text comments;
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public DataBasePropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -108,10 +131,10 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 					return createPropertiesGroup(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.DataBase_.Properties.name) {
-					return 		createNameText(widgetFactory, parent);
+					return createNameText(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.DataBase_.Properties.url) {
-					return 		createUrlText(widgetFactory, parent);
+					return createUrlText(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.DataBase_.Properties.usedLibraries) {
 					return createUsedLibrariesFlatReferencesTable(widgetFactory, parent);
@@ -143,7 +166,7 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.DataBasePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.DataBase_.Properties.name, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.DataBase_.Properties.name, DatabaseMessages.DataBasePropertiesEditionPart_NameLabel);
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -157,8 +180,33 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DataBasePropertiesEditionPartForm.this, DatabaseViewsRepository.DataBase_.Properties.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							DataBasePropertiesEditionPartForm.this,
+							DatabaseViewsRepository.DataBase_.Properties.name,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									DataBasePropertiesEditionPartForm.this,
+									DatabaseViewsRepository.DataBase_.Properties.name,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, name.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									DataBasePropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		name.addKeyListener(new KeyAdapter() {
@@ -183,7 +231,7 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createUrlText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.DataBasePropertiesEditionPart_UrlLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.DataBase_.Properties.url, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.DataBase_.Properties.url, DatabaseMessages.DataBasePropertiesEditionPart_UrlLabel);
 		url = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		url.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -197,8 +245,33 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DataBasePropertiesEditionPartForm.this, DatabaseViewsRepository.DataBase_.Properties.url, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, url.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							DataBasePropertiesEditionPartForm.this,
+							DatabaseViewsRepository.DataBase_.Properties.url,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, url.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									DataBasePropertiesEditionPartForm.this,
+									DatabaseViewsRepository.DataBase_.Properties.url,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, url.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									DataBasePropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		url.addKeyListener(new KeyAdapter() {
@@ -226,7 +299,7 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 	 * 
 	 */
 	protected Composite createUsedLibrariesFlatReferencesTable(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.DataBasePropertiesEditionPart_UsedLibrariesLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.DataBase_.Properties.usedLibraries, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.DataBase_.Properties.usedLibraries, DatabaseMessages.DataBasePropertiesEditionPart_UsedLibrariesLabel);
 		usedLibraries = new FlatReferencesTable(parent);
 		usedLibraries.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -248,7 +321,7 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createCommentsTextarea(FormToolkit widgetFactory, Composite parent) {
-		Label commentsLabel = FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.DataBasePropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.DataBase_.Properties.comments, DatabaseViewsRepository.FORM_KIND));
+		Label commentsLabel = createDescription(parent, DatabaseViewsRepository.DataBase_.Properties.comments, DatabaseMessages.DataBasePropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
@@ -267,17 +340,40 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 			 * 
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(DataBasePropertiesEditionPartForm.this, DatabaseViewsRepository.DataBase_.Properties.comments, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							DataBasePropertiesEditionPartForm.this,
+							DatabaseViewsRepository.DataBase_.Properties.comments,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									DataBasePropertiesEditionPartForm.this,
+									DatabaseViewsRepository.DataBase_.Properties.comments,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, comments.getText()));
+				}
 			}
 
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									DataBasePropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
+			}
 		});
 		EditingUtils.setID(comments, DatabaseViewsRepository.DataBase_.Properties.comments);
 		EditingUtils.setEEFtype(comments, "eef::Textarea"); //$NON-NLS-1$
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.DataBase_.Properties.comments, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
-
 
 
 	/**
@@ -288,8 +384,8 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -316,7 +412,6 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -340,7 +435,6 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 			url.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 
@@ -395,7 +489,6 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 		return ((ReferencesTableSettings)usedLibraries.getInput()).contains(element);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -419,6 +512,8 @@ public class DataBasePropertiesEditionPartForm extends CompositePropertiesEditio
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
+
+
 
 
 

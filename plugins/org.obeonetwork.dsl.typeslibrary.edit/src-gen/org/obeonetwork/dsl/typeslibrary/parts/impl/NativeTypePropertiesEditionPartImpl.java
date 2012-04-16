@@ -5,11 +5,9 @@ package org.obeonetwork.dsl.typeslibrary.parts.impl;
 
 // Start of user code for imports
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
@@ -43,7 +41,6 @@ import org.eclipse.swt.widgets.Text;
 import org.obeonetwork.dsl.typeslibrary.parts.NativeTypePropertiesEditionPart;
 import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
 import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
-
 
 // End of user code
 
@@ -138,8 +135,8 @@ public class NativeTypePropertiesEditionPartImpl extends CompositePropertiesEdit
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, TypeslibraryMessages.NativeTypePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.NativeType.Properties.name, TypeslibraryViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, TypeslibraryViewsRepository.NativeType.Properties.name, TypeslibraryMessages.NativeTypePropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -184,10 +181,10 @@ public class NativeTypePropertiesEditionPartImpl extends CompositePropertiesEdit
 
 	
 	protected Composite createSpecEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, TypeslibraryMessages.NativeTypePropertiesEditionPart_SpecLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.NativeType.Properties.spec, TypeslibraryViewsRepository.SWT_KIND));
+		createDescription(parent, TypeslibraryViewsRepository.NativeType.Properties.spec, TypeslibraryMessages.NativeTypePropertiesEditionPart_SpecLabel);
 		spec = new EMFComboViewer(parent);
 		spec.setContentProvider(new ArrayContentProvider());
-		spec.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
+		spec.setLabelProvider(new AdapterFactoryLabelProvider(EEFRuntimePlugin.getDefault().getAdapterFactory()));
 		GridData specData = new GridData(GridData.FILL_HORIZONTAL);
 		spec.getCombo().setLayoutData(specData);
 		spec.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -214,7 +211,7 @@ public class NativeTypePropertiesEditionPartImpl extends CompositePropertiesEdit
 	 * 
 	 */
 	protected Composite createMapsToFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, TypeslibraryMessages.NativeTypePropertiesEditionPart_MapsToLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.NativeType.Properties.mapsTo, TypeslibraryViewsRepository.SWT_KIND));
+		createDescription(parent, TypeslibraryViewsRepository.NativeType.Properties.mapsTo, TypeslibraryMessages.NativeTypePropertiesEditionPart_MapsToLabel);
 		mapsTo = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.NativeType.Properties.mapsTo, TypeslibraryViewsRepository.SWT_KIND));
 		mapsTo.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -233,7 +230,6 @@ public class NativeTypePropertiesEditionPartImpl extends CompositePropertiesEdit
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -242,8 +238,8 @@ public class NativeTypePropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -270,7 +266,6 @@ public class NativeTypePropertiesEditionPartImpl extends CompositePropertiesEdit
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -278,17 +273,17 @@ public class NativeTypePropertiesEditionPartImpl extends CompositePropertiesEdit
 	 * 
 	 */
 	public Enumerator getSpec() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) spec.getSelection()).getFirstElement();
-		return selection.getInstance();
+		Enumerator selection = (Enumerator) ((StructuredSelection) spec.getSelection()).getFirstElement();
+		return selection;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.obeonetwork.dsl.typeslibrary.parts.NativeTypePropertiesEditionPart#initSpec(EEnum eenum, Enumerator current)
+	 * @see org.obeonetwork.dsl.typeslibrary.parts.NativeTypePropertiesEditionPart#initSpec(Object input, Enumerator current)
 	 */
-	public void initSpec(EEnum eenum, Enumerator current) {
-		spec.setInput(eenum.getELiterals());
+	public void initSpec(Object input, Enumerator current) {
+		spec.setInput(input);
 		spec.modelUpdating(new StructuredSelection(current));
 	}
 
@@ -301,7 +296,6 @@ public class NativeTypePropertiesEditionPartImpl extends CompositePropertiesEdit
 	public void setSpec(Enumerator newValue) {
 		spec.modelUpdating(new StructuredSelection(newValue));
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -372,7 +366,6 @@ public class NativeTypePropertiesEditionPartImpl extends CompositePropertiesEdit
 	public void addBusinessFilterToMapsTo(ViewerFilter filter) {
 		mapsTo.addBusinessRuleFilter(filter);
 	}
-
 
 
 

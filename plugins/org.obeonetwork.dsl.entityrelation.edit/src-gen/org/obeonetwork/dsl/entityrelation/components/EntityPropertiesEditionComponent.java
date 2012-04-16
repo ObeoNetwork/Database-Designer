@@ -4,6 +4,7 @@
 package org.obeonetwork.dsl.entityrelation.components;
 
 // Start of user code for imports
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
@@ -14,7 +15,6 @@ import org.obeonetwork.dsl.entityrelation.Entity;
 import org.obeonetwork.dsl.entityrelation.parts.EntityPropertiesEditionPart;
 import org.obeonetwork.dsl.entityrelation.parts.EntityrelationViewsRepository;
 import org.obeonetwork.dsl.entityrelation.parts.IdentifiersPropertiesEditionPart;
-
 
 // End of user code
 
@@ -47,6 +47,7 @@ public class EntityPropertiesEditionComponent extends ComposedPropertiesEditionC
 	 * 
 	 */
 	protected EntityIdentifiersPropertiesEditionComponent entityIdentifiersPropertiesEditionComponent;
+
 	/**
 	 * Parameterized constructor
 	 * 

@@ -6,7 +6,6 @@ package org.obeonetwork.dsl.typeslibrary.providers;
 import org.eclipse.emf.common.notify.Adapter;
 import org.obeonetwork.dsl.typeslibrary.util.TypesLibraryAdapterFactory;
 
-
 /**
  * 
  * 

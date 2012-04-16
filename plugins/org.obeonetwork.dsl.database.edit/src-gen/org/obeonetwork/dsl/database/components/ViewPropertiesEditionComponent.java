@@ -63,12 +63,12 @@ public class ViewPropertiesEditionComponent extends SinglePartPropertiesEditingC
 			final ViewPropertiesEditionPart viewPart = (ViewPropertiesEditionPart)editingPart;
 			// init values
 			if (view.getName() != null && isAccessible(DatabaseViewsRepository.View.Properties.name))
-				viewPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), view.getName()));
+				viewPart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, view.getName()));
 			
 			if (view.getQuery() != null && isAccessible(DatabaseViewsRepository.View.Properties.query))
-				viewPart.setQuery(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), view.getQuery()));
+				viewPart.setQuery(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, view.getQuery()));
 			if (view.getComments() != null && isAccessible(DatabaseViewsRepository.View.Properties.comments))
-				viewPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), view.getComments()));
+				viewPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, view.getComments()));
 			// init filters
 			
 			
@@ -90,7 +90,7 @@ public class ViewPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == DatabaseViewsRepository.View.Properties.name) {
 			return DatabasePackage.eINSTANCE.getNamedElement_Name();
 		}
@@ -111,13 +111,13 @@ public class ViewPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		View view = (View)semanticObject;
 		if (DatabaseViewsRepository.View.Properties.name == event.getAffectedEditor()) {
-			view.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			view.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.View.Properties.query == event.getAffectedEditor()) {
-			view.setQuery((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			view.setQuery((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.View.Properties.comments == event.getAffectedEditor()) {
-			view.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			view.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 	}
 
@@ -126,25 +126,25 @@ public class ViewPropertiesEditionComponent extends SinglePartPropertiesEditingC
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ViewPropertiesEditionPart viewPart = (ViewPropertiesEditionPart)editingPart;
 			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && viewPart != null && isAccessible(DatabaseViewsRepository.View.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					viewPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					viewPart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					viewPart.setName("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getView_Query().equals(msg.getFeature()) && viewPart != null && isAccessible(DatabaseViewsRepository.View.Properties.query)){
 				if (msg.getNewValue() != null) {
-					viewPart.setQuery(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					viewPart.setQuery(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					viewPart.setQuery("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && viewPart != null && isAccessible(DatabaseViewsRepository.View.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					viewPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					viewPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					viewPart.setComments("");
 				}
@@ -177,21 +177,21 @@ public class ViewPropertiesEditionComponent extends SinglePartPropertiesEditingC
 				if (DatabaseViewsRepository.View.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.View.Properties.query == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getView_Query().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getView_Query().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getView_Query().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.View.Properties.comments == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), newValue);
 				}

@@ -78,18 +78,18 @@ public class TableTablePropertiesEditionComponent extends SinglePartPropertiesEd
 			final TablePropertiesEditionPart tablePart = (TablePropertiesEditionPart)editingPart;
 			// init values
 			if (table.getName() != null && isAccessible(DatabaseViewsRepository.Table.Properties.name))
-				tablePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), table.getName()));
+				tablePart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, table.getName()));
 			
 			if (isAccessible(DatabaseViewsRepository.Table.Properties.columns)) {
 				columnsSettings = new ReferencesTableSettings(table, DatabasePackage.eINSTANCE.getAbstractTable_Columns());
 				tablePart.initColumns(columnsSettings);
 			}
 			if (table.getComments() != null && isAccessible(DatabaseViewsRepository.Table.Properties.comments))
-				tablePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), table.getComments()));
+				tablePart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, table.getComments()));
 			// init filters
 			
-			tablePart.addFilterToColumns(new ViewerFilter() {
-			
+			if (isAccessible(DatabaseViewsRepository.Table.Properties.columns)) {
+				tablePart.addFilterToColumns(new ViewerFilter() {
 					/**
 					 * {@inheritDoc}
 					 * 
@@ -99,10 +99,10 @@ public class TableTablePropertiesEditionComponent extends SinglePartPropertiesEd
 						return (element instanceof String && element.equals("")) || (element instanceof Column); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for columns
-			// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for columns
+				// End of user code
+			}
 			
 			// init values for referenced views
 			
@@ -121,7 +121,7 @@ public class TableTablePropertiesEditionComponent extends SinglePartPropertiesEd
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == DatabaseViewsRepository.Table.Properties.name) {
 			return DatabasePackage.eINSTANCE.getNamedElement_Name();
 		}
@@ -142,7 +142,7 @@ public class TableTablePropertiesEditionComponent extends SinglePartPropertiesEd
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		Table table = (Table)semanticObject;
 		if (DatabaseViewsRepository.Table.Properties.name == event.getAffectedEditor()) {
-			table.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			table.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.Table.Properties.columns == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.ADD) {
@@ -170,7 +170,7 @@ public class TableTablePropertiesEditionComponent extends SinglePartPropertiesEd
 			}
 		}
 		if (DatabaseViewsRepository.Table.Properties.comments == event.getAffectedEditor()) {
-			table.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			table.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 	}
 
@@ -179,11 +179,11 @@ public class TableTablePropertiesEditionComponent extends SinglePartPropertiesEd
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			TablePropertiesEditionPart tablePart = (TablePropertiesEditionPart)editingPart;
 			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && tablePart != null && isAccessible(DatabaseViewsRepository.Table.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					tablePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					tablePart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					tablePart.setName("");
 				}
@@ -192,7 +192,7 @@ public class TableTablePropertiesEditionComponent extends SinglePartPropertiesEd
 				tablePart.updateColumns();
 			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && tablePart != null && isAccessible(DatabaseViewsRepository.Table.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					tablePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					tablePart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					tablePart.setComments("");
 				}
@@ -225,14 +225,14 @@ public class TableTablePropertiesEditionComponent extends SinglePartPropertiesEd
 				if (DatabaseViewsRepository.Table.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Table.Properties.comments == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), newValue);
 				}

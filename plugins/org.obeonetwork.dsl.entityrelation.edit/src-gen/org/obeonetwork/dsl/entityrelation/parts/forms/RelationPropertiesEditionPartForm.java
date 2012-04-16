@@ -8,17 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
@@ -55,10 +53,10 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.views.properties.tabbed.ISection;
 import org.obeonetwork.dsl.entityrelation.parts.EntityrelationViewsRepository;
 import org.obeonetwork.dsl.entityrelation.parts.RelationPropertiesEditionPart;
 import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
-
 
 // End of user code
 
@@ -66,7 +64,7 @@ import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
  * 
  * 
  */
-public class RelationPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, RelationPropertiesEditionPart {
+public class RelationPropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, RelationPropertiesEditionPart {
 
 	protected Text name;
 	protected EObjectFlatComboViewer identifier;
@@ -84,6 +82,11 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 	protected Text comments;
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public RelationPropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -148,7 +151,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 					return createPropertiesGroup(widgetFactory, parent);
 				}
 				if (key == EntityrelationViewsRepository.Relation.Properties.name) {
-					return 		createNameText(widgetFactory, parent);
+					return createNameText(widgetFactory, parent);
 				}
 				if (key == EntityrelationViewsRepository.Relation.Properties.identifier) {
 					return createIdentifierFlatComboViewer(parent, widgetFactory);
@@ -160,7 +163,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 					return createSourceFlatComboViewer(parent, widgetFactory);
 				}
 				if (key == EntityrelationViewsRepository.Relation.Properties.Source.sourceRole) {
-					return 		createSourceRoleText(widgetFactory, parent);
+					return createSourceRoleText(widgetFactory, parent);
 				}
 				if (key == EntityrelationViewsRepository.Relation.Properties.Source.sourceCardinality) {
 					return createSourceCardinalityEMFComboViewer(widgetFactory, parent);
@@ -175,7 +178,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 					return createTargetFlatComboViewer(parent, widgetFactory);
 				}
 				if (key == EntityrelationViewsRepository.Relation.Properties.Target.targetRole) {
-					return 		createTargetRoleText(widgetFactory, parent);
+					return createTargetRoleText(widgetFactory, parent);
 				}
 				if (key == EntityrelationViewsRepository.Relation.Properties.Target.targetCardinality) {
 					return createTargetCardinalityEMFComboViewer(widgetFactory, parent);
@@ -213,7 +216,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.name, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.name, EntityrelationMessages.RelationPropertiesEditionPart_NameLabel);
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -227,8 +230,33 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RelationPropertiesEditionPartForm.this, EntityrelationViewsRepository.Relation.Properties.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							RelationPropertiesEditionPartForm.this,
+							EntityrelationViewsRepository.Relation.Properties.name,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationPropertiesEditionPartForm.this,
+									EntityrelationViewsRepository.Relation.Properties.name,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, name.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		name.addKeyListener(new KeyAdapter() {
@@ -257,7 +285,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 	 * 
 	 */
 	protected Composite createIdentifierFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationPropertiesEditionPart_IdentifierLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.identifier, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.identifier, EntityrelationMessages.RelationPropertiesEditionPart_IdentifierLabel);
 		identifier = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.identifier, EntityrelationViewsRepository.FORM_KIND));
 		widgetFactory.adapt(identifier);
 		identifier.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
@@ -304,7 +332,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 	 * 
 	 */
 	protected Composite createSourceFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationPropertiesEditionPart_SourceLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Source.source_, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.Source.source_, EntityrelationMessages.RelationPropertiesEditionPart_SourceLabel);
 		source = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Source.source_, EntityrelationViewsRepository.FORM_KIND));
 		widgetFactory.adapt(source);
 		source.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
@@ -330,7 +358,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createSourceRoleText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationPropertiesEditionPart_SourceRoleLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Source.sourceRole, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.Source.sourceRole, EntityrelationMessages.RelationPropertiesEditionPart_SourceRoleLabel);
 		sourceRole = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		sourceRole.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -344,8 +372,33 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RelationPropertiesEditionPartForm.this, EntityrelationViewsRepository.Relation.Properties.Source.sourceRole, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, sourceRole.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							RelationPropertiesEditionPartForm.this,
+							EntityrelationViewsRepository.Relation.Properties.Source.sourceRole,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, sourceRole.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationPropertiesEditionPartForm.this,
+									EntityrelationViewsRepository.Relation.Properties.Source.sourceRole,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, sourceRole.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		sourceRole.addKeyListener(new KeyAdapter() {
@@ -370,10 +423,10 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createSourceCardinalityEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationPropertiesEditionPart_SourceCardinalityLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Source.sourceCardinality, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.Source.sourceCardinality, EntityrelationMessages.RelationPropertiesEditionPart_SourceCardinalityLabel);
 		sourceCardinality = new EMFComboViewer(parent);
 		sourceCardinality.setContentProvider(new ArrayContentProvider());
-		sourceCardinality.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
+		sourceCardinality.setLabelProvider(new AdapterFactoryLabelProvider(EEFRuntimePlugin.getDefault().getAdapterFactory()));
 		GridData sourceCardinalityData = new GridData(GridData.FILL_HORIZONTAL);
 		sourceCardinality.getCombo().setLayoutData(sourceCardinalityData);
 		sourceCardinality.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -397,7 +450,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createSourceIsCompositeCheckbox(FormToolkit widgetFactory, Composite parent) {
-		sourceIsComposite = widgetFactory.createButton(parent, EntityrelationMessages.RelationPropertiesEditionPart_SourceIsCompositeLabel, SWT.CHECK);
+		sourceIsComposite = widgetFactory.createButton(parent, getDescription(EntityrelationViewsRepository.Relation.Properties.Source.sourceIsComposite, EntityrelationMessages.RelationPropertiesEditionPart_SourceIsCompositeLabel), SWT.CHECK);
 		sourceIsComposite.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -444,7 +497,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 	 * 
 	 */
 	protected Composite createTargetFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationPropertiesEditionPart_TargetLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Target.target_, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.Target.target_, EntityrelationMessages.RelationPropertiesEditionPart_TargetLabel);
 		target = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Target.target_, EntityrelationViewsRepository.FORM_KIND));
 		widgetFactory.adapt(target);
 		target.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
@@ -470,7 +523,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createTargetRoleText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationPropertiesEditionPart_TargetRoleLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Target.targetRole, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.Target.targetRole, EntityrelationMessages.RelationPropertiesEditionPart_TargetRoleLabel);
 		targetRole = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		targetRole.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -484,8 +537,33 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RelationPropertiesEditionPartForm.this, EntityrelationViewsRepository.Relation.Properties.Target.targetRole, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, targetRole.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							RelationPropertiesEditionPartForm.this,
+							EntityrelationViewsRepository.Relation.Properties.Target.targetRole,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, targetRole.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationPropertiesEditionPartForm.this,
+									EntityrelationViewsRepository.Relation.Properties.Target.targetRole,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, targetRole.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		targetRole.addKeyListener(new KeyAdapter() {
@@ -510,10 +588,10 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createTargetCardinalityEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationPropertiesEditionPart_TargetCardinalityLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Target.targetCardinality, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.Target.targetCardinality, EntityrelationMessages.RelationPropertiesEditionPart_TargetCardinalityLabel);
 		targetCardinality = new EMFComboViewer(parent);
 		targetCardinality.setContentProvider(new ArrayContentProvider());
-		targetCardinality.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
+		targetCardinality.setLabelProvider(new AdapterFactoryLabelProvider(EEFRuntimePlugin.getDefault().getAdapterFactory()));
 		GridData targetCardinalityData = new GridData(GridData.FILL_HORIZONTAL);
 		targetCardinality.getCombo().setLayoutData(targetCardinalityData);
 		targetCardinality.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -537,7 +615,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createTargetIsCompositeCheckbox(FormToolkit widgetFactory, Composite parent) {
-		targetIsComposite = widgetFactory.createButton(parent, EntityrelationMessages.RelationPropertiesEditionPart_TargetIsCompositeLabel, SWT.CHECK);
+		targetIsComposite = widgetFactory.createButton(parent, getDescription(EntityrelationViewsRepository.Relation.Properties.Target.targetIsComposite, EntityrelationMessages.RelationPropertiesEditionPart_TargetIsCompositeLabel), SWT.CHECK);
 		targetIsComposite.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -566,7 +644,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 	 * 
 	 */
 	protected Composite createElementsTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.elements = new ReferencesTable(EntityrelationMessages.RelationPropertiesEditionPart_ElementsLabel, new ReferencesTableListener() {
+		this.elements = new ReferencesTable(getDescription(EntityrelationViewsRepository.Relation.Properties.elements, EntityrelationMessages.RelationPropertiesEditionPart_ElementsLabel), new ReferencesTableListener() {
 			public void handleAdd() {
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RelationPropertiesEditionPartForm.this, EntityrelationViewsRepository.Relation.Properties.elements, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				elements.refresh();
@@ -611,7 +689,7 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createCommentsTextarea(FormToolkit widgetFactory, Composite parent) {
-		Label commentsLabel = FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.comments, EntityrelationViewsRepository.FORM_KIND));
+		Label commentsLabel = createDescription(parent, EntityrelationViewsRepository.Relation.Properties.comments, EntityrelationMessages.RelationPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
@@ -630,17 +708,40 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 			 * 
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RelationPropertiesEditionPartForm.this, EntityrelationViewsRepository.Relation.Properties.comments, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							RelationPropertiesEditionPartForm.this,
+							EntityrelationViewsRepository.Relation.Properties.comments,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationPropertiesEditionPartForm.this,
+									EntityrelationViewsRepository.Relation.Properties.comments,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, comments.getText()));
+				}
 			}
 
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
+			}
 		});
 		EditingUtils.setID(comments, EntityrelationViewsRepository.Relation.Properties.comments);
 		EditingUtils.setEEFtype(comments, "eef::Textarea"); //$NON-NLS-1$
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(EntityrelationViewsRepository.Relation.Properties.comments, EntityrelationViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
-
 
 
 	/**
@@ -651,8 +752,8 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -678,7 +779,6 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 			name.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -750,7 +850,6 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 		identifier.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -821,7 +920,6 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 		source.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -846,7 +944,6 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -854,17 +951,17 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 	 * 
 	 */
 	public Enumerator getSourceCardinality() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) sourceCardinality.getSelection()).getFirstElement();
-		return selection.getInstance();
+		Enumerator selection = (Enumerator) ((StructuredSelection) sourceCardinality.getSelection()).getFirstElement();
+		return selection;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.obeonetwork.dsl.entityrelation.parts.RelationPropertiesEditionPart#initSourceCardinality(EEnum eenum, Enumerator current)
+	 * @see org.obeonetwork.dsl.entityrelation.parts.RelationPropertiesEditionPart#initSourceCardinality(Object input, Enumerator current)
 	 */
-	public void initSourceCardinality(EEnum eenum, Enumerator current) {
-		sourceCardinality.setInput(eenum.getELiterals());
+	public void initSourceCardinality(Object input, Enumerator current) {
+		sourceCardinality.setInput(input);
 		sourceCardinality.modelUpdating(new StructuredSelection(current));
 	}
 
@@ -877,7 +974,6 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 	public void setSourceCardinality(Enumerator newValue) {
 		sourceCardinality.modelUpdating(new StructuredSelection(newValue));
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -902,7 +998,6 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 			sourceIsComposite.setSelection(false);
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -974,7 +1069,6 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 		target.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -999,7 +1093,6 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1007,17 +1100,17 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 	 * 
 	 */
 	public Enumerator getTargetCardinality() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) targetCardinality.getSelection()).getFirstElement();
-		return selection.getInstance();
+		Enumerator selection = (Enumerator) ((StructuredSelection) targetCardinality.getSelection()).getFirstElement();
+		return selection;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.obeonetwork.dsl.entityrelation.parts.RelationPropertiesEditionPart#initTargetCardinality(EEnum eenum, Enumerator current)
+	 * @see org.obeonetwork.dsl.entityrelation.parts.RelationPropertiesEditionPart#initTargetCardinality(Object input, Enumerator current)
 	 */
-	public void initTargetCardinality(EEnum eenum, Enumerator current) {
-		targetCardinality.setInput(eenum.getELiterals());
+	public void initTargetCardinality(Object input, Enumerator current) {
+		targetCardinality.setInput(input);
 		targetCardinality.modelUpdating(new StructuredSelection(current));
 	}
 
@@ -1030,7 +1123,6 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 	public void setTargetCardinality(Enumerator newValue) {
 		targetCardinality.modelUpdating(new StructuredSelection(newValue));
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -1055,7 +1147,6 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 			targetIsComposite.setSelection(false);
 		}
 	}
-
 
 
 
@@ -1115,7 +1206,6 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 		return ((ReferencesTableSettings)elements.getInput()).contains(element);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1139,6 +1229,8 @@ public class RelationPropertiesEditionPartForm extends CompositePropertiesEditio
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
+
+
 
 
 

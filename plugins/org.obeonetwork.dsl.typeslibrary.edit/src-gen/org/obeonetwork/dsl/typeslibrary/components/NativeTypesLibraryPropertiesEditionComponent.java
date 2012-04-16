@@ -7,9 +7,7 @@ package org.obeonetwork.dsl.typeslibrary.components;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -31,7 +29,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.obeonetwork.dsl.typeslibrary.NativeType;
 import org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary;
-import org.obeonetwork.dsl.typeslibrary.TypesLibraryKind;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 import org.obeonetwork.dsl.typeslibrary.parts.NativeTypesLibraryPropertiesEditionPart;
 import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
@@ -46,7 +43,7 @@ import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
 public class NativeTypesLibraryPropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String NATIVETYPESLIBRARY_PART = "NativeTypesLibrary"; //$NON-NLS-1$
 
 	
 	/**
@@ -61,7 +58,7 @@ public class NativeTypesLibraryPropertiesEditionComponent extends SinglePartProp
 	 */
 	public NativeTypesLibraryPropertiesEditionComponent(PropertiesEditingContext editingContext, EObject nativeTypesLibrary, String editing_mode) {
 		super(editingContext, nativeTypesLibrary, editing_mode);
-		parts = new String[] { BASE_PART };
+		parts = new String[] { NATIVETYPESLIBRARY_PART };
 		repositoryKey = TypeslibraryViewsRepository.class;
 		partKey = TypeslibraryViewsRepository.NativeTypesLibrary.class;
 	}
@@ -78,23 +75,19 @@ public class NativeTypesLibraryPropertiesEditionComponent extends SinglePartProp
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
 			final NativeTypesLibrary nativeTypesLibrary = (NativeTypesLibrary)elt;
-			final NativeTypesLibraryPropertiesEditionPart basePart = (NativeTypesLibraryPropertiesEditionPart)editingPart;
+			final NativeTypesLibraryPropertiesEditionPart nativeTypesLibraryPart = (NativeTypesLibraryPropertiesEditionPart)editingPart;
 			// init values
 			if (nativeTypesLibrary.getName() != null && isAccessible(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name))
-				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), nativeTypesLibrary.getName()));
+				nativeTypesLibraryPart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, nativeTypesLibrary.getName()));
 			
-			if (isAccessible(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.kind)) {
-				basePart.initKind((EEnum) TypesLibraryPackage.eINSTANCE.getTypesLibrary_Kind().getEType(), nativeTypesLibrary.getKind());
-			}
 			if (isAccessible(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.nativeTypes)) {
 				nativeTypesSettings = new ReferencesTableSettings(nativeTypesLibrary, TypesLibraryPackage.eINSTANCE.getNativeTypesLibrary_NativeTypes());
-				basePart.initNativeTypes(nativeTypesSettings);
+				nativeTypesLibraryPart.initNativeTypes(nativeTypesSettings);
 			}
 			// init filters
 			
-			
-			basePart.addFilterToNativeTypes(new ViewerFilter() {
-			
+			if (isAccessible(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.nativeTypes)) {
+				nativeTypesLibraryPart.addFilterToNativeTypes(new ViewerFilter() {
 					/**
 					 * {@inheritDoc}
 					 * 
@@ -104,10 +97,10 @@ public class NativeTypesLibraryPropertiesEditionComponent extends SinglePartProp
 						return (element instanceof String && element.equals("")) || (element instanceof NativeType); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for nativeTypes
-			// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for nativeTypes
+				// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -120,17 +113,13 @@ public class NativeTypesLibraryPropertiesEditionComponent extends SinglePartProp
 
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name) {
 			return TypesLibraryPackage.eINSTANCE.getNativeTypesLibrary_Name();
-		}
-		if (editorKey == TypeslibraryViewsRepository.NativeTypesLibrary.Properties.kind) {
-			return TypesLibraryPackage.eINSTANCE.getTypesLibrary_Kind();
 		}
 		if (editorKey == TypeslibraryViewsRepository.NativeTypesLibrary.Properties.nativeTypes) {
 			return TypesLibraryPackage.eINSTANCE.getNativeTypesLibrary_NativeTypes();
@@ -146,10 +135,7 @@ public class NativeTypesLibraryPropertiesEditionComponent extends SinglePartProp
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		NativeTypesLibrary nativeTypesLibrary = (NativeTypesLibrary)semanticObject;
 		if (TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name == event.getAffectedEditor()) {
-			nativeTypesLibrary.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
-		}
-		if (TypeslibraryViewsRepository.NativeTypesLibrary.Properties.kind == event.getAffectedEditor()) {
-			nativeTypesLibrary.setKind((TypesLibraryKind)event.getNewValue());
+			nativeTypesLibrary.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (TypeslibraryViewsRepository.NativeTypesLibrary.Properties.nativeTypes == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.ADD) {
@@ -183,20 +169,17 @@ public class NativeTypesLibraryPropertiesEditionComponent extends SinglePartProp
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
-			NativeTypesLibraryPropertiesEditionPart basePart = (NativeTypesLibraryPropertiesEditionPart)editingPart;
-			if (TypesLibraryPackage.eINSTANCE.getNativeTypesLibrary_Name().equals(msg.getFeature()) && basePart != null && isAccessible(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name)) {
+		if (editingPart.isVisible()) {
+			NativeTypesLibraryPropertiesEditionPart nativeTypesLibraryPart = (NativeTypesLibraryPropertiesEditionPart)editingPart;
+			if (TypesLibraryPackage.eINSTANCE.getNativeTypesLibrary_Name().equals(msg.getFeature()) && nativeTypesLibraryPart != null && isAccessible(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					nativeTypesLibraryPart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
-					basePart.setName("");
+					nativeTypesLibraryPart.setName("");
 				}
 			}
-			if (TypesLibraryPackage.eINSTANCE.getTypesLibrary_Kind().equals(msg.getFeature()) && isAccessible(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.kind))
-				basePart.setKind((Enumerator)msg.getNewValue());
-			
 			if (TypesLibraryPackage.eINSTANCE.getNativeTypesLibrary_NativeTypes().equals(msg.getFeature()) && isAccessible(TypeslibraryViewsRepository.NativeTypesLibrary.Properties.nativeTypes))
-				basePart.updateNativeTypes();
+				nativeTypesLibraryPart.updateNativeTypes();
 			
 		}
 	}
@@ -215,16 +198,9 @@ public class NativeTypesLibraryPropertiesEditionComponent extends SinglePartProp
 				if (TypeslibraryViewsRepository.NativeTypesLibrary.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(TypesLibraryPackage.eINSTANCE.getNativeTypesLibrary_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(TypesLibraryPackage.eINSTANCE.getNativeTypesLibrary_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(TypesLibraryPackage.eINSTANCE.getNativeTypesLibrary_Name().getEAttributeType(), newValue);
-				}
-				if (TypeslibraryViewsRepository.NativeTypesLibrary.Properties.kind == event.getAffectedEditor()) {
-					Object newValue = event.getNewValue();
-					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(TypesLibraryPackage.eINSTANCE.getTypesLibrary_Kind().getEAttributeType(), (String)newValue);
-					}
-					ret = Diagnostician.INSTANCE.validate(TypesLibraryPackage.eINSTANCE.getTypesLibrary_Kind().getEAttributeType(), newValue);
 				}
 			} catch (IllegalArgumentException iae) {
 				ret = BasicDiagnostic.toDiagnostic(iae);

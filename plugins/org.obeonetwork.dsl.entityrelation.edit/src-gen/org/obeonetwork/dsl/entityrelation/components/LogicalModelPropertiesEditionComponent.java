@@ -47,7 +47,7 @@ public class LogicalModelPropertiesEditionComponent extends SinglePartProperties
 	/**
 	 * Settings for usedLibraries ReferencesTable
 	 */
-	private	ReferencesTableSettings usedLibrariesSettings;
+	private ReferencesTableSettings usedLibrariesSettings;
 	
 	
 	/**
@@ -76,34 +76,35 @@ public class LogicalModelPropertiesEditionComponent extends SinglePartProperties
 			final LogicalModelPropertiesEditionPart logicalModelPart = (LogicalModelPropertiesEditionPart)editingPart;
 			// init values
 			if (logicalModel.getName() != null && isAccessible(EntityrelationViewsRepository.LogicalModel.Properties.name))
-				logicalModelPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), logicalModel.getName()));
+				logicalModelPart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, logicalModel.getName()));
 			
 			if (isAccessible(EntityrelationViewsRepository.LogicalModel.Properties.usedLibraries)) {
 				usedLibrariesSettings = new ReferencesTableSettings(logicalModel, TypesLibraryPackage.eINSTANCE.getTypesLibraryUser_UsedLibraries());
 				logicalModelPart.initUsedLibraries(usedLibrariesSettings);
 			}
 			if (logicalModel.getComments() != null && isAccessible(EntityrelationViewsRepository.LogicalModel.Properties.comments))
-				logicalModelPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), logicalModel.getComments()));
+				logicalModelPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, logicalModel.getComments()));
 			// init filters
 			
-			logicalModelPart.addFilterToUsedLibraries(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!logicalModelPart.isContainedInUsedLibrariesTable((EObject)element));
-					return element instanceof Resource;
-				}
-			
-			});
-			logicalModelPart.addFilterToUsedLibraries(new EObjectFilter(TypesLibraryPackage.eINSTANCE.getTypesLibrary()));
-			// Start of user code for additional businessfilters for usedLibraries
-			// End of user code
-			
+			if (isAccessible(EntityrelationViewsRepository.LogicalModel.Properties.usedLibraries)) {
+				logicalModelPart.addFilterToUsedLibraries(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!logicalModelPart.isContainedInUsedLibrariesTable((EObject)element));
+						return element instanceof Resource;
+					}
+				
+				});
+				logicalModelPart.addFilterToUsedLibraries(new EObjectFilter(TypesLibraryPackage.Literals.TYPES_LIBRARY));
+				// Start of user code for additional businessfilters for usedLibraries
+				// End of user code
+			}
 			
 			// init values for referenced views
 			
@@ -122,7 +123,7 @@ public class LogicalModelPropertiesEditionComponent extends SinglePartProperties
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == EntityrelationViewsRepository.LogicalModel.Properties.name) {
 			return EntityRelationPackage.eINSTANCE.getNamedElement_Name();
 		}
@@ -143,7 +144,7 @@ public class LogicalModelPropertiesEditionComponent extends SinglePartProperties
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		LogicalModel logicalModel = (LogicalModel)semanticObject;
 		if (EntityrelationViewsRepository.LogicalModel.Properties.name == event.getAffectedEditor()) {
-			logicalModel.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			logicalModel.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (EntityrelationViewsRepository.LogicalModel.Properties.usedLibraries == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.ADD) {
@@ -157,7 +158,7 @@ public class LogicalModelPropertiesEditionComponent extends SinglePartProperties
 			}
 		}
 		if (EntityrelationViewsRepository.LogicalModel.Properties.comments == event.getAffectedEditor()) {
-			logicalModel.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			logicalModel.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 	}
 
@@ -166,11 +167,11 @@ public class LogicalModelPropertiesEditionComponent extends SinglePartProperties
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			LogicalModelPropertiesEditionPart logicalModelPart = (LogicalModelPropertiesEditionPart)editingPart;
 			if (EntityRelationPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && logicalModelPart != null && isAccessible(EntityrelationViewsRepository.LogicalModel.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					logicalModelPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					logicalModelPart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					logicalModelPart.setName("");
 				}
@@ -179,7 +180,7 @@ public class LogicalModelPropertiesEditionComponent extends SinglePartProperties
 				logicalModelPart.updateUsedLibraries();
 			if (EntityRelationPackage.eINSTANCE.getLogicalElement_Comments().equals(msg.getFeature()) && logicalModelPart != null && isAccessible(EntityrelationViewsRepository.LogicalModel.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					logicalModelPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					logicalModelPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					logicalModelPart.setComments("");
 				}
@@ -202,14 +203,14 @@ public class LogicalModelPropertiesEditionComponent extends SinglePartProperties
 				if (EntityrelationViewsRepository.LogicalModel.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EntityRelationPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EntityRelationPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EntityRelationPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
 				if (EntityrelationViewsRepository.LogicalModel.Properties.comments == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EntityRelationPackage.eINSTANCE.getLogicalElement_Comments().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EntityRelationPackage.eINSTANCE.getLogicalElement_Comments().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EntityRelationPackage.eINSTANCE.getLogicalElement_Comments().getEAttributeType(), newValue);
 				}

@@ -10,7 +10,6 @@ import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSett
 import org.eclipse.jface.viewers.ViewerFilter;
 
 
-
 // End of user code
 
 /**
@@ -78,7 +77,7 @@ public interface UserDefinedTypeRefPropertiesEditionPart {
 	public String getTitle();
 
 	// Start of user code for additional methods
-
-// End of user code
+	
+	// End of user code
 
 }

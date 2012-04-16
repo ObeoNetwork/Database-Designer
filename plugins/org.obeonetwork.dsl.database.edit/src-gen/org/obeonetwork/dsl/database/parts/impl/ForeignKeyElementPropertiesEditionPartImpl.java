@@ -5,40 +5,57 @@ package org.obeonetwork.dsl.database.parts.impl;
 
 // Start of user code for imports
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
+
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.ForeignKeyElementPropertiesEditionPart;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
 // End of user code
 
@@ -143,8 +160,8 @@ public class ForeignKeyElementPropertiesEditionPartImpl extends CompositePropert
 
 	
 	protected Composite createSourceTableText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_SourceTableLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable, DatabaseViewsRepository.SWT_KIND));
-		sourceTable = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.ForeignKeyElement.Properties.sourceTable, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_SourceTableLabel);
+		sourceTable = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		sourceTable.setEnabled(false);
 		sourceTable.setToolTipText(DatabaseMessages.ForeignKeyElement_ReadOnly);
 		GridData sourceTableData = new GridData(GridData.FILL_HORIZONTAL);
@@ -194,7 +211,7 @@ public class ForeignKeyElementPropertiesEditionPartImpl extends CompositePropert
 	 * 
 	 */
 	protected Composite createFKColumnFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_FKColumnLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn, DatabaseViewsRepository.SWT_KIND));
+		createDescription(parent, DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_FKColumnLabel);
 		fKColumn = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.fKColumn, DatabaseViewsRepository.SWT_KIND));
 		fKColumn.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -214,8 +231,8 @@ public class ForeignKeyElementPropertiesEditionPartImpl extends CompositePropert
 
 	
 	protected Composite createTargetTableText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_TargetTableLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable, DatabaseViewsRepository.SWT_KIND));
-		targetTable = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.ForeignKeyElement.Properties.targetTable, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_TargetTableLabel);
+		targetTable = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		targetTable.setEnabled(false);
 		targetTable.setToolTipText(DatabaseMessages.ForeignKeyElement_ReadOnly);
 		GridData targetTableData = new GridData(GridData.FILL_HORIZONTAL);
@@ -265,7 +282,7 @@ public class ForeignKeyElementPropertiesEditionPartImpl extends CompositePropert
 	 * 
 	 */
 	protected Composite createPKColumnFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_PKColumnLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn, DatabaseViewsRepository.SWT_KIND));
+		createDescription(parent, DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_PKColumnLabel);
 		pKColumn = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.pKColumn, DatabaseViewsRepository.SWT_KIND));
 		pKColumn.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -285,11 +302,11 @@ public class ForeignKeyElementPropertiesEditionPartImpl extends CompositePropert
 
 	
 	protected Composite createCommentsTextarea(Composite parent) {
-		Label commentsLabel = SWTUtils.createPartLabel(parent, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.ForeignKeyElement.Properties.comments, DatabaseViewsRepository.SWT_KIND));
+		Label commentsLabel = createDescription(parent, DatabaseViewsRepository.ForeignKeyElement.Properties.comments, DatabaseMessages.ForeignKeyElementPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
-		comments = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
+		comments = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData commentsData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsData.horizontalSpan = 2;
 		commentsData.heightHint = 80;
@@ -316,7 +333,6 @@ public class ForeignKeyElementPropertiesEditionPartImpl extends CompositePropert
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -325,8 +341,8 @@ public class ForeignKeyElementPropertiesEditionPartImpl extends CompositePropert
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -352,7 +368,6 @@ public class ForeignKeyElementPropertiesEditionPartImpl extends CompositePropert
 			sourceTable.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -424,7 +439,6 @@ public class ForeignKeyElementPropertiesEditionPartImpl extends CompositePropert
 		fKColumn.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -448,7 +462,6 @@ public class ForeignKeyElementPropertiesEditionPartImpl extends CompositePropert
 			targetTable.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -520,7 +533,6 @@ public class ForeignKeyElementPropertiesEditionPartImpl extends CompositePropert
 		pKColumn.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -544,7 +556,6 @@ public class ForeignKeyElementPropertiesEditionPartImpl extends CompositePropert
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 

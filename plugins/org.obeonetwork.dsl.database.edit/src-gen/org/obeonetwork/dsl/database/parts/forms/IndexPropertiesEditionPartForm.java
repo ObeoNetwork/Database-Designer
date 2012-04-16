@@ -8,44 +8,61 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
+
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.IndexPropertiesEditionPart;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
 // End of user code
 
@@ -53,7 +70,7 @@ import org.obeonetwork.dsl.database.providers.DatabaseMessages;
  * 
  * 
  */
-public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, IndexPropertiesEditionPart {
+public class IndexPropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, IndexPropertiesEditionPart {
 
 	protected Text name;
 	protected Text qualifier;
@@ -66,6 +83,11 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 	protected Text comments;
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public IndexPropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -121,19 +143,19 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 					return createPropertiesGroup(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Index.Properties.name) {
-					return 		createNameText(widgetFactory, parent);
+					return createNameText(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Index.Properties.qualifier) {
-					return 		createQualifierText(widgetFactory, parent);
+					return createQualifierText(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Index.Properties.unique) {
 					return createUniqueCheckbox(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Index.Properties.cardinality) {
-					return 		createCardinalityText(widgetFactory, parent);
+					return createCardinalityText(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Index.Properties.indexType) {
-					return 		createIndexTypeText(widgetFactory, parent);
+					return createIndexTypeText(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Index.Properties.elements) {
 					return createElementsTableComposition(widgetFactory, parent);
@@ -165,7 +187,7 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 
 	
 	protected Composite createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.IndexPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Index.Properties.name, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.Index.Properties.name, DatabaseMessages.IndexPropertiesEditionPart_NameLabel);
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -179,8 +201,33 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(IndexPropertiesEditionPartForm.this, DatabaseViewsRepository.Index.Properties.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							IndexPropertiesEditionPartForm.this,
+							DatabaseViewsRepository.Index.Properties.name,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									IndexPropertiesEditionPartForm.this,
+									DatabaseViewsRepository.Index.Properties.name,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, name.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									IndexPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		name.addKeyListener(new KeyAdapter() {
@@ -205,7 +252,7 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 
 	
 	protected Composite createQualifierText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.IndexPropertiesEditionPart_QualifierLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Index.Properties.qualifier, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.Index.Properties.qualifier, DatabaseMessages.IndexPropertiesEditionPart_QualifierLabel);
 		qualifier = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		qualifier.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -219,8 +266,33 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(IndexPropertiesEditionPartForm.this, DatabaseViewsRepository.Index.Properties.qualifier, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, qualifier.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							IndexPropertiesEditionPartForm.this,
+							DatabaseViewsRepository.Index.Properties.qualifier,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, qualifier.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									IndexPropertiesEditionPartForm.this,
+									DatabaseViewsRepository.Index.Properties.qualifier,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, qualifier.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									IndexPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		qualifier.addKeyListener(new KeyAdapter() {
@@ -245,7 +317,7 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 
 	
 	protected Composite createUniqueCheckbox(FormToolkit widgetFactory, Composite parent) {
-		unique = widgetFactory.createButton(parent, DatabaseMessages.IndexPropertiesEditionPart_UniqueLabel, SWT.CHECK);
+		unique = widgetFactory.createButton(parent, getDescription(DatabaseViewsRepository.Index.Properties.unique, DatabaseMessages.IndexPropertiesEditionPart_UniqueLabel), SWT.CHECK);
 		unique.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -271,7 +343,7 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 
 	
 	protected Composite createCardinalityText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.IndexPropertiesEditionPart_CardinalityLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Index.Properties.cardinality, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.Index.Properties.cardinality, DatabaseMessages.IndexPropertiesEditionPart_CardinalityLabel);
 		cardinality = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		cardinality.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -285,8 +357,33 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(IndexPropertiesEditionPartForm.this, DatabaseViewsRepository.Index.Properties.cardinality, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, cardinality.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							IndexPropertiesEditionPartForm.this,
+							DatabaseViewsRepository.Index.Properties.cardinality,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, cardinality.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									IndexPropertiesEditionPartForm.this,
+									DatabaseViewsRepository.Index.Properties.cardinality,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, cardinality.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									IndexPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		cardinality.addKeyListener(new KeyAdapter() {
@@ -311,7 +408,7 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 
 	
 	protected Composite createIndexTypeText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.IndexPropertiesEditionPart_IndexTypeLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Index.Properties.indexType, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.Index.Properties.indexType, DatabaseMessages.IndexPropertiesEditionPart_IndexTypeLabel);
 		indexType = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		indexType.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -325,8 +422,33 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(IndexPropertiesEditionPartForm.this, DatabaseViewsRepository.Index.Properties.indexType, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, indexType.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							IndexPropertiesEditionPartForm.this,
+							DatabaseViewsRepository.Index.Properties.indexType,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, indexType.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									IndexPropertiesEditionPartForm.this,
+									DatabaseViewsRepository.Index.Properties.indexType,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, indexType.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									IndexPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		indexType.addKeyListener(new KeyAdapter() {
@@ -354,7 +476,7 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 	 * 
 	 */
 	protected Composite createElementsTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.elements = new ReferencesTable(DatabaseMessages.IndexPropertiesEditionPart_ElementsLabel, new ReferencesTableListener() {
+		this.elements = new ReferencesTable(getDescription(DatabaseViewsRepository.Index.Properties.elements, DatabaseMessages.IndexPropertiesEditionPart_ElementsLabel), new ReferencesTableListener() {
 			public void handleAdd() {
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(IndexPropertiesEditionPartForm.this, DatabaseViewsRepository.Index.Properties.elements, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				elements.refresh();
@@ -399,7 +521,7 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 
 	
 	protected Composite createCommentsTextarea(FormToolkit widgetFactory, Composite parent) {
-		Label commentsLabel = FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.IndexPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Index.Properties.comments, DatabaseViewsRepository.FORM_KIND));
+		Label commentsLabel = createDescription(parent, DatabaseViewsRepository.Index.Properties.comments, DatabaseMessages.IndexPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
@@ -418,17 +540,40 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 			 * 
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(IndexPropertiesEditionPartForm.this, DatabaseViewsRepository.Index.Properties.comments, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							IndexPropertiesEditionPartForm.this,
+							DatabaseViewsRepository.Index.Properties.comments,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									IndexPropertiesEditionPartForm.this,
+									DatabaseViewsRepository.Index.Properties.comments,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, comments.getText()));
+				}
 			}
 
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									IndexPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
+			}
 		});
 		EditingUtils.setID(comments, DatabaseViewsRepository.Index.Properties.comments);
 		EditingUtils.setEEFtype(comments, "eef::Textarea"); //$NON-NLS-1$
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.Index.Properties.comments, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
-
 
 
 	/**
@@ -439,8 +584,8 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -467,7 +612,6 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -491,7 +635,6 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 			qualifier.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -517,7 +660,6 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -542,7 +684,6 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -566,7 +707,6 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 			indexType.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 
@@ -626,7 +766,6 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 		return ((ReferencesTableSettings)elements.getInput()).contains(element);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -650,6 +789,8 @@ public class IndexPropertiesEditionPartForm extends CompositePropertiesEditionPa
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
+
+
 
 
 

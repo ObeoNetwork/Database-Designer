@@ -4,12 +4,9 @@
 package org.obeonetwork.dsl.typeslibrary.parts;
 
 // Start of user code for imports
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
 import org.eclipse.jface.viewers.ViewerFilter;
-
 
 
 // End of user code
@@ -32,27 +29,6 @@ public interface UserDefinedTypesLibraryPropertiesEditionPart {
 	 * 
 	 */
 	public void setName(String newValue);
-
-
-	/**
-	 * @return the kind
-	 * 
-	 */
-	public Enumerator getKind();
-
-	/**
-	 * Init the kind
-	 * @param eenum the enum to manage
-	 * @param current the current value
-	 */
-	public void initKind(EEnum eenum, Enumerator current);
-
-	/**
-	 * Defines a new kind
-	 * @param newValue the new kind to set
-	 * 
-	 */
-	public void setKind(Enumerator newValue);
 
 
 
@@ -111,7 +87,7 @@ public interface UserDefinedTypesLibraryPropertiesEditionPart {
 	public String getTitle();
 
 	// Start of user code for additional methods
-
-// End of user code
+	
+	// End of user code
 
 }

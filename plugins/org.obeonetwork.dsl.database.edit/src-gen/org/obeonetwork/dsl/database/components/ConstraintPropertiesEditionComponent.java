@@ -63,12 +63,12 @@ public class ConstraintPropertiesEditionComponent extends SinglePartPropertiesEd
 			final ConstraintPropertiesEditionPart constraintPart = (ConstraintPropertiesEditionPart)editingPart;
 			// init values
 			if (constraint.getName() != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.name))
-				constraintPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), constraint.getName()));
+				constraintPart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, constraint.getName()));
 			
 			if (constraint.getExpression() != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.expression))
-				constraintPart.setExpression(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), constraint.getExpression()));
+				constraintPart.setExpression(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, constraint.getExpression()));
 			if (constraint.getComments() != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.comments))
-				constraintPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), constraint.getComments()));
+				constraintPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, constraint.getComments()));
 			// init filters
 			
 			
@@ -90,7 +90,7 @@ public class ConstraintPropertiesEditionComponent extends SinglePartPropertiesEd
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == DatabaseViewsRepository.Constraint.Properties.name) {
 			return DatabasePackage.eINSTANCE.getNamedElement_Name();
 		}
@@ -111,13 +111,13 @@ public class ConstraintPropertiesEditionComponent extends SinglePartPropertiesEd
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		Constraint constraint = (Constraint)semanticObject;
 		if (DatabaseViewsRepository.Constraint.Properties.name == event.getAffectedEditor()) {
-			constraint.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			constraint.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.Constraint.Properties.expression == event.getAffectedEditor()) {
-			constraint.setExpression((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			constraint.setExpression((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.Constraint.Properties.comments == event.getAffectedEditor()) {
-			constraint.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			constraint.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 	}
 
@@ -126,25 +126,25 @@ public class ConstraintPropertiesEditionComponent extends SinglePartPropertiesEd
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ConstraintPropertiesEditionPart constraintPart = (ConstraintPropertiesEditionPart)editingPart;
 			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && constraintPart != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					constraintPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					constraintPart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					constraintPart.setName("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getConstraint_Expression().equals(msg.getFeature()) && constraintPart != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.expression)){
 				if (msg.getNewValue() != null) {
-					constraintPart.setExpression(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					constraintPart.setExpression(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					constraintPart.setExpression("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && constraintPart != null && isAccessible(DatabaseViewsRepository.Constraint.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					constraintPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					constraintPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					constraintPart.setComments("");
 				}
@@ -177,21 +177,21 @@ public class ConstraintPropertiesEditionComponent extends SinglePartPropertiesEd
 				if (DatabaseViewsRepository.Constraint.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Constraint.Properties.expression == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getConstraint_Expression().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getConstraint_Expression().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getConstraint_Expression().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Constraint.Properties.comments == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), newValue);
 				}

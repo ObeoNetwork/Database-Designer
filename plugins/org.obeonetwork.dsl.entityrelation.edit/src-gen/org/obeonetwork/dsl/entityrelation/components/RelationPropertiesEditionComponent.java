@@ -7,9 +7,7 @@ package org.obeonetwork.dsl.entityrelation.components;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -23,6 +21,7 @@ import org.eclipse.emf.eef.runtime.context.impl.EReferencePropertiesEditionConte
 import org.eclipse.emf.eef.runtime.impl.components.SinglePartPropertiesEditingComponent;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.impl.utils.EEFConverterUtil;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.policies.impl.CreateEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
@@ -57,12 +56,12 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 	/**
 	 * Settings for source EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings sourceSettings;
+	private EObjectFlatComboSettings sourceSettings;
 	
 	/**
 	 * Settings for target EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings targetSettings;
+	private EObjectFlatComboSettings targetSettings;
 	
 	/**
 	 * Settings for elements ReferencesTable
@@ -72,7 +71,7 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 	/**
 	 * Settings for identifier EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings identifierSettings;
+	private EObjectFlatComboSettings identifierSettings;
 	
 	
 	/**
@@ -101,9 +100,9 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 			final RelationPropertiesEditionPart relationPart = (RelationPropertiesEditionPart)editingPart;
 			// init values
 			if (relation.getComments() != null && isAccessible(EntityrelationViewsRepository.Relation.Properties.comments))
-				relationPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), relation.getComments()));
+				relationPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, relation.getComments()));
 			if (relation.getName() != null && isAccessible(EntityrelationViewsRepository.Relation.Properties.name))
-				relationPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), relation.getName()));
+				relationPart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, relation.getName()));
 			
 			if (isAccessible(EntityrelationViewsRepository.Relation.Properties.Source.source_)) {
 				// init part
@@ -113,10 +112,10 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 				relationPart.setSourceButtonMode(ButtonsModeEnum.BROWSE);
 			}
 			if (relation.getSourceRole() != null && isAccessible(EntityrelationViewsRepository.Relation.Properties.Source.sourceRole))
-				relationPart.setSourceRole(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), relation.getSourceRole()));
+				relationPart.setSourceRole(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, relation.getSourceRole()));
 			
 			if (isAccessible(EntityrelationViewsRepository.Relation.Properties.Source.sourceCardinality)) {
-				relationPart.initSourceCardinality((EEnum) EntityRelationPackage.eINSTANCE.getRelation_SourceCardinality().getEType(), relation.getSourceCardinality());
+				relationPart.initSourceCardinality(EEFUtils.choiceOfValues(relation, EntityRelationPackage.eINSTANCE.getRelation_SourceCardinality()), relation.getSourceCardinality());
 			}
 			if (isAccessible(EntityrelationViewsRepository.Relation.Properties.Source.sourceIsComposite)) {
 				relationPart.setSourceIsComposite(relation.isSourceIsComposite());
@@ -129,10 +128,10 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 				relationPart.setTargetButtonMode(ButtonsModeEnum.BROWSE);
 			}
 			if (relation.getTargetRole() != null && isAccessible(EntityrelationViewsRepository.Relation.Properties.Target.targetRole))
-				relationPart.setTargetRole(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), relation.getTargetRole()));
+				relationPart.setTargetRole(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, relation.getTargetRole()));
 			
 			if (isAccessible(EntityrelationViewsRepository.Relation.Properties.Target.targetCardinality)) {
-				relationPart.initTargetCardinality((EEnum) EntityRelationPackage.eINSTANCE.getRelation_TargetCardinality().getEType(), relation.getTargetCardinality());
+				relationPart.initTargetCardinality(EEFUtils.choiceOfValues(relation, EntityRelationPackage.eINSTANCE.getRelation_TargetCardinality()), relation.getTargetCardinality());
 			}
 			if (isAccessible(EntityrelationViewsRepository.Relation.Properties.Target.targetIsComposite)) {
 				relationPart.setTargetIsComposite(relation.isTargetIsComposite());
@@ -151,44 +150,46 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 			// init filters
 			
 			
-			relationPart.addFilterToSource(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof Entity);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for source
-			// End of user code
-			
-			
-			
-			
-			relationPart.addFilterToTarget(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof Entity);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for target
-			// End of user code
+			if (isAccessible(EntityrelationViewsRepository.Relation.Properties.Source.source_)) {
+				relationPart.addFilterToSource(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof Entity);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for source
+				// End of user code
+			}
 			
 			
 			
+			if (isAccessible(EntityrelationViewsRepository.Relation.Properties.Target.target_)) {
+				relationPart.addFilterToTarget(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof Entity);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for target
+				// End of user code
+			}
 			
-			relationPart.addFilterToElements(new ViewerFilter() {
 			
+			
+			if (isAccessible(EntityrelationViewsRepository.Relation.Properties.elements)) {
+				relationPart.addFilterToElements(new ViewerFilter() {
 					/**
 					 * {@inheritDoc}
 					 * 
@@ -198,25 +199,26 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 						return (element instanceof String && element.equals("")) || (element instanceof RelationElement); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for elements
-			// End of user code
-			
-			relationPart.addFilterToIdentifier(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof String && element.equals("")) || (element instanceof Identifier); //$NON-NLS-1$ 
-				}
-			
-			});
-			// Start of user code for additional businessfilters for identifier
-			// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for elements
+				// End of user code
+			}
+			if (isAccessible(EntityrelationViewsRepository.Relation.Properties.identifier)) {
+				relationPart.addFilterToIdentifier(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Identifier); //$NON-NLS-1$ 
+					}
+					
+				});
+				// Start of user code for additional businessfilters for identifier
+				// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -243,7 +245,7 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == EntityrelationViewsRepository.Relation.Properties.comments) {
 			return EntityRelationPackage.eINSTANCE.getLogicalElement_Comments();
 		}
@@ -291,10 +293,10 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		Relation relation = (Relation)semanticObject;
 		if (EntityrelationViewsRepository.Relation.Properties.comments == event.getAffectedEditor()) {
-			relation.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			relation.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (EntityrelationViewsRepository.Relation.Properties.name == event.getAffectedEditor()) {
-			relation.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			relation.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (EntityrelationViewsRepository.Relation.Properties.Source.source_ == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
@@ -313,7 +315,7 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 			}
 		}
 		if (EntityrelationViewsRepository.Relation.Properties.Source.sourceRole == event.getAffectedEditor()) {
-			relation.setSourceRole((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			relation.setSourceRole((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (EntityrelationViewsRepository.Relation.Properties.Source.sourceCardinality == event.getAffectedEditor()) {
 			relation.setSourceCardinality((Cardinality)event.getNewValue());
@@ -338,7 +340,7 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 			}
 		}
 		if (EntityrelationViewsRepository.Relation.Properties.Target.targetRole == event.getAffectedEditor()) {
-			relation.setTargetRole((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			relation.setTargetRole((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (EntityrelationViewsRepository.Relation.Properties.Target.targetCardinality == event.getAffectedEditor()) {
 			relation.setTargetCardinality((Cardinality)event.getNewValue());
@@ -394,18 +396,18 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			RelationPropertiesEditionPart relationPart = (RelationPropertiesEditionPart)editingPart;
 			if (EntityRelationPackage.eINSTANCE.getLogicalElement_Comments().equals(msg.getFeature()) && relationPart != null && isAccessible(EntityrelationViewsRepository.Relation.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					relationPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					relationPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					relationPart.setComments("");
 				}
 			}
 			if (EntityRelationPackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && relationPart != null && isAccessible(EntityrelationViewsRepository.Relation.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					relationPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					relationPart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					relationPart.setName("");
 				}
@@ -414,13 +416,13 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 				relationPart.setSource((EObject)msg.getNewValue());
 			if (EntityRelationPackage.eINSTANCE.getRelation_SourceRole().equals(msg.getFeature()) && relationPart != null && isAccessible(EntityrelationViewsRepository.Relation.Properties.Source.sourceRole)) {
 				if (msg.getNewValue() != null) {
-					relationPart.setSourceRole(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					relationPart.setSourceRole(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					relationPart.setSourceRole("");
 				}
 			}
 			if (EntityRelationPackage.eINSTANCE.getRelation_SourceCardinality().equals(msg.getFeature()) && isAccessible(EntityrelationViewsRepository.Relation.Properties.Source.sourceCardinality))
-				relationPart.setSourceCardinality((Enumerator)msg.getNewValue());
+				relationPart.setSourceCardinality((Cardinality)msg.getNewValue());
 			
 			if (EntityRelationPackage.eINSTANCE.getRelation_SourceIsComposite().equals(msg.getFeature()) && relationPart != null && isAccessible(EntityrelationViewsRepository.Relation.Properties.Source.sourceIsComposite))
 				relationPart.setSourceIsComposite((Boolean)msg.getNewValue());
@@ -429,13 +431,13 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 				relationPart.setTarget((EObject)msg.getNewValue());
 			if (EntityRelationPackage.eINSTANCE.getRelation_TargetRole().equals(msg.getFeature()) && relationPart != null && isAccessible(EntityrelationViewsRepository.Relation.Properties.Target.targetRole)) {
 				if (msg.getNewValue() != null) {
-					relationPart.setTargetRole(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					relationPart.setTargetRole(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					relationPart.setTargetRole("");
 				}
 			}
 			if (EntityRelationPackage.eINSTANCE.getRelation_TargetCardinality().equals(msg.getFeature()) && isAccessible(EntityrelationViewsRepository.Relation.Properties.Target.targetCardinality))
-				relationPart.setTargetCardinality((Enumerator)msg.getNewValue());
+				relationPart.setTargetCardinality((Cardinality)msg.getNewValue());
 			
 			if (EntityRelationPackage.eINSTANCE.getRelation_TargetIsComposite().equals(msg.getFeature()) && relationPart != null && isAccessible(EntityrelationViewsRepository.Relation.Properties.Target.targetIsComposite))
 				relationPart.setTargetIsComposite((Boolean)msg.getNewValue());
@@ -472,56 +474,56 @@ public class RelationPropertiesEditionComponent extends SinglePartPropertiesEdit
 				if (EntityrelationViewsRepository.Relation.Properties.comments == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EntityRelationPackage.eINSTANCE.getLogicalElement_Comments().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EntityRelationPackage.eINSTANCE.getLogicalElement_Comments().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EntityRelationPackage.eINSTANCE.getLogicalElement_Comments().getEAttributeType(), newValue);
 				}
 				if (EntityrelationViewsRepository.Relation.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EntityRelationPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EntityRelationPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EntityRelationPackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
 				if (EntityrelationViewsRepository.Relation.Properties.Source.sourceRole == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EntityRelationPackage.eINSTANCE.getRelation_SourceRole().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EntityRelationPackage.eINSTANCE.getRelation_SourceRole().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EntityRelationPackage.eINSTANCE.getRelation_SourceRole().getEAttributeType(), newValue);
 				}
 				if (EntityrelationViewsRepository.Relation.Properties.Source.sourceCardinality == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EntityRelationPackage.eINSTANCE.getRelation_SourceCardinality().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EntityRelationPackage.eINSTANCE.getRelation_SourceCardinality().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EntityRelationPackage.eINSTANCE.getRelation_SourceCardinality().getEAttributeType(), newValue);
 				}
 				if (EntityrelationViewsRepository.Relation.Properties.Source.sourceIsComposite == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EntityRelationPackage.eINSTANCE.getRelation_SourceIsComposite().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EntityRelationPackage.eINSTANCE.getRelation_SourceIsComposite().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EntityRelationPackage.eINSTANCE.getRelation_SourceIsComposite().getEAttributeType(), newValue);
 				}
 				if (EntityrelationViewsRepository.Relation.Properties.Target.targetRole == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EntityRelationPackage.eINSTANCE.getRelation_TargetRole().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EntityRelationPackage.eINSTANCE.getRelation_TargetRole().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EntityRelationPackage.eINSTANCE.getRelation_TargetRole().getEAttributeType(), newValue);
 				}
 				if (EntityrelationViewsRepository.Relation.Properties.Target.targetCardinality == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EntityRelationPackage.eINSTANCE.getRelation_TargetCardinality().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EntityRelationPackage.eINSTANCE.getRelation_TargetCardinality().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EntityRelationPackage.eINSTANCE.getRelation_TargetCardinality().getEAttributeType(), newValue);
 				}
 				if (EntityrelationViewsRepository.Relation.Properties.Target.targetIsComposite == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(EntityRelationPackage.eINSTANCE.getRelation_TargetIsComposite().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(EntityRelationPackage.eINSTANCE.getRelation_TargetIsComposite().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(EntityRelationPackage.eINSTANCE.getRelation_TargetIsComposite().getEAttributeType(), newValue);
 				}

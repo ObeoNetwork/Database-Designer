@@ -25,9 +25,6 @@ public class TypeslibraryViewsRepository {
 			public static String name = "typeslibrary::NativeTypesLibrary::properties::name";
 			
 			
-			public static String kind = "typeslibrary::NativeTypesLibrary::properties::kind";
-			
-			
 			public static String nativeTypes = "typeslibrary::NativeTypesLibrary::properties::nativeTypes";
 			
 	
@@ -145,9 +142,6 @@ public class TypeslibraryViewsRepository {
 	
 			
 			public static String name = "typeslibrary::UserDefinedTypesLibrary::properties::name";
-			
-			
-			public static String kind = "typeslibrary::UserDefinedTypesLibrary::properties::kind";
 			
 			
 			public static String userDefinedTypes = "typeslibrary::UserDefinedTypesLibrary::properties::userDefinedTypes";

@@ -39,13 +39,13 @@ import org.obeonetwork.dsl.typeslibrary.parts.UserDefinedTypeRefPropertiesEditio
 public class UserDefinedTypeRefPropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String USERDEFINEDTYPEREF_PART = "UserDefinedTypeRef"; //$NON-NLS-1$
 
 	
 	/**
 	 * Settings for type EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings typeSettings;
+	private EObjectFlatComboSettings typeSettings;
 	
 	
 	/**
@@ -54,7 +54,7 @@ public class UserDefinedTypeRefPropertiesEditionComponent extends SinglePartProp
 	 */
 	public UserDefinedTypeRefPropertiesEditionComponent(PropertiesEditingContext editingContext, EObject userDefinedTypeRef, String editing_mode) {
 		super(editingContext, userDefinedTypeRef, editing_mode);
-		parts = new String[] { BASE_PART };
+		parts = new String[] { USERDEFINEDTYPEREF_PART };
 		repositoryKey = TypeslibraryViewsRepository.class;
 		partKey = TypeslibraryViewsRepository.UserDefinedTypeRef.class;
 	}
@@ -71,31 +71,32 @@ public class UserDefinedTypeRefPropertiesEditionComponent extends SinglePartProp
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
 			final UserDefinedTypeRef userDefinedTypeRef = (UserDefinedTypeRef)elt;
-			final UserDefinedTypeRefPropertiesEditionPart basePart = (UserDefinedTypeRefPropertiesEditionPart)editingPart;
+			final UserDefinedTypeRefPropertiesEditionPart userDefinedTypeRefPart = (UserDefinedTypeRefPropertiesEditionPart)editingPart;
 			// init values
 			if (isAccessible(TypeslibraryViewsRepository.UserDefinedTypeRef.Properties.type)) {
 				// init part
 				typeSettings = new EObjectFlatComboSettings(userDefinedTypeRef, TypesLibraryPackage.eINSTANCE.getUserDefinedTypeRef_Type());
-				basePart.initType(typeSettings);
+				userDefinedTypeRefPart.initType(typeSettings);
 				// set the button mode
-				basePart.setTypeButtonMode(ButtonsModeEnum.BROWSE);
+				userDefinedTypeRefPart.setTypeButtonMode(ButtonsModeEnum.BROWSE);
 			}
 			// init filters
-			basePart.addFilterToType(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof UserDefinedType);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for type
-			// End of user code
-			
+			if (isAccessible(TypeslibraryViewsRepository.UserDefinedTypeRef.Properties.type)) {
+				userDefinedTypeRefPart.addFilterToType(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof UserDefinedType);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for type
+				// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -111,7 +112,7 @@ public class UserDefinedTypeRefPropertiesEditionComponent extends SinglePartProp
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == TypeslibraryViewsRepository.UserDefinedTypeRef.Properties.type) {
 			return TypesLibraryPackage.eINSTANCE.getUserDefinedTypeRef_Type();
 		}
@@ -146,10 +147,10 @@ public class UserDefinedTypeRefPropertiesEditionComponent extends SinglePartProp
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
-			UserDefinedTypeRefPropertiesEditionPart basePart = (UserDefinedTypeRefPropertiesEditionPart)editingPart;
-			if (TypesLibraryPackage.eINSTANCE.getUserDefinedTypeRef_Type().equals(msg.getFeature()) && basePart != null && isAccessible(TypeslibraryViewsRepository.UserDefinedTypeRef.Properties.type))
-				basePart.setType((EObject)msg.getNewValue());
+		if (editingPart.isVisible()) {
+			UserDefinedTypeRefPropertiesEditionPart userDefinedTypeRefPart = (UserDefinedTypeRefPropertiesEditionPart)editingPart;
+			if (TypesLibraryPackage.eINSTANCE.getUserDefinedTypeRef_Type().equals(msg.getFeature()) && userDefinedTypeRefPart != null && isAccessible(TypeslibraryViewsRepository.UserDefinedTypeRef.Properties.type))
+				userDefinedTypeRefPart.setType((EObject)msg.getNewValue());
 			
 		}
 	}

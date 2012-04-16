@@ -40,7 +40,7 @@
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor
-            contributorId="org.obeonetwork.dsl.properties">
+            contributorId="fr.obeo.dsl.viewpoint.diagram">
          <propertyCategory
                category="default">
          </propertyCategory>
@@ -55,46 +55,46 @@
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
       <propertyTabs
-            contributorId="org.obeonetwork.dsl.properties">
+            contributorId="fr.obeo.dsl.viewpoint.diagram">
          <propertyTab
                label="LogicalModel"
-               category="extended"
+               category="semantic &amp; extension"
                id="LogicalModel"
                afterTab="LogicalModel">
          </propertyTab>
          <propertyTab
                label="Entity"
-               category="extended"
+               category="semantic &amp; extension"
                id="Entity"
                afterTab="Entity">
          </propertyTab>
          <propertyTab
                label="Identifiers"
-               category="extended"
+               category="semantic &amp; extension"
                id="Identifiers"
                afterTab="Base">
          </propertyTab>
          <propertyTab
                label="Relation"
-               category="extended"
+               category="semantic &amp; extension"
                id="Relation"
                afterTab="Relation">
          </propertyTab>
          <propertyTab
                label="Relation Element"
-               category="extended"
+               category="semantic &amp; extension"
                id="Relation Element"
                afterTab="Relation Element">
          </propertyTab>
          <propertyTab
                label="Attribute"
-               category="extended"
+               category="semantic &amp; extension"
                id="Attribute"
                afterTab="Attribute">
          </propertyTab>
          <propertyTab
                label="Identifier"
-               category="extended"
+               category="semantic &amp; extension"
                id="Identifier"
                afterTab="Identifier">
          </propertyTab>
@@ -103,63 +103,50 @@
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertySections">
       <propertySections
-            contributorId="org.obeonetwork.dsl.properties">
+            contributorId="fr.obeo.dsl.viewpoint.diagram">
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.entityrelation.section.LogicalModel"
+               filter="org.obeonetwork.dsl.entityrelation.filters.LogicalModelTabPropertiesEditionSection"
                tab="LogicalModel">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.LogicalModel">
-             </input>
          </propertySection>
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.entityrelation.section.Entity"
+               filter="org.obeonetwork.dsl.entityrelation.filters.EntityTabPropertiesEditionSection"
                tab="Entity">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.Entity">
-             </input>
          </propertySection>
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.entityrelation.section.Entity"
+               filter="org.obeonetwork.dsl.entityrelation.filters.EntityTabPropertiesEditionSection"
                tab="Identifiers">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.Entity">
-             </input>
          </propertySection>
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.entityrelation.section.Relation"
+               filter="org.obeonetwork.dsl.entityrelation.filters.RelationTabPropertiesEditionSection"
                tab="Relation">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.Relation">
-             </input>
          </propertySection>
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.entityrelation.section.RelationElement"
+               filter="org.obeonetwork.dsl.entityrelation.filters.RelationElementTabPropertiesEditionSection"
                tab="Relation Element">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.RelationElement">
-             </input>
          </propertySection>
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.entityrelation.section.Attribute"
+               filter="org.obeonetwork.dsl.entityrelation.filters.AttributeTabPropertiesEditionSection"
                tab="Attribute">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.Attribute">
-             </input>
          </propertySection>
          <propertySection
                class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
                id="org.obeonetwork.dsl.entityrelation.section.Identifier"
+               filter="org.obeonetwork.dsl.entityrelation.filters.IdentifierTabPropertiesEditionSection"
                tab="Identifier">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.Identifier">
-             </input>
          </propertySection>
       </propertySections>
    </extension>
+   
 </plugin>

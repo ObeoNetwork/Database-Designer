@@ -5,40 +5,57 @@ package org.obeonetwork.dsl.entityrelation.parts.impl;
 
 // Start of user code for imports
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
+
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.obeonetwork.dsl.entityrelation.parts.EntityrelationViewsRepository;
 import org.obeonetwork.dsl.entityrelation.parts.RelationElementPropertiesEditionPart;
-import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
 
+import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
 
 // End of user code
 
@@ -143,8 +160,8 @@ public class RelationElementPropertiesEditionPartImpl extends CompositePropertie
 
 	
 	protected Composite createSourceEntityText(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationElementPropertiesEditionPart_SourceEntityLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.sourceEntity, EntityrelationViewsRepository.SWT_KIND));
-		sourceEntity = new Text(parent, SWT.BORDER);
+		createDescription(parent, EntityrelationViewsRepository.RelationElement.Properties.sourceEntity, EntityrelationMessages.RelationElementPropertiesEditionPart_SourceEntityLabel);
+		sourceEntity = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		sourceEntity.setEnabled(false);
 		sourceEntity.setToolTipText(EntityrelationMessages.RelationElement_ReadOnly);
 		GridData sourceEntityData = new GridData(GridData.FILL_HORIZONTAL);
@@ -194,7 +211,7 @@ public class RelationElementPropertiesEditionPartImpl extends CompositePropertie
 	 * 
 	 */
 	protected Composite createSourceAttributeFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationElementPropertiesEditionPart_SourceAttributeLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.sourceAttribute, EntityrelationViewsRepository.SWT_KIND));
+		createDescription(parent, EntityrelationViewsRepository.RelationElement.Properties.sourceAttribute, EntityrelationMessages.RelationElementPropertiesEditionPart_SourceAttributeLabel);
 		sourceAttribute = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.sourceAttribute, EntityrelationViewsRepository.SWT_KIND));
 		sourceAttribute.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -214,8 +231,8 @@ public class RelationElementPropertiesEditionPartImpl extends CompositePropertie
 
 	
 	protected Composite createTargetEntityText(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationElementPropertiesEditionPart_TargetEntityLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.targetEntity, EntityrelationViewsRepository.SWT_KIND));
-		targetEntity = new Text(parent, SWT.BORDER);
+		createDescription(parent, EntityrelationViewsRepository.RelationElement.Properties.targetEntity, EntityrelationMessages.RelationElementPropertiesEditionPart_TargetEntityLabel);
+		targetEntity = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		targetEntity.setEnabled(false);
 		targetEntity.setToolTipText(EntityrelationMessages.RelationElement_ReadOnly);
 		GridData targetEntityData = new GridData(GridData.FILL_HORIZONTAL);
@@ -265,7 +282,7 @@ public class RelationElementPropertiesEditionPartImpl extends CompositePropertie
 	 * 
 	 */
 	protected Composite createTargetAttributeFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationElementPropertiesEditionPart_TargetAttributeLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.targetAttribute, EntityrelationViewsRepository.SWT_KIND));
+		createDescription(parent, EntityrelationViewsRepository.RelationElement.Properties.targetAttribute, EntityrelationMessages.RelationElementPropertiesEditionPart_TargetAttributeLabel);
 		targetAttribute = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.targetAttribute, EntityrelationViewsRepository.SWT_KIND));
 		targetAttribute.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -285,11 +302,11 @@ public class RelationElementPropertiesEditionPartImpl extends CompositePropertie
 
 	
 	protected Composite createCommentsTextarea(Composite parent) {
-		Label commentsLabel = SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationElementPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.comments, EntityrelationViewsRepository.SWT_KIND));
+		Label commentsLabel = createDescription(parent, EntityrelationViewsRepository.RelationElement.Properties.comments, EntityrelationMessages.RelationElementPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
-		comments = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
+		comments = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData commentsData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsData.horizontalSpan = 2;
 		commentsData.heightHint = 80;
@@ -316,7 +333,6 @@ public class RelationElementPropertiesEditionPartImpl extends CompositePropertie
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -325,8 +341,8 @@ public class RelationElementPropertiesEditionPartImpl extends CompositePropertie
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -352,7 +368,6 @@ public class RelationElementPropertiesEditionPartImpl extends CompositePropertie
 			sourceEntity.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -424,7 +439,6 @@ public class RelationElementPropertiesEditionPartImpl extends CompositePropertie
 		sourceAttribute.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -448,7 +462,6 @@ public class RelationElementPropertiesEditionPartImpl extends CompositePropertie
 			targetEntity.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -520,7 +533,6 @@ public class RelationElementPropertiesEditionPartImpl extends CompositePropertie
 		targetAttribute.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -544,7 +556,6 @@ public class RelationElementPropertiesEditionPartImpl extends CompositePropertie
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 

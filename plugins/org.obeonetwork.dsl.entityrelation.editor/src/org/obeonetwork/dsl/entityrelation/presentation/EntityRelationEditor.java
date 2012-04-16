@@ -130,7 +130,7 @@ public class EntityRelationEditor
 	/**
 	 * @generated NOT
 	 */
-	public static final String PROPERTIES_CONTRIBUTOR = "org.obeonetwork.dsl.properties";
+	public static final String PROPERTIES_CONTRIBUTOR = "fr.obeo.dsl.viewpoint.diagram";
 	
 	/** (non-Javadoc)
 	 * @see org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor#getContributorId()

@@ -8,12 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.eef.runtime.EEFRuntimePlugin;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
@@ -56,7 +54,6 @@ import org.obeonetwork.dsl.entityrelation.parts.EntityrelationViewsRepository;
 import org.obeonetwork.dsl.entityrelation.parts.RelationPropertiesEditionPart;
 import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
 
-
 // End of user code
 
 /**
@@ -75,9 +72,9 @@ public class RelationPropertiesEditionPartImpl extends CompositePropertiesEditio
 	protected Text targetRole;
 	protected EMFComboViewer targetCardinality;
 	protected Button targetIsComposite;
-protected ReferencesTable elements;
-protected List<ViewerFilter> elementsBusinessFilters = new ArrayList<ViewerFilter>();
-protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
+	protected ReferencesTable elements;
+	protected List<ViewerFilter> elementsBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	protected Text comments;
 
 
@@ -207,8 +204,8 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.name, EntityrelationViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.name, EntityrelationMessages.RelationPropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -256,7 +253,7 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	 * 
 	 */
 	protected Composite createIdentifierFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationPropertiesEditionPart_IdentifierLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.identifier, EntityrelationViewsRepository.SWT_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.identifier, EntityrelationMessages.RelationPropertiesEditionPart_IdentifierLabel);
 		identifier = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.identifier, EntityrelationViewsRepository.SWT_KIND));
 		identifier.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -294,7 +291,7 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	 * 
 	 */
 	protected Composite createSourceFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationPropertiesEditionPart_SourceLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Source.source_, EntityrelationViewsRepository.SWT_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.Source.source_, EntityrelationMessages.RelationPropertiesEditionPart_SourceLabel);
 		source = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Source.source_, EntityrelationViewsRepository.SWT_KIND));
 		source.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -314,8 +311,8 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createSourceRoleText(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationPropertiesEditionPart_SourceRoleLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Source.sourceRole, EntityrelationViewsRepository.SWT_KIND));
-		sourceRole = new Text(parent, SWT.BORDER);
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.Source.sourceRole, EntityrelationMessages.RelationPropertiesEditionPart_SourceRoleLabel);
+		sourceRole = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData sourceRoleData = new GridData(GridData.FILL_HORIZONTAL);
 		sourceRole.setLayoutData(sourceRoleData);
 		sourceRole.addFocusListener(new FocusAdapter() {
@@ -360,10 +357,10 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createSourceCardinalityEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationPropertiesEditionPart_SourceCardinalityLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Source.sourceCardinality, EntityrelationViewsRepository.SWT_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.Source.sourceCardinality, EntityrelationMessages.RelationPropertiesEditionPart_SourceCardinalityLabel);
 		sourceCardinality = new EMFComboViewer(parent);
 		sourceCardinality.setContentProvider(new ArrayContentProvider());
-		sourceCardinality.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
+		sourceCardinality.setLabelProvider(new AdapterFactoryLabelProvider(EEFRuntimePlugin.getDefault().getAdapterFactory()));
 		GridData sourceCardinalityData = new GridData(GridData.FILL_HORIZONTAL);
 		sourceCardinality.getCombo().setLayoutData(sourceCardinalityData);
 		sourceCardinality.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -388,7 +385,7 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	
 	protected Composite createSourceIsCompositeCheckbox(Composite parent) {
 		sourceIsComposite = new Button(parent, SWT.CHECK);
-		sourceIsComposite.setText(EntityrelationMessages.RelationPropertiesEditionPart_SourceIsCompositeLabel);
+		sourceIsComposite.setText(getDescription(EntityrelationViewsRepository.Relation.Properties.Source.sourceIsComposite, EntityrelationMessages.RelationPropertiesEditionPart_SourceIsCompositeLabel));
 		sourceIsComposite.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -432,7 +429,7 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	 * 
 	 */
 	protected Composite createTargetFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationPropertiesEditionPart_TargetLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Target.target_, EntityrelationViewsRepository.SWT_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.Target.target_, EntityrelationMessages.RelationPropertiesEditionPart_TargetLabel);
 		target = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Target.target_, EntityrelationViewsRepository.SWT_KIND));
 		target.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -452,8 +449,8 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createTargetRoleText(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationPropertiesEditionPart_TargetRoleLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Target.targetRole, EntityrelationViewsRepository.SWT_KIND));
-		targetRole = new Text(parent, SWT.BORDER);
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.Target.targetRole, EntityrelationMessages.RelationPropertiesEditionPart_TargetRoleLabel);
+		targetRole = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData targetRoleData = new GridData(GridData.FILL_HORIZONTAL);
 		targetRole.setLayoutData(targetRoleData);
 		targetRole.addFocusListener(new FocusAdapter() {
@@ -498,10 +495,10 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createTargetCardinalityEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationPropertiesEditionPart_TargetCardinalityLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.Target.targetCardinality, EntityrelationViewsRepository.SWT_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Relation.Properties.Target.targetCardinality, EntityrelationMessages.RelationPropertiesEditionPart_TargetCardinalityLabel);
 		targetCardinality = new EMFComboViewer(parent);
 		targetCardinality.setContentProvider(new ArrayContentProvider());
-		targetCardinality.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
+		targetCardinality.setLabelProvider(new AdapterFactoryLabelProvider(EEFRuntimePlugin.getDefault().getAdapterFactory()));
 		GridData targetCardinalityData = new GridData(GridData.FILL_HORIZONTAL);
 		targetCardinality.getCombo().setLayoutData(targetCardinalityData);
 		targetCardinality.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -526,7 +523,7 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	
 	protected Composite createTargetIsCompositeCheckbox(Composite parent) {
 		targetIsComposite = new Button(parent, SWT.CHECK);
-		targetIsComposite.setText(EntityrelationMessages.RelationPropertiesEditionPart_TargetIsCompositeLabel);
+		targetIsComposite.setText(getDescription(EntityrelationViewsRepository.Relation.Properties.Target.targetIsComposite, EntityrelationMessages.RelationPropertiesEditionPart_TargetIsCompositeLabel));
 		targetIsComposite.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -555,7 +552,7 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	 * 
 	 */
 	protected Composite createElementsAdvancedTableComposition(Composite parent) {
-		this.elements = new ReferencesTable(EntityrelationMessages.RelationPropertiesEditionPart_ElementsLabel, new ReferencesTableListener() {
+		this.elements = new ReferencesTable(getDescription(EntityrelationViewsRepository.Relation.Properties.elements, EntityrelationMessages.RelationPropertiesEditionPart_ElementsLabel), new ReferencesTableListener() {
 			public void handleAdd() { 
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RelationPropertiesEditionPartImpl.this, EntityrelationViewsRepository.Relation.Properties.elements, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				elements.refresh();
@@ -600,11 +597,11 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createCommentsTextarea(Composite parent) {
-		Label commentsLabel = SWTUtils.createPartLabel(parent, EntityrelationMessages.RelationPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Relation.Properties.comments, EntityrelationViewsRepository.SWT_KIND));
+		Label commentsLabel = createDescription(parent, EntityrelationViewsRepository.Relation.Properties.comments, EntityrelationMessages.RelationPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
-		comments = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
+		comments = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData commentsData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsData.horizontalSpan = 2;
 		commentsData.heightHint = 80;
@@ -631,7 +628,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -640,8 +636,8 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -667,7 +663,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 			name.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -739,7 +734,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 		identifier.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -810,7 +804,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 		source.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -835,7 +828,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -843,17 +835,17 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	 * 
 	 */
 	public Enumerator getSourceCardinality() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) sourceCardinality.getSelection()).getFirstElement();
-		return selection.getInstance();
+		Enumerator selection = (Enumerator) ((StructuredSelection) sourceCardinality.getSelection()).getFirstElement();
+		return selection;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.obeonetwork.dsl.entityrelation.parts.RelationPropertiesEditionPart#initSourceCardinality(EEnum eenum, Enumerator current)
+	 * @see org.obeonetwork.dsl.entityrelation.parts.RelationPropertiesEditionPart#initSourceCardinality(Object input, Enumerator current)
 	 */
-	public void initSourceCardinality(EEnum eenum, Enumerator current) {
-		sourceCardinality.setInput(eenum.getELiterals());
+	public void initSourceCardinality(Object input, Enumerator current) {
+		sourceCardinality.setInput(input);
 		sourceCardinality.modelUpdating(new StructuredSelection(current));
 	}
 
@@ -866,7 +858,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	public void setSourceCardinality(Enumerator newValue) {
 		sourceCardinality.modelUpdating(new StructuredSelection(newValue));
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -891,7 +882,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 			sourceIsComposite.setSelection(false);
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -963,7 +953,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 		target.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -988,7 +977,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -996,17 +984,17 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	 * 
 	 */
 	public Enumerator getTargetCardinality() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) targetCardinality.getSelection()).getFirstElement();
-		return selection.getInstance();
+		Enumerator selection = (Enumerator) ((StructuredSelection) targetCardinality.getSelection()).getFirstElement();
+		return selection;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.obeonetwork.dsl.entityrelation.parts.RelationPropertiesEditionPart#initTargetCardinality(EEnum eenum, Enumerator current)
+	 * @see org.obeonetwork.dsl.entityrelation.parts.RelationPropertiesEditionPart#initTargetCardinality(Object input, Enumerator current)
 	 */
-	public void initTargetCardinality(EEnum eenum, Enumerator current) {
-		targetCardinality.setInput(eenum.getELiterals());
+	public void initTargetCardinality(Object input, Enumerator current) {
+		targetCardinality.setInput(input);
 		targetCardinality.modelUpdating(new StructuredSelection(current));
 	}
 
@@ -1019,7 +1007,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 	public void setTargetCardinality(Enumerator newValue) {
 		targetCardinality.modelUpdating(new StructuredSelection(newValue));
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -1044,7 +1031,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 			targetIsComposite.setSelection(false);
 		}
 	}
-
 
 
 
@@ -1104,7 +1090,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 		return ((ReferencesTableSettings)elements.getInput()).contains(element);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1128,7 +1113,6 @@ protected List<ViewerFilter> elementsFilters = new ArrayList<ViewerFilter>();
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 

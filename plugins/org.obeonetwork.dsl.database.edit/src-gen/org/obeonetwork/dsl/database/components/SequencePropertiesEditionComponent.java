@@ -63,26 +63,26 @@ public class SequencePropertiesEditionComponent extends SinglePartPropertiesEdit
 			final SequencePropertiesEditionPart sequencePart = (SequencePropertiesEditionPart)editingPart;
 			// init values
 			if (sequence.getName() != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.name))
-				sequencePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), sequence.getName()));
+				sequencePart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, sequence.getName()));
 			
 			if (isAccessible(DatabaseViewsRepository.Sequence.Properties.StartIncrement.start)) {
-				sequencePart.setStart(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), sequence.getStart()));
+				sequencePart.setStart(EEFConverterUtil.convertToString(EcorePackage.Literals.EINT, sequence.getStart()));
 			}
 			
 			if (isAccessible(DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment)) {
-				sequencePart.setIncrement(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), sequence.getIncrement()));
+				sequencePart.setIncrement(EEFConverterUtil.convertToString(EcorePackage.Literals.EINT, sequence.getIncrement()));
 			}
 			
 			if (isAccessible(DatabaseViewsRepository.Sequence.Properties.MinMax.minValue)) {
-				sequencePart.setMinValue(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), sequence.getMinValue()));
+				sequencePart.setMinValue(EEFConverterUtil.convertToString(EcorePackage.Literals.EINT, sequence.getMinValue()));
 			}
 			
 			if (isAccessible(DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue)) {
-				sequencePart.setMaxValue(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), sequence.getMaxValue()));
+				sequencePart.setMaxValue(EEFConverterUtil.convertToString(EcorePackage.Literals.EINT, sequence.getMaxValue()));
 			}
 			
 			if (sequence.getComments() != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.comments))
-				sequencePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), sequence.getComments()));
+				sequencePart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, sequence.getComments()));
 			// init filters
 			
 			
@@ -110,7 +110,7 @@ public class SequencePropertiesEditionComponent extends SinglePartPropertiesEdit
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == DatabaseViewsRepository.Sequence.Properties.name) {
 			return DatabasePackage.eINSTANCE.getNamedElement_Name();
 		}
@@ -140,22 +140,22 @@ public class SequencePropertiesEditionComponent extends SinglePartPropertiesEdit
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		Sequence sequence = (Sequence)semanticObject;
 		if (DatabaseViewsRepository.Sequence.Properties.name == event.getAffectedEditor()) {
-			sequence.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			sequence.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.Sequence.Properties.StartIncrement.start == event.getAffectedEditor()) {
-			sequence.setStart((EEFConverterUtil.createIntFromString(EcorePackage.eINSTANCE.getEInt(), (String)event.getNewValue())));
+			sequence.setStart((EEFConverterUtil.createIntFromString(EcorePackage.Literals.EINT, (String)event.getNewValue())));
 		}
 		if (DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment == event.getAffectedEditor()) {
-			sequence.setIncrement((EEFConverterUtil.createIntFromString(EcorePackage.eINSTANCE.getEInt(), (String)event.getNewValue())));
+			sequence.setIncrement((EEFConverterUtil.createIntFromString(EcorePackage.Literals.EINT, (String)event.getNewValue())));
 		}
 		if (DatabaseViewsRepository.Sequence.Properties.MinMax.minValue == event.getAffectedEditor()) {
-			sequence.setMinValue((EEFConverterUtil.createIntFromString(EcorePackage.eINSTANCE.getEInt(), (String)event.getNewValue())));
+			sequence.setMinValue((EEFConverterUtil.createIntFromString(EcorePackage.Literals.EINT, (String)event.getNewValue())));
 		}
 		if (DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue == event.getAffectedEditor()) {
-			sequence.setMaxValue((EEFConverterUtil.createIntFromString(EcorePackage.eINSTANCE.getEInt(), (String)event.getNewValue())));
+			sequence.setMaxValue((EEFConverterUtil.createIntFromString(EcorePackage.Literals.EINT, (String)event.getNewValue())));
 		}
 		if (DatabaseViewsRepository.Sequence.Properties.comments == event.getAffectedEditor()) {
-			sequence.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			sequence.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 	}
 
@@ -164,46 +164,46 @@ public class SequencePropertiesEditionComponent extends SinglePartPropertiesEdit
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			SequencePropertiesEditionPart sequencePart = (SequencePropertiesEditionPart)editingPart;
 			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && sequencePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					sequencePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					sequencePart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					sequencePart.setName("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getSequence_Start().equals(msg.getFeature()) && sequencePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.StartIncrement.start)) {
 				if (msg.getNewValue() != null) {
-					sequencePart.setStart(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
+					sequencePart.setStart(EcoreUtil.convertToString(EcorePackage.Literals.EINT, msg.getNewValue()));
 				} else {
 					sequencePart.setStart("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getSequence_Increment().equals(msg.getFeature()) && sequencePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment)) {
 				if (msg.getNewValue() != null) {
-					sequencePart.setIncrement(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
+					sequencePart.setIncrement(EcoreUtil.convertToString(EcorePackage.Literals.EINT, msg.getNewValue()));
 				} else {
 					sequencePart.setIncrement("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getSequence_MinValue().equals(msg.getFeature()) && sequencePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.MinMax.minValue)) {
 				if (msg.getNewValue() != null) {
-					sequencePart.setMinValue(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
+					sequencePart.setMinValue(EcoreUtil.convertToString(EcorePackage.Literals.EINT, msg.getNewValue()));
 				} else {
 					sequencePart.setMinValue("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getSequence_MaxValue().equals(msg.getFeature()) && sequencePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue)) {
 				if (msg.getNewValue() != null) {
-					sequencePart.setMaxValue(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEInt(), msg.getNewValue()));
+					sequencePart.setMaxValue(EcoreUtil.convertToString(EcorePackage.Literals.EINT, msg.getNewValue()));
 				} else {
 					sequencePart.setMaxValue("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && sequencePart != null && isAccessible(DatabaseViewsRepository.Sequence.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					sequencePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					sequencePart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					sequencePart.setComments("");
 				}
@@ -236,42 +236,42 @@ public class SequencePropertiesEditionComponent extends SinglePartPropertiesEdit
 				if (DatabaseViewsRepository.Sequence.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Sequence.Properties.StartIncrement.start == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getSequence_Start().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getSequence_Start().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getSequence_Start().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getSequence_Increment().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getSequence_Increment().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getSequence_Increment().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Sequence.Properties.MinMax.minValue == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getSequence_MinValue().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getSequence_MinValue().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getSequence_MinValue().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getSequence_MaxValue().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getSequence_MaxValue().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getSequence_MaxValue().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.Sequence.Properties.comments == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), newValue);
 				}

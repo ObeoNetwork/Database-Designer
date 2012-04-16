@@ -16,7 +16,7 @@ import org.obeonetwork.dsl.database.design.services.EcoreServices
 <%allTables - tables%>
 
 <%script type="TableContainer" name="allReferencedTables"%>
-<%tables.foreignKeys.target.nMinimize()%>
+<%tables.filter("database.Table").foreignKeys.target.nMinimize()%>
 
 <%script type="TableContainer" name="allNonReferencedExternalTables"%>
 <%allExternalTables - allReferencedTables%>

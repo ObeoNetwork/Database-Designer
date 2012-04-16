@@ -141,8 +141,7 @@ public class TypesLibraryEditor
 	/**
 	 * @generated NOT
 	 */
-	public static final String PROPERTIES_CONTRIBUTOR = "org.obeonetwork.dsl.properties";
-	
+	public static final String PROPERTIES_CONTRIBUTOR = "fr.obeo.dsl.viewpoint.diagram";
 	/**
 	 * <!-- begin-user-doc -->
 	 * @implements ITabbedPropertySheetPageContributor

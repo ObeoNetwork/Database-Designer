@@ -5,32 +5,45 @@ package org.obeonetwork.dsl.database.parts.impl;
 
 // Start of user code for imports
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.HorizontalBox;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.SequencePropertiesEditionPart;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
 // End of user code
 
@@ -150,8 +163,8 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.SequencePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Sequence.Properties.name, DatabaseViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Sequence.Properties.name, DatabaseMessages.SequencePropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -205,13 +218,13 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 		gridData.horizontalSpan = 3;
 		container.setLayoutData(gridData);
 		HorizontalBox startIncrementHBox = new HorizontalBox(container);
-		return parent;
+		return startIncrementHBox;
 	}
 
 	
 	protected Composite createStartText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.SequencePropertiesEditionPart_StartLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Sequence.Properties.StartIncrement.start, DatabaseViewsRepository.SWT_KIND));
-		start = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Sequence.Properties.StartIncrement.start, DatabaseMessages.SequencePropertiesEditionPart_StartLabel);
+		start = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData startData = new GridData(GridData.FILL_HORIZONTAL);
 		start.setLayoutData(startData);
 		start.addFocusListener(new FocusAdapter() {
@@ -256,8 +269,8 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 
 	
 	protected Composite createIncrementText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.SequencePropertiesEditionPart_IncrementLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment, DatabaseViewsRepository.SWT_KIND));
-		increment = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment, DatabaseMessages.SequencePropertiesEditionPart_IncrementLabel);
+		increment = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData incrementData = new GridData(GridData.FILL_HORIZONTAL);
 		increment.setLayoutData(incrementData);
 		increment.addFocusListener(new FocusAdapter() {
@@ -311,13 +324,13 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 		gridData.horizontalSpan = 3;
 		container.setLayoutData(gridData);
 		HorizontalBox minMaxHBox = new HorizontalBox(container);
-		return parent;
+		return minMaxHBox;
 	}
 
 	
 	protected Composite createMinValueText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.SequencePropertiesEditionPart_MinValueLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Sequence.Properties.MinMax.minValue, DatabaseViewsRepository.SWT_KIND));
-		minValue = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Sequence.Properties.MinMax.minValue, DatabaseMessages.SequencePropertiesEditionPart_MinValueLabel);
+		minValue = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData minValueData = new GridData(GridData.FILL_HORIZONTAL);
 		minValue.setLayoutData(minValueData);
 		minValue.addFocusListener(new FocusAdapter() {
@@ -362,8 +375,8 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 
 	
 	protected Composite createMaxValueText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.SequencePropertiesEditionPart_MaxValueLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue, DatabaseViewsRepository.SWT_KIND));
-		maxValue = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue, DatabaseMessages.SequencePropertiesEditionPart_MaxValueLabel);
+		maxValue = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData maxValueData = new GridData(GridData.FILL_HORIZONTAL);
 		maxValue.setLayoutData(maxValueData);
 		maxValue.addFocusListener(new FocusAdapter() {
@@ -408,11 +421,11 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 
 	
 	protected Composite createCommentsTextarea(Composite parent) {
-		Label commentsLabel = SWTUtils.createPartLabel(parent, DatabaseMessages.SequencePropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Sequence.Properties.comments, DatabaseViewsRepository.SWT_KIND));
+		Label commentsLabel = createDescription(parent, DatabaseViewsRepository.Sequence.Properties.comments, DatabaseMessages.SequencePropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
-		comments = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
+		comments = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData commentsData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsData.horizontalSpan = 2;
 		commentsData.heightHint = 80;
@@ -439,7 +452,6 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -448,8 +460,8 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -476,7 +488,6 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -500,7 +511,6 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 			start.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -526,7 +536,6 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -550,7 +559,6 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 			minValue.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -576,7 +584,6 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -600,7 +607,6 @@ public class SequencePropertiesEditionPartImpl extends CompositePropertiesEditio
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 

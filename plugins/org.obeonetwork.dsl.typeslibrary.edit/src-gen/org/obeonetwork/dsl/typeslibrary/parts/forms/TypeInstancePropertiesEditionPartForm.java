@@ -11,7 +11,7 @@ import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
@@ -44,11 +44,11 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.views.properties.tabbed.ISection;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 import org.obeonetwork.dsl.typeslibrary.parts.TypeInstancePropertiesEditionPart;
 import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
 import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
-
 
 // End of user code
 
@@ -56,16 +56,21 @@ import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
  * 
  * 
  */
-public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, TypeInstancePropertiesEditionPart {
+public class TypeInstancePropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, TypeInstancePropertiesEditionPart {
 
 	protected EMFComboViewer type;
 	protected Text length;
 	protected Text precision;
 	protected Text literals;
-		protected Button editLiterals;
-		private EList literalsList;
+	protected Button editLiterals;
+	private EList literalsList;
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public TypeInstancePropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -126,10 +131,10 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 					return createTypeAttributesHBox(widgetFactory, parent);
 				}
 				if (key == TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.length) {
-					return 		createLengthText(widgetFactory, parent);
+					return createLengthText(widgetFactory, parent);
 				}
 				if (key == TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.precision) {
-					return 		createPrecisionText(widgetFactory, parent);
+					return createPrecisionText(widgetFactory, parent);
 				}
 				if (key == TypeslibraryViewsRepository.TypeInstance.Properties.literals) {
 					return createLiteralsMultiValuedEditor(widgetFactory, parent);
@@ -158,7 +163,7 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 
 	
 	protected Composite createTypeEMFComboViewer(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, TypeslibraryMessages.TypeInstancePropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.TypeInstance.Properties.type, TypeslibraryViewsRepository.FORM_KIND));
+		createDescription(parent, TypeslibraryViewsRepository.TypeInstance.Properties.type, TypeslibraryMessages.TypeInstancePropertiesEditionPart_TypeLabel);
 		type = new EMFComboViewer(parent);
 		GridData typeData = new GridData(GridData.FILL_HORIZONTAL);
 		type.getCombo().setLayoutData(typeData);
@@ -169,7 +174,6 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 			 * {@inheritDoc}
 			 * 
 			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
-			 * 	
 			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (propertiesEditionComponent != null)
@@ -194,14 +198,14 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.horizontalSpan=3;
 		container.setLayoutData(gridData);
-		HorizontalBox typeAttributesHBox = new HorizontalBox(container);
+				HorizontalBox typeAttributesHBox = new HorizontalBox(container);
 		widgetFactory.adapt(typeAttributesHBox);
 		return typeAttributesHBox;
 	}
 
 	
 	protected Composite createLengthText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, TypeslibraryMessages.TypeInstancePropertiesEditionPart_LengthLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.length, TypeslibraryViewsRepository.FORM_KIND));
+		createDescription(parent, TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.length, TypeslibraryMessages.TypeInstancePropertiesEditionPart_LengthLabel);
 		length = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		length.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -215,8 +219,33 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TypeInstancePropertiesEditionPartForm.this, TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.length, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, length.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							TypeInstancePropertiesEditionPartForm.this,
+							TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.length,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, length.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									TypeInstancePropertiesEditionPartForm.this,
+									TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.length,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, length.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									TypeInstancePropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		length.addKeyListener(new KeyAdapter() {
@@ -241,7 +270,7 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 
 	
 	protected Composite createPrecisionText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, TypeslibraryMessages.TypeInstancePropertiesEditionPart_PrecisionLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.precision, TypeslibraryViewsRepository.FORM_KIND));
+		createDescription(parent, TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.precision, TypeslibraryMessages.TypeInstancePropertiesEditionPart_PrecisionLabel);
 		precision = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		precision.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -255,8 +284,33 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(TypeInstancePropertiesEditionPartForm.this, TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.precision, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, precision.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							TypeInstancePropertiesEditionPartForm.this,
+							TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.precision,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, precision.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									TypeInstancePropertiesEditionPartForm.this,
+									TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.precision,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, precision.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									TypeInstancePropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		precision.addKeyListener(new KeyAdapter() {
@@ -289,7 +343,7 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 		literals.setLayoutData(literalsData);
 		EditingUtils.setID(literals, TypeslibraryViewsRepository.TypeInstance.Properties.literals);
 		EditingUtils.setEEFtype(literals, "eef::MultiValuedEditor::field"); //$NON-NLS-1$
-		editLiterals = widgetFactory.createButton(parent, TypeslibraryMessages.TypeInstancePropertiesEditionPart_LiteralsLabel, SWT.NONE);
+		editLiterals = widgetFactory.createButton(parent, getDescription(TypeslibraryViewsRepository.TypeInstance.Properties.literals, TypeslibraryMessages.TypeInstancePropertiesEditionPart_LiteralsLabel), SWT.NONE);
 		GridData editLiteralsData = new GridData();
 		editLiterals.setLayoutData(editLiteralsData);
 		editLiterals.addSelectionListener(new SelectionAdapter() {
@@ -323,7 +377,6 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -332,8 +385,8 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -385,7 +438,6 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 		type.addFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -410,7 +462,6 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -434,7 +485,6 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 			precision.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -478,6 +528,8 @@ public class TypeInstancePropertiesEditionPartForm extends CompositePropertiesEd
 			literals.setText(""); //$NON-NLS-1$
 		}
 	}
+
+
 
 
 

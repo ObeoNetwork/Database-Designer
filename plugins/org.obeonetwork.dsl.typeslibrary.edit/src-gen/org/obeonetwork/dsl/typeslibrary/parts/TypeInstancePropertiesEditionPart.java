@@ -8,7 +8,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 
-
 // End of user code
 
 /**

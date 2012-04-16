@@ -5,12 +5,21 @@ package org.obeonetwork.dsl.database.providers;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
+
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
+
 import org.eclipse.emf.eef.runtime.providers.impl.PropertiesEditingProviderImpl;
+
+import org.eclipse.jface.viewers.IFilter;
+
 import org.obeonetwork.dsl.database.Constraint;
 import org.obeonetwork.dsl.database.DatabasePackage;
+
 import org.obeonetwork.dsl.database.components.ConstraintPropertiesEditionComponent;
 
 /**
@@ -41,7 +50,7 @@ public class ConstraintPropertiesEditionProvider extends PropertiesEditingProvid
 	 */
 	public boolean provides(PropertiesEditingContext editingContext) {
 		return (editingContext.getEObject() instanceof Constraint) 
-					&& (DatabasePackage.eINSTANCE.getConstraint() == editingContext.getEObject().eClass());
+					&& (DatabasePackage.Literals.CONSTRAINT == editingContext.getEObject().eClass());
 	}
 
 	/**
@@ -110,6 +119,22 @@ public class ConstraintPropertiesEditionProvider extends PropertiesEditingProvid
 				return new ConstraintPropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part, refinement);
+	}
+
+	/**
+	 * Provides the filter used by the plugin.xml to assign part forms.
+	 */
+	public static class EditionFilter implements IFilter {
+		
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.jface.viewers.IFilter#select(java.lang.Object)
+		 */
+		public boolean select(Object toTest) {
+			return toTest instanceof EObject && DatabasePackage.Literals.CONSTRAINT == ((EObject)toTest).eClass();
+		}
+		
 	}
 
 }

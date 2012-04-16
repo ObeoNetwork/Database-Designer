@@ -38,7 +38,6 @@ import org.obeonetwork.dsl.typeslibrary.parts.SimpleNamedTypePropertiesEditionPa
 import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
 import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
 
-
 // End of user code
 
 /**
@@ -127,8 +126,8 @@ public class SimpleNamedTypePropertiesEditionPartImpl extends CompositePropertie
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, TypeslibraryMessages.SimpleNamedTypePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.SimpleNamedType.Properties.name, TypeslibraryViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, TypeslibraryViewsRepository.SimpleNamedType.Properties.name, TypeslibraryMessages.SimpleNamedTypePropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -176,7 +175,7 @@ public class SimpleNamedTypePropertiesEditionPartImpl extends CompositePropertie
 	 * 
 	 */
 	protected Composite createTypeFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, TypeslibraryMessages.SimpleNamedTypePropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.SimpleNamedType.Properties.type, TypeslibraryViewsRepository.SWT_KIND));
+		createDescription(parent, TypeslibraryViewsRepository.SimpleNamedType.Properties.type, TypeslibraryMessages.SimpleNamedTypePropertiesEditionPart_TypeLabel);
 		type = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.SimpleNamedType.Properties.type, TypeslibraryViewsRepository.SWT_KIND));
 		type.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -195,7 +194,6 @@ public class SimpleNamedTypePropertiesEditionPartImpl extends CompositePropertie
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -204,8 +202,8 @@ public class SimpleNamedTypePropertiesEditionPartImpl extends CompositePropertie
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -231,7 +229,6 @@ public class SimpleNamedTypePropertiesEditionPartImpl extends CompositePropertie
 			name.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -302,7 +299,6 @@ public class SimpleNamedTypePropertiesEditionPartImpl extends CompositePropertie
 	public void addBusinessFilterToType(ViewerFilter filter) {
 		type.addBusinessRuleFilter(filter);
 	}
-
 
 
 

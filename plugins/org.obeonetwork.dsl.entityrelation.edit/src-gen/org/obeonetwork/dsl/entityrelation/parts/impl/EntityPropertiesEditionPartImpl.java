@@ -8,40 +8,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
+
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.obeonetwork.dsl.entityrelation.parts.EntityPropertiesEditionPart;
 import org.obeonetwork.dsl.entityrelation.parts.EntityrelationViewsRepository;
-import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
 
+import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
 
 // End of user code
 
@@ -52,9 +69,9 @@ import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
 public class EntityPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, EntityPropertiesEditionPart {
 
 	protected Text name;
-protected ReferencesTable attributes;
-protected List<ViewerFilter> attributesBusinessFilters = new ArrayList<ViewerFilter>();
-protected List<ViewerFilter> attributesFilters = new ArrayList<ViewerFilter>();
+	protected ReferencesTable attributes;
+	protected List<ViewerFilter> attributesBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> attributesFilters = new ArrayList<ViewerFilter>();
 	protected Text comments;
 
 
@@ -138,8 +155,8 @@ protected List<ViewerFilter> attributesFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.EntityPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Entity.Properties.name, EntityrelationViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, EntityrelationViewsRepository.Entity.Properties.name, EntityrelationMessages.EntityPropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -187,7 +204,7 @@ protected List<ViewerFilter> attributesFilters = new ArrayList<ViewerFilter>();
 	 * 
 	 */
 	protected Composite createAttributesAdvancedTableComposition(Composite parent) {
-		this.attributes = new ReferencesTable(EntityrelationMessages.EntityPropertiesEditionPart_AttributesLabel, new ReferencesTableListener() {
+		this.attributes = new ReferencesTable(getDescription(EntityrelationViewsRepository.Entity.Properties.attributes, EntityrelationMessages.EntityPropertiesEditionPart_AttributesLabel), new ReferencesTableListener() {
 			public void handleAdd() { 
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(EntityPropertiesEditionPartImpl.this, EntityrelationViewsRepository.Entity.Properties.attributes, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				attributes.refresh();
@@ -232,11 +249,11 @@ protected List<ViewerFilter> attributesFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createCommentsTextarea(Composite parent) {
-		Label commentsLabel = SWTUtils.createPartLabel(parent, EntityrelationMessages.EntityPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Entity.Properties.comments, EntityrelationViewsRepository.SWT_KIND));
+		Label commentsLabel = createDescription(parent, EntityrelationViewsRepository.Entity.Properties.comments, EntityrelationMessages.EntityPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
-		comments = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
+		comments = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData commentsData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsData.horizontalSpan = 2;
 		commentsData.heightHint = 80;
@@ -263,7 +280,6 @@ protected List<ViewerFilter> attributesFilters = new ArrayList<ViewerFilter>();
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -272,8 +288,8 @@ protected List<ViewerFilter> attributesFilters = new ArrayList<ViewerFilter>();
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -299,7 +315,6 @@ protected List<ViewerFilter> attributesFilters = new ArrayList<ViewerFilter>();
 			name.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 
@@ -359,7 +374,6 @@ protected List<ViewerFilter> attributesFilters = new ArrayList<ViewerFilter>();
 		return ((ReferencesTableSettings)attributes.getInput()).contains(element);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -383,7 +397,6 @@ protected List<ViewerFilter> attributesFilters = new ArrayList<ViewerFilter>();
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 

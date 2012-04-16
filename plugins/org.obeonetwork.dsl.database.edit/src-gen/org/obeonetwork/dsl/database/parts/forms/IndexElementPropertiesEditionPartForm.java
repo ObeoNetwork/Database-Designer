@@ -5,44 +5,62 @@ package org.obeonetwork.dsl.database.parts.forms;
 
 // Start of user code for imports
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
+
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.IndexElementPropertiesEditionPart;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
 // End of user code
 
@@ -50,13 +68,18 @@ import org.obeonetwork.dsl.database.providers.DatabaseMessages;
  * 
  * 
  */
-public class IndexElementPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, IndexElementPropertiesEditionPart {
+public class IndexElementPropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, IndexElementPropertiesEditionPart {
 
 	protected EObjectFlatComboViewer column;
 	protected Button asc;
 	protected Text comments;
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public IndexElementPropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -144,7 +167,7 @@ public class IndexElementPropertiesEditionPartForm extends CompositePropertiesEd
 	 * 
 	 */
 	protected Composite createColumnFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.IndexElementPropertiesEditionPart_ColumnLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.IndexElement.Properties.column, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.IndexElement.Properties.column, DatabaseMessages.IndexElementPropertiesEditionPart_ColumnLabel);
 		column = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(DatabaseViewsRepository.IndexElement.Properties.column, DatabaseViewsRepository.FORM_KIND));
 		widgetFactory.adapt(column);
 		column.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
@@ -170,7 +193,7 @@ public class IndexElementPropertiesEditionPartForm extends CompositePropertiesEd
 
 	
 	protected Composite createAscCheckbox(FormToolkit widgetFactory, Composite parent) {
-		asc = widgetFactory.createButton(parent, DatabaseMessages.IndexElementPropertiesEditionPart_AscLabel, SWT.CHECK);
+		asc = widgetFactory.createButton(parent, getDescription(DatabaseViewsRepository.IndexElement.Properties.asc, DatabaseMessages.IndexElementPropertiesEditionPart_AscLabel), SWT.CHECK);
 		asc.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -196,7 +219,7 @@ public class IndexElementPropertiesEditionPartForm extends CompositePropertiesEd
 
 	
 	protected Composite createCommentsTextarea(FormToolkit widgetFactory, Composite parent) {
-		Label commentsLabel = FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.IndexElementPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.IndexElement.Properties.comments, DatabaseViewsRepository.FORM_KIND));
+		Label commentsLabel = createDescription(parent, DatabaseViewsRepository.IndexElement.Properties.comments, DatabaseMessages.IndexElementPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
@@ -215,17 +238,40 @@ public class IndexElementPropertiesEditionPartForm extends CompositePropertiesEd
 			 * 
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(IndexElementPropertiesEditionPartForm.this, DatabaseViewsRepository.IndexElement.Properties.comments, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							IndexElementPropertiesEditionPartForm.this,
+							DatabaseViewsRepository.IndexElement.Properties.comments,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									IndexElementPropertiesEditionPartForm.this,
+									DatabaseViewsRepository.IndexElement.Properties.comments,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, comments.getText()));
+				}
 			}
 
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									IndexElementPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
+			}
 		});
 		EditingUtils.setID(comments, DatabaseViewsRepository.IndexElement.Properties.comments);
 		EditingUtils.setEEFtype(comments, "eef::Textarea"); //$NON-NLS-1$
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.IndexElement.Properties.comments, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
-
 
 
 	/**
@@ -236,8 +282,8 @@ public class IndexElementPropertiesEditionPartForm extends CompositePropertiesEd
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -310,7 +356,6 @@ public class IndexElementPropertiesEditionPartForm extends CompositePropertiesEd
 		column.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -335,7 +380,6 @@ public class IndexElementPropertiesEditionPartForm extends CompositePropertiesEd
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -359,6 +403,8 @@ public class IndexElementPropertiesEditionPartForm extends CompositePropertiesEd
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
+
+
 
 
 

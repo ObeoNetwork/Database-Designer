@@ -7,13 +7,8 @@ package org.obeonetwork.dsl.typeslibrary.parts.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
@@ -24,16 +19,11 @@ import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
-import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusAdapter;
@@ -51,7 +41,6 @@ import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
 import org.obeonetwork.dsl.typeslibrary.parts.UserDefinedTypesLibraryPropertiesEditionPart;
 import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
 
-
 // End of user code
 
 /**
@@ -61,10 +50,9 @@ import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
 public class UserDefinedTypesLibraryPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, UserDefinedTypesLibraryPropertiesEditionPart {
 
 	protected Text name;
-	protected EMFComboViewer kind;
-protected ReferencesTable userDefinedTypes;
-protected List<ViewerFilter> userDefinedTypesBusinessFilters = new ArrayList<ViewerFilter>();
-protected List<ViewerFilter> userDefinedTypesFilters = new ArrayList<ViewerFilter>();
+	protected ReferencesTable userDefinedTypes;
+	protected List<ViewerFilter> userDefinedTypesBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> userDefinedTypesFilters = new ArrayList<ViewerFilter>();
 
 
 
@@ -104,7 +92,6 @@ protected List<ViewerFilter> userDefinedTypesFilters = new ArrayList<ViewerFilte
 		CompositionSequence userDefinedTypesLibraryStep = new BindingCompositionSequence(propertiesEditionComponent);
 		CompositionStep propertiesStep = userDefinedTypesLibraryStep.addStep(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.class);
 		propertiesStep.addStep(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.name);
-		propertiesStep.addStep(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.kind);
 		propertiesStep.addStep(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.userDefinedTypes);
 		
 		
@@ -117,9 +104,6 @@ protected List<ViewerFilter> userDefinedTypesFilters = new ArrayList<ViewerFilte
 				}
 				if (key == TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.name) {
 					return createNameText(parent);
-				}
-				if (key == TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.kind) {
-					return createKindEMFComboViewer(parent);
 				}
 				if (key == TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.userDefinedTypes) {
 					return createUserDefinedTypesAdvancedTableComposition(parent);
@@ -147,8 +131,8 @@ protected List<ViewerFilter> userDefinedTypesFilters = new ArrayList<ViewerFilte
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, TypeslibraryMessages.UserDefinedTypesLibraryPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.name, TypeslibraryViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.name, TypeslibraryMessages.UserDefinedTypesLibraryPropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -191,39 +175,12 @@ protected List<ViewerFilter> userDefinedTypesFilters = new ArrayList<ViewerFilte
 		return parent;
 	}
 
-	
-	protected Composite createKindEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, TypeslibraryMessages.UserDefinedTypesLibraryPropertiesEditionPart_KindLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.kind, TypeslibraryViewsRepository.SWT_KIND));
-		kind = new EMFComboViewer(parent);
-		kind.setContentProvider(new ArrayContentProvider());
-		kind.setLabelProvider(new AdapterFactoryLabelProvider(new EcoreAdapterFactory()));
-		GridData kindData = new GridData(GridData.FILL_HORIZONTAL);
-		kind.getCombo().setLayoutData(kindData);
-		kind.addSelectionChangedListener(new ISelectionChangedListener() {
-
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
-			 * 	
-			 */
-			public void selectionChanged(SelectionChangedEvent event) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(UserDefinedTypesLibraryPropertiesEditionPartImpl.this, TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.kind, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, getKind()));
-			}
-
-		});
-		kind.setID(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.kind);
-		SWTUtils.createHelpButton(parent, propertiesEditionComponent.getHelpContent(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.kind, TypeslibraryViewsRepository.SWT_KIND), null); //$NON-NLS-1$
-		return parent;
-	}
-
 	/**
 	 * @param container
 	 * 
 	 */
 	protected Composite createUserDefinedTypesAdvancedTableComposition(Composite parent) {
-		this.userDefinedTypes = new ReferencesTable(TypeslibraryMessages.UserDefinedTypesLibraryPropertiesEditionPart_UserDefinedTypesLabel, new ReferencesTableListener() {
+		this.userDefinedTypes = new ReferencesTable(getDescription(TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.userDefinedTypes, TypeslibraryMessages.UserDefinedTypesLibraryPropertiesEditionPart_UserDefinedTypesLabel), new ReferencesTableListener() {
 			public void handleAdd() { 
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(UserDefinedTypesLibraryPropertiesEditionPartImpl.this, TypeslibraryViewsRepository.UserDefinedTypesLibrary.Properties.userDefinedTypes, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				userDefinedTypes.refresh();
@@ -267,7 +224,6 @@ protected List<ViewerFilter> userDefinedTypesFilters = new ArrayList<ViewerFilte
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -276,8 +232,8 @@ protected List<ViewerFilter> userDefinedTypesFilters = new ArrayList<ViewerFilte
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -303,39 +259,6 @@ protected List<ViewerFilter> userDefinedTypesFilters = new ArrayList<ViewerFilte
 			name.setText(""); //$NON-NLS-1$
 		}
 	}
-
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.obeonetwork.dsl.typeslibrary.parts.UserDefinedTypesLibraryPropertiesEditionPart#getKind()
-	 * 
-	 */
-	public Enumerator getKind() {
-		EEnumLiteral selection = (EEnumLiteral) ((StructuredSelection) kind.getSelection()).getFirstElement();
-		return selection.getInstance();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.obeonetwork.dsl.typeslibrary.parts.UserDefinedTypesLibraryPropertiesEditionPart#initKind(EEnum eenum, Enumerator current)
-	 */
-	public void initKind(EEnum eenum, Enumerator current) {
-		kind.setInput(eenum.getELiterals());
-		kind.modelUpdating(new StructuredSelection(current));
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.obeonetwork.dsl.typeslibrary.parts.UserDefinedTypesLibraryPropertiesEditionPart#setKind(Enumerator newValue)
-	 * 
-	 */
-	public void setKind(Enumerator newValue) {
-		kind.modelUpdating(new StructuredSelection(newValue));
-	}
-
 
 
 
@@ -394,7 +317,6 @@ protected List<ViewerFilter> userDefinedTypesFilters = new ArrayList<ViewerFilte
 	public boolean isContainedInUserDefinedTypesTable(EObject element) {
 		return ((ReferencesTableSettings)userDefinedTypes.getInput()).contains(element);
 	}
-
 
 
 

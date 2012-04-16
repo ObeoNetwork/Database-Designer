@@ -6,46 +6,65 @@ package org.obeonetwork.dsl.entityrelation.parts.impl;
 // Start of user code for imports
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.providers.EMFListContentProvider;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.EEFFeatureEditorDialog;
 import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.HorizontalBox;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.jface.window.Window;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.obeonetwork.dsl.entityrelation.parts.AttributePropertiesEditionPart;
 import org.obeonetwork.dsl.entityrelation.parts.EntityrelationViewsRepository;
-import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
-import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 
+import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
+
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 
 // End of user code
 
@@ -177,8 +196,8 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.AttributePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Attribute.Properties.name, EntityrelationViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, EntityrelationViewsRepository.Attribute.Properties.name, EntityrelationMessages.AttributePropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -223,7 +242,7 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 
 	
 	protected Composite createTypeEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.AttributePropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Attribute.Properties.type, EntityrelationViewsRepository.SWT_KIND));
+		createDescription(parent, EntityrelationViewsRepository.Attribute.Properties.type, EntityrelationMessages.AttributePropertiesEditionPart_TypeLabel);
 		type = new EMFComboViewer(parent);
 		GridData typeData = new GridData(GridData.FILL_HORIZONTAL);
 		type.getCombo().setLayoutData(typeData);
@@ -259,13 +278,13 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 		gridData.horizontalSpan = 3;
 		container.setLayoutData(gridData);
 		HorizontalBox typeAttributesHBox = new HorizontalBox(container);
-		return parent;
+		return typeAttributesHBox;
 	}
 
 	
 	protected Composite createLengthText(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.AttributePropertiesEditionPart_LengthLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Attribute.Properties.TypeAttributes.length, EntityrelationViewsRepository.SWT_KIND));
-		length = new Text(parent, SWT.BORDER);
+		createDescription(parent, EntityrelationViewsRepository.Attribute.Properties.TypeAttributes.length, EntityrelationMessages.AttributePropertiesEditionPart_LengthLabel);
+		length = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
 		length.setLayoutData(lengthData);
 		length.addFocusListener(new FocusAdapter() {
@@ -310,8 +329,8 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 
 	
 	protected Composite createPrecisionText(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.AttributePropertiesEditionPart_PrecisionLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Attribute.Properties.TypeAttributes.precision, EntityrelationViewsRepository.SWT_KIND));
-		precision = new Text(parent, SWT.BORDER);
+		createDescription(parent, EntityrelationViewsRepository.Attribute.Properties.TypeAttributes.precision, EntityrelationMessages.AttributePropertiesEditionPart_PrecisionLabel);
+		precision = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData precisionData = new GridData(GridData.FILL_HORIZONTAL);
 		precision.setLayoutData(precisionData);
 		precision.addFocusListener(new FocusAdapter() {
@@ -355,14 +374,14 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 	}
 
 	protected Composite createLiteralsMultiValuedEditor(Composite parent) {
-		literals = new Text(parent, SWT.BORDER | SWT.READ_ONLY);
+		literals = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.READ_ONLY);
 		GridData literalsData = new GridData(GridData.FILL_HORIZONTAL);
 		literalsData.horizontalSpan = 2;
 		literals.setLayoutData(literalsData);
 		EditingUtils.setID(literals, EntityrelationViewsRepository.Attribute.Properties.literals);
 		EditingUtils.setEEFtype(literals, "eef::MultiValuedEditor::field"); //$NON-NLS-1$
 		editLiterals = new Button(parent, SWT.NONE);
-		editLiterals.setText(EntityrelationMessages.AttributePropertiesEditionPart_LiteralsLabel);
+		editLiterals.setText(getDescription(EntityrelationViewsRepository.Attribute.Properties.literals, EntityrelationMessages.AttributePropertiesEditionPart_LiteralsLabel));
 		GridData editLiteralsData = new GridData();
 		editLiterals.setLayoutData(editLiteralsData);
 		editLiterals.addSelectionListener(new SelectionAdapter() {
@@ -409,13 +428,13 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 		GridData constraint = new GridData(GridData.FILL_HORIZONTAL);
 		constraint.horizontalAlignment = GridData.BEGINNING;
 		requiredAndIdentifierHBox.setLayoutData(constraint);
-		return parent;
+		return requiredAndIdentifierHBox;
 	}
 
 	
 	protected Composite createRequiredCheckbox(Composite parent) {
 		required = new Button(parent, SWT.CHECK);
-		required.setText(EntityrelationMessages.AttributePropertiesEditionPart_RequiredLabel);
+		required.setText(getDescription(EntityrelationViewsRepository.Attribute.Properties.RequiredAndIdentifier.required, EntityrelationMessages.AttributePropertiesEditionPart_RequiredLabel));
 		required.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -442,7 +461,7 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 	
 	protected Composite createInPrimaryIdentifierCheckbox(Composite parent) {
 		inPrimaryIdentifier = new Button(parent, SWT.CHECK);
-		inPrimaryIdentifier.setText(EntityrelationMessages.AttributePropertiesEditionPart_InPrimaryIdentifierLabel);
+		inPrimaryIdentifier.setText(getDescription(EntityrelationViewsRepository.Attribute.Properties.RequiredAndIdentifier.inPrimaryIdentifier, EntityrelationMessages.AttributePropertiesEditionPart_InPrimaryIdentifierLabel));
 		inPrimaryIdentifier.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -468,11 +487,11 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 
 	
 	protected Composite createCommentsTextarea(Composite parent) {
-		Label commentsLabel = SWTUtils.createPartLabel(parent, EntityrelationMessages.AttributePropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.Attribute.Properties.comments, EntityrelationViewsRepository.SWT_KIND));
+		Label commentsLabel = createDescription(parent, EntityrelationViewsRepository.Attribute.Properties.comments, EntityrelationMessages.AttributePropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
-		comments = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
+		comments = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData commentsData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsData.horizontalSpan = 2;
 		commentsData.heightHint = 80;
@@ -499,7 +518,6 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -508,8 +526,8 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -535,7 +553,6 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 			name.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -586,7 +603,6 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 		type.addFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -611,7 +627,6 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -635,7 +650,6 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 			precision.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -680,7 +694,6 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -704,7 +717,6 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 			required.setSelection(false);
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -730,7 +742,6 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -754,7 +765,6 @@ public class AttributePropertiesEditionPartImpl extends CompositePropertiesEditi
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 

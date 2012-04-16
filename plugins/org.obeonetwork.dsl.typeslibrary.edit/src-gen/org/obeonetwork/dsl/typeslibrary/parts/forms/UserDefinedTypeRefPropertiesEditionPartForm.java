@@ -10,7 +10,7 @@ import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
@@ -29,10 +29,10 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.views.properties.tabbed.ISection;
 import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
 import org.obeonetwork.dsl.typeslibrary.parts.UserDefinedTypeRefPropertiesEditionPart;
 import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
-
 
 // End of user code
 
@@ -40,11 +40,16 @@ import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
  * 
  * 
  */
-public class UserDefinedTypeRefPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, UserDefinedTypeRefPropertiesEditionPart {
+public class UserDefinedTypeRefPropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, UserDefinedTypeRefPropertiesEditionPart {
 
 	protected EObjectFlatComboViewer type;
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public UserDefinedTypeRefPropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -125,7 +130,7 @@ public class UserDefinedTypeRefPropertiesEditionPartForm extends CompositeProper
 	 * 
 	 */
 	protected Composite createTypeFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		FormUtils.createPartLabel(widgetFactory, parent, TypeslibraryMessages.UserDefinedTypeRefPropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.UserDefinedTypeRef.Properties.type, TypeslibraryViewsRepository.FORM_KIND));
+		createDescription(parent, TypeslibraryViewsRepository.UserDefinedTypeRef.Properties.type, TypeslibraryMessages.UserDefinedTypeRefPropertiesEditionPart_TypeLabel);
 		type = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.UserDefinedTypeRef.Properties.type, TypeslibraryViewsRepository.FORM_KIND));
 		widgetFactory.adapt(type);
 		type.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
@@ -150,7 +155,6 @@ public class UserDefinedTypeRefPropertiesEditionPartForm extends CompositeProper
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -159,8 +163,8 @@ public class UserDefinedTypeRefPropertiesEditionPartForm extends CompositeProper
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -232,6 +236,8 @@ public class UserDefinedTypeRefPropertiesEditionPartForm extends CompositeProper
 	public void addBusinessFilterToType(ViewerFilter filter) {
 		type.addBusinessRuleFilter(filter);
 	}
+
+
 
 
 

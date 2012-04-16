@@ -78,8 +78,8 @@ public class TableConstraintsPropertiesEditionComponent extends SinglePartProper
 				constraintsPart.initConstraints(constraintsSettings);
 			}
 			// init filters
-			constraintsPart.addFilterToConstraints(new ViewerFilter() {
-			
+			if (isAccessible(DatabaseViewsRepository.Constraints.Properties.constraints_)) {
+				constraintsPart.addFilterToConstraints(new ViewerFilter() {
 					/**
 					 * {@inheritDoc}
 					 * 
@@ -89,10 +89,10 @@ public class TableConstraintsPropertiesEditionComponent extends SinglePartProper
 						return (element instanceof String && element.equals("")) || (element instanceof Constraint); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for constraints
-			// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for constraints
+				// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -108,7 +108,7 @@ public class TableConstraintsPropertiesEditionComponent extends SinglePartProper
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == DatabaseViewsRepository.Constraints.Properties.constraints_) {
 			return DatabasePackage.eINSTANCE.getTable_Constraints();
 		}
@@ -154,7 +154,7 @@ public class TableConstraintsPropertiesEditionComponent extends SinglePartProper
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ConstraintsPropertiesEditionPart constraintsPart = (ConstraintsPropertiesEditionPart)editingPart;
 			if (DatabasePackage.eINSTANCE.getTable_Constraints().equals(msg.getFeature()) && isAccessible(DatabaseViewsRepository.Constraints.Properties.constraints_))
 				constraintsPart.updateConstraints();

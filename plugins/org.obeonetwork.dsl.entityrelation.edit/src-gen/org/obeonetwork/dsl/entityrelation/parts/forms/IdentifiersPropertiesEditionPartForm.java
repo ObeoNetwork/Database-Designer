@@ -13,7 +13,7 @@ import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
@@ -31,10 +31,10 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.views.properties.tabbed.ISection;
 import org.obeonetwork.dsl.entityrelation.parts.EntityrelationViewsRepository;
 import org.obeonetwork.dsl.entityrelation.parts.IdentifiersPropertiesEditionPart;
 import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
-
 
 // End of user code
 
@@ -42,13 +42,18 @@ import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
  * 
  * 
  */
-public class IdentifiersPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, IdentifiersPropertiesEditionPart {
+public class IdentifiersPropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, IdentifiersPropertiesEditionPart {
 
 	protected ReferencesTable identifiers;
 	protected List<ViewerFilter> identifiersBusinessFilters = new ArrayList<ViewerFilter>();
 	protected List<ViewerFilter> identifiersFilters = new ArrayList<ViewerFilter>();
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public IdentifiersPropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -128,7 +133,7 @@ public class IdentifiersPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * 
 	 */
 	protected Composite createIdentifiersTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.identifiers = new ReferencesTable(EntityrelationMessages.IdentifiersPropertiesEditionPart_IdentifiersLabel, new ReferencesTableListener() {
+		this.identifiers = new ReferencesTable(getDescription(EntityrelationViewsRepository.Identifiers.Properties.identifiers_, EntityrelationMessages.IdentifiersPropertiesEditionPart_IdentifiersLabel), new ReferencesTableListener() {
 			public void handleAdd() {
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(IdentifiersPropertiesEditionPartForm.this, EntityrelationViewsRepository.Identifiers.Properties.identifiers_, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				identifiers.refresh();
@@ -170,7 +175,6 @@ public class IdentifiersPropertiesEditionPartForm extends CompositePropertiesEdi
 		identifiers.setEEFType("eef::AdvancedTableComposition"); //$NON-NLS-1$
 		return parent;
 	}
-
 
 
 	/**
@@ -242,6 +246,8 @@ public class IdentifiersPropertiesEditionPartForm extends CompositePropertiesEdi
 	public boolean isContainedInIdentifiersTable(EObject element) {
 		return ((ReferencesTableSettings)identifiers.getInput()).contains(element);
 	}
+
+
 
 
 

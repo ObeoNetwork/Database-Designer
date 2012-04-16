@@ -78,8 +78,8 @@ public class TableForeignKeysPropertiesEditionComponent extends SinglePartProper
 				foreignKeysPart.initForeignKeys(foreignKeysSettings);
 			}
 			// init filters
-			foreignKeysPart.addFilterToForeignKeys(new ViewerFilter() {
-			
+			if (isAccessible(DatabaseViewsRepository.ForeignKeys.Properties.foreignKeys_)) {
+				foreignKeysPart.addFilterToForeignKeys(new ViewerFilter() {
 					/**
 					 * {@inheritDoc}
 					 * 
@@ -89,10 +89,10 @@ public class TableForeignKeysPropertiesEditionComponent extends SinglePartProper
 						return (element instanceof String && element.equals("")) || (element instanceof ForeignKey); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for foreignKeys
-			// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for foreignKeys
+				// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -108,7 +108,7 @@ public class TableForeignKeysPropertiesEditionComponent extends SinglePartProper
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == DatabaseViewsRepository.ForeignKeys.Properties.foreignKeys_) {
 			return DatabasePackage.eINSTANCE.getTable_ForeignKeys();
 		}
@@ -154,7 +154,7 @@ public class TableForeignKeysPropertiesEditionComponent extends SinglePartProper
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ForeignKeysPropertiesEditionPart foreignKeysPart = (ForeignKeysPropertiesEditionPart)editingPart;
 			if (DatabasePackage.eINSTANCE.getTable_ForeignKeys().equals(msg.getFeature()) && isAccessible(DatabaseViewsRepository.ForeignKeys.Properties.foreignKeys_))
 				foreignKeysPart.updateForeignKeys();

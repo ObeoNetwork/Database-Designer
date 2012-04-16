@@ -31,7 +31,6 @@ import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
 import org.obeonetwork.dsl.typeslibrary.parts.UserDefinedTypeRefPropertiesEditionPart;
 import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
 
-
 // End of user code
 
 /**
@@ -119,7 +118,7 @@ public class UserDefinedTypeRefPropertiesEditionPartImpl extends CompositeProper
 	 * 
 	 */
 	protected Composite createTypeFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, TypeslibraryMessages.UserDefinedTypeRefPropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.UserDefinedTypeRef.Properties.type, TypeslibraryViewsRepository.SWT_KIND));
+		createDescription(parent, TypeslibraryViewsRepository.UserDefinedTypeRef.Properties.type, TypeslibraryMessages.UserDefinedTypeRefPropertiesEditionPart_TypeLabel);
 		type = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.UserDefinedTypeRef.Properties.type, TypeslibraryViewsRepository.SWT_KIND));
 		type.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -138,7 +137,6 @@ public class UserDefinedTypeRefPropertiesEditionPartImpl extends CompositeProper
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -147,8 +145,8 @@ public class UserDefinedTypeRefPropertiesEditionPartImpl extends CompositeProper
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -220,7 +218,6 @@ public class UserDefinedTypeRefPropertiesEditionPartImpl extends CompositeProper
 	public void addBusinessFilterToType(ViewerFilter filter) {
 		type.addBusinessRuleFilter(filter);
 	}
-
 
 
 

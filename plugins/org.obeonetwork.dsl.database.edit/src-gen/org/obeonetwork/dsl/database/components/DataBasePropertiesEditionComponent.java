@@ -47,8 +47,7 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 	/**
 	 * Settings for usedLibraries ReferencesTable
 	 */
-	private	ReferencesTableSettings usedLibrariesSettings;
-	
+	private ReferencesTableSettings usedLibrariesSettings;
 	
 	/**
 	 * Default constructor
@@ -76,13 +75,13 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 			final DataBasePropertiesEditionPart dataBasePart = (DataBasePropertiesEditionPart)editingPart;
 			// init values
 			if (dataBase.getName() != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.name))
-				dataBasePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), dataBase.getName()));
+				dataBasePart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, dataBase.getName()));
 			
 			if (dataBase.getUrl() != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.url))
-				dataBasePart.setUrl(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), dataBase.getUrl()));
+				dataBasePart.setUrl(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, dataBase.getUrl()));
 			
 			if (dataBase.getComments() != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.comments))
-				dataBasePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), dataBase.getComments()));
+				dataBasePart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, dataBase.getComments()));
 			if (isAccessible(DatabaseViewsRepository.DataBase_.Properties.usedLibraries)) {
 				usedLibrariesSettings = new ReferencesTableSettings(dataBase, TypesLibraryPackage.eINSTANCE.getTypesLibraryUser_UsedLibraries());
 				dataBasePart.initUsedLibraries(usedLibrariesSettings);
@@ -91,24 +90,25 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 			
 			
 			
-			dataBasePart.addFilterToUsedLibraries(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!dataBasePart.isContainedInUsedLibrariesTable((EObject)element));
-					return element instanceof String && element.equals("");
-				}
-			
-			});
-			dataBasePart.addFilterToUsedLibraries(new EObjectStrictFilter(TypesLibraryPackage.eINSTANCE.getTypesLibrary()));
-			// Start of user code for additional businessfilters for usedLibraries
-			// End of user code
-			
+			if (isAccessible(DatabaseViewsRepository.DataBase_.Properties.usedLibraries)) {
+				dataBasePart.addFilterToUsedLibraries(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!dataBasePart.isContainedInUsedLibrariesTable((EObject)element));
+						return element instanceof String && element.equals("");
+					}
+				
+				});
+				dataBasePart.addFilterToUsedLibraries(new EObjectStrictFilter(TypesLibraryPackage.Literals.TYPES_LIBRARY));
+				// Start of user code for additional businessfilters for usedLibraries
+				// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -127,7 +127,7 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == DatabaseViewsRepository.DataBase_.Properties.name) {
 			return DatabasePackage.eINSTANCE.getNamedElement_Name();
 		}
@@ -151,13 +151,13 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		DataBase dataBase = (DataBase)semanticObject;
 		if (DatabaseViewsRepository.DataBase_.Properties.name == event.getAffectedEditor()) {
-			dataBase.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			dataBase.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.DataBase_.Properties.url == event.getAffectedEditor()) {
-			dataBase.setUrl((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			dataBase.setUrl((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.DataBase_.Properties.comments == event.getAffectedEditor()) {
-			dataBase.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			dataBase.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.DataBase_.Properties.usedLibraries == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET)
@@ -170,25 +170,25 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			DataBasePropertiesEditionPart dataBasePart = (DataBasePropertiesEditionPart)editingPart;
 			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && dataBasePart != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					dataBasePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					dataBasePart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					dataBasePart.setName("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getDataBase_Url().equals(msg.getFeature()) && dataBasePart != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.url)) {
 				if (msg.getNewValue() != null) {
-					dataBasePart.setUrl(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					dataBasePart.setUrl(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					dataBasePart.setUrl("");
 				}
 			}
 			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && dataBasePart != null && isAccessible(DatabaseViewsRepository.DataBase_.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					dataBasePart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					dataBasePart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					dataBasePart.setComments("");
 				}
@@ -223,21 +223,21 @@ public class DataBasePropertiesEditionComponent extends SinglePartPropertiesEdit
 				if (DatabaseViewsRepository.DataBase_.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.DataBase_.Properties.url == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getDataBase_Url().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getDataBase_Url().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getDataBase_Url().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.DataBase_.Properties.comments == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), newValue);
 				}

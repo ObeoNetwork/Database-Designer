@@ -5,31 +5,44 @@ package org.obeonetwork.dsl.database.parts.impl;
 
 // Start of user code for imports
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.ViewPropertiesEditionPart;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
 // End of user code
 
@@ -124,8 +137,8 @@ public class ViewPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.ViewPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.View.Properties.name, DatabaseViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.View.Properties.name, DatabaseMessages.ViewPropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -170,11 +183,11 @@ public class ViewPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 
 	
 	protected Composite createQueryTextarea(Composite parent) {
-		Label queryLabel = SWTUtils.createPartLabel(parent, DatabaseMessages.ViewPropertiesEditionPart_QueryLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.View.Properties.query, DatabaseViewsRepository.SWT_KIND));
+		Label queryLabel = createDescription(parent, DatabaseViewsRepository.View.Properties.query, DatabaseMessages.ViewPropertiesEditionPart_QueryLabel);
 		GridData queryLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		queryLabelData.horizontalSpan = 3;
 		queryLabel.setLayoutData(queryLabelData);
-		query = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
+		query = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData queryData = new GridData(GridData.FILL_HORIZONTAL);
 		queryData.horizontalSpan = 2;
 		queryData.heightHint = 80;
@@ -202,11 +215,11 @@ public class ViewPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 
 	
 	protected Composite createCommentsTextarea(Composite parent) {
-		Label commentsLabel = SWTUtils.createPartLabel(parent, DatabaseMessages.ViewPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.View.Properties.comments, DatabaseViewsRepository.SWT_KIND));
+		Label commentsLabel = createDescription(parent, DatabaseViewsRepository.View.Properties.comments, DatabaseMessages.ViewPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
-		comments = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
+		comments = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData commentsData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsData.horizontalSpan = 2;
 		commentsData.heightHint = 80;
@@ -233,7 +246,6 @@ public class ViewPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -242,8 +254,8 @@ public class ViewPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -270,7 +282,6 @@ public class ViewPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -295,7 +306,6 @@ public class ViewPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -319,7 +329,6 @@ public class ViewPropertiesEditionPartImpl extends CompositePropertiesEditionPar
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 

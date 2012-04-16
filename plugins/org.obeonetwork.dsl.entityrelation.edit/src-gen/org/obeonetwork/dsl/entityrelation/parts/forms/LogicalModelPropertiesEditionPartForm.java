@@ -14,7 +14,7 @@ import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.context.impl.EObjectPropertiesEditionContext;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
@@ -46,10 +46,10 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.views.properties.tabbed.ISection;
 import org.obeonetwork.dsl.entityrelation.parts.EntityrelationViewsRepository;
 import org.obeonetwork.dsl.entityrelation.parts.LogicalModelPropertiesEditionPart;
 import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
-
 
 // End of user code
 
@@ -57,15 +57,20 @@ import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
  * 
  * 
  */
-public class LogicalModelPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, LogicalModelPropertiesEditionPart {
+public class LogicalModelPropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, LogicalModelPropertiesEditionPart {
 
 	protected Text name;
-		protected ReferencesTable usedLibraries;
-		protected List<ViewerFilter> usedLibrariesBusinessFilters = new ArrayList<ViewerFilter>();
-		protected List<ViewerFilter> usedLibrariesFilters = new ArrayList<ViewerFilter>();
+	protected ReferencesTable usedLibraries;
+	protected List<ViewerFilter> usedLibrariesBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> usedLibrariesFilters = new ArrayList<ViewerFilter>();
 	protected Text comments;
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public LogicalModelPropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -117,7 +122,7 @@ public class LogicalModelPropertiesEditionPartForm extends CompositePropertiesEd
 					return createPropertiesGroup(widgetFactory, parent);
 				}
 				if (key == EntityrelationViewsRepository.LogicalModel.Properties.name) {
-					return 		createNameText(widgetFactory, parent);
+					return createNameText(widgetFactory, parent);
 				}
 				if (key == EntityrelationViewsRepository.LogicalModel.Properties.usedLibraries) {
 					return createUsedLibrariesReferencesTable(widgetFactory, parent);
@@ -149,7 +154,7 @@ public class LogicalModelPropertiesEditionPartForm extends CompositePropertiesEd
 
 	
 	protected Composite createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.LogicalModelPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.LogicalModel.Properties.name, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.LogicalModel.Properties.name, EntityrelationMessages.LogicalModelPropertiesEditionPart_NameLabel);
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -163,8 +168,33 @@ public class LogicalModelPropertiesEditionPartForm extends CompositePropertiesEd
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LogicalModelPropertiesEditionPartForm.this, EntityrelationViewsRepository.LogicalModel.Properties.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							LogicalModelPropertiesEditionPartForm.this,
+							EntityrelationViewsRepository.LogicalModel.Properties.name,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									LogicalModelPropertiesEditionPartForm.this,
+									EntityrelationViewsRepository.LogicalModel.Properties.name,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, name.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									LogicalModelPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		name.addKeyListener(new KeyAdapter() {
@@ -191,7 +221,7 @@ public class LogicalModelPropertiesEditionPartForm extends CompositePropertiesEd
 	 * 
 	 */
 	protected Composite createUsedLibrariesReferencesTable(FormToolkit widgetFactory, Composite parent) {
-		this.usedLibraries = new ReferencesTable(EntityrelationMessages.LogicalModelPropertiesEditionPart_UsedLibrariesLabel, new ReferencesTableListener	() {
+		this.usedLibraries = new ReferencesTable(getDescription(EntityrelationViewsRepository.LogicalModel.Properties.usedLibraries, EntityrelationMessages.LogicalModelPropertiesEditionPart_UsedLibrariesLabel), new ReferencesTableListener	() {
 			public void handleAdd() { addUsedLibraries(); }
 			public void handleEdit(EObject element) { editUsedLibraries(element); }
 			public void handleMove(EObject element, int oldIndex, int newIndex) { moveUsedLibraries(element, oldIndex, newIndex); }
@@ -270,7 +300,7 @@ public class LogicalModelPropertiesEditionPartForm extends CompositePropertiesEd
 
 	
 	protected Composite createCommentsTextarea(FormToolkit widgetFactory, Composite parent) {
-		Label commentsLabel = FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.LogicalModelPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.LogicalModel.Properties.comments, EntityrelationViewsRepository.FORM_KIND));
+		Label commentsLabel = createDescription(parent, EntityrelationViewsRepository.LogicalModel.Properties.comments, EntityrelationMessages.LogicalModelPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
@@ -289,17 +319,40 @@ public class LogicalModelPropertiesEditionPartForm extends CompositePropertiesEd
 			 * 
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(LogicalModelPropertiesEditionPartForm.this, EntityrelationViewsRepository.LogicalModel.Properties.comments, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							LogicalModelPropertiesEditionPartForm.this,
+							EntityrelationViewsRepository.LogicalModel.Properties.comments,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									LogicalModelPropertiesEditionPartForm.this,
+									EntityrelationViewsRepository.LogicalModel.Properties.comments,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, comments.getText()));
+				}
 			}
 
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									LogicalModelPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
+			}
 		});
 		EditingUtils.setID(comments, EntityrelationViewsRepository.LogicalModel.Properties.comments);
 		EditingUtils.setEEFtype(comments, "eef::Textarea"); //$NON-NLS-1$
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(EntityrelationViewsRepository.LogicalModel.Properties.comments, EntityrelationViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
-
 
 
 	/**
@@ -310,8 +363,8 @@ public class LogicalModelPropertiesEditionPartForm extends CompositePropertiesEd
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -337,7 +390,6 @@ public class LogicalModelPropertiesEditionPartForm extends CompositePropertiesEd
 			name.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 
@@ -394,7 +446,6 @@ public class LogicalModelPropertiesEditionPartForm extends CompositePropertiesEd
 		return ((ReferencesTableSettings)usedLibraries.getInput()).contains(element);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -418,6 +469,8 @@ public class LogicalModelPropertiesEditionPartForm extends CompositePropertiesEd
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
+
+
 
 
 

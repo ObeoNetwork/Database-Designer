@@ -13,10 +13,11 @@ import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
+import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
@@ -31,10 +32,10 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.views.properties.tabbed.ISection;
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.ForeignKeysPropertiesEditionPart;
 import org.obeonetwork.dsl.database.providers.DatabaseMessages;
-
 
 // End of user code
 
@@ -42,13 +43,18 @@ import org.obeonetwork.dsl.database.providers.DatabaseMessages;
  * 
  * 
  */
-public class ForeignKeysPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, ForeignKeysPropertiesEditionPart {
+public class ForeignKeysPropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, ForeignKeysPropertiesEditionPart {
 
 	protected ReferencesTable foreignKeys;
 	protected List<ViewerFilter> foreignKeysBusinessFilters = new ArrayList<ViewerFilter>();
 	protected List<ViewerFilter> foreignKeysFilters = new ArrayList<ViewerFilter>();
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public ForeignKeysPropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -128,7 +134,7 @@ public class ForeignKeysPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * 
 	 */
 	protected Composite createForeignKeysTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.foreignKeys = new ReferencesTable(DatabaseMessages.ForeignKeysPropertiesEditionPart_ForeignKeysLabel, new ReferencesTableListener() {
+		this.foreignKeys = new ReferencesTable(getDescription(DatabaseViewsRepository.ForeignKeys.Properties.foreignKeys_, DatabaseMessages.ForeignKeysPropertiesEditionPart_ForeignKeysLabel), new ReferencesTableListener() {
 			public void handleAdd() {
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeysPropertiesEditionPartForm.this, DatabaseViewsRepository.ForeignKeys.Properties.foreignKeys_, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				foreignKeys.refresh();
@@ -172,7 +178,6 @@ public class ForeignKeysPropertiesEditionPartForm extends CompositePropertiesEdi
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -181,8 +186,8 @@ public class ForeignKeysPropertiesEditionPartForm extends CompositePropertiesEdi
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 
@@ -242,6 +247,8 @@ public class ForeignKeysPropertiesEditionPartForm extends CompositePropertiesEdi
 	public boolean isContainedInForeignKeysTable(EObject element) {
 		return ((ReferencesTableSettings)foreignKeys.getInput()).contains(element);
 	}
+
+
 
 
 

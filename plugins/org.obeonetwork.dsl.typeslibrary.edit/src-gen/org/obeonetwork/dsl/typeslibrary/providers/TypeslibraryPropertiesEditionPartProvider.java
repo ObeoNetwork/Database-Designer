@@ -22,9 +22,6 @@ import org.obeonetwork.dsl.typeslibrary.parts.impl.TypeInstancePropertiesEdition
 import org.obeonetwork.dsl.typeslibrary.parts.impl.UserDefinedTypeRefPropertiesEditionPartImpl;
 import org.obeonetwork.dsl.typeslibrary.parts.impl.UserDefinedTypesLibraryPropertiesEditionPartImpl;
 
-
-
-
 /**
  * 
  * 

@@ -17,11 +17,12 @@
       </PropertiesEditionPartProvider>
    </extension>
 
-   <!-- Tabbed properties views extension -->
+  <!-- Tabbed properties views extension -->
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor
-            contributorId="org.obeonetwork.dsl.properties">
+            contributorId="org.obeonetwork.dsl.properties"
+            labelProvider="org.eclipse.emf.eef.runtime.ui.utils.EEFLabelProvider">
          <propertyCategory
                category="default">
          </propertyCategory>
@@ -38,52 +39,48 @@
       <propertyTabs
             contributorId="org.obeonetwork.dsl.properties">
          <propertyTab
-               label="Base"
-               category="default"
-               id="Base">
-         </propertyTab>
-         <propertyTab
-               label="LogicalModel"
-               category="extended"
                id="LogicalModel"
-               afterTab="LogicalModel">
+               label="LogicalModel"
+               category="default">
          </propertyTab>
+
          <propertyTab
-               label="Entity"
-               category="extended"
                id="Entity"
-               afterTab="Entity">
+               label="Entity"
+               category="default">
          </propertyTab>
+
          <propertyTab
+               id="Identifiers"
                label="Identifiers"
                category="extended"
-               id="Identifiers"
-               afterTab="Base">
+               afterTab="Entity">
          </propertyTab>
+
          <propertyTab
-               label="Relation"
-               category="extended"
                id="Relation"
-               afterTab="Relation">
+               label="Relation"
+               category="default">
          </propertyTab>
+
          <propertyTab
-               label="Relation Element"
-               category="extended"
                id="Relation Element"
-               afterTab="Relation Element">
+               label="Relation Element"
+               category="default">
          </propertyTab>
+
          <propertyTab
-               label="Attribute"
-               category="extended"
                id="Attribute"
-               afterTab="Attribute">
+               label="Attribute"
+               category="default">
          </propertyTab>
+
          <propertyTab
-               label="Identifier"
-               category="extended"
                id="Identifier"
-               afterTab="Identifier">
+               label="Identifier"
+               category="default">
          </propertyTab>
+
       </propertyTabs>
    </extension>
    <extension
@@ -91,60 +88,46 @@
       <propertySections
             contributorId="org.obeonetwork.dsl.properties">
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.LogicalModelPropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.entityrelation.providers.LogicalModelPropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.entityrelation.section.LogicalModel"
                tab="LogicalModel">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.LogicalModel">
-             </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.EntityPropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.entityrelation.providers.EntityPropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.entityrelation.section.Entity"
                tab="Entity">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.Entity">
-             </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.IdentifiersPropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.entityrelation.providers.EntityPropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.entityrelation.section.Entity"
                tab="Identifiers">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.Entity">
-             </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.RelationPropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.entityrelation.providers.RelationPropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.entityrelation.section.Relation"
                tab="Relation">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.Relation">
-             </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.RelationElementPropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.entityrelation.providers.RelationElementPropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.entityrelation.section.RelationElement"
                tab="Relation Element">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.RelationElement">
-             </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.AttributePropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.entityrelation.providers.AttributePropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.entityrelation.section.Attribute"
                tab="Attribute">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.Attribute">
-             </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.IdentifierPropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.entityrelation.providers.IdentifierPropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.entityrelation.section.Identifier"
                tab="Identifier">
-             <input
-                    type="org.obeonetwork.dsl.entityrelation.Identifier">
-             </input>
          </propertySection>
       </propertySections>
    </extension>

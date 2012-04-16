@@ -6,50 +6,71 @@ package org.obeonetwork.dsl.database.parts.impl;
 // Start of user code for imports
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.providers.EMFListContentProvider;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ButtonsModeEnum;
 import org.eclipse.emf.eef.runtime.ui.widgets.EEFFeatureEditorDialog;
 import org.eclipse.emf.eef.runtime.ui.widgets.EMFComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.EObjectFlatComboViewer;
 import org.eclipse.emf.eef.runtime.ui.widgets.HorizontalBox;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.eobjflatcombo.EObjectFlatComboSettings;
+
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.jface.window.Window;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.obeonetwork.dsl.database.parts.ColumnPropertiesEditionPart;
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
-import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
+
+import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 
 // End of user code
 
@@ -206,8 +227,8 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.ColumnPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Column.Properties.name, DatabaseViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Column.Properties.name, DatabaseMessages.ColumnPropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -252,7 +273,7 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 
 	
 	protected Composite createTypeEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.ColumnPropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Column.Properties.type, DatabaseViewsRepository.SWT_KIND));
+		createDescription(parent, DatabaseViewsRepository.Column.Properties.type, DatabaseMessages.ColumnPropertiesEditionPart_TypeLabel);
 		type = new EMFComboViewer(parent);
 		GridData typeData = new GridData(GridData.FILL_HORIZONTAL);
 		type.getCombo().setLayoutData(typeData);
@@ -288,13 +309,13 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 		gridData.horizontalSpan = 3;
 		container.setLayoutData(gridData);
 		HorizontalBox typeAttributesHBox = new HorizontalBox(container);
-		return parent;
+		return typeAttributesHBox;
 	}
 
 	
 	protected Composite createLengthText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.ColumnPropertiesEditionPart_LengthLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Column.Properties.TypeAttributes.length, DatabaseViewsRepository.SWT_KIND));
-		length = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Column.Properties.TypeAttributes.length, DatabaseMessages.ColumnPropertiesEditionPart_LengthLabel);
+		length = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
 		length.setLayoutData(lengthData);
 		length.addFocusListener(new FocusAdapter() {
@@ -339,8 +360,8 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 
 	
 	protected Composite createPrecisionText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.ColumnPropertiesEditionPart_PrecisionLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Column.Properties.TypeAttributes.precision, DatabaseViewsRepository.SWT_KIND));
-		precision = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Column.Properties.TypeAttributes.precision, DatabaseMessages.ColumnPropertiesEditionPart_PrecisionLabel);
+		precision = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData precisionData = new GridData(GridData.FILL_HORIZONTAL);
 		precision.setLayoutData(precisionData);
 		precision.addFocusListener(new FocusAdapter() {
@@ -384,14 +405,14 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 	}
 
 	protected Composite createLiteralsMultiValuedEditor(Composite parent) {
-		literals = new Text(parent, SWT.BORDER | SWT.READ_ONLY);
+		literals = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.READ_ONLY);
 		GridData literalsData = new GridData(GridData.FILL_HORIZONTAL);
 		literalsData.horizontalSpan = 2;
 		literals.setLayoutData(literalsData);
 		EditingUtils.setID(literals, DatabaseViewsRepository.Column.Properties.literals);
 		EditingUtils.setEEFtype(literals, "eef::MultiValuedEditor::field"); //$NON-NLS-1$
 		editLiterals = new Button(parent, SWT.NONE);
-		editLiterals.setText(DatabaseMessages.ColumnPropertiesEditionPart_LiteralsLabel);
+		editLiterals.setText(getDescription(DatabaseViewsRepository.Column.Properties.literals, DatabaseMessages.ColumnPropertiesEditionPart_LiteralsLabel));
 		GridData editLiteralsData = new GridData();
 		editLiterals.setLayoutData(editLiteralsData);
 		editLiterals.addSelectionListener(new SelectionAdapter() {
@@ -438,13 +459,13 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 		GridData constraint = new GridData(GridData.FILL_HORIZONTAL);
 		constraint.horizontalAlignment = GridData.BEGINNING;
 		nullablePkAndUniqueHBox.setLayoutData(constraint);
-		return parent;
+		return nullablePkAndUniqueHBox;
 	}
 
 	
 	protected Composite createNullableCheckbox(Composite parent) {
 		nullable = new Button(parent, SWT.CHECK);
-		nullable.setText(DatabaseMessages.ColumnPropertiesEditionPart_NullableLabel);
+		nullable.setText(getDescription(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.nullable, DatabaseMessages.ColumnPropertiesEditionPart_NullableLabel));
 		nullable.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -471,7 +492,7 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 	
 	protected Composite createPrimaryKeyCheckbox(Composite parent) {
 		primaryKey = new Button(parent, SWT.CHECK);
-		primaryKey.setText(DatabaseMessages.ColumnPropertiesEditionPart_PrimaryKeyLabel);
+		primaryKey.setText(getDescription(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.primaryKey, DatabaseMessages.ColumnPropertiesEditionPart_PrimaryKeyLabel));
 		primaryKey.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -498,7 +519,7 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 	
 	protected Composite createUniqueCheckbox(Composite parent) {
 		unique = new Button(parent, SWT.CHECK);
-		unique.setText(DatabaseMessages.ColumnPropertiesEditionPart_UniqueLabel);
+		unique.setText(getDescription(DatabaseViewsRepository.Column.Properties.NullablePkAndUnique.unique, DatabaseMessages.ColumnPropertiesEditionPart_UniqueLabel));
 		unique.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -537,13 +558,13 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 		GridData constraint = new GridData(GridData.FILL_HORIZONTAL);
 		constraint.horizontalAlignment = GridData.BEGINNING;
 		sequenceHBox.setLayoutData(constraint);
-		return parent;
+		return sequenceHBox;
 	}
 
 	
 	protected Composite createAutoincrementCheckbox(Composite parent) {
 		autoincrement = new Button(parent, SWT.CHECK);
-		autoincrement.setText(DatabaseMessages.ColumnPropertiesEditionPart_AutoincrementLabel);
+		autoincrement.setText(getDescription(DatabaseViewsRepository.Column.Properties.Sequence.autoincrement, DatabaseMessages.ColumnPropertiesEditionPart_AutoincrementLabel));
 		autoincrement.addSelectionListener(new SelectionAdapter() {
 
 			/**
@@ -572,7 +593,7 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 	 * 
 	 */
 	protected Composite createSequenceFlatComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.ColumnPropertiesEditionPart_SequenceLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Column.Properties.Sequence.sequence_, DatabaseViewsRepository.SWT_KIND));
+		createDescription(parent, DatabaseViewsRepository.Column.Properties.Sequence.sequence_, DatabaseMessages.ColumnPropertiesEditionPart_SequenceLabel);
 		sequence = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(DatabaseViewsRepository.Column.Properties.Sequence.sequence_, DatabaseViewsRepository.SWT_KIND));
 		sequence.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -592,8 +613,8 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 
 	
 	protected Composite createDefaultValueText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.ColumnPropertiesEditionPart_DefaultValueLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Column.Properties.defaultValue, DatabaseViewsRepository.SWT_KIND));
-		defaultValue = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.Column.Properties.defaultValue, DatabaseMessages.ColumnPropertiesEditionPart_DefaultValueLabel);
+		defaultValue = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData defaultValueData = new GridData(GridData.FILL_HORIZONTAL);
 		defaultValue.setLayoutData(defaultValueData);
 		defaultValue.addFocusListener(new FocusAdapter() {
@@ -638,11 +659,11 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 
 	
 	protected Composite createCommentsTextarea(Composite parent) {
-		Label commentsLabel = SWTUtils.createPartLabel(parent, DatabaseMessages.ColumnPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Column.Properties.comments, DatabaseViewsRepository.SWT_KIND));
+		Label commentsLabel = createDescription(parent, DatabaseViewsRepository.Column.Properties.comments, DatabaseMessages.ColumnPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
-		comments = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
+		comments = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData commentsData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsData.horizontalSpan = 2;
 		commentsData.heightHint = 80;
@@ -669,7 +690,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -678,8 +698,8 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -705,7 +725,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 			name.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -756,7 +775,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 		type.addFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -781,7 +799,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -805,7 +822,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 			precision.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -850,7 +866,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -874,7 +889,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 			nullable.setSelection(false);
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -900,7 +914,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -925,7 +938,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -949,7 +961,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 			autoincrement.setSelection(false);
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -1021,7 +1032,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 		sequence.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1046,7 +1056,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1070,7 +1079,6 @@ public class ColumnPropertiesEditionPartImpl extends CompositePropertiesEditionP
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 

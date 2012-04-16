@@ -9,44 +9,65 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.context.impl.EObjectPropertiesEditionContext;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.policies.PropertiesEditingPolicy;
+
 import org.eclipse.emf.eef.runtime.providers.PropertiesEditingProvider;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.TabElementTreeSelectionDialog;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
+
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.obeonetwork.dsl.entityrelation.parts.EntityrelationViewsRepository;
 import org.obeonetwork.dsl.entityrelation.parts.LogicalModelPropertiesEditionPart;
-import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
 
+import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
 
 // End of user code
 
@@ -143,8 +164,8 @@ public class LogicalModelPropertiesEditionPartImpl extends CompositePropertiesEd
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, EntityrelationMessages.LogicalModelPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.LogicalModel.Properties.name, EntityrelationViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, EntityrelationViewsRepository.LogicalModel.Properties.name, EntityrelationMessages.LogicalModelPropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -191,7 +212,8 @@ public class LogicalModelPropertiesEditionPartImpl extends CompositePropertiesEd
 	 * 
 	 */
 	protected Composite createUsedLibrariesAdvancedReferencesTable(Composite parent) {
-		this.usedLibraries = new ReferencesTable(EntityrelationMessages.LogicalModelPropertiesEditionPart_UsedLibrariesLabel, new ReferencesTableListener() {
+		String label = getDescription(EntityrelationViewsRepository.LogicalModel.Properties.usedLibraries, EntityrelationMessages.LogicalModelPropertiesEditionPart_UsedLibrariesLabel);		 
+		this.usedLibraries = new ReferencesTable(label, new ReferencesTableListener() {
 			public void handleAdd() { addUsedLibraries(); }
 			public void handleEdit(EObject element) { editUsedLibraries(element); }
 			public void handleMove(EObject element, int oldIndex, int newIndex) { moveUsedLibraries(element, oldIndex, newIndex); }
@@ -270,11 +292,11 @@ public class LogicalModelPropertiesEditionPartImpl extends CompositePropertiesEd
 
 	
 	protected Composite createCommentsTextarea(Composite parent) {
-		Label commentsLabel = SWTUtils.createPartLabel(parent, EntityrelationMessages.LogicalModelPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.LogicalModel.Properties.comments, EntityrelationViewsRepository.SWT_KIND));
+		Label commentsLabel = createDescription(parent, EntityrelationViewsRepository.LogicalModel.Properties.comments, EntityrelationMessages.LogicalModelPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
-		comments = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
+		comments = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData commentsData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsData.horizontalSpan = 2;
 		commentsData.heightHint = 80;
@@ -301,7 +323,6 @@ public class LogicalModelPropertiesEditionPartImpl extends CompositePropertiesEd
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -310,8 +331,8 @@ public class LogicalModelPropertiesEditionPartImpl extends CompositePropertiesEd
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -337,7 +358,6 @@ public class LogicalModelPropertiesEditionPartImpl extends CompositePropertiesEd
 			name.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 
@@ -394,7 +414,6 @@ public class LogicalModelPropertiesEditionPartImpl extends CompositePropertiesEd
 		return ((ReferencesTableSettings)usedLibraries.getInput()).contains(element);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -418,7 +437,6 @@ public class LogicalModelPropertiesEditionPartImpl extends CompositePropertiesEd
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 

@@ -78,8 +78,8 @@ public class EntityIdentifiersPropertiesEditionComponent extends SinglePartPrope
 				identifiersPart.initIdentifiers(identifiersSettings);
 			}
 			// init filters
-			identifiersPart.addFilterToIdentifiers(new ViewerFilter() {
-			
+			if (isAccessible(EntityrelationViewsRepository.Identifiers.Properties.identifiers_)) {
+				identifiersPart.addFilterToIdentifiers(new ViewerFilter() {
 					/**
 					 * {@inheritDoc}
 					 * 
@@ -89,10 +89,10 @@ public class EntityIdentifiersPropertiesEditionComponent extends SinglePartPrope
 						return (element instanceof String && element.equals("")) || (element instanceof Identifier); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for identifiers
-			// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for identifiers
+				// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -108,7 +108,7 @@ public class EntityIdentifiersPropertiesEditionComponent extends SinglePartPrope
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == EntityrelationViewsRepository.Identifiers.Properties.identifiers_) {
 			return EntityRelationPackage.eINSTANCE.getEntity_Identifiers();
 		}
@@ -154,7 +154,7 @@ public class EntityIdentifiersPropertiesEditionComponent extends SinglePartPrope
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			IdentifiersPropertiesEditionPart identifiersPart = (IdentifiersPropertiesEditionPart)editingPart;
 			if (EntityRelationPackage.eINSTANCE.getEntity_Identifiers().equals(msg.getFeature()) && isAccessible(EntityrelationViewsRepository.Identifiers.Properties.identifiers_))
 				identifiersPart.updateIdentifiers();

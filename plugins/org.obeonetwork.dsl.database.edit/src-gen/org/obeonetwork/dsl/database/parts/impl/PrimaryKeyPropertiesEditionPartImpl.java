@@ -9,48 +9,66 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.EMFModelViewerDialog;
 import org.eclipse.emf.eef.runtime.ui.widgets.SWTUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
+
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
 import org.eclipse.swt.graphics.Image;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
-import org.obeonetwork.dsl.database.Column;
+
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.PrimaryKeyPropertiesEditionPart;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
 // End of user code
 
@@ -149,8 +167,8 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, DatabaseMessages.PrimaryKeyPropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.PrimaryKey.Properties.name, DatabaseViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, DatabaseViewsRepository.PrimaryKey.Properties.name, DatabaseMessages.PrimaryKeyPropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -198,7 +216,7 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 * 
 	 */
 	protected Composite createColumnsReferencesTable(Composite parent) {
-		Label columnsLabel = SWTUtils.createPartLabel(parent, DatabaseMessages.PrimaryKeyPropertiesEditionPart_ColumnsLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.PrimaryKey.Properties.columns, DatabaseViewsRepository.SWT_KIND));
+		Label columnsLabel = createDescription(parent, DatabaseViewsRepository.PrimaryKey.Properties.columns, DatabaseMessages.PrimaryKeyPropertiesEditionPart_ColumnsLabel);
 		GridData columnsLabelData = new GridData();
 		columnsLabelData.horizontalSpan = 3;
 		columnsLabel.setLayoutData(columnsLabelData);
@@ -228,12 +246,9 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 		table.setLayoutData(gd);
 		table.setLinesVisible(true);
 		// Start of user code for table columns s columns definition
-		TableColumn name = new TableColumn(table, SWT.NONE);
-		name.setWidth(80);
-		name.setText("Name"); //$NON-NLS-1$
-		TableColumn type = new TableColumn(table, SWT.NONE);
-		type.setWidth(80);
-		type.setText("Type"); //$NON-NLS-1$
+				TableColumn name = new TableColumn(table, SWT.NONE);
+				name.setWidth(80);
+				name.setText("Label"); //$NON-NLS-1$
 		
 		// End of user code
 
@@ -241,23 +256,20 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 		result.setLabelProvider(new ITableLabelProvider() {
 
 			// Start of user code for table columns label provider
-			public String getColumnText(Object object, int columnIndex) {
-				AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
-				if (object instanceof Column) {
-					Column column = (Column)object;
-					switch (columnIndex) {
-					case 0:
-						return column.getName();
-					case 1:
-						return labelProvider.getText(column.getType());
-					}
-				}
-				return ""; //$NON-NLS-1$
-			}
-
-			public Image getColumnImage(Object element, int columnIndex) {
-				return null;
-			}
+						public String getColumnText(Object object, int columnIndex) {
+							AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+							if (object instanceof EObject) {
+								switch (columnIndex) {
+								case 0:
+									return labelProvider.getText(object);
+								}
+							}
+							return ""; //$NON-NLS-1$
+						}
+			
+						public Image getColumnImage(Object element, int columnIndex) {
+							return null;
+						}
 			
 			// End of user code
 
@@ -359,11 +371,11 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 
 	
 	protected Composite createCommentsTextarea(Composite parent) {
-		Label commentsLabel = SWTUtils.createPartLabel(parent, DatabaseMessages.PrimaryKeyPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.PrimaryKey.Properties.comments, DatabaseViewsRepository.SWT_KIND));
+		Label commentsLabel = createDescription(parent, DatabaseViewsRepository.PrimaryKey.Properties.comments, DatabaseMessages.PrimaryKeyPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
-		comments = new Text(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
+		comments = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL);
 		GridData commentsData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsData.horizontalSpan = 2;
 		commentsData.heightHint = 80;
@@ -390,7 +402,6 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -399,8 +410,8 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -426,7 +437,6 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 			name.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 
@@ -483,7 +493,6 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 		return ((ReferencesTableSettings)columns.getInput()).contains(element);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -513,7 +522,6 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 
 
 
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -525,6 +533,7 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 	}
 
 	// Start of user code additional methods
+	
 	// End of user code
 
 

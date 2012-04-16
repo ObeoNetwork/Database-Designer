@@ -10,7 +10,7 @@ import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
@@ -38,10 +38,10 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.views.properties.tabbed.ISection;
 import org.obeonetwork.dsl.entityrelation.parts.EntityrelationViewsRepository;
 import org.obeonetwork.dsl.entityrelation.parts.RelationElementPropertiesEditionPart;
 import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
-
 
 // End of user code
 
@@ -49,7 +49,7 @@ import org.obeonetwork.dsl.entityrelation.providers.EntityrelationMessages;
  * 
  * 
  */
-public class RelationElementPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, RelationElementPropertiesEditionPart {
+public class RelationElementPropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, RelationElementPropertiesEditionPart {
 
 	protected Text sourceEntity;
 	protected EObjectFlatComboViewer sourceAttribute;
@@ -58,6 +58,11 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 	protected Text comments;
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public RelationElementPropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -111,13 +116,13 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 					return createPropertiesGroup(widgetFactory, parent);
 				}
 				if (key == EntityrelationViewsRepository.RelationElement.Properties.sourceEntity) {
-					return 		createSourceEntityText(widgetFactory, parent);
+					return createSourceEntityText(widgetFactory, parent);
 				}
 				if (key == EntityrelationViewsRepository.RelationElement.Properties.sourceAttribute) {
 					return createSourceAttributeFlatComboViewer(parent, widgetFactory);
 				}
 				if (key == EntityrelationViewsRepository.RelationElement.Properties.targetEntity) {
-					return 		createTargetEntityText(widgetFactory, parent);
+					return createTargetEntityText(widgetFactory, parent);
 				}
 				if (key == EntityrelationViewsRepository.RelationElement.Properties.targetAttribute) {
 					return createTargetAttributeFlatComboViewer(parent, widgetFactory);
@@ -149,7 +154,7 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 
 	
 	protected Composite createSourceEntityText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationElementPropertiesEditionPart_SourceEntityLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.sourceEntity, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.RelationElement.Properties.sourceEntity, EntityrelationMessages.RelationElementPropertiesEditionPart_SourceEntityLabel);
 		sourceEntity = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		sourceEntity.setEnabled(false);
 		sourceEntity.setToolTipText(EntityrelationMessages.RelationElement_ReadOnly);
@@ -165,8 +170,33 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RelationElementPropertiesEditionPartForm.this, EntityrelationViewsRepository.RelationElement.Properties.sourceEntity, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, sourceEntity.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							RelationElementPropertiesEditionPartForm.this,
+							EntityrelationViewsRepository.RelationElement.Properties.sourceEntity,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, sourceEntity.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationElementPropertiesEditionPartForm.this,
+									EntityrelationViewsRepository.RelationElement.Properties.sourceEntity,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, sourceEntity.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationElementPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		sourceEntity.addKeyListener(new KeyAdapter() {
@@ -195,7 +225,7 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 	 * 
 	 */
 	protected Composite createSourceAttributeFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationElementPropertiesEditionPart_SourceAttributeLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.sourceAttribute, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.RelationElement.Properties.sourceAttribute, EntityrelationMessages.RelationElementPropertiesEditionPart_SourceAttributeLabel);
 		sourceAttribute = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.sourceAttribute, EntityrelationViewsRepository.FORM_KIND));
 		widgetFactory.adapt(sourceAttribute);
 		sourceAttribute.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
@@ -221,7 +251,7 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 
 	
 	protected Composite createTargetEntityText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationElementPropertiesEditionPart_TargetEntityLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.targetEntity, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.RelationElement.Properties.targetEntity, EntityrelationMessages.RelationElementPropertiesEditionPart_TargetEntityLabel);
 		targetEntity = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		targetEntity.setEnabled(false);
 		targetEntity.setToolTipText(EntityrelationMessages.RelationElement_ReadOnly);
@@ -237,8 +267,33 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RelationElementPropertiesEditionPartForm.this, EntityrelationViewsRepository.RelationElement.Properties.targetEntity, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, targetEntity.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							RelationElementPropertiesEditionPartForm.this,
+							EntityrelationViewsRepository.RelationElement.Properties.targetEntity,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, targetEntity.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationElementPropertiesEditionPartForm.this,
+									EntityrelationViewsRepository.RelationElement.Properties.targetEntity,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, targetEntity.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationElementPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		targetEntity.addKeyListener(new KeyAdapter() {
@@ -267,7 +322,7 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 	 * 
 	 */
 	protected Composite createTargetAttributeFlatComboViewer(Composite parent, FormToolkit widgetFactory) {
-		FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationElementPropertiesEditionPart_TargetAttributeLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.targetAttribute, EntityrelationViewsRepository.FORM_KIND));
+		createDescription(parent, EntityrelationViewsRepository.RelationElement.Properties.targetAttribute, EntityrelationMessages.RelationElementPropertiesEditionPart_TargetAttributeLabel);
 		targetAttribute = new EObjectFlatComboViewer(parent, !propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.targetAttribute, EntityrelationViewsRepository.FORM_KIND));
 		widgetFactory.adapt(targetAttribute);
 		targetAttribute.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
@@ -293,7 +348,7 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 
 	
 	protected Composite createCommentsTextarea(FormToolkit widgetFactory, Composite parent) {
-		Label commentsLabel = FormUtils.createPartLabel(widgetFactory, parent, EntityrelationMessages.RelationElementPropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(EntityrelationViewsRepository.RelationElement.Properties.comments, EntityrelationViewsRepository.FORM_KIND));
+		Label commentsLabel = createDescription(parent, EntityrelationViewsRepository.RelationElement.Properties.comments, EntityrelationMessages.RelationElementPropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
@@ -312,17 +367,40 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 			 * 
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(RelationElementPropertiesEditionPartForm.this, EntityrelationViewsRepository.RelationElement.Properties.comments, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							RelationElementPropertiesEditionPartForm.this,
+							EntityrelationViewsRepository.RelationElement.Properties.comments,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationElementPropertiesEditionPartForm.this,
+									EntityrelationViewsRepository.RelationElement.Properties.comments,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, comments.getText()));
+				}
 			}
 
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									RelationElementPropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
+			}
 		});
 		EditingUtils.setID(comments, EntityrelationViewsRepository.RelationElement.Properties.comments);
 		EditingUtils.setEEFtype(comments, "eef::Textarea"); //$NON-NLS-1$
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(EntityrelationViewsRepository.RelationElement.Properties.comments, EntityrelationViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
-
 
 
 	/**
@@ -333,8 +411,8 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -360,7 +438,6 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 			sourceEntity.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -432,7 +509,6 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 		sourceAttribute.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -456,7 +532,6 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 			targetEntity.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -528,7 +603,6 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 		targetAttribute.addBusinessRuleFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -552,6 +626,8 @@ public class RelationElementPropertiesEditionPartForm extends CompositePropertie
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
+
+
 
 
 

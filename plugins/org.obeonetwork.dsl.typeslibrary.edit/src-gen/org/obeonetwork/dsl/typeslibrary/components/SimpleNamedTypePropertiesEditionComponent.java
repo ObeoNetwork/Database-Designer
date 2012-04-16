@@ -43,13 +43,13 @@ import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
 public class SimpleNamedTypePropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String SIMPLENAMEDTYPE_PART = "SimpleNamedType"; //$NON-NLS-1$
 
 	
 	/**
 	 * Settings for type EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings typeSettings;
+	private EObjectFlatComboSettings typeSettings;
 	
 	
 	/**
@@ -58,7 +58,7 @@ public class SimpleNamedTypePropertiesEditionComponent extends SinglePartPropert
 	 */
 	public SimpleNamedTypePropertiesEditionComponent(PropertiesEditingContext editingContext, EObject simpleNamedType, String editing_mode) {
 		super(editingContext, simpleNamedType, editing_mode);
-		parts = new String[] { BASE_PART };
+		parts = new String[] { SIMPLENAMEDTYPE_PART };
 		repositoryKey = TypeslibraryViewsRepository.class;
 		partKey = TypeslibraryViewsRepository.SimpleNamedType.class;
 	}
@@ -75,35 +75,36 @@ public class SimpleNamedTypePropertiesEditionComponent extends SinglePartPropert
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
 			final SimpleNamedType simpleNamedType = (SimpleNamedType)elt;
-			final SimpleNamedTypePropertiesEditionPart basePart = (SimpleNamedTypePropertiesEditionPart)editingPart;
+			final SimpleNamedTypePropertiesEditionPart simpleNamedTypePart = (SimpleNamedTypePropertiesEditionPart)editingPart;
 			// init values
 			if (simpleNamedType.getName() != null && isAccessible(TypeslibraryViewsRepository.SimpleNamedType.Properties.name))
-				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), simpleNamedType.getName()));
+				simpleNamedTypePart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, simpleNamedType.getName()));
 			
 			if (isAccessible(TypeslibraryViewsRepository.SimpleNamedType.Properties.type)) {
 				// init part
 				typeSettings = new EObjectFlatComboSettings(simpleNamedType, TypesLibraryPackage.eINSTANCE.getSimpleNamedType_Type());
-				basePart.initType(typeSettings);
+				simpleNamedTypePart.initType(typeSettings);
 				// set the button mode
-				basePart.setTypeButtonMode(ButtonsModeEnum.BROWSE);
+				simpleNamedTypePart.setTypeButtonMode(ButtonsModeEnum.BROWSE);
 			}
 			// init filters
 			
-			basePart.addFilterToType(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof TypeInstance);
-				}
-			
-			});
-			// Start of user code for additional businessfilters for type
-			// End of user code
-			
+			if (isAccessible(TypeslibraryViewsRepository.SimpleNamedType.Properties.type)) {
+				simpleNamedTypePart.addFilterToType(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof TypeInstance);
+					}
+					
+				});
+				// Start of user code for additional businessfilters for type
+				// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -120,7 +121,7 @@ public class SimpleNamedTypePropertiesEditionComponent extends SinglePartPropert
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == TypeslibraryViewsRepository.SimpleNamedType.Properties.name) {
 			return TypesLibraryPackage.eINSTANCE.getUserDefinedType_Name();
 		}
@@ -138,7 +139,7 @@ public class SimpleNamedTypePropertiesEditionComponent extends SinglePartPropert
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		SimpleNamedType simpleNamedType = (SimpleNamedType)semanticObject;
 		if (TypeslibraryViewsRepository.SimpleNamedType.Properties.name == event.getAffectedEditor()) {
-			simpleNamedType.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			simpleNamedType.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (TypeslibraryViewsRepository.SimpleNamedType.Properties.type == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
@@ -163,17 +164,17 @@ public class SimpleNamedTypePropertiesEditionComponent extends SinglePartPropert
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
-			SimpleNamedTypePropertiesEditionPart basePart = (SimpleNamedTypePropertiesEditionPart)editingPart;
-			if (TypesLibraryPackage.eINSTANCE.getUserDefinedType_Name().equals(msg.getFeature()) && basePart != null && isAccessible(TypeslibraryViewsRepository.SimpleNamedType.Properties.name)) {
+		if (editingPart.isVisible()) {
+			SimpleNamedTypePropertiesEditionPart simpleNamedTypePart = (SimpleNamedTypePropertiesEditionPart)editingPart;
+			if (TypesLibraryPackage.eINSTANCE.getUserDefinedType_Name().equals(msg.getFeature()) && simpleNamedTypePart != null && isAccessible(TypeslibraryViewsRepository.SimpleNamedType.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					simpleNamedTypePart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
-					basePart.setName("");
+					simpleNamedTypePart.setName("");
 				}
 			}
-			if (TypesLibraryPackage.eINSTANCE.getSimpleNamedType_Type().equals(msg.getFeature()) && basePart != null && isAccessible(TypeslibraryViewsRepository.SimpleNamedType.Properties.type))
-				basePart.setType((EObject)msg.getNewValue());
+			if (TypesLibraryPackage.eINSTANCE.getSimpleNamedType_Type().equals(msg.getFeature()) && simpleNamedTypePart != null && isAccessible(TypeslibraryViewsRepository.SimpleNamedType.Properties.type))
+				simpleNamedTypePart.setType((EObject)msg.getNewValue());
 			
 		}
 	}
@@ -202,7 +203,7 @@ public class SimpleNamedTypePropertiesEditionComponent extends SinglePartPropert
 				if (TypeslibraryViewsRepository.SimpleNamedType.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(TypesLibraryPackage.eINSTANCE.getUserDefinedType_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(TypesLibraryPackage.eINSTANCE.getUserDefinedType_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(TypesLibraryPackage.eINSTANCE.getUserDefinedType_Name().getEAttributeType(), newValue);
 				}

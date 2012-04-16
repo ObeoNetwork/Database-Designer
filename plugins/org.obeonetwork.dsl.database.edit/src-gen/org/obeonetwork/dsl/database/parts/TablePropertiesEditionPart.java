@@ -5,9 +5,10 @@ package org.obeonetwork.dsl.database.parts;
 
 // Start of user code for imports
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
-import org.eclipse.jface.viewers.ViewerFilter;
 
+import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
+
+import org.eclipse.jface.viewers.ViewerFilter;
 
 
 // End of user code
@@ -102,7 +103,7 @@ public interface TablePropertiesEditionPart {
 	public String getTitle();
 
 	// Start of user code for additional methods
-
-// End of user code
+	
+	// End of user code
 
 }

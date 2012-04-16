@@ -17,11 +17,12 @@
       </PropertiesEditionPartProvider>
    </extension>
 
-   <!-- Tabbed properties views extension -->
+  <!-- Tabbed properties views extension -->
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor
-            contributorId="org.obeonetwork.dsl.typeslibrary.properties">
+            contributorId="org.obeonetwork.dsl.typeslibrary.properties"
+            labelProvider="org.eclipse.emf.eef.runtime.ui.utils.EEFLabelProvider">
          <propertyCategory
                category="default">
          </propertyCategory>
@@ -38,10 +39,47 @@
       <propertyTabs
             contributorId="org.obeonetwork.dsl.typeslibrary.properties">
          <propertyTab
-               label="Base"
-               category="default"
-               id="Base">
+               id="NativeTypesLibrary"
+               label="NativeTypesLibrary"
+               category="default">
          </propertyTab>
+
+         <propertyTab
+               id="TypeInstance"
+               label="TypeInstance"
+               category="default">
+         </propertyTab>
+
+         <propertyTab
+               id="NativeType"
+               label="NativeType"
+               category="default">
+         </propertyTab>
+
+         <propertyTab
+               id="ComplexNamedType"
+               label="ComplexNamedType"
+               category="default">
+         </propertyTab>
+
+         <propertyTab
+               id="SimpleNamedType"
+               label="SimpleNamedType"
+               category="default">
+         </propertyTab>
+
+         <propertyTab
+               id="UserDefinedTypeRef"
+               label="UserDefinedTypeRef"
+               category="default">
+         </propertyTab>
+
+         <propertyTab
+               id="UserDefinedTypesLibrary"
+               label="UserDefinedTypesLibrary"
+               category="default">
+         </propertyTab>
+
       </propertyTabs>
    </extension>
    <extension
@@ -49,60 +87,46 @@
       <propertySections
             contributorId="org.obeonetwork.dsl.typeslibrary.properties">
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.typeslibrary.parts.forms.NativeTypesLibraryPropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.typeslibrary.providers.NativeTypesLibraryPropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.typeslibrary.section.NativeTypesLibrary"
-               tab="Base">
-             <input
-                    type="org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary">
-             </input>
+               tab="NativeTypesLibrary">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.typeslibrary.parts.forms.TypeInstancePropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.typeslibrary.providers.TypeInstancePropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.typeslibrary.section.TypeInstance"
-               tab="Base">
-             <input
-                    type="org.obeonetwork.dsl.typeslibrary.TypeInstance">
-             </input>
+               tab="TypeInstance">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.typeslibrary.parts.forms.NativeTypePropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.typeslibrary.providers.NativeTypePropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.typeslibrary.section.NativeType"
-               tab="Base">
-             <input
-                    type="org.obeonetwork.dsl.typeslibrary.NativeType">
-             </input>
+               tab="NativeType">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.typeslibrary.parts.forms.ComplexNamedTypePropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.typeslibrary.providers.ComplexNamedTypePropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.typeslibrary.section.ComplexNamedType"
-               tab="Base">
-             <input
-                    type="org.obeonetwork.dsl.typeslibrary.ComplexNamedType">
-             </input>
+               tab="ComplexNamedType">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.typeslibrary.parts.forms.SimpleNamedTypePropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.typeslibrary.providers.SimpleNamedTypePropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.typeslibrary.section.SimpleNamedType"
-               tab="Base">
-             <input
-                    type="org.obeonetwork.dsl.typeslibrary.SimpleNamedType">
-             </input>
+               tab="SimpleNamedType">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.typeslibrary.parts.forms.UserDefinedTypeRefPropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.typeslibrary.providers.UserDefinedTypeRefPropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.typeslibrary.section.UserDefinedTypeRef"
-               tab="Base">
-             <input
-                    type="org.obeonetwork.dsl.typeslibrary.UserDefinedTypeRef">
-             </input>
+               tab="UserDefinedTypeRef">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.typeslibrary.parts.forms.UserDefinedTypesLibraryPropertiesEditionPartForm"
+               filter="org.obeonetwork.dsl.typeslibrary.providers.UserDefinedTypesLibraryPropertiesEditionProvider$EditionFilter"
                id="org.obeonetwork.dsl.typeslibrary.section.UserDefinedTypesLibrary"
-               tab="Base">
-             <input
-                    type="org.obeonetwork.dsl.typeslibrary.UserDefinedTypesLibrary">
-             </input>
+               tab="UserDefinedTypesLibrary">
          </propertySection>
       </propertySections>
    </extension>

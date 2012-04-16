@@ -5,35 +5,49 @@ package org.obeonetwork.dsl.database.parts.forms;
 
 // Start of user code for imports
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionStep;
+
 import org.eclipse.emf.eef.runtime.ui.utils.EditingUtils;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.FormUtils;
 import org.eclipse.emf.eef.runtime.ui.widgets.HorizontalBox;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.SequencePropertiesEditionPart;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
 // End of user code
 
@@ -41,7 +55,7 @@ import org.obeonetwork.dsl.database.providers.DatabaseMessages;
  * 
  * 
  */
-public class SequencePropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, SequencePropertiesEditionPart {
+public class SequencePropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, SequencePropertiesEditionPart {
 
 	protected Text name;
 	protected Text start;
@@ -51,6 +65,11 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 	protected Text comments;
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public SequencePropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -109,25 +128,25 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 					return createPropertiesGroup(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Sequence.Properties.name) {
-					return 		createNameText(widgetFactory, parent);
+					return createNameText(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Sequence.Properties.StartIncrement.class) {
 					return createStartIncrementHBox(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Sequence.Properties.StartIncrement.start) {
-					return 		createStartText(widgetFactory, parent);
+					return createStartText(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment) {
-					return 		createIncrementText(widgetFactory, parent);
+					return createIncrementText(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Sequence.Properties.MinMax.class) {
 					return createMinMaxHBox(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Sequence.Properties.MinMax.minValue) {
-					return 		createMinValueText(widgetFactory, parent);
+					return createMinValueText(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue) {
-					return 		createMaxValueText(widgetFactory, parent);
+					return createMaxValueText(widgetFactory, parent);
 				}
 				if (key == DatabaseViewsRepository.Sequence.Properties.comments) {
 					return createCommentsTextarea(widgetFactory, parent);
@@ -156,7 +175,7 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createNameText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.SequencePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Sequence.Properties.name, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.Sequence.Properties.name, DatabaseMessages.SequencePropertiesEditionPart_NameLabel);
 		name = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		name.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -170,8 +189,33 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SequencePropertiesEditionPartForm.this, DatabaseViewsRepository.Sequence.Properties.name, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							SequencePropertiesEditionPartForm.this,
+							DatabaseViewsRepository.Sequence.Properties.name,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, name.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									SequencePropertiesEditionPartForm.this,
+									DatabaseViewsRepository.Sequence.Properties.name,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, name.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									SequencePropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		name.addKeyListener(new KeyAdapter() {
@@ -204,14 +248,14 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.horizontalSpan=3;
 		container.setLayoutData(gridData);
-		HorizontalBox startIncrementHBox = new HorizontalBox(container);
+				HorizontalBox startIncrementHBox = new HorizontalBox(container);
 		widgetFactory.adapt(startIncrementHBox);
 		return startIncrementHBox;
 	}
 
 	
 	protected Composite createStartText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.SequencePropertiesEditionPart_StartLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Sequence.Properties.StartIncrement.start, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.Sequence.Properties.StartIncrement.start, DatabaseMessages.SequencePropertiesEditionPart_StartLabel);
 		start = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		start.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -225,8 +269,33 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SequencePropertiesEditionPartForm.this, DatabaseViewsRepository.Sequence.Properties.StartIncrement.start, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, start.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							SequencePropertiesEditionPartForm.this,
+							DatabaseViewsRepository.Sequence.Properties.StartIncrement.start,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, start.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									SequencePropertiesEditionPartForm.this,
+									DatabaseViewsRepository.Sequence.Properties.StartIncrement.start,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, start.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									SequencePropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		start.addKeyListener(new KeyAdapter() {
@@ -251,7 +320,7 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createIncrementText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.SequencePropertiesEditionPart_IncrementLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment, DatabaseMessages.SequencePropertiesEditionPart_IncrementLabel);
 		increment = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		increment.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -265,8 +334,33 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SequencePropertiesEditionPartForm.this, DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, increment.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							SequencePropertiesEditionPartForm.this,
+							DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, increment.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									SequencePropertiesEditionPartForm.this,
+									DatabaseViewsRepository.Sequence.Properties.StartIncrement.increment,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, increment.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									SequencePropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		increment.addKeyListener(new KeyAdapter() {
@@ -299,14 +393,14 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.horizontalSpan=3;
 		container.setLayoutData(gridData);
-		HorizontalBox minMaxHBox = new HorizontalBox(container);
+				HorizontalBox minMaxHBox = new HorizontalBox(container);
 		widgetFactory.adapt(minMaxHBox);
 		return minMaxHBox;
 	}
 
 	
 	protected Composite createMinValueText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.SequencePropertiesEditionPart_MinValueLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Sequence.Properties.MinMax.minValue, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.Sequence.Properties.MinMax.minValue, DatabaseMessages.SequencePropertiesEditionPart_MinValueLabel);
 		minValue = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		minValue.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -320,8 +414,33 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SequencePropertiesEditionPartForm.this, DatabaseViewsRepository.Sequence.Properties.MinMax.minValue, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, minValue.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							SequencePropertiesEditionPartForm.this,
+							DatabaseViewsRepository.Sequence.Properties.MinMax.minValue,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, minValue.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									SequencePropertiesEditionPartForm.this,
+									DatabaseViewsRepository.Sequence.Properties.MinMax.minValue,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, minValue.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									SequencePropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		minValue.addKeyListener(new KeyAdapter() {
@@ -346,7 +465,7 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createMaxValueText(FormToolkit widgetFactory, Composite parent) {
-		FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.SequencePropertiesEditionPart_MaxValueLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue, DatabaseViewsRepository.FORM_KIND));
+		createDescription(parent, DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue, DatabaseMessages.SequencePropertiesEditionPart_MaxValueLabel);
 		maxValue = widgetFactory.createText(parent, ""); //$NON-NLS-1$
 		maxValue.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
 		widgetFactory.paintBordersFor(parent);
@@ -360,8 +479,33 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 			@Override
 			@SuppressWarnings("synthetic-access")
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SequencePropertiesEditionPartForm.this, DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, maxValue.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							SequencePropertiesEditionPartForm.this,
+							DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, maxValue.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									SequencePropertiesEditionPartForm.this,
+									DatabaseViewsRepository.Sequence.Properties.MinMax.maxValue,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, maxValue.getText()));
+				}
+			}
+
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									SequencePropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
 			}
 		});
 		maxValue.addKeyListener(new KeyAdapter() {
@@ -386,7 +530,7 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 
 	
 	protected Composite createCommentsTextarea(FormToolkit widgetFactory, Composite parent) {
-		Label commentsLabel = FormUtils.createPartLabel(widgetFactory, parent, DatabaseMessages.SequencePropertiesEditionPart_CommentsLabel, propertiesEditionComponent.isRequired(DatabaseViewsRepository.Sequence.Properties.comments, DatabaseViewsRepository.FORM_KIND));
+		Label commentsLabel = createDescription(parent, DatabaseViewsRepository.Sequence.Properties.comments, DatabaseMessages.SequencePropertiesEditionPart_CommentsLabel);
 		GridData commentsLabelData = new GridData(GridData.FILL_HORIZONTAL);
 		commentsLabelData.horizontalSpan = 3;
 		commentsLabel.setLayoutData(commentsLabelData);
@@ -405,17 +549,40 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 			 * 
 			 */
 			public void focusLost(FocusEvent e) {
-				if (propertiesEditionComponent != null)
-					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(SequencePropertiesEditionPartForm.this, DatabaseViewsRepository.Sequence.Properties.comments, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(
+							SequencePropertiesEditionPartForm.this,
+							DatabaseViewsRepository.Sequence.Properties.comments,
+							PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.SET, null, comments.getText()));
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									SequencePropertiesEditionPartForm.this,
+									DatabaseViewsRepository.Sequence.Properties.comments,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_LOST,
+									null, comments.getText()));
+				}
 			}
 
+			/**
+			 * @see org.eclipse.swt.events.FocusAdapter#focusGained(org.eclipse.swt.events.FocusEvent)
+			 */
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (propertiesEditionComponent != null) {
+					propertiesEditionComponent
+							.firePropertiesChanged(new PropertiesEditionEvent(
+									SequencePropertiesEditionPartForm.this,
+									null,
+									PropertiesEditionEvent.FOCUS_CHANGED, PropertiesEditionEvent.FOCUS_GAINED,
+									null, null));
+				}
+			}
 		});
 		EditingUtils.setID(comments, DatabaseViewsRepository.Sequence.Properties.comments);
 		EditingUtils.setEEFtype(comments, "eef::Textarea"); //$NON-NLS-1$
 		FormUtils.createHelpButton(widgetFactory, parent, propertiesEditionComponent.getHelpContent(DatabaseViewsRepository.Sequence.Properties.comments, DatabaseViewsRepository.FORM_KIND), null); //$NON-NLS-1$
 		return parent;
 	}
-
 
 
 	/**
@@ -426,8 +593,8 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -454,7 +621,6 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -478,7 +644,6 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 			start.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -504,7 +669,6 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -528,7 +692,6 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 			minValue.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -554,7 +717,6 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -578,6 +740,8 @@ public class SequencePropertiesEditionPartForm extends CompositePropertiesEditio
 			comments.setText(""); //$NON-NLS-1$
 		}
 	}
+
+
 
 
 

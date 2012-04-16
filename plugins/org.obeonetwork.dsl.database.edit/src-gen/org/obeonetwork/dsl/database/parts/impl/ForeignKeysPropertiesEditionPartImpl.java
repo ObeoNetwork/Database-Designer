@@ -8,31 +8,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
+
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.ForeignKeysPropertiesEditionPart;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
 // End of user code
 
@@ -42,9 +57,9 @@ import org.obeonetwork.dsl.database.providers.DatabaseMessages;
  */
 public class ForeignKeysPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ForeignKeysPropertiesEditionPart {
 
-protected ReferencesTable foreignKeys;
-protected List<ViewerFilter> foreignKeysBusinessFilters = new ArrayList<ViewerFilter>();
-protected List<ViewerFilter> foreignKeysFilters = new ArrayList<ViewerFilter>();
+	protected ReferencesTable foreignKeys;
+	protected List<ViewerFilter> foreignKeysBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> foreignKeysFilters = new ArrayList<ViewerFilter>();
 
 
 
@@ -123,7 +138,7 @@ protected List<ViewerFilter> foreignKeysFilters = new ArrayList<ViewerFilter>();
 	 * 
 	 */
 	protected Composite createForeignKeysAdvancedTableComposition(Composite parent) {
-		this.foreignKeys = new ReferencesTable(DatabaseMessages.ForeignKeysPropertiesEditionPart_ForeignKeysLabel, new ReferencesTableListener() {
+		this.foreignKeys = new ReferencesTable(getDescription(DatabaseViewsRepository.ForeignKeys.Properties.foreignKeys_, DatabaseMessages.ForeignKeysPropertiesEditionPart_ForeignKeysLabel), new ReferencesTableListener() {
 			public void handleAdd() { 
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ForeignKeysPropertiesEditionPartImpl.this, DatabaseViewsRepository.ForeignKeys.Properties.foreignKeys_, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				foreignKeys.refresh();
@@ -167,7 +182,6 @@ protected List<ViewerFilter> foreignKeysFilters = new ArrayList<ViewerFilter>();
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -176,8 +190,8 @@ protected List<ViewerFilter> foreignKeysFilters = new ArrayList<ViewerFilter>();
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 
@@ -237,7 +251,6 @@ protected List<ViewerFilter> foreignKeysFilters = new ArrayList<ViewerFilter>();
 	public boolean isContainedInForeignKeysTable(EObject element) {
 		return ((ReferencesTableSettings)foreignKeys.getInput()).contains(element);
 	}
-
 
 
 

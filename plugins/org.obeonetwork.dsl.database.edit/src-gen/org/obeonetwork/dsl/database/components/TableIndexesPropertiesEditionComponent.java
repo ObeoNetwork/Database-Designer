@@ -78,8 +78,8 @@ public class TableIndexesPropertiesEditionComponent extends SinglePartProperties
 				indexesPart.initIndexes(indexesSettings);
 			}
 			// init filters
-			indexesPart.addFilterToIndexes(new ViewerFilter() {
-			
+			if (isAccessible(DatabaseViewsRepository.Indexes.Properties.indexes_)) {
+				indexesPart.addFilterToIndexes(new ViewerFilter() {
 					/**
 					 * {@inheritDoc}
 					 * 
@@ -89,10 +89,10 @@ public class TableIndexesPropertiesEditionComponent extends SinglePartProperties
 						return (element instanceof String && element.equals("")) || (element instanceof Index); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for indexes
-			// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for indexes
+				// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -108,7 +108,7 @@ public class TableIndexesPropertiesEditionComponent extends SinglePartProperties
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == DatabaseViewsRepository.Indexes.Properties.indexes_) {
 			return DatabasePackage.eINSTANCE.getTable_Indexes();
 		}
@@ -154,7 +154,7 @@ public class TableIndexesPropertiesEditionComponent extends SinglePartProperties
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			IndexesPropertiesEditionPart indexesPart = (IndexesPropertiesEditionPart)editingPart;
 			if (DatabasePackage.eINSTANCE.getTable_Indexes().equals(msg.getFeature()) && isAccessible(DatabaseViewsRepository.Indexes.Properties.indexes_))
 				indexesPart.updateIndexes();

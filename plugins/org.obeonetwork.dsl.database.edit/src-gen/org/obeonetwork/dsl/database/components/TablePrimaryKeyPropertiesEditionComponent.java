@@ -48,24 +48,24 @@ public class TablePrimaryKeyPropertiesEditionComponent extends SinglePartPropert
 	/**
 	 * Settings for pkColumns ReferencesTable
 	 */
-	private	ReferencesTableSettings pkColumnsSettings;
+	private ReferencesTableSettings pkColumnsSettings;
 	
 	
 	/**
 	 * Settings for pkName editor
 	 */
 	protected EEFEditorSettingsImpl pkNameSettings = (EEFEditorSettingsImpl) EEFEditorSettingsBuilder.create(semanticObject, DatabasePackage.eINSTANCE.getNamedElement_Name())
-																														.nextStep(NavigationStepBuilder.create(DatabasePackage.eINSTANCE.getTable_PrimaryKey())			
-																																	.index(0).build())
-																														.build();
+	.nextStep(NavigationStepBuilder.create(DatabasePackage.eINSTANCE.getTable_PrimaryKey())
+	.index(0).build())
+	.build();
 	
 	/**
 	 * Settings for pkComments editor
 	 */
 	protected EEFEditorSettingsImpl pkCommentsSettings = (EEFEditorSettingsImpl) EEFEditorSettingsBuilder.create(semanticObject, DatabasePackage.eINSTANCE.getDatabaseElement_Comments())
-																														.nextStep(NavigationStepBuilder.create(DatabasePackage.eINSTANCE.getTable_PrimaryKey())			
-																																	.index(0).build())
-																														.build();
+	.nextStep(NavigationStepBuilder.create(DatabasePackage.eINSTANCE.getTable_PrimaryKey())
+	.index(0).build())
+	.build();
 	
 	/**
 	 * Default constructor
@@ -93,34 +93,35 @@ public class TablePrimaryKeyPropertiesEditionComponent extends SinglePartPropert
 			final PrimaryKeyPropertiesEditionPart primaryKeyPart = (PrimaryKeyPropertiesEditionPart)editingPart;
 			// init values
 			if (pkNameSettings.getValue() != null && isAccessible(DatabaseViewsRepository.PrimaryKey.Properties.name))
-				primaryKeyPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), pkNameSettings.getValue()));
+				primaryKeyPart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, pkNameSettings.getValue()));
 			
 			if (isAccessible(DatabaseViewsRepository.PrimaryKey.Properties.columns)) {
 				pkColumnsSettings = new ReferencesTableSettings(table, DatabasePackage.eINSTANCE.getTable_PrimaryKey(), DatabasePackage.eINSTANCE.getPrimaryKey_Columns());
 				primaryKeyPart.initColumns(pkColumnsSettings);
 			}
 			if (pkCommentsSettings.getValue() != null && isAccessible(DatabaseViewsRepository.PrimaryKey.Properties.comments))
-				primaryKeyPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), pkCommentsSettings.getValue()));
+				primaryKeyPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, pkCommentsSettings.getValue()));
 			// init filters
 			
-			primaryKeyPart.addFilterToColumns(new ViewerFilter() {
-			
-				/**
-				 * {@inheritDoc}
-				 * 
-				 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-				 */
-				public boolean select(Viewer viewer, Object parentElement, Object element) {
-					if (element instanceof EObject)
-						return (!primaryKeyPart.isContainedInColumnsTable((EObject)element));
-					return element instanceof String && element.equals("");
-				}
-			
-			});
-			primaryKeyPart.addFilterToColumns(new EObjectStrictFilter(DatabasePackage.eINSTANCE.getColumn()));
-			// Start of user code for additional businessfilters for pkColumns
-			// End of user code
-			
+			if (isAccessible(DatabaseViewsRepository.PrimaryKey.Properties.columns)) {
+				primaryKeyPart.addFilterToColumns(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof EObject)
+							return (!primaryKeyPart.isContainedInColumnsTable((EObject)element));
+						return element instanceof String && element.equals("");
+					}
+				
+				});
+				primaryKeyPart.addFilterToColumns(new EObjectStrictFilter(DatabasePackage.Literals.COLUMN));
+				// Start of user code for additional businessfilters for pkColumns
+				// End of user code
+			}
 			
 			// init values for referenced views
 			
@@ -156,7 +157,7 @@ public class TablePrimaryKeyPropertiesEditionComponent extends SinglePartPropert
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		return super.associatedFeature(editorKey);
 	}
 
@@ -168,7 +169,7 @@ public class TablePrimaryKeyPropertiesEditionComponent extends SinglePartPropert
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		Table table = (Table)semanticObject;
 		if (DatabaseViewsRepository.PrimaryKey.Properties.name == event.getAffectedEditor()) {
-			pkNameSettings.setValue((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			pkNameSettings.setValue((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.PrimaryKey.Properties.columns == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.ADD) {
@@ -182,7 +183,7 @@ public class TablePrimaryKeyPropertiesEditionComponent extends SinglePartPropert
 			}
 		}
 		if (DatabaseViewsRepository.PrimaryKey.Properties.comments == event.getAffectedEditor()) {
-			pkCommentsSettings.setValue((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			pkCommentsSettings.setValue((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 	}
 
@@ -191,11 +192,11 @@ public class TablePrimaryKeyPropertiesEditionComponent extends SinglePartPropert
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			PrimaryKeyPropertiesEditionPart primaryKeyPart = (PrimaryKeyPropertiesEditionPart)editingPart;
 			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && primaryKeyPart != null && isAccessible(DatabaseViewsRepository.PrimaryKey.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					primaryKeyPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					primaryKeyPart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					primaryKeyPart.setName("");
 				}
@@ -204,7 +205,7 @@ public class TablePrimaryKeyPropertiesEditionComponent extends SinglePartPropert
 				primaryKeyPart.updateColumns();
 			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && primaryKeyPart != null && isAccessible(DatabaseViewsRepository.PrimaryKey.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					primaryKeyPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					primaryKeyPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					primaryKeyPart.setComments("");
 				}
@@ -237,14 +238,14 @@ public class TablePrimaryKeyPropertiesEditionComponent extends SinglePartPropert
 				if (DatabaseViewsRepository.PrimaryKey.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.PrimaryKey.Properties.comments == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), newValue);
 				}

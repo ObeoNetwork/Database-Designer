@@ -40,6 +40,7 @@ public class EntityrelationMessages extends NLS {
 	
 	public static String IdentifierPropertiesEditionPart_PropertiesGroupLabel;
 
+
 	
 	public static String LogicalModel_ReadOnly;
 
@@ -81,6 +82,7 @@ public class EntityrelationMessages extends NLS {
 
 	
 	public static String Identifier_Part_Title;
+
 
 	
 	public static String LogicalModelPropertiesEditionPart_NameLabel;
@@ -187,6 +189,7 @@ public class EntityrelationMessages extends NLS {
 	
 	public static String IdentifierPropertiesEditionPart_CommentsLabel;
 
+
 	
 	public static String PropertiesEditionPart_DocumentationLabel;
 
@@ -236,8 +239,8 @@ public class EntityrelationMessages extends NLS {
 	public static String PropertiesEditionPart_RemoveListViewerLabel;
 
 	// Start of user code for additionnal NLS Constants
-
-// End of user code
+	
+	// End of user code
 
 	static {
 		// initialize resource bundle

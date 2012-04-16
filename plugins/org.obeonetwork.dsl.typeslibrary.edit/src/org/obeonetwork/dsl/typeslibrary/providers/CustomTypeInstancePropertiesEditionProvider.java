@@ -26,7 +26,7 @@ public class CustomTypeInstancePropertiesEditionProvider extends TypeInstancePro
 	 */
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part) {
 		if (editingContext.getEObject() instanceof TypeInstance) {
-			if (TypeInstancePropertiesEditionComponent.BASE_PART.equals(part))
+			if (TypeInstancePropertiesEditionComponent.TYPEINSTANCE_PART.equals(part))
 				return new CustomTypeInstancePropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}
 		return super.getPropertiesEditingComponent(editingContext, mode, part);
@@ -39,7 +39,7 @@ public class CustomTypeInstancePropertiesEditionProvider extends TypeInstancePro
 	@SuppressWarnings("rawtypes")
 	public IPropertiesEditionComponent getPropertiesEditingComponent(PropertiesEditingContext editingContext, String mode, String part, java.lang.Class refinement) {
 		if (editingContext.getEObject() instanceof TypeInstance) {
-			if (TypeInstancePropertiesEditionComponent.BASE_PART.equals(part)
+			if (TypeInstancePropertiesEditionComponent.TYPEINSTANCE_PART.equals(part)
 				&& refinement == TypeInstancePropertiesEditionComponent.class)
 				return new CustomTypeInstancePropertiesEditionComponent(editingContext, editingContext.getEObject(), mode);
 		}

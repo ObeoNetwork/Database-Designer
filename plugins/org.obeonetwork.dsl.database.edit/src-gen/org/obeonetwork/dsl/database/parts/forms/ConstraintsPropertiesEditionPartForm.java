@@ -8,33 +8,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.IFormPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
-import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
+import org.eclipse.emf.eef.runtime.part.impl.SectionPropertiesEditingPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
+
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Composite;
+
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+
 import org.obeonetwork.dsl.database.parts.ConstraintsPropertiesEditionPart;
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
 // End of user code
 
@@ -42,13 +57,18 @@ import org.obeonetwork.dsl.database.providers.DatabaseMessages;
  * 
  * 
  */
-public class ConstraintsPropertiesEditionPartForm extends CompositePropertiesEditionPart implements IFormPropertiesEditionPart, ConstraintsPropertiesEditionPart {
+public class ConstraintsPropertiesEditionPartForm extends SectionPropertiesEditingPart implements IFormPropertiesEditionPart, ConstraintsPropertiesEditionPart {
 
 	protected ReferencesTable constraints;
 	protected List<ViewerFilter> constraintsBusinessFilters = new ArrayList<ViewerFilter>();
 	protected List<ViewerFilter> constraintsFilters = new ArrayList<ViewerFilter>();
 
 
+
+	/**
+	 * For {@link ISection} use only.
+	 */
+	public ConstraintsPropertiesEditionPartForm() { super(); }
 
 	/**
 	 * Default constructor
@@ -128,7 +148,7 @@ public class ConstraintsPropertiesEditionPartForm extends CompositePropertiesEdi
 	 * 
 	 */
 	protected Composite createConstraintsTableComposition(FormToolkit widgetFactory, Composite parent) {
-		this.constraints = new ReferencesTable(DatabaseMessages.ConstraintsPropertiesEditionPart_ConstraintsLabel, new ReferencesTableListener() {
+		this.constraints = new ReferencesTable(getDescription(DatabaseViewsRepository.Constraints.Properties.constraints_, DatabaseMessages.ConstraintsPropertiesEditionPart_ConstraintsLabel), new ReferencesTableListener() {
 			public void handleAdd() {
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConstraintsPropertiesEditionPartForm.this, DatabaseViewsRepository.Constraints.Properties.constraints_, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				constraints.refresh();
@@ -172,7 +192,6 @@ public class ConstraintsPropertiesEditionPartForm extends CompositePropertiesEdi
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -181,8 +200,8 @@ public class ConstraintsPropertiesEditionPartForm extends CompositePropertiesEdi
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 
@@ -242,6 +261,8 @@ public class ConstraintsPropertiesEditionPartForm extends CompositePropertiesEdi
 	public boolean isContainedInConstraintsTable(EObject element) {
 		return ((ReferencesTableSettings)constraints.getInput()).contains(element);
 	}
+
+
 
 
 

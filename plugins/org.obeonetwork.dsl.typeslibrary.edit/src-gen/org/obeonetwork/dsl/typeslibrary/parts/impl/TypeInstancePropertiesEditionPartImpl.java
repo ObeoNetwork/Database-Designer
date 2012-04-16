@@ -45,7 +45,6 @@ import org.obeonetwork.dsl.typeslibrary.parts.TypeInstancePropertiesEditionPart;
 import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
 import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
 
-
 // End of user code
 
 /**
@@ -151,7 +150,7 @@ public class TypeInstancePropertiesEditionPartImpl extends CompositePropertiesEd
 
 	
 	protected Composite createTypeEMFComboViewer(Composite parent) {
-		SWTUtils.createPartLabel(parent, TypeslibraryMessages.TypeInstancePropertiesEditionPart_TypeLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.TypeInstance.Properties.type, TypeslibraryViewsRepository.SWT_KIND));
+		createDescription(parent, TypeslibraryViewsRepository.TypeInstance.Properties.type, TypeslibraryMessages.TypeInstancePropertiesEditionPart_TypeLabel);
 		type = new EMFComboViewer(parent);
 		GridData typeData = new GridData(GridData.FILL_HORIZONTAL);
 		type.getCombo().setLayoutData(typeData);
@@ -187,13 +186,13 @@ public class TypeInstancePropertiesEditionPartImpl extends CompositePropertiesEd
 		gridData.horizontalSpan = 3;
 		container.setLayoutData(gridData);
 		HorizontalBox typeAttributesHBox = new HorizontalBox(container);
-		return parent;
+		return typeAttributesHBox;
 	}
 
 	
 	protected Composite createLengthText(Composite parent) {
-		SWTUtils.createPartLabel(parent, TypeslibraryMessages.TypeInstancePropertiesEditionPart_LengthLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.length, TypeslibraryViewsRepository.SWT_KIND));
-		length = new Text(parent, SWT.BORDER);
+		createDescription(parent, TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.length, TypeslibraryMessages.TypeInstancePropertiesEditionPart_LengthLabel);
+		length = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData lengthData = new GridData(GridData.FILL_HORIZONTAL);
 		length.setLayoutData(lengthData);
 		length.addFocusListener(new FocusAdapter() {
@@ -238,8 +237,8 @@ public class TypeInstancePropertiesEditionPartImpl extends CompositePropertiesEd
 
 	
 	protected Composite createPrecisionText(Composite parent) {
-		SWTUtils.createPartLabel(parent, TypeslibraryMessages.TypeInstancePropertiesEditionPart_PrecisionLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.precision, TypeslibraryViewsRepository.SWT_KIND));
-		precision = new Text(parent, SWT.BORDER);
+		createDescription(parent, TypeslibraryViewsRepository.TypeInstance.Properties.TypeAttributes.precision, TypeslibraryMessages.TypeInstancePropertiesEditionPart_PrecisionLabel);
+		precision = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData precisionData = new GridData(GridData.FILL_HORIZONTAL);
 		precision.setLayoutData(precisionData);
 		precision.addFocusListener(new FocusAdapter() {
@@ -283,14 +282,14 @@ public class TypeInstancePropertiesEditionPartImpl extends CompositePropertiesEd
 	}
 
 	protected Composite createLiteralsMultiValuedEditor(Composite parent) {
-		literals = new Text(parent, SWT.BORDER | SWT.READ_ONLY);
+		literals = SWTUtils.createScrollableText(parent, SWT.BORDER | SWT.READ_ONLY);
 		GridData literalsData = new GridData(GridData.FILL_HORIZONTAL);
 		literalsData.horizontalSpan = 2;
 		literals.setLayoutData(literalsData);
 		EditingUtils.setID(literals, TypeslibraryViewsRepository.TypeInstance.Properties.literals);
 		EditingUtils.setEEFtype(literals, "eef::MultiValuedEditor::field"); //$NON-NLS-1$
 		editLiterals = new Button(parent, SWT.NONE);
-		editLiterals.setText(TypeslibraryMessages.TypeInstancePropertiesEditionPart_LiteralsLabel);
+		editLiterals.setText(getDescription(TypeslibraryViewsRepository.TypeInstance.Properties.literals, TypeslibraryMessages.TypeInstancePropertiesEditionPart_LiteralsLabel));
 		GridData editLiteralsData = new GridData();
 		editLiterals.setLayoutData(editLiteralsData);
 		editLiterals.addSelectionListener(new SelectionAdapter() {
@@ -323,7 +322,6 @@ public class TypeInstancePropertiesEditionPartImpl extends CompositePropertiesEd
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -332,8 +330,8 @@ public class TypeInstancePropertiesEditionPartImpl extends CompositePropertiesEd
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -385,7 +383,6 @@ public class TypeInstancePropertiesEditionPartImpl extends CompositePropertiesEd
 		type.addFilter(filter);
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -410,7 +407,6 @@ public class TypeInstancePropertiesEditionPartImpl extends CompositePropertiesEd
 		}
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -434,7 +430,6 @@ public class TypeInstancePropertiesEditionPartImpl extends CompositePropertiesEd
 			precision.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -478,7 +473,6 @@ public class TypeInstancePropertiesEditionPartImpl extends CompositePropertiesEd
 			literals.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 

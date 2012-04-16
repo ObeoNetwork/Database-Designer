@@ -41,7 +41,6 @@ import org.obeonetwork.dsl.typeslibrary.parts.ComplexNamedTypePropertiesEditionP
 import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
 import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
 
-
 // End of user code
 
 /**
@@ -51,9 +50,9 @@ import org.obeonetwork.dsl.typeslibrary.providers.TypeslibraryMessages;
 public class ComplexNamedTypePropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ComplexNamedTypePropertiesEditionPart {
 
 	protected Text name;
-protected ReferencesTable types;
-protected List<ViewerFilter> typesBusinessFilters = new ArrayList<ViewerFilter>();
-protected List<ViewerFilter> typesFilters = new ArrayList<ViewerFilter>();
+	protected ReferencesTable types;
+	protected List<ViewerFilter> typesBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> typesFilters = new ArrayList<ViewerFilter>();
 
 
 
@@ -132,8 +131,8 @@ protected List<ViewerFilter> typesFilters = new ArrayList<ViewerFilter>();
 
 	
 	protected Composite createNameText(Composite parent) {
-		SWTUtils.createPartLabel(parent, TypeslibraryMessages.ComplexNamedTypePropertiesEditionPart_NameLabel, propertiesEditionComponent.isRequired(TypeslibraryViewsRepository.ComplexNamedType.Properties.name, TypeslibraryViewsRepository.SWT_KIND));
-		name = new Text(parent, SWT.BORDER);
+		createDescription(parent, TypeslibraryViewsRepository.ComplexNamedType.Properties.name, TypeslibraryMessages.ComplexNamedTypePropertiesEditionPart_NameLabel);
+		name = SWTUtils.createScrollableText(parent, SWT.BORDER);
 		GridData nameData = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameData);
 		name.addFocusListener(new FocusAdapter() {
@@ -181,7 +180,7 @@ protected List<ViewerFilter> typesFilters = new ArrayList<ViewerFilter>();
 	 * 
 	 */
 	protected Composite createTypesAdvancedTableComposition(Composite parent) {
-		this.types = new ReferencesTable(TypeslibraryMessages.ComplexNamedTypePropertiesEditionPart_TypesLabel, new ReferencesTableListener() {
+		this.types = new ReferencesTable(getDescription(TypeslibraryViewsRepository.ComplexNamedType.Properties.types, TypeslibraryMessages.ComplexNamedTypePropertiesEditionPart_TypesLabel), new ReferencesTableListener() {
 			public void handleAdd() { 
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ComplexNamedTypePropertiesEditionPartImpl.this, TypeslibraryViewsRepository.ComplexNamedType.Properties.types, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				types.refresh();
@@ -225,7 +224,6 @@ protected List<ViewerFilter> typesFilters = new ArrayList<ViewerFilter>();
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -234,8 +232,8 @@ protected List<ViewerFilter> typesFilters = new ArrayList<ViewerFilter>();
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 	/**
@@ -261,7 +259,6 @@ protected List<ViewerFilter> typesFilters = new ArrayList<ViewerFilter>();
 			name.setText(""); //$NON-NLS-1$
 		}
 	}
-
 
 
 
@@ -320,7 +317,6 @@ protected List<ViewerFilter> typesFilters = new ArrayList<ViewerFilter>();
 	public boolean isContainedInTypesTable(EObject element) {
 		return ((ReferencesTableSettings)types.getInput()).contains(element);
 	}
-
 
 
 

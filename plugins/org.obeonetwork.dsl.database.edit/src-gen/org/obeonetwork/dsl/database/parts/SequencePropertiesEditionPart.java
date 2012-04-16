@@ -7,7 +7,6 @@ package org.obeonetwork.dsl.database.parts;
 
 
 
-
 // End of user code
 
 /**
@@ -112,7 +111,7 @@ public interface SequencePropertiesEditionPart {
 	public String getTitle();
 
 	// Start of user code for additional methods
-
-// End of user code
+	
+	// End of user code
 
 }

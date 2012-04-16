@@ -43,7 +43,7 @@ import org.obeonetwork.dsl.typeslibrary.parts.TypeslibraryViewsRepository;
 public class ComplexNamedTypePropertiesEditionComponent extends SinglePartPropertiesEditingComponent {
 
 	
-	public static String BASE_PART = "Base"; //$NON-NLS-1$
+	public static String COMPLEXNAMEDTYPE_PART = "ComplexNamedType"; //$NON-NLS-1$
 
 	
 	/**
@@ -58,7 +58,7 @@ public class ComplexNamedTypePropertiesEditionComponent extends SinglePartProper
 	 */
 	public ComplexNamedTypePropertiesEditionComponent(PropertiesEditingContext editingContext, EObject complexNamedType, String editing_mode) {
 		super(editingContext, complexNamedType, editing_mode);
-		parts = new String[] { BASE_PART };
+		parts = new String[] { COMPLEXNAMEDTYPE_PART };
 		repositoryKey = TypeslibraryViewsRepository.class;
 		partKey = TypeslibraryViewsRepository.ComplexNamedType.class;
 	}
@@ -75,19 +75,19 @@ public class ComplexNamedTypePropertiesEditionComponent extends SinglePartProper
 		if (editingPart != null && key == partKey) {
 			editingPart.setContext(elt, allResource);
 			final ComplexNamedType complexNamedType = (ComplexNamedType)elt;
-			final ComplexNamedTypePropertiesEditionPart basePart = (ComplexNamedTypePropertiesEditionPart)editingPart;
+			final ComplexNamedTypePropertiesEditionPart complexNamedTypePart = (ComplexNamedTypePropertiesEditionPart)editingPart;
 			// init values
 			if (complexNamedType.getName() != null && isAccessible(TypeslibraryViewsRepository.ComplexNamedType.Properties.name))
-				basePart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), complexNamedType.getName()));
+				complexNamedTypePart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, complexNamedType.getName()));
 			
 			if (isAccessible(TypeslibraryViewsRepository.ComplexNamedType.Properties.types)) {
 				typesSettings = new ReferencesTableSettings(complexNamedType, TypesLibraryPackage.eINSTANCE.getComplexNamedType_Types());
-				basePart.initTypes(typesSettings);
+				complexNamedTypePart.initTypes(typesSettings);
 			}
 			// init filters
 			
-			basePart.addFilterToTypes(new ViewerFilter() {
-			
+			if (isAccessible(TypeslibraryViewsRepository.ComplexNamedType.Properties.types)) {
+				complexNamedTypePart.addFilterToTypes(new ViewerFilter() {
 					/**
 					 * {@inheritDoc}
 					 * 
@@ -97,10 +97,10 @@ public class ComplexNamedTypePropertiesEditionComponent extends SinglePartProper
 						return (element instanceof String && element.equals("")) || (element instanceof UserDefinedType); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for types
-			// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for types
+				// End of user code
+			}
 			// init values for referenced views
 			
 			// init filters for referenced views
@@ -117,7 +117,7 @@ public class ComplexNamedTypePropertiesEditionComponent extends SinglePartProper
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == TypeslibraryViewsRepository.ComplexNamedType.Properties.name) {
 			return TypesLibraryPackage.eINSTANCE.getUserDefinedType_Name();
 		}
@@ -135,7 +135,7 @@ public class ComplexNamedTypePropertiesEditionComponent extends SinglePartProper
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		ComplexNamedType complexNamedType = (ComplexNamedType)semanticObject;
 		if (TypeslibraryViewsRepository.ComplexNamedType.Properties.name == event.getAffectedEditor()) {
-			complexNamedType.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			complexNamedType.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (TypeslibraryViewsRepository.ComplexNamedType.Properties.types == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.ADD) {
@@ -169,17 +169,17 @@ public class ComplexNamedTypePropertiesEditionComponent extends SinglePartProper
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
-			ComplexNamedTypePropertiesEditionPart basePart = (ComplexNamedTypePropertiesEditionPart)editingPart;
-			if (TypesLibraryPackage.eINSTANCE.getUserDefinedType_Name().equals(msg.getFeature()) && basePart != null && isAccessible(TypeslibraryViewsRepository.ComplexNamedType.Properties.name)) {
+		if (editingPart.isVisible()) {
+			ComplexNamedTypePropertiesEditionPart complexNamedTypePart = (ComplexNamedTypePropertiesEditionPart)editingPart;
+			if (TypesLibraryPackage.eINSTANCE.getUserDefinedType_Name().equals(msg.getFeature()) && complexNamedTypePart != null && isAccessible(TypeslibraryViewsRepository.ComplexNamedType.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					basePart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					complexNamedTypePart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
-					basePart.setName("");
+					complexNamedTypePart.setName("");
 				}
 			}
 			if (TypesLibraryPackage.eINSTANCE.getComplexNamedType_Types().equals(msg.getFeature()) && isAccessible(TypeslibraryViewsRepository.ComplexNamedType.Properties.types))
-				basePart.updateTypes();
+				complexNamedTypePart.updateTypes();
 			
 		}
 	}
@@ -198,7 +198,7 @@ public class ComplexNamedTypePropertiesEditionComponent extends SinglePartProper
 				if (TypeslibraryViewsRepository.ComplexNamedType.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(TypesLibraryPackage.eINSTANCE.getUserDefinedType_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(TypesLibraryPackage.eINSTANCE.getUserDefinedType_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(TypesLibraryPackage.eINSTANCE.getUserDefinedType_Name().getEAttributeType(), newValue);
 				}

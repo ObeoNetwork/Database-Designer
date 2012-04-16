@@ -4,6 +4,7 @@
 package org.obeonetwork.dsl.database.components;
 
 // Start of user code for imports
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.eef.runtime.api.parts.IPropertiesEditionPart;
@@ -17,7 +18,6 @@ import org.obeonetwork.dsl.database.parts.ForeignKeysPropertiesEditionPart;
 import org.obeonetwork.dsl.database.parts.IndexesPropertiesEditionPart;
 import org.obeonetwork.dsl.database.parts.PrimaryKeyPropertiesEditionPart;
 import org.obeonetwork.dsl.database.parts.TablePropertiesEditionPart;
-
 
 // End of user code
 
@@ -86,6 +86,7 @@ public class TablePropertiesEditionComponent extends ComposedPropertiesEditionCo
 	 * 
 	 */
 	protected TableIndexesPropertiesEditionComponent tableIndexesPropertiesEditionComponent;
+
 	/**
 	 * Parameterized constructor
 	 * 

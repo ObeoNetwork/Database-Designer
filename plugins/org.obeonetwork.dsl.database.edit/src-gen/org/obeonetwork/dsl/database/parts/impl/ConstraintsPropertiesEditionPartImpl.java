@@ -8,31 +8,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.eef.runtime.api.component.IPropertiesEditionComponent;
+
 import org.eclipse.emf.eef.runtime.api.notify.IPropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.api.parts.ISWTPropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.impl.notify.PropertiesEditionEvent;
+
 import org.eclipse.emf.eef.runtime.impl.parts.CompositePropertiesEditionPart;
+
 import org.eclipse.emf.eef.runtime.ui.parts.PartComposer;
+
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.BindingCompositionSequence;
 import org.eclipse.emf.eef.runtime.ui.parts.sequence.CompositionSequence;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.ReferencesTable.ReferencesTableListener;
+
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableContentProvider;
 import org.eclipse.emf.eef.runtime.ui.widgets.referencestable.ReferencesTableSettings;
+
 import org.eclipse.jface.viewers.ViewerFilter;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+
 import org.obeonetwork.dsl.database.parts.ConstraintsPropertiesEditionPart;
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
-import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
+import org.obeonetwork.dsl.database.providers.DatabaseMessages;
 
 // End of user code
 
@@ -42,9 +57,9 @@ import org.obeonetwork.dsl.database.providers.DatabaseMessages;
  */
 public class ConstraintsPropertiesEditionPartImpl extends CompositePropertiesEditionPart implements ISWTPropertiesEditionPart, ConstraintsPropertiesEditionPart {
 
-protected ReferencesTable constraints;
-protected List<ViewerFilter> constraintsBusinessFilters = new ArrayList<ViewerFilter>();
-protected List<ViewerFilter> constraintsFilters = new ArrayList<ViewerFilter>();
+	protected ReferencesTable constraints;
+	protected List<ViewerFilter> constraintsBusinessFilters = new ArrayList<ViewerFilter>();
+	protected List<ViewerFilter> constraintsFilters = new ArrayList<ViewerFilter>();
 
 
 
@@ -123,7 +138,7 @@ protected List<ViewerFilter> constraintsFilters = new ArrayList<ViewerFilter>();
 	 * 
 	 */
 	protected Composite createConstraintsAdvancedTableComposition(Composite parent) {
-		this.constraints = new ReferencesTable(DatabaseMessages.ConstraintsPropertiesEditionPart_ConstraintsLabel, new ReferencesTableListener() {
+		this.constraints = new ReferencesTable(getDescription(DatabaseViewsRepository.Constraints.Properties.constraints_, DatabaseMessages.ConstraintsPropertiesEditionPart_ConstraintsLabel), new ReferencesTableListener() {
 			public void handleAdd() { 
 				propertiesEditionComponent.firePropertiesChanged(new PropertiesEditionEvent(ConstraintsPropertiesEditionPartImpl.this, DatabaseViewsRepository.Constraints.Properties.constraints_, PropertiesEditionEvent.COMMIT, PropertiesEditionEvent.ADD, null, null));
 				constraints.refresh();
@@ -167,7 +182,6 @@ protected List<ViewerFilter> constraintsFilters = new ArrayList<ViewerFilter>();
 	}
 
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -176,8 +190,8 @@ protected List<ViewerFilter> constraintsFilters = new ArrayList<ViewerFilter>();
 	 */
 	public void firePropertiesChanged(IPropertiesEditionEvent event) {
 		// Start of user code for tab synchronization
-
-// End of user code
+		
+		// End of user code
 	}
 
 
@@ -237,7 +251,6 @@ protected List<ViewerFilter> constraintsFilters = new ArrayList<ViewerFilter>();
 	public boolean isContainedInConstraintsTable(EObject element) {
 		return ((ReferencesTableSettings)constraints.getInput()).contains(element);
 	}
-
 
 
 

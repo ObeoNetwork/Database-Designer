@@ -53,7 +53,7 @@ public class ForeignKeyPropertiesEditionComponent extends SinglePartPropertiesEd
 	/**
 	 * Settings for target EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings targetSettings;
+	private EObjectFlatComboSettings targetSettings;
 	
 	/**
 	 * Settings for elements ReferencesTable
@@ -87,7 +87,7 @@ public class ForeignKeyPropertiesEditionComponent extends SinglePartPropertiesEd
 			final ForeignKeyPropertiesEditionPart foreignKeyPart = (ForeignKeyPropertiesEditionPart)editingPart;
 			// init values
 			if (foreignKey.getName() != null && isAccessible(DatabaseViewsRepository.ForeignKey.Properties.name))
-				foreignKeyPart.setName(EEFConverterUtil.convertToString(EcorePackage.eINSTANCE.getEString(), foreignKey.getName()));
+				foreignKeyPart.setName(EEFConverterUtil.convertToString(EcorePackage.Literals.ESTRING, foreignKey.getName()));
 			
 			if (isAccessible(DatabaseViewsRepository.ForeignKey.Properties.target)) {
 				// init part
@@ -101,26 +101,27 @@ public class ForeignKeyPropertiesEditionComponent extends SinglePartPropertiesEd
 				foreignKeyPart.initElements(elementsSettings);
 			}
 			if (foreignKey.getComments() != null && isAccessible(DatabaseViewsRepository.ForeignKey.Properties.comments))
-				foreignKeyPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), foreignKey.getComments()));
+				foreignKeyPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, foreignKey.getComments()));
 			// init filters
 			
-			foreignKeyPart.addFilterToTarget(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof String && element.equals("")) || (element instanceof Table); //$NON-NLS-1$ 
-				}
-			
-			});
-			// Start of user code for additional businessfilters for target
-			// End of user code
-			
-			foreignKeyPart.addFilterToElements(new ViewerFilter() {
-			
+			if (isAccessible(DatabaseViewsRepository.ForeignKey.Properties.target)) {
+				foreignKeyPart.addFilterToTarget(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Table); //$NON-NLS-1$ 
+					}
+					
+				});
+				// Start of user code for additional businessfilters for target
+				// End of user code
+			}
+			if (isAccessible(DatabaseViewsRepository.ForeignKey.Properties.elements)) {
+				foreignKeyPart.addFilterToElements(new ViewerFilter() {
 					/**
 					 * {@inheritDoc}
 					 * 
@@ -130,10 +131,10 @@ public class ForeignKeyPropertiesEditionComponent extends SinglePartPropertiesEd
 						return (element instanceof String && element.equals("")) || (element instanceof ForeignKeyElement); //$NON-NLS-1$ 
 					}
 			
-			});
-			// Start of user code for additional businessfilters for elements
-			// End of user code
-			
+				});
+				// Start of user code for additional businessfilters for elements
+				// End of user code
+			}
 			
 			// init values for referenced views
 			
@@ -153,7 +154,7 @@ public class ForeignKeyPropertiesEditionComponent extends SinglePartPropertiesEd
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == DatabaseViewsRepository.ForeignKey.Properties.name) {
 			return DatabasePackage.eINSTANCE.getNamedElement_Name();
 		}
@@ -177,7 +178,7 @@ public class ForeignKeyPropertiesEditionComponent extends SinglePartPropertiesEd
 	public void updateSemanticModel(final IPropertiesEditionEvent event) {
 		ForeignKey foreignKey = (ForeignKey)semanticObject;
 		if (DatabaseViewsRepository.ForeignKey.Properties.name == event.getAffectedEditor()) {
-			foreignKey.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			foreignKey.setName((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 		if (DatabaseViewsRepository.ForeignKey.Properties.target == event.getAffectedEditor()) {
 			if (event.getKind() == PropertiesEditionEvent.SET) {
@@ -221,7 +222,7 @@ public class ForeignKeyPropertiesEditionComponent extends SinglePartPropertiesEd
 			}
 		}
 		if (DatabaseViewsRepository.ForeignKey.Properties.comments == event.getAffectedEditor()) {
-			foreignKey.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			foreignKey.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 	}
 
@@ -230,11 +231,11 @@ public class ForeignKeyPropertiesEditionComponent extends SinglePartPropertiesEd
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			ForeignKeyPropertiesEditionPart foreignKeyPart = (ForeignKeyPropertiesEditionPart)editingPart;
 			if (DatabasePackage.eINSTANCE.getNamedElement_Name().equals(msg.getFeature()) && foreignKeyPart != null && isAccessible(DatabaseViewsRepository.ForeignKey.Properties.name)) {
 				if (msg.getNewValue() != null) {
-					foreignKeyPart.setName(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					foreignKeyPart.setName(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					foreignKeyPart.setName("");
 				}
@@ -245,7 +246,7 @@ public class ForeignKeyPropertiesEditionComponent extends SinglePartPropertiesEd
 				foreignKeyPart.updateElements();
 			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && foreignKeyPart != null && isAccessible(DatabaseViewsRepository.ForeignKey.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					foreignKeyPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					foreignKeyPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					foreignKeyPart.setComments("");
 				}
@@ -278,14 +279,14 @@ public class ForeignKeyPropertiesEditionComponent extends SinglePartPropertiesEd
 				if (DatabaseViewsRepository.ForeignKey.Properties.name == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getNamedElement_Name().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.ForeignKey.Properties.comments == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), newValue);
 				}

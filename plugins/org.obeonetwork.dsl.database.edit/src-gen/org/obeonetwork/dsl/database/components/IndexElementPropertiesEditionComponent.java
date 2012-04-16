@@ -49,7 +49,7 @@ public class IndexElementPropertiesEditionComponent extends SinglePartProperties
 	/**
 	 * Settings for column EObjectFlatComboViewer
 	 */
-	private	EObjectFlatComboSettings columnSettings;
+	private EObjectFlatComboSettings columnSettings;
 	
 	
 	/**
@@ -88,23 +88,24 @@ public class IndexElementPropertiesEditionComponent extends SinglePartProperties
 				indexElementPart.setAsc(indexElement.isAsc());
 			}
 			if (indexElement.getComments() != null && isAccessible(DatabaseViewsRepository.IndexElement.Properties.comments))
-				indexElementPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), indexElement.getComments()));
+				indexElementPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, indexElement.getComments()));
 			// init filters
-			indexElementPart.addFilterToColumn(new ViewerFilter() {
-			
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 */
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return (element instanceof String && element.equals("")) || (element instanceof Column); //$NON-NLS-1$ 
-				}
-			
-			});
-			// Start of user code for additional businessfilters for column
-			// End of user code
-			
+			if (isAccessible(DatabaseViewsRepository.IndexElement.Properties.column)) {
+				indexElementPart.addFilterToColumn(new ViewerFilter() {
+				
+					/**
+					 * {@inheritDoc}
+					 * 
+					 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+					 */
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						return (element instanceof String && element.equals("")) || (element instanceof Column); //$NON-NLS-1$ 
+					}
+					
+				});
+				// Start of user code for additional businessfilters for column
+				// End of user code
+			}
 			
 			
 			// init values for referenced views
@@ -124,7 +125,7 @@ public class IndexElementPropertiesEditionComponent extends SinglePartProperties
 	 * {@inheritDoc}
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#associatedFeature(java.lang.Object)
 	 */
-	protected EStructuralFeature associatedFeature(Object editorKey) {
+	public EStructuralFeature associatedFeature(Object editorKey) {
 		if (editorKey == DatabaseViewsRepository.IndexElement.Properties.column) {
 			return DatabasePackage.eINSTANCE.getIndexElement_Column();
 		}
@@ -164,7 +165,7 @@ public class IndexElementPropertiesEditionComponent extends SinglePartProperties
 			indexElement.setAsc((Boolean)event.getNewValue());
 		}
 		if (DatabaseViewsRepository.IndexElement.Properties.comments == event.getAffectedEditor()) {
-			indexElement.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.eINSTANCE.getEString(), (String)event.getNewValue()));
+			indexElement.setComments((java.lang.String)EEFConverterUtil.createFromString(EcorePackage.Literals.ESTRING, (String)event.getNewValue()));
 		}
 	}
 
@@ -173,7 +174,7 @@ public class IndexElementPropertiesEditionComponent extends SinglePartProperties
 	 * @see org.eclipse.emf.eef.runtime.impl.components.StandardPropertiesEditionComponent#updatePart(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void updatePart(Notification msg) {
-		if (editingPart.isVisible()) {	
+		if (editingPart.isVisible()) {
 			IndexElementPropertiesEditionPart indexElementPart = (IndexElementPropertiesEditionPart)editingPart;
 			if (DatabasePackage.eINSTANCE.getIndexElement_Column().equals(msg.getFeature()) && indexElementPart != null && isAccessible(DatabaseViewsRepository.IndexElement.Properties.column))
 				indexElementPart.setColumn((EObject)msg.getNewValue());
@@ -182,7 +183,7 @@ public class IndexElementPropertiesEditionComponent extends SinglePartProperties
 			
 			if (DatabasePackage.eINSTANCE.getDatabaseElement_Comments().equals(msg.getFeature()) && indexElementPart != null && isAccessible(DatabaseViewsRepository.IndexElement.Properties.comments)){
 				if (msg.getNewValue() != null) {
-					indexElementPart.setComments(EcoreUtil.convertToString(EcorePackage.eINSTANCE.getEString(), msg.getNewValue()));
+					indexElementPart.setComments(EcoreUtil.convertToString(EcorePackage.Literals.ESTRING, msg.getNewValue()));
 				} else {
 					indexElementPart.setComments("");
 				}
@@ -205,14 +206,14 @@ public class IndexElementPropertiesEditionComponent extends SinglePartProperties
 				if (DatabaseViewsRepository.IndexElement.Properties.asc == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getIndexElement_Asc().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getIndexElement_Asc().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getIndexElement_Asc().getEAttributeType(), newValue);
 				}
 				if (DatabaseViewsRepository.IndexElement.Properties.comments == event.getAffectedEditor()) {
 					Object newValue = event.getNewValue();
 					if (newValue instanceof String) {
-						newValue = EcoreUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
+						newValue = EEFConverterUtil.createFromString(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), (String)newValue);
 					}
 					ret = Diagnostician.INSTANCE.validate(DatabasePackage.eINSTANCE.getDatabaseElement_Comments().getEAttributeType(), newValue);
 				}
