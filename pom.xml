@@ -29,11 +29,11 @@
   
   <properties>
      <tycho-version>0.12.0</tycho-version>
-    <platform-version-name>helios</platform-version-name>
+    <platform-version-name>indigo</platform-version-name>
     <od-site>http://www.obeo.fr/download/release/designer/5.0.6/update/3.6</od-site>
     <od-ext-site>http://marketplace.obeonetwork.com/updates/od5/</od-ext-site>
     <eclipse-site>http://download.eclipse.org/releases/${platform-version-name}</eclipse-site>
-    <eef-site>http://download.eclipse.org/modeling/emft/eef/updates/releases/0.9/</eef-site>
+    <eef-site>http://mirror.update.eclipse.obeo.fr/interim-eef-1.1/</eef-site>
   </properties>
   
   <modules>
@@ -51,7 +51,7 @@
   
   <repositories>
     <repository>
-	    <id>helios</id>
+	    <id>eclipse</id>
 	    <layout>p2</layout>
 	    <url>${eclipse-site}</url>
     </repository>
