@@ -18,6 +18,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -308,7 +309,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public PrimaryKey getPrimaryKey() {
-		if (primaryKey != null && primaryKey.eIsProxy()) {
+		if (primaryKey != null && ((EObject)primaryKey).eIsProxy()) {
 			InternalEObject oldPrimaryKey = (InternalEObject)primaryKey;
 			primaryKey = (PrimaryKey)eResolveProxy(oldPrimaryKey);
 			if (primaryKey != oldPrimaryKey) {
@@ -441,7 +442,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public Sequence getSequence() {
-		if (sequence != null && sequence.eIsProxy()) {
+		if (sequence != null && ((EObject)sequence).eIsProxy()) {
 			InternalEObject oldSequence = (InternalEObject)sequence;
 			sequence = (Sequence)eResolveProxy(oldSequence);
 			if (sequence != oldSequence) {
@@ -500,7 +501,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 */
 	public void setOwner(AbstractTable newOwner) {
 		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.COLUMN__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, newOwner))
+			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

@@ -10,6 +10,7 @@
  */
 package org.obeonetwork.dsl.database;
 
+import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -27,9 +28,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.obeonetwork.dsl.database.DatabasePackage#getDatabaseElement()
  * @model abstract="true"
+ * @extends CDOObject
  * @generated
  */
-public interface DatabaseElement extends EObject {
+public interface DatabaseElement extends CDOObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

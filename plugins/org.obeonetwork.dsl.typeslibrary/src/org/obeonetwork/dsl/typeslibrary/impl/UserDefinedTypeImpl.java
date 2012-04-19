@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
@@ -33,7 +34,7 @@ import org.obeonetwork.dsl.typeslibrary.UserDefinedType;
  *
  * @generated
  */
-public abstract class UserDefinedTypeImpl extends EObjectImpl implements UserDefinedType {
+public abstract class UserDefinedTypeImpl extends CDOObjectImpl implements UserDefinedType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

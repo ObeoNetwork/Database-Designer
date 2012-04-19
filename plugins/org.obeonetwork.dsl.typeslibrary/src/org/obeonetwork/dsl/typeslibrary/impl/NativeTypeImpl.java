@@ -14,8 +14,10 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.obeonetwork.dsl.typeslibrary.NativeType;
@@ -37,7 +39,7 @@ import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
  *
  * @generated
  */
-public class NativeTypeImpl extends EObjectImpl implements NativeType {
+public class NativeTypeImpl extends CDOObjectImpl implements NativeType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,7 +164,7 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	 * @generated
 	 */
 	public NativeType getMapsTo() {
-		if (mapsTo != null && mapsTo.eIsProxy()) {
+		if (mapsTo != null && ((EObject)mapsTo).eIsProxy()) {
 			InternalEObject oldMapsTo = (InternalEObject)mapsTo;
 			mapsTo = (NativeType)eResolveProxy(oldMapsTo);
 			if (mapsTo != oldMapsTo) {

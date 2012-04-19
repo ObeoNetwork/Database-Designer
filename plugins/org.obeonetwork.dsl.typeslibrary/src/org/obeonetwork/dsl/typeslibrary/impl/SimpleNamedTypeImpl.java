@@ -13,6 +13,7 @@ package org.obeonetwork.dsl.typeslibrary.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -77,7 +78,7 @@ public class SimpleNamedTypeImpl extends UserDefinedTypeImpl implements SimpleNa
 	 * @generated
 	 */
 	public TypeInstance getType() {
-		if (type != null && type.eIsProxy()) {
+		if (type != null && ((EObject)type).eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
 			type = (TypeInstance)eResolveProxy(oldType);
 			if (type != oldType) {

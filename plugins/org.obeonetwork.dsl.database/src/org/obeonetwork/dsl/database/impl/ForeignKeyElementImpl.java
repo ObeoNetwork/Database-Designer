@@ -13,6 +13,7 @@ package org.obeonetwork.dsl.database.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.obeonetwork.dsl.database.Column;
@@ -87,7 +88,7 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	 * @generated
 	 */
 	public Column getFkColumn() {
-		if (fkColumn != null && fkColumn.eIsProxy()) {
+		if (fkColumn != null && ((EObject)fkColumn).eIsProxy()) {
 			InternalEObject oldFkColumn = (InternalEObject)fkColumn;
 			fkColumn = (Column)eResolveProxy(oldFkColumn);
 			if (fkColumn != oldFkColumn) {
@@ -147,7 +148,7 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	 * @generated
 	 */
 	public Column getPkColumn() {
-		if (pkColumn != null && pkColumn.eIsProxy()) {
+		if (pkColumn != null && ((EObject)pkColumn).eIsProxy()) {
 			InternalEObject oldPkColumn = (InternalEObject)pkColumn;
 			pkColumn = (Column)eResolveProxy(oldPkColumn);
 			if (pkColumn != oldPkColumn) {

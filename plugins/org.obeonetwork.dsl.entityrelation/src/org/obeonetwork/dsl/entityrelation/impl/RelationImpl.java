@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -235,7 +236,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public Entity getSource() {
-		if (source != null && source.eIsProxy()) {
+		if (source != null && ((EObject)source).eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
 			source = (Entity)eResolveProxy(oldSource);
 			if (source != oldSource) {
@@ -368,7 +369,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public Entity getTarget() {
-		if (target != null && target.eIsProxy()) {
+		if (target != null && ((EObject)target).eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
 			target = (Entity)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
@@ -513,7 +514,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public Identifier getIdentifier() {
-		if (identifier != null && identifier.eIsProxy()) {
+		if (identifier != null && ((EObject)identifier).eIsProxy()) {
 			InternalEObject oldIdentifier = (InternalEObject)identifier;
 			identifier = (Identifier)eResolveProxy(oldIdentifier);
 			if (identifier != oldIdentifier) {

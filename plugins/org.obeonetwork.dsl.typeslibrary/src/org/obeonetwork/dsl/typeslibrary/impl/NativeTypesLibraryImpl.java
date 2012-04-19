@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.obeonetwork.dsl.typeslibrary.NativeType;
 import org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryKind;
@@ -41,7 +42,7 @@ import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
  *
  * @generated
  */
-public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLibrary {
+public class NativeTypesLibraryImpl extends CDOObjectImpl implements NativeTypesLibrary {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

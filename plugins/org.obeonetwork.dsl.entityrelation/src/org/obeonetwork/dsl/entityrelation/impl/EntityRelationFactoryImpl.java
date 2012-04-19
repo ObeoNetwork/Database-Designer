@@ -61,11 +61,11 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case EntityRelationPackage.LOGICAL_MODEL: return createLogicalModel();
-			case EntityRelationPackage.ENTITY: return createEntity();
-			case EntityRelationPackage.RELATION: return createRelation();
-			case EntityRelationPackage.RELATION_ELEMENT: return createRelationElement();
-			case EntityRelationPackage.ATTRIBUTE: return createAttribute();
-			case EntityRelationPackage.IDENTIFIER: return createIdentifier();
+			case EntityRelationPackage.ENTITY: return (EObject)createEntity();
+			case EntityRelationPackage.RELATION: return (EObject)createRelation();
+			case EntityRelationPackage.RELATION_ELEMENT: return (EObject)createRelationElement();
+			case EntityRelationPackage.ATTRIBUTE: return (EObject)createAttribute();
+			case EntityRelationPackage.IDENTIFIER: return (EObject)createIdentifier();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

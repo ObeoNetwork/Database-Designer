@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -136,7 +137,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public NativeType getNativeType() {
-		if (nativeType != null && nativeType.eIsProxy()) {
+		if (nativeType != null && ((EObject)nativeType).eIsProxy()) {
 			InternalEObject oldNativeType = (InternalEObject)nativeType;
 			nativeType = (NativeType)eResolveProxy(oldNativeType);
 			if (nativeType != oldNativeType) {

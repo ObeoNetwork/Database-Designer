@@ -13,6 +13,7 @@ package org.obeonetwork.dsl.database.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.obeonetwork.dsl.database.Column;
@@ -96,7 +97,7 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * @generated
 	 */
 	public Column getColumn() {
-		if (column != null && column.eIsProxy()) {
+		if (column != null && ((EObject)column).eIsProxy()) {
 			InternalEObject oldColumn = (InternalEObject)column;
 			column = (Column)eResolveProxy(oldColumn);
 			if (column != oldColumn) {

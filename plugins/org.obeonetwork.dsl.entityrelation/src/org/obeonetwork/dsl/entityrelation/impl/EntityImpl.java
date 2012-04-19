@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -117,7 +118,7 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 * @generated
 	 */
 	public Identifier getPrimaryIdentifier() {
-		if (primaryIdentifier != null && primaryIdentifier.eIsProxy()) {
+		if (primaryIdentifier != null && ((EObject)primaryIdentifier).eIsProxy()) {
 			InternalEObject oldPrimaryIdentifier = (InternalEObject)primaryIdentifier;
 			primaryIdentifier = (Identifier)eResolveProxy(oldPrimaryIdentifier);
 			if (primaryIdentifier != oldPrimaryIdentifier) {

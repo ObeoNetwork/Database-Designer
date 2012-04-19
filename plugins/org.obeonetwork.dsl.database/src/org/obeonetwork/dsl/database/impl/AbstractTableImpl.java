@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -116,7 +117,7 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	 */
 	public void setOwner(TableContainer newOwner) {
 		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.ABSTRACT_TABLE__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, newOwner))
+			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

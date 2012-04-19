@@ -12,6 +12,7 @@ package org.obeonetwork.dsl.typeslibrary.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.obeonetwork.dsl.typeslibrary.Type;
@@ -26,7 +27,7 @@ import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
  *
  * @generated
  */
-public abstract class TypeImpl extends EObjectImpl implements Type {
+public abstract class TypeImpl extends CDOObjectImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

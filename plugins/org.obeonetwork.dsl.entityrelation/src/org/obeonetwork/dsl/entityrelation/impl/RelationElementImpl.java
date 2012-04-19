@@ -9,6 +9,7 @@ package org.obeonetwork.dsl.entityrelation.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -77,7 +78,7 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	 * @generated
 	 */
 	public Attribute getSourceAttribute() {
-		if (sourceAttribute != null && sourceAttribute.eIsProxy()) {
+		if (sourceAttribute != null && ((EObject)sourceAttribute).eIsProxy()) {
 			InternalEObject oldSourceAttribute = (InternalEObject)sourceAttribute;
 			sourceAttribute = (Attribute)eResolveProxy(oldSourceAttribute);
 			if (sourceAttribute != oldSourceAttribute) {
@@ -115,7 +116,7 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	 * @generated
 	 */
 	public Attribute getTargetAttribute() {
-		if (targetAttribute != null && targetAttribute.eIsProxy()) {
+		if (targetAttribute != null && ((EObject)targetAttribute).eIsProxy()) {
 			InternalEObject oldTargetAttribute = (InternalEObject)targetAttribute;
 			targetAttribute = (Attribute)eResolveProxy(oldTargetAttribute);
 			if (targetAttribute != oldTargetAttribute) {

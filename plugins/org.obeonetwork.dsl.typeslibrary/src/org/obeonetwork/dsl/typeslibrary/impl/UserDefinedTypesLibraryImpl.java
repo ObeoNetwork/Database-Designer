@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryKind;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 import org.obeonetwork.dsl.typeslibrary.UserDefinedType;
@@ -46,7 +47,7 @@ import org.obeonetwork.dsl.typeslibrary.UserDefinedTypesLibrary;
  *
  * @generated
  */
-public class UserDefinedTypesLibraryImpl extends EObjectImpl implements UserDefinedTypesLibrary {
+public class UserDefinedTypesLibraryImpl extends CDOObjectImpl implements UserDefinedTypesLibrary {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

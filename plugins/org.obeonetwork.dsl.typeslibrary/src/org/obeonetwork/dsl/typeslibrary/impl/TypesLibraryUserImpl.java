@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.obeonetwork.dsl.typeslibrary.TypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
@@ -37,7 +38,7 @@ import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
  *
  * @generated
  */
-public abstract class TypesLibraryUserImpl extends EObjectImpl implements TypesLibraryUser {
+public abstract class TypesLibraryUserImpl extends CDOObjectImpl implements TypesLibraryUser {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
