@@ -65,6 +65,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 
+import org.obeonetwork.dsl.database.Column;
 import org.obeonetwork.dsl.database.parts.DatabaseViewsRepository;
 import org.obeonetwork.dsl.database.parts.PrimaryKeyPropertiesEditionPart;
 
@@ -246,9 +247,13 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 		table.setLayoutData(gd);
 		table.setLinesVisible(true);
 		// Start of user code for table columns s columns definition
-				TableColumn name = new TableColumn(table, SWT.NONE);
-				name.setWidth(80);
-				name.setText("Label"); //$NON-NLS-1$
+		TableColumn name = new TableColumn(table, SWT.NONE);
+		name.setWidth(160);
+		name.setText("Label"); //$NON-NLS-1$
+		
+		TableColumn type = new TableColumn(table, SWT.NONE);
+		type.setWidth(160);
+		type.setText("Type"); //$NON-NLS-1$
 		
 		// End of user code
 
@@ -256,20 +261,23 @@ public class PrimaryKeyPropertiesEditionPartImpl extends CompositePropertiesEdit
 		result.setLabelProvider(new ITableLabelProvider() {
 
 			// Start of user code for table columns label provider
-						public String getColumnText(Object object, int columnIndex) {
-							AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
-							if (object instanceof EObject) {
-								switch (columnIndex) {
-								case 0:
-									return labelProvider.getText(object);
-								}
-							}
-							return ""; //$NON-NLS-1$
-						}
-			
-						public Image getColumnImage(Object element, int columnIndex) {
-							return null;
-						}
+			public String getColumnText(Object object, int columnIndex) {
+				AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+				if (object instanceof EObject) {
+					Column column = (Column)object;
+					switch (columnIndex) {
+					case 0:
+						return column.getName();
+					case 1:
+						return labelProvider.getText(column.getType());
+					}
+				}
+				return ""; //$NON-NLS-1$
+			}
+
+			public Image getColumnImage(Object element, int columnIndex) {
+				return null;
+			}
 			
 			// End of user code
 
