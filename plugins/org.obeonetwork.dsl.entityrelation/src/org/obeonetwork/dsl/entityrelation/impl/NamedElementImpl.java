@@ -27,6 +27,16 @@ import org.obeonetwork.dsl.entityrelation.NamedElement;
  */
 public abstract class NamedElementImpl extends LogicalElementImpl implements NamedElement {
 	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -51,7 +61,7 @@ public abstract class NamedElementImpl extends LogicalElementImpl implements Nam
 	 * @generated
 	 */
 	public String getName() {
-		return (String)eGet(EntityRelationPackage.Literals.NAMED_ELEMENT__NAME, true);
+		return (String)eDynamicGet(EntityRelationPackage.NAMED_ELEMENT__NAME, EntityRelationPackage.Literals.NAMED_ELEMENT__NAME, true, true);
 	}
 
 	/**
@@ -60,7 +70,65 @@ public abstract class NamedElementImpl extends LogicalElementImpl implements Nam
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(EntityRelationPackage.Literals.NAMED_ELEMENT__NAME, newName);
+		eDynamicSet(EntityRelationPackage.NAMED_ELEMENT__NAME, EntityRelationPackage.Literals.NAMED_ELEMENT__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case EntityRelationPackage.NAMED_ELEMENT__NAME:
+				return getName();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case EntityRelationPackage.NAMED_ELEMENT__NAME:
+				setName((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case EntityRelationPackage.NAMED_ELEMENT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case EntityRelationPackage.NAMED_ELEMENT__NAME:
+				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //NamedElementImpl

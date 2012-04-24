@@ -65,7 +65,7 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<TypesLibrary> getUsedLibraries() {
-		return (EList<TypesLibrary>)eGet(TypesLibraryPackage.Literals.TYPES_LIBRARY_USER__USED_LIBRARIES, true);
+		return (EList<TypesLibrary>)eDynamicGet(EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES, TypesLibraryPackage.Literals.TYPES_LIBRARY_USER__USED_LIBRARIES, true, true);
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Entity> getEntities() {
-		return (EList<Entity>)eGet(EntityRelationPackage.Literals.LOGICAL_MODEL__ENTITIES, true);
+		return (EList<Entity>)eDynamicGet(EntityRelationPackage.LOGICAL_MODEL__ENTITIES, EntityRelationPackage.Literals.LOGICAL_MODEL__ENTITIES, true, true);
 	}
 
 	/**
@@ -85,7 +85,105 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Relation> getRelations() {
-		return (EList<Relation>)eGet(EntityRelationPackage.Literals.LOGICAL_MODEL__RELATIONS, true);
+		return (EList<Relation>)eDynamicGet(EntityRelationPackage.LOGICAL_MODEL__RELATIONS, EntityRelationPackage.Literals.LOGICAL_MODEL__RELATIONS, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
+				return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
+			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
+				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES:
+				return getUsedLibraries();
+			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
+				return getEntities();
+			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
+				return getRelations();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES:
+				getUsedLibraries().clear();
+				getUsedLibraries().addAll((Collection<? extends TypesLibrary>)newValue);
+				return;
+			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
+				getEntities().clear();
+				getEntities().addAll((Collection<? extends Entity>)newValue);
+				return;
+			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
+				getRelations().clear();
+				getRelations().addAll((Collection<? extends Relation>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES:
+				getUsedLibraries().clear();
+				return;
+			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
+				getEntities().clear();
+				return;
+			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
+				getRelations().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES:
+				return !getUsedLibraries().isEmpty();
+			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
+				return !getEntities().isEmpty();
+			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
+				return !getRelations().isEmpty();
+		}
+		return super.eIsSet(featureID);
 	}
 
 	/**

@@ -58,7 +58,16 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	 * @generated
 	 */
 	public Attribute getSourceAttribute() {
-		return (Attribute)eGet(EntityRelationPackage.Literals.RELATION_ELEMENT__SOURCE_ATTRIBUTE, true);
+		return (Attribute)eDynamicGet(EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE, EntityRelationPackage.Literals.RELATION_ELEMENT__SOURCE_ATTRIBUTE, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Attribute basicGetSourceAttribute() {
+		return (Attribute)eDynamicGet(EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE, EntityRelationPackage.Literals.RELATION_ELEMENT__SOURCE_ATTRIBUTE, false, true);
 	}
 
 	/**
@@ -67,7 +76,7 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	 * @generated
 	 */
 	public void setSourceAttribute(Attribute newSourceAttribute) {
-		eSet(EntityRelationPackage.Literals.RELATION_ELEMENT__SOURCE_ATTRIBUTE, newSourceAttribute);
+		eDynamicSet(EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE, EntityRelationPackage.Literals.RELATION_ELEMENT__SOURCE_ATTRIBUTE, newSourceAttribute);
 	}
 
 	/**
@@ -76,7 +85,16 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	 * @generated
 	 */
 	public Attribute getTargetAttribute() {
-		return (Attribute)eGet(EntityRelationPackage.Literals.RELATION_ELEMENT__TARGET_ATTRIBUTE, true);
+		return (Attribute)eDynamicGet(EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE, EntityRelationPackage.Literals.RELATION_ELEMENT__TARGET_ATTRIBUTE, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Attribute basicGetTargetAttribute() {
+		return (Attribute)eDynamicGet(EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE, EntityRelationPackage.Literals.RELATION_ELEMENT__TARGET_ATTRIBUTE, false, true);
 	}
 
 	/**
@@ -85,7 +103,77 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	 * @generated
 	 */
 	public void setTargetAttribute(Attribute newTargetAttribute) {
-		eSet(EntityRelationPackage.Literals.RELATION_ELEMENT__TARGET_ATTRIBUTE, newTargetAttribute);
+		eDynamicSet(EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE, EntityRelationPackage.Literals.RELATION_ELEMENT__TARGET_ATTRIBUTE, newTargetAttribute);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE:
+				if (resolve) return getSourceAttribute();
+				return basicGetSourceAttribute();
+			case EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE:
+				if (resolve) return getTargetAttribute();
+				return basicGetTargetAttribute();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE:
+				setSourceAttribute((Attribute)newValue);
+				return;
+			case EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE:
+				setTargetAttribute((Attribute)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE:
+				setSourceAttribute((Attribute)null);
+				return;
+			case EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE:
+				setTargetAttribute((Attribute)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE:
+				return basicGetSourceAttribute() != null;
+			case EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE:
+				return basicGetTargetAttribute() != null;
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //RelationElementImpl

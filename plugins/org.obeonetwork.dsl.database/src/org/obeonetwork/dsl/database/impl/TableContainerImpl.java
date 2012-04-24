@@ -72,7 +72,11 @@ public abstract class TableContainerImpl extends NamedElementImpl implements Tab
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<AbstractTable> getTables() {
-		return (EList<AbstractTable>)eGet(DatabasePackage.Literals.TABLE_CONTAINER__TABLES, true);
+		EList<AbstractTable> tables = (EList<AbstractTable>)eVirtualGet(DatabasePackage.TABLE_CONTAINER__TABLES);
+		if (tables == null) {
+			eVirtualSet(DatabasePackage.TABLE_CONTAINER__TABLES, tables = new EObjectContainmentWithInverseEList<AbstractTable>(AbstractTable.class, this, DatabasePackage.TABLE_CONTAINER__TABLES, DatabasePackage.ABSTRACT_TABLE__OWNER));
+		}
+		return tables;
 	}
 
 	/**
@@ -82,7 +86,116 @@ public abstract class TableContainerImpl extends NamedElementImpl implements Tab
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Sequence> getSequences() {
-		return (EList<Sequence>)eGet(DatabasePackage.Literals.TABLE_CONTAINER__SEQUENCES, true);
+		EList<Sequence> sequences = (EList<Sequence>)eVirtualGet(DatabasePackage.TABLE_CONTAINER__SEQUENCES);
+		if (sequences == null) {
+			eVirtualSet(DatabasePackage.TABLE_CONTAINER__SEQUENCES, sequences = new EObjectContainmentEList<Sequence>(Sequence.class, this, DatabasePackage.TABLE_CONTAINER__SEQUENCES));
+		}
+		return sequences;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabasePackage.TABLE_CONTAINER__TABLES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTables()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabasePackage.TABLE_CONTAINER__TABLES:
+				return ((InternalEList<?>)getTables()).basicRemove(otherEnd, msgs);
+			case DatabasePackage.TABLE_CONTAINER__SEQUENCES:
+				return ((InternalEList<?>)getSequences()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case DatabasePackage.TABLE_CONTAINER__TABLES:
+				return getTables();
+			case DatabasePackage.TABLE_CONTAINER__SEQUENCES:
+				return getSequences();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case DatabasePackage.TABLE_CONTAINER__TABLES:
+				getTables().clear();
+				getTables().addAll((Collection<? extends AbstractTable>)newValue);
+				return;
+			case DatabasePackage.TABLE_CONTAINER__SEQUENCES:
+				getSequences().clear();
+				getSequences().addAll((Collection<? extends Sequence>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case DatabasePackage.TABLE_CONTAINER__TABLES:
+				getTables().clear();
+				return;
+			case DatabasePackage.TABLE_CONTAINER__SEQUENCES:
+				getSequences().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case DatabasePackage.TABLE_CONTAINER__TABLES:
+				EList<AbstractTable> tables = (EList<AbstractTable>)eVirtualGet(DatabasePackage.TABLE_CONTAINER__TABLES);
+				return tables != null && !tables.isEmpty();
+			case DatabasePackage.TABLE_CONTAINER__SEQUENCES:
+				EList<Sequence> sequences = (EList<Sequence>)eVirtualGet(DatabasePackage.TABLE_CONTAINER__SEQUENCES);
+				return sequences != null && !sequences.isEmpty();
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //TableContainerImpl

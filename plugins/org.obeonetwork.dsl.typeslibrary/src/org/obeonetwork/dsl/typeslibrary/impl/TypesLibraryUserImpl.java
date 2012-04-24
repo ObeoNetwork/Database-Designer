@@ -82,7 +82,67 @@ public abstract class TypesLibraryUserImpl extends CDOObjectImpl implements Type
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<TypesLibrary> getUsedLibraries() {
-		return (EList<TypesLibrary>)eGet(TypesLibraryPackage.Literals.TYPES_LIBRARY_USER__USED_LIBRARIES, true);
+		return (EList<TypesLibrary>)eDynamicGet(TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES, TypesLibraryPackage.Literals.TYPES_LIBRARY_USER__USED_LIBRARIES, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES:
+				return getUsedLibraries();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES:
+				getUsedLibraries().clear();
+				getUsedLibraries().addAll((Collection<? extends TypesLibrary>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES:
+				getUsedLibraries().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES:
+				return !getUsedLibraries().isEmpty();
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //TypesLibraryUserImpl

@@ -41,6 +41,79 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
+	 * The default value of the '{@link #getStart() <em>Start</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStart()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int START_EDEFAULT = 0;
+	/**
+	 * The cached value of the '{@link #getStart() <em>Start</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStart()
+	 * @generated
+	 * @ordered
+	 */
+	protected int start = START_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getIncrement() <em>Increment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIncrement()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int INCREMENT_EDEFAULT = 0;
+	/**
+	 * The cached value of the '{@link #getIncrement() <em>Increment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIncrement()
+	 * @generated
+	 * @ordered
+	 */
+	protected int increment = INCREMENT_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getMinValue() <em>Min Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMinValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MIN_VALUE_EDEFAULT = 0;
+	/**
+	 * The cached value of the '{@link #getMinValue() <em>Min Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMinValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected int minValue = MIN_VALUE_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getMaxValue() <em>Max Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaxValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAX_VALUE_EDEFAULT = 0;
+	/**
+	 * The cached value of the '{@link #getMaxValue() <em>Max Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaxValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maxValue = MAX_VALUE_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -65,7 +138,7 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public int getStart() {
-		return (Integer)eGet(DatabasePackage.Literals.SEQUENCE__START, true);
+		return start;
 	}
 
 	/**
@@ -74,7 +147,10 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public void setStart(int newStart) {
-		eSet(DatabasePackage.Literals.SEQUENCE__START, newStart);
+		int oldStart = start;
+		start = newStart;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.SEQUENCE__START, oldStart, start));
 	}
 
 	/**
@@ -83,7 +159,7 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public int getIncrement() {
-		return (Integer)eGet(DatabasePackage.Literals.SEQUENCE__INCREMENT, true);
+		return increment;
 	}
 
 	/**
@@ -92,7 +168,10 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public void setIncrement(int newIncrement) {
-		eSet(DatabasePackage.Literals.SEQUENCE__INCREMENT, newIncrement);
+		int oldIncrement = increment;
+		increment = newIncrement;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.SEQUENCE__INCREMENT, oldIncrement, increment));
 	}
 
 	/**
@@ -101,7 +180,7 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public int getMinValue() {
-		return (Integer)eGet(DatabasePackage.Literals.SEQUENCE__MIN_VALUE, true);
+		return minValue;
 	}
 
 	/**
@@ -110,7 +189,10 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public void setMinValue(int newMinValue) {
-		eSet(DatabasePackage.Literals.SEQUENCE__MIN_VALUE, newMinValue);
+		int oldMinValue = minValue;
+		minValue = newMinValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.SEQUENCE__MIN_VALUE, oldMinValue, minValue));
 	}
 
 	/**
@@ -119,7 +201,7 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public int getMaxValue() {
-		return (Integer)eGet(DatabasePackage.Literals.SEQUENCE__MAX_VALUE, true);
+		return maxValue;
 	}
 
 	/**
@@ -128,7 +210,120 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public void setMaxValue(int newMaxValue) {
-		eSet(DatabasePackage.Literals.SEQUENCE__MAX_VALUE, newMaxValue);
+		int oldMaxValue = maxValue;
+		maxValue = newMaxValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.SEQUENCE__MAX_VALUE, oldMaxValue, maxValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case DatabasePackage.SEQUENCE__START:
+				return getStart();
+			case DatabasePackage.SEQUENCE__INCREMENT:
+				return getIncrement();
+			case DatabasePackage.SEQUENCE__MIN_VALUE:
+				return getMinValue();
+			case DatabasePackage.SEQUENCE__MAX_VALUE:
+				return getMaxValue();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case DatabasePackage.SEQUENCE__START:
+				setStart((Integer)newValue);
+				return;
+			case DatabasePackage.SEQUENCE__INCREMENT:
+				setIncrement((Integer)newValue);
+				return;
+			case DatabasePackage.SEQUENCE__MIN_VALUE:
+				setMinValue((Integer)newValue);
+				return;
+			case DatabasePackage.SEQUENCE__MAX_VALUE:
+				setMaxValue((Integer)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case DatabasePackage.SEQUENCE__START:
+				setStart(START_EDEFAULT);
+				return;
+			case DatabasePackage.SEQUENCE__INCREMENT:
+				setIncrement(INCREMENT_EDEFAULT);
+				return;
+			case DatabasePackage.SEQUENCE__MIN_VALUE:
+				setMinValue(MIN_VALUE_EDEFAULT);
+				return;
+			case DatabasePackage.SEQUENCE__MAX_VALUE:
+				setMaxValue(MAX_VALUE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case DatabasePackage.SEQUENCE__START:
+				return start != START_EDEFAULT;
+			case DatabasePackage.SEQUENCE__INCREMENT:
+				return increment != INCREMENT_EDEFAULT;
+			case DatabasePackage.SEQUENCE__MIN_VALUE:
+				return minValue != MIN_VALUE_EDEFAULT;
+			case DatabasePackage.SEQUENCE__MAX_VALUE:
+				return maxValue != MAX_VALUE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (start: ");
+		result.append(start);
+		result.append(", increment: ");
+		result.append(increment);
+		result.append(", minValue: ");
+		result.append(minValue);
+		result.append(", maxValue: ");
+		result.append(maxValue);
+		result.append(')');
+		return result.toString();
 	}
 
 } //SequenceImpl

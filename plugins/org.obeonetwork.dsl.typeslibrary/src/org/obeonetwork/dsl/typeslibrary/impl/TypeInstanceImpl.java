@@ -53,6 +53,25 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
+	 * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int LENGTH_EDEFAULT = 0;
+	/**
+	 * The default value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrecision()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int PRECISION_EDEFAULT = 0;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -77,7 +96,16 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public NativeType getNativeType() {
-		return (NativeType)eGet(TypesLibraryPackage.Literals.TYPE_INSTANCE__NATIVE_TYPE, true);
+		return (NativeType)eDynamicGet(TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE, TypesLibraryPackage.Literals.TYPE_INSTANCE__NATIVE_TYPE, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NativeType basicGetNativeType() {
+		return (NativeType)eDynamicGet(TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE, TypesLibraryPackage.Literals.TYPE_INSTANCE__NATIVE_TYPE, false, true);
 	}
 
 	/**
@@ -86,7 +114,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public void setNativeType(NativeType newNativeType) {
-		eSet(TypesLibraryPackage.Literals.TYPE_INSTANCE__NATIVE_TYPE, newNativeType);
+		eDynamicSet(TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE, TypesLibraryPackage.Literals.TYPE_INSTANCE__NATIVE_TYPE, newNativeType);
 	}
 
 	/**
@@ -95,7 +123,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public int getLength() {
-		return (Integer)eGet(TypesLibraryPackage.Literals.TYPE_INSTANCE__LENGTH, true);
+		return (Integer)eDynamicGet(TypesLibraryPackage.TYPE_INSTANCE__LENGTH, TypesLibraryPackage.Literals.TYPE_INSTANCE__LENGTH, true, true);
 	}
 
 	/**
@@ -104,7 +132,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public void setLength(int newLength) {
-		eSet(TypesLibraryPackage.Literals.TYPE_INSTANCE__LENGTH, newLength);
+		eDynamicSet(TypesLibraryPackage.TYPE_INSTANCE__LENGTH, TypesLibraryPackage.Literals.TYPE_INSTANCE__LENGTH, newLength);
 	}
 
 	/**
@@ -113,7 +141,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public int getPrecision() {
-		return (Integer)eGet(TypesLibraryPackage.Literals.TYPE_INSTANCE__PRECISION, true);
+		return (Integer)eDynamicGet(TypesLibraryPackage.TYPE_INSTANCE__PRECISION, TypesLibraryPackage.Literals.TYPE_INSTANCE__PRECISION, true, true);
 	}
 
 	/**
@@ -122,7 +150,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public void setPrecision(int newPrecision) {
-		eSet(TypesLibraryPackage.Literals.TYPE_INSTANCE__PRECISION, newPrecision);
+		eDynamicSet(TypesLibraryPackage.TYPE_INSTANCE__PRECISION, TypesLibraryPackage.Literals.TYPE_INSTANCE__PRECISION, newPrecision);
 	}
 
 	/**
@@ -132,7 +160,98 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getLiterals() {
-		return (EList<String>)eGet(TypesLibraryPackage.Literals.TYPE_INSTANCE__LITERALS, true);
+		return (EList<String>)eDynamicGet(TypesLibraryPackage.TYPE_INSTANCE__LITERALS, TypesLibraryPackage.Literals.TYPE_INSTANCE__LITERALS, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE:
+				if (resolve) return getNativeType();
+				return basicGetNativeType();
+			case TypesLibraryPackage.TYPE_INSTANCE__LENGTH:
+				return getLength();
+			case TypesLibraryPackage.TYPE_INSTANCE__PRECISION:
+				return getPrecision();
+			case TypesLibraryPackage.TYPE_INSTANCE__LITERALS:
+				return getLiterals();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE:
+				setNativeType((NativeType)newValue);
+				return;
+			case TypesLibraryPackage.TYPE_INSTANCE__LENGTH:
+				setLength((Integer)newValue);
+				return;
+			case TypesLibraryPackage.TYPE_INSTANCE__PRECISION:
+				setPrecision((Integer)newValue);
+				return;
+			case TypesLibraryPackage.TYPE_INSTANCE__LITERALS:
+				getLiterals().clear();
+				getLiterals().addAll((Collection<? extends String>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE:
+				setNativeType((NativeType)null);
+				return;
+			case TypesLibraryPackage.TYPE_INSTANCE__LENGTH:
+				setLength(LENGTH_EDEFAULT);
+				return;
+			case TypesLibraryPackage.TYPE_INSTANCE__PRECISION:
+				setPrecision(PRECISION_EDEFAULT);
+				return;
+			case TypesLibraryPackage.TYPE_INSTANCE__LITERALS:
+				getLiterals().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE:
+				return basicGetNativeType() != null;
+			case TypesLibraryPackage.TYPE_INSTANCE__LENGTH:
+				return getLength() != LENGTH_EDEFAULT;
+			case TypesLibraryPackage.TYPE_INSTANCE__PRECISION:
+				return getPrecision() != PRECISION_EDEFAULT;
+			case TypesLibraryPackage.TYPE_INSTANCE__LITERALS:
+				return !getLiterals().isEmpty();
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //TypeInstanceImpl

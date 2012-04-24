@@ -68,7 +68,16 @@ public class SimpleNamedTypeImpl extends UserDefinedTypeImpl implements SimpleNa
 	 * @generated
 	 */
 	public TypeInstance getType() {
-		return (TypeInstance)eGet(TypesLibraryPackage.Literals.SIMPLE_NAMED_TYPE__TYPE, true);
+		return (TypeInstance)eDynamicGet(TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE, TypesLibraryPackage.Literals.SIMPLE_NAMED_TYPE__TYPE, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypeInstance basicGetType() {
+		return (TypeInstance)eDynamicGet(TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE, TypesLibraryPackage.Literals.SIMPLE_NAMED_TYPE__TYPE, false, true);
 	}
 
 	/**
@@ -77,7 +86,66 @@ public class SimpleNamedTypeImpl extends UserDefinedTypeImpl implements SimpleNa
 	 * @generated
 	 */
 	public void setType(TypeInstance newType) {
-		eSet(TypesLibraryPackage.Literals.SIMPLE_NAMED_TYPE__TYPE, newType);
+		eDynamicSet(TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE, TypesLibraryPackage.Literals.SIMPLE_NAMED_TYPE__TYPE, newType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE:
+				setType((TypeInstance)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE:
+				setType((TypeInstance)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE:
+				return basicGetType() != null;
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //SimpleNamedTypeImpl

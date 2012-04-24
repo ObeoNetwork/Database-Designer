@@ -68,7 +68,16 @@ public class UserDefinedTypeRefImpl extends TypeImpl implements UserDefinedTypeR
 	 * @generated
 	 */
 	public UserDefinedType getType() {
-		return (UserDefinedType)eGet(TypesLibraryPackage.Literals.USER_DEFINED_TYPE_REF__TYPE, true);
+		return (UserDefinedType)eDynamicGet(TypesLibraryPackage.USER_DEFINED_TYPE_REF__TYPE, TypesLibraryPackage.Literals.USER_DEFINED_TYPE_REF__TYPE, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UserDefinedType basicGetType() {
+		return (UserDefinedType)eDynamicGet(TypesLibraryPackage.USER_DEFINED_TYPE_REF__TYPE, TypesLibraryPackage.Literals.USER_DEFINED_TYPE_REF__TYPE, false, true);
 	}
 
 	/**
@@ -77,7 +86,66 @@ public class UserDefinedTypeRefImpl extends TypeImpl implements UserDefinedTypeR
 	 * @generated
 	 */
 	public void setType(UserDefinedType newType) {
-		eSet(TypesLibraryPackage.Literals.USER_DEFINED_TYPE_REF__TYPE, newType);
+		eDynamicSet(TypesLibraryPackage.USER_DEFINED_TYPE_REF__TYPE, TypesLibraryPackage.Literals.USER_DEFINED_TYPE_REF__TYPE, newType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case TypesLibraryPackage.USER_DEFINED_TYPE_REF__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case TypesLibraryPackage.USER_DEFINED_TYPE_REF__TYPE:
+				setType((UserDefinedType)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case TypesLibraryPackage.USER_DEFINED_TYPE_REF__TYPE:
+				setType((UserDefinedType)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case TypesLibraryPackage.USER_DEFINED_TYPE_REF__TYPE:
+				return basicGetType() != null;
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //UserDefinedTypeRefImpl

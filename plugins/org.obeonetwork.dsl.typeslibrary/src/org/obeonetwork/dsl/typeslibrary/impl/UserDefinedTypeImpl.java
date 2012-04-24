@@ -43,6 +43,16 @@ public abstract class UserDefinedTypeImpl extends CDOObjectImpl implements UserD
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -77,7 +87,7 @@ public abstract class UserDefinedTypeImpl extends CDOObjectImpl implements UserD
 	 * @generated
 	 */
 	public String getName() {
-		return (String)eGet(TypesLibraryPackage.Literals.USER_DEFINED_TYPE__NAME, true);
+		return (String)eDynamicGet(TypesLibraryPackage.USER_DEFINED_TYPE__NAME, TypesLibraryPackage.Literals.USER_DEFINED_TYPE__NAME, true, true);
 	}
 
 	/**
@@ -86,7 +96,65 @@ public abstract class UserDefinedTypeImpl extends CDOObjectImpl implements UserD
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(TypesLibraryPackage.Literals.USER_DEFINED_TYPE__NAME, newName);
+		eDynamicSet(TypesLibraryPackage.USER_DEFINED_TYPE__NAME, TypesLibraryPackage.Literals.USER_DEFINED_TYPE__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case TypesLibraryPackage.USER_DEFINED_TYPE__NAME:
+				return getName();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case TypesLibraryPackage.USER_DEFINED_TYPE__NAME:
+				setName((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case TypesLibraryPackage.USER_DEFINED_TYPE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case TypesLibraryPackage.USER_DEFINED_TYPE__NAME:
+				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //UserDefinedTypeImpl

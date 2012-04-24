@@ -27,6 +27,25 @@ import org.obeonetwork.dsl.entityrelation.LogicalElement;
  */
 public abstract class LogicalElementImpl extends CDOObjectImpl implements LogicalElement {
 	/**
+	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = null;
+	/**
+	 * The default value of the '{@link #getComments() <em>Comments</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getComments()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String COMMENTS_EDEFAULT = null;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -61,7 +80,7 @@ public abstract class LogicalElementImpl extends CDOObjectImpl implements Logica
 	 * @generated
 	 */
 	public String getID() {
-		return (String)eGet(EntityRelationPackage.Literals.LOGICAL_ELEMENT__ID, true);
+		return (String)eDynamicGet(EntityRelationPackage.LOGICAL_ELEMENT__ID, EntityRelationPackage.Literals.LOGICAL_ELEMENT__ID, true, true);
 	}
 
 	/**
@@ -70,7 +89,7 @@ public abstract class LogicalElementImpl extends CDOObjectImpl implements Logica
 	 * @generated
 	 */
 	public String getComments() {
-		return (String)eGet(EntityRelationPackage.Literals.LOGICAL_ELEMENT__COMMENTS, true);
+		return (String)eDynamicGet(EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS, EntityRelationPackage.Literals.LOGICAL_ELEMENT__COMMENTS, true, true);
 	}
 
 	/**
@@ -79,7 +98,69 @@ public abstract class LogicalElementImpl extends CDOObjectImpl implements Logica
 	 * @generated
 	 */
 	public void setComments(String newComments) {
-		eSet(EntityRelationPackage.Literals.LOGICAL_ELEMENT__COMMENTS, newComments);
+		eDynamicSet(EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS, EntityRelationPackage.Literals.LOGICAL_ELEMENT__COMMENTS, newComments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_ELEMENT__ID:
+				return getID();
+			case EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS:
+				return getComments();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS:
+				setComments((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS:
+				setComments(COMMENTS_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case EntityRelationPackage.LOGICAL_ELEMENT__ID:
+				return ID_EDEFAULT == null ? getID() != null : !ID_EDEFAULT.equals(getID());
+			case EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS:
+				return COMMENTS_EDEFAULT == null ? getComments() != null : !COMMENTS_EDEFAULT.equals(getComments());
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //LogicalElementImpl

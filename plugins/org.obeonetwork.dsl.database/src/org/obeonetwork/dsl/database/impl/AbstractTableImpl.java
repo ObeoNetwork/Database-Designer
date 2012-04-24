@@ -75,7 +75,11 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Column> getColumns() {
-		return (EList<Column>)eGet(DatabasePackage.Literals.ABSTRACT_TABLE__COLUMNS, true);
+		EList<Column> columns = (EList<Column>)eVirtualGet(DatabasePackage.ABSTRACT_TABLE__COLUMNS);
+		if (columns == null) {
+			eVirtualSet(DatabasePackage.ABSTRACT_TABLE__COLUMNS, columns = new EObjectContainmentWithInverseEList<Column>(Column.class, this, DatabasePackage.ABSTRACT_TABLE__COLUMNS, DatabasePackage.COLUMN__OWNER));
+		}
+		return columns;
 	}
 
 	/**
@@ -84,7 +88,18 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	 * @generated
 	 */
 	public TableContainer getOwner() {
-		return (TableContainer)eGet(DatabasePackage.Literals.ABSTRACT_TABLE__OWNER, true);
+		if (eContainerFeatureID() != DatabasePackage.ABSTRACT_TABLE__OWNER) return null;
+		return (TableContainer)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(TableContainer newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, DatabasePackage.ABSTRACT_TABLE__OWNER, msgs);
+		return msgs;
 	}
 
 	/**
@@ -93,7 +108,140 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	 * @generated
 	 */
 	public void setOwner(TableContainer newOwner) {
-		eSet(DatabasePackage.Literals.ABSTRACT_TABLE__OWNER, newOwner);
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.ABSTRACT_TABLE__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DatabasePackage.TABLE_CONTAINER__TABLES, TableContainer.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.ABSTRACT_TABLE__OWNER, newOwner, newOwner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabasePackage.ABSTRACT_TABLE__COLUMNS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getColumns()).basicAdd(otherEnd, msgs);
+			case DatabasePackage.ABSTRACT_TABLE__OWNER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwner((TableContainer)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabasePackage.ABSTRACT_TABLE__COLUMNS:
+				return ((InternalEList<?>)getColumns()).basicRemove(otherEnd, msgs);
+			case DatabasePackage.ABSTRACT_TABLE__OWNER:
+				return basicSetOwner(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case DatabasePackage.ABSTRACT_TABLE__OWNER:
+				return eInternalContainer().eInverseRemove(this, DatabasePackage.TABLE_CONTAINER__TABLES, TableContainer.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case DatabasePackage.ABSTRACT_TABLE__COLUMNS:
+				return getColumns();
+			case DatabasePackage.ABSTRACT_TABLE__OWNER:
+				return getOwner();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case DatabasePackage.ABSTRACT_TABLE__COLUMNS:
+				getColumns().clear();
+				getColumns().addAll((Collection<? extends Column>)newValue);
+				return;
+			case DatabasePackage.ABSTRACT_TABLE__OWNER:
+				setOwner((TableContainer)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case DatabasePackage.ABSTRACT_TABLE__COLUMNS:
+				getColumns().clear();
+				return;
+			case DatabasePackage.ABSTRACT_TABLE__OWNER:
+				setOwner((TableContainer)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case DatabasePackage.ABSTRACT_TABLE__COLUMNS:
+				EList<Column> columns = (EList<Column>)eVirtualGet(DatabasePackage.ABSTRACT_TABLE__COLUMNS);
+				return columns != null && !columns.isEmpty();
+			case DatabasePackage.ABSTRACT_TABLE__OWNER:
+				return getOwner() != null;
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //AbstractTableImpl
