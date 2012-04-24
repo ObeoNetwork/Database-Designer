@@ -54,56 +54,6 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getUsedLibraries() <em>Used Libraries</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsedLibraries()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypesLibrary> usedLibraries;
-
-	/**
-	 * The default value of the '{@link #getUrl() <em>Url</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUrl()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String URL_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getUrl() <em>Url</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUrl()
-	 * @generated
-	 * @ordered
-	 */
-	protected String url = URL_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getSchemas() <em>Schemas</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSchemas()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Schema> schemas;
-
-	/**
-	 * The cached value of the '{@link #getDefines() <em>Defines</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefines()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<UserDefinedTypesLibrary> defines;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -127,11 +77,9 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<TypesLibrary> getUsedLibraries() {
-		if (usedLibraries == null) {
-			usedLibraries = new EObjectResolvingEList<TypesLibrary>(TypesLibrary.class, this, DatabasePackage.DATA_BASE__USED_LIBRARIES);
-		}
-		return usedLibraries;
+		return (EList<TypesLibrary>)eGet(TypesLibraryPackage.Literals.TYPES_LIBRARY_USER__USED_LIBRARIES, true);
 	}
 
 	/**
@@ -140,7 +88,7 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * @generated
 	 */
 	public String getUrl() {
-		return url;
+		return (String)eGet(DatabasePackage.Literals.DATA_BASE__URL, true);
 	}
 
 	/**
@@ -149,70 +97,7 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * @generated
 	 */
 	public void setUrl(String newUrl) {
-		String oldUrl = url;
-		url = newUrl;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.DATA_BASE__URL, oldUrl, url));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Schema> getSchemas() {
-		if (schemas == null) {
-			schemas = new EObjectContainmentEList<Schema>(Schema.class, this, DatabasePackage.DATA_BASE__SCHEMAS);
-		}
-		return schemas;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<UserDefinedTypesLibrary> getDefines() {
-		if (defines == null) {
-			defines = new EObjectContainmentEList<UserDefinedTypesLibrary>(UserDefinedTypesLibrary.class, this, DatabasePackage.DATA_BASE__DEFINES);
-		}
-		return defines;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DatabasePackage.DATA_BASE__SCHEMAS:
-				return ((InternalEList<?>)getSchemas()).basicRemove(otherEnd, msgs);
-			case DatabasePackage.DATA_BASE__DEFINES:
-				return ((InternalEList<?>)getDefines()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DatabasePackage.DATA_BASE__USED_LIBRARIES:
-				return getUsedLibraries();
-			case DatabasePackage.DATA_BASE__URL:
-				return getUrl();
-			case DatabasePackage.DATA_BASE__SCHEMAS:
-				return getSchemas();
-			case DatabasePackage.DATA_BASE__DEFINES:
-				return getDefines();
-		}
-		return super.eGet(featureID, resolve, coreType);
+		eSet(DatabasePackage.Literals.DATA_BASE__URL, newUrl);
 	}
 
 	/**
@@ -221,26 +106,8 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DatabasePackage.DATA_BASE__USED_LIBRARIES:
-				getUsedLibraries().clear();
-				getUsedLibraries().addAll((Collection<? extends TypesLibrary>)newValue);
-				return;
-			case DatabasePackage.DATA_BASE__URL:
-				setUrl((String)newValue);
-				return;
-			case DatabasePackage.DATA_BASE__SCHEMAS:
-				getSchemas().clear();
-				getSchemas().addAll((Collection<? extends Schema>)newValue);
-				return;
-			case DatabasePackage.DATA_BASE__DEFINES:
-				getDefines().clear();
-				getDefines().addAll((Collection<? extends UserDefinedTypesLibrary>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
+	public EList<Schema> getSchemas() {
+		return (EList<Schema>)eGet(DatabasePackage.Literals.DATA_BASE__SCHEMAS, true);
 	}
 
 	/**
@@ -248,43 +115,9 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DatabasePackage.DATA_BASE__USED_LIBRARIES:
-				getUsedLibraries().clear();
-				return;
-			case DatabasePackage.DATA_BASE__URL:
-				setUrl(URL_EDEFAULT);
-				return;
-			case DatabasePackage.DATA_BASE__SCHEMAS:
-				getSchemas().clear();
-				return;
-			case DatabasePackage.DATA_BASE__DEFINES:
-				getDefines().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DatabasePackage.DATA_BASE__USED_LIBRARIES:
-				return usedLibraries != null && !usedLibraries.isEmpty();
-			case DatabasePackage.DATA_BASE__URL:
-				return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
-			case DatabasePackage.DATA_BASE__SCHEMAS:
-				return schemas != null && !schemas.isEmpty();
-			case DatabasePackage.DATA_BASE__DEFINES:
-				return defines != null && !defines.isEmpty();
-		}
-		return super.eIsSet(featureID);
+	@SuppressWarnings("unchecked")
+	public EList<UserDefinedTypesLibrary> getDefines() {
+		return (EList<UserDefinedTypesLibrary>)eGet(DatabasePackage.Literals.DATA_BASE__DEFINES, true);
 	}
 
 	/**
@@ -317,22 +150,6 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (url: ");
-		result.append(url);
-		result.append(')');
-		return result.toString();
 	}
 
 } //DataBaseImpl

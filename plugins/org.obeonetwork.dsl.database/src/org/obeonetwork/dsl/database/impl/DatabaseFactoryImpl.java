@@ -84,7 +84,7 @@ public class DatabaseFactoryImpl extends EFactoryImpl implements DatabaseFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case DatabasePackage.DATA_BASE: return createDataBase();
+			case DatabasePackage.DATA_BASE: return (EObject)createDataBase();
 			case DatabasePackage.COLUMN: return (EObject)createColumn();
 			case DatabasePackage.INDEX: return (EObject)createIndex();
 			case DatabasePackage.VIEW: return (EObject)createView();

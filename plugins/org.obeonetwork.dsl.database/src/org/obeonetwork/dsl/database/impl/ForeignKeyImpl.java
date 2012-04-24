@@ -53,26 +53,6 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ForeignKeyElement> elements;
-
-	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected Table target;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -96,11 +76,9 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<ForeignKeyElement> getElements() {
-		if (elements == null) {
-			elements = new EObjectContainmentEList<ForeignKeyElement>(ForeignKeyElement.class, this, DatabasePackage.FOREIGN_KEY__ELEMENTS);
-		}
-		return elements;
+		return (EList<ForeignKeyElement>)eGet(DatabasePackage.Literals.FOREIGN_KEY__ELEMENTS, true);
 	}
 
 	/**
@@ -109,18 +87,7 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * @generated
 	 */
 	public Table getOwner() {
-		if (eContainerFeatureID() != DatabasePackage.FOREIGN_KEY__OWNER) return null;
-		return (Table)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwner(Table newOwner, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwner, DatabasePackage.FOREIGN_KEY__OWNER, msgs);
-		return msgs;
+		return (Table)eGet(DatabasePackage.Literals.FOREIGN_KEY__OWNER, true);
 	}
 
 	/**
@@ -129,19 +96,7 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * @generated
 	 */
 	public void setOwner(Table newOwner) {
-		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.FOREIGN_KEY__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DatabasePackage.TABLE__FOREIGN_KEYS, Table.class, msgs);
-			msgs = basicSetOwner(newOwner, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY__OWNER, newOwner, newOwner));
+		eSet(DatabasePackage.Literals.FOREIGN_KEY__OWNER, newOwner);
 	}
 
 	/**
@@ -150,24 +105,7 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * @generated
 	 */
 	public Table getTarget() {
-		if (target != null && ((EObject)target).eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (Table)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabasePackage.FOREIGN_KEY__TARGET, oldTarget, target));
-			}
-		}
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Table basicGetTarget() {
-		return target;
+		return (Table)eGet(DatabasePackage.Literals.FOREIGN_KEY__TARGET, true);
 	}
 
 	/**
@@ -176,10 +114,7 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * @generated
 	 */
 	public void setTarget(Table newTarget) {
-		Table oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY__TARGET, oldTarget, target));
+		eSet(DatabasePackage.Literals.FOREIGN_KEY__TARGET, newTarget);
 	}
 
 	/**
@@ -200,133 +135,6 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 		return getTarget();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DatabasePackage.FOREIGN_KEY__OWNER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwner((Table)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DatabasePackage.FOREIGN_KEY__ELEMENTS:
-				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
-			case DatabasePackage.FOREIGN_KEY__OWNER:
-				return basicSetOwner(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case DatabasePackage.FOREIGN_KEY__OWNER:
-				return eInternalContainer().eInverseRemove(this, DatabasePackage.TABLE__FOREIGN_KEYS, Table.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DatabasePackage.FOREIGN_KEY__ELEMENTS:
-				return getElements();
-			case DatabasePackage.FOREIGN_KEY__OWNER:
-				return getOwner();
-			case DatabasePackage.FOREIGN_KEY__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DatabasePackage.FOREIGN_KEY__ELEMENTS:
-				getElements().clear();
-				getElements().addAll((Collection<? extends ForeignKeyElement>)newValue);
-				return;
-			case DatabasePackage.FOREIGN_KEY__OWNER:
-				setOwner((Table)newValue);
-				return;
-			case DatabasePackage.FOREIGN_KEY__TARGET:
-				setTarget((Table)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DatabasePackage.FOREIGN_KEY__ELEMENTS:
-				getElements().clear();
-				return;
-			case DatabasePackage.FOREIGN_KEY__OWNER:
-				setOwner((Table)null);
-				return;
-			case DatabasePackage.FOREIGN_KEY__TARGET:
-				setTarget((Table)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DatabasePackage.FOREIGN_KEY__ELEMENTS:
-				return elements != null && !elements.isEmpty();
-			case DatabasePackage.FOREIGN_KEY__OWNER:
-				return getOwner() != null;
-			case DatabasePackage.FOREIGN_KEY__TARGET:
-				return target != null;
-		}
-		return super.eIsSet(featureID);
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

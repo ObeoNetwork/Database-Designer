@@ -13,6 +13,16 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.obeonetwork.dsl.entityrelation.*;
+import org.obeonetwork.dsl.entityrelation.Attribute;
+import org.obeonetwork.dsl.entityrelation.Cardinality;
+import org.obeonetwork.dsl.entityrelation.Entity;
+import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
+import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
+import org.obeonetwork.dsl.entityrelation.Identifier;
+import org.obeonetwork.dsl.entityrelation.LogicalModel;
+import org.obeonetwork.dsl.entityrelation.Relation;
+import org.obeonetwork.dsl.entityrelation.RelationElement;
+import org.obeonetwork.dsl.entityrelation.spec.RelationSpec;
 import org.obeonetwork.dsl.typeslibrary.TypeInstance;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryFactory;
 
@@ -60,7 +70,7 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case EntityRelationPackage.LOGICAL_MODEL: return createLogicalModel();
+			case EntityRelationPackage.LOGICAL_MODEL: return (EObject)createLogicalModel();
 			case EntityRelationPackage.ENTITY: return (EObject)createEntity();
 			case EntityRelationPackage.RELATION: return (EObject)createRelation();
 			case EntityRelationPackage.RELATION_ELEMENT: return (EObject)createRelationElement();
@@ -124,10 +134,10 @@ public class EntityRelationFactoryImpl extends EFactoryImpl implements EntityRel
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated Not
 	 */
 	public Relation createRelation() {
-		RelationImpl relation = new RelationImpl();
+		RelationImpl relation = new RelationSpec();
 		return relation;
 	}
 

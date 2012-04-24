@@ -47,16 +47,6 @@ public abstract class TypesLibraryUserImpl extends CDOObjectImpl implements Type
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getUsedLibraries() <em>Used Libraries</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsedLibraries()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypesLibrary> usedLibraries;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -80,25 +70,9 @@ public abstract class TypesLibraryUserImpl extends CDOObjectImpl implements Type
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TypesLibrary> getUsedLibraries() {
-		if (usedLibraries == null) {
-			usedLibraries = new EObjectResolvingEList<TypesLibrary>(TypesLibrary.class, this, TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES);
-		}
-		return usedLibraries;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES:
-				return getUsedLibraries();
-		}
-		return super.eGet(featureID, resolve, coreType);
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**
@@ -107,44 +81,8 @@ public abstract class TypesLibraryUserImpl extends CDOObjectImpl implements Type
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES:
-				getUsedLibraries().clear();
-				getUsedLibraries().addAll((Collection<? extends TypesLibrary>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES:
-				getUsedLibraries().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TypesLibraryPackage.TYPES_LIBRARY_USER__USED_LIBRARIES:
-				return usedLibraries != null && !usedLibraries.isEmpty();
-		}
-		return super.eIsSet(featureID);
+	public EList<TypesLibrary> getUsedLibraries() {
+		return (EList<TypesLibrary>)eGet(TypesLibraryPackage.Literals.TYPES_LIBRARY_USER__USED_LIBRARIES, true);
 	}
 
 } //TypesLibraryUserImpl

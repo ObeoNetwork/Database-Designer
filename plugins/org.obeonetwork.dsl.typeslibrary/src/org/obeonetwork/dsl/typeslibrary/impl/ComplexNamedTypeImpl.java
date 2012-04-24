@@ -48,16 +48,6 @@ public class ComplexNamedTypeImpl extends UserDefinedTypeImpl implements Complex
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getTypes() <em>Types</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<UserDefinedType> types;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -81,85 +71,9 @@ public class ComplexNamedTypeImpl extends UserDefinedTypeImpl implements Complex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<UserDefinedType> getTypes() {
-		if (types == null) {
-			types = new EObjectContainmentEList<UserDefinedType>(UserDefinedType.class, this, TypesLibraryPackage.COMPLEX_NAMED_TYPE__TYPES);
-		}
-		return types;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TypesLibraryPackage.COMPLEX_NAMED_TYPE__TYPES:
-				return ((InternalEList<?>)getTypes()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TypesLibraryPackage.COMPLEX_NAMED_TYPE__TYPES:
-				return getTypes();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TypesLibraryPackage.COMPLEX_NAMED_TYPE__TYPES:
-				getTypes().clear();
-				getTypes().addAll((Collection<? extends UserDefinedType>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TypesLibraryPackage.COMPLEX_NAMED_TYPE__TYPES:
-				getTypes().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TypesLibraryPackage.COMPLEX_NAMED_TYPE__TYPES:
-				return types != null && !types.isEmpty();
-		}
-		return super.eIsSet(featureID);
+	public EList<UserDefinedType> getTypes() {
+		return (EList<UserDefinedType>)eGet(TypesLibraryPackage.Literals.COMPLEX_NAMED_TYPE__TYPES, true);
 	}
 
 } //ComplexNamedTypeImpl

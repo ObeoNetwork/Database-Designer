@@ -42,36 +42,6 @@ public abstract class DatabaseElementImpl extends CDOObjectImpl implements Datab
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getID()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ID_EDEFAULT = null;
-
-	/**
-	 * The default value of the '{@link #getComments() <em>Comments</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getComments()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String COMMENTS_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getComments() <em>Comments</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getComments()
-	 * @generated
-	 * @ordered
-	 */
-	protected String comments = COMMENTS_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -88,6 +58,16 @@ public abstract class DatabaseElementImpl extends CDOObjectImpl implements Datab
 	@Override
 	protected EClass eStaticClass() {
 		return DatabasePackage.Literals.DATABASE_ELEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**
@@ -119,7 +99,7 @@ public abstract class DatabaseElementImpl extends CDOObjectImpl implements Datab
 	 * @generated
 	 */
 	public String getComments() {
-		return comments;
+		return (String)eGet(DatabasePackage.Literals.DATABASE_ELEMENT__COMMENTS, true);
 	}
 
 	/**
@@ -128,88 +108,7 @@ public abstract class DatabaseElementImpl extends CDOObjectImpl implements Datab
 	 * @generated
 	 */
 	public void setComments(String newComments) {
-		String oldComments = comments;
-		comments = newComments;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.DATABASE_ELEMENT__COMMENTS, oldComments, comments));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DatabasePackage.DATABASE_ELEMENT__ID:
-				return getID();
-			case DatabasePackage.DATABASE_ELEMENT__COMMENTS:
-				return getComments();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DatabasePackage.DATABASE_ELEMENT__COMMENTS:
-				setComments((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DatabasePackage.DATABASE_ELEMENT__COMMENTS:
-				setComments(COMMENTS_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DatabasePackage.DATABASE_ELEMENT__ID:
-				return ID_EDEFAULT == null ? getID() != null : !ID_EDEFAULT.equals(getID());
-			case DatabasePackage.DATABASE_ELEMENT__COMMENTS:
-				return COMMENTS_EDEFAULT == null ? comments != null : !COMMENTS_EDEFAULT.equals(comments);
-		}
-		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (comments: ");
-		result.append(comments);
-		result.append(')');
-		return result.toString();
+		eSet(DatabasePackage.Literals.DATABASE_ELEMENT__COMMENTS, newComments);
 	}
 
 } //DatabaseElementImpl

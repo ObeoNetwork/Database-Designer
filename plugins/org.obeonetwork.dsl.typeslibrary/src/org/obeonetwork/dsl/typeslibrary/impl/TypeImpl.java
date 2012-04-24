@@ -54,4 +54,14 @@ public abstract class TypeImpl extends CDOObjectImpl implements Type {
 		return TypesLibraryPackage.Literals.TYPE;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
+	}
+
 } //TypeImpl

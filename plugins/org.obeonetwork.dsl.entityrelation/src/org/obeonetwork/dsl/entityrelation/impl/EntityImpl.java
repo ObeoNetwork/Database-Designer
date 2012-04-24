@@ -40,36 +40,6 @@ import org.obeonetwork.dsl.entityrelation.Identifier;
  */
 public class EntityImpl extends NamedElementImpl implements Entity {
 	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAttributes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Attribute> attributes;
-
-	/**
-	 * The cached value of the '{@link #getIdentifiers() <em>Identifiers</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIdentifiers()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Identifier> identifiers;
-
-	/**
-	 * The cached value of the '{@link #getPrimaryIdentifier() <em>Primary Identifier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrimaryIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected Identifier primaryIdentifier;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -93,11 +63,9 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Attribute> getAttributes() {
-		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList<Attribute>(Attribute.class, this, EntityRelationPackage.ENTITY__ATTRIBUTES, EntityRelationPackage.ATTRIBUTE__OWNER);
-		}
-		return attributes;
+		return (EList<Attribute>)eGet(EntityRelationPackage.Literals.ENTITY__ATTRIBUTES, true);
 	}
 
 	/**
@@ -105,11 +73,9 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Identifier> getIdentifiers() {
-		if (identifiers == null) {
-			identifiers = new EObjectContainmentEList<Identifier>(Identifier.class, this, EntityRelationPackage.ENTITY__IDENTIFIERS);
-		}
-		return identifiers;
+		return (EList<Identifier>)eGet(EntityRelationPackage.Literals.ENTITY__IDENTIFIERS, true);
 	}
 
 	/**
@@ -118,24 +84,7 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 * @generated
 	 */
 	public Identifier getPrimaryIdentifier() {
-		if (primaryIdentifier != null && ((EObject)primaryIdentifier).eIsProxy()) {
-			InternalEObject oldPrimaryIdentifier = (InternalEObject)primaryIdentifier;
-			primaryIdentifier = (Identifier)eResolveProxy(oldPrimaryIdentifier);
-			if (primaryIdentifier != oldPrimaryIdentifier) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityRelationPackage.ENTITY__PRIMARY_IDENTIFIER, oldPrimaryIdentifier, primaryIdentifier));
-			}
-		}
-		return primaryIdentifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Identifier basicGetPrimaryIdentifier() {
-		return primaryIdentifier;
+		return (Identifier)eGet(EntityRelationPackage.Literals.ENTITY__PRIMARY_IDENTIFIER, true);
 	}
 
 	/**
@@ -144,123 +93,7 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 * @generated
 	 */
 	public void setPrimaryIdentifier(Identifier newPrimaryIdentifier) {
-		Identifier oldPrimaryIdentifier = primaryIdentifier;
-		primaryIdentifier = newPrimaryIdentifier;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ENTITY__PRIMARY_IDENTIFIER, oldPrimaryIdentifier, primaryIdentifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case EntityRelationPackage.ENTITY__ATTRIBUTES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAttributes()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case EntityRelationPackage.ENTITY__ATTRIBUTES:
-				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
-			case EntityRelationPackage.ENTITY__IDENTIFIERS:
-				return ((InternalEList<?>)getIdentifiers()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EntityRelationPackage.ENTITY__ATTRIBUTES:
-				return getAttributes();
-			case EntityRelationPackage.ENTITY__IDENTIFIERS:
-				return getIdentifiers();
-			case EntityRelationPackage.ENTITY__PRIMARY_IDENTIFIER:
-				if (resolve) return getPrimaryIdentifier();
-				return basicGetPrimaryIdentifier();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EntityRelationPackage.ENTITY__ATTRIBUTES:
-				getAttributes().clear();
-				getAttributes().addAll((Collection<? extends Attribute>)newValue);
-				return;
-			case EntityRelationPackage.ENTITY__IDENTIFIERS:
-				getIdentifiers().clear();
-				getIdentifiers().addAll((Collection<? extends Identifier>)newValue);
-				return;
-			case EntityRelationPackage.ENTITY__PRIMARY_IDENTIFIER:
-				setPrimaryIdentifier((Identifier)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EntityRelationPackage.ENTITY__ATTRIBUTES:
-				getAttributes().clear();
-				return;
-			case EntityRelationPackage.ENTITY__IDENTIFIERS:
-				getIdentifiers().clear();
-				return;
-			case EntityRelationPackage.ENTITY__PRIMARY_IDENTIFIER:
-				setPrimaryIdentifier((Identifier)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EntityRelationPackage.ENTITY__ATTRIBUTES:
-				return attributes != null && !attributes.isEmpty();
-			case EntityRelationPackage.ENTITY__IDENTIFIERS:
-				return identifiers != null && !identifiers.isEmpty();
-			case EntityRelationPackage.ENTITY__PRIMARY_IDENTIFIER:
-				return primaryIdentifier != null;
-		}
-		return super.eIsSet(featureID);
+		eSet(EntityRelationPackage.Literals.ENTITY__PRIMARY_IDENTIFIER, newPrimaryIdentifier);
 	}
 
 } //EntityImpl

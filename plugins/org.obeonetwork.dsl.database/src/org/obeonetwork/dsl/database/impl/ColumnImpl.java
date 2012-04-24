@@ -73,146 +73,6 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The default value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isNullable()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean NULLABLE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isNullable()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean nullable = NULLABLE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefaultValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DEFAULT_VALUE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefaultValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected String defaultValue = DEFAULT_VALUE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getIndexElements() <em>Index Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIndexElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<IndexElement> indexElements;
-
-	/**
-	 * The cached value of the '{@link #getPrimaryKey() <em>Primary Key</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrimaryKey()
-	 * @generated
-	 * @ordered
-	 */
-	protected PrimaryKey primaryKey;
-
-	/**
-	 * The cached value of the '{@link #getForeignKeyElements() <em>Foreign Key Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getForeignKeyElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ForeignKeyElement> foreignKeyElements;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected Type type;
-
-	/**
-	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSequence()
-	 * @generated
-	 * @ordered
-	 */
-	protected Sequence sequence;
-
-	/**
-	 * The default value of the '{@link #isAutoincrement() <em>Autoincrement</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAutoincrement()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean AUTOINCREMENT_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isAutoincrement() <em>Autoincrement</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAutoincrement()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean autoincrement = AUTOINCREMENT_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isInPrimaryKey() <em>In Primary Key</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isInPrimaryKey()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IN_PRIMARY_KEY_EDEFAULT = false;
-
-	/**
-	 * The default value of the '{@link #isInForeignKey() <em>In Foreign Key</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isInForeignKey()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IN_FOREIGN_KEY_EDEFAULT = false;
-
-	/**
-	 * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isUnique()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean UNIQUE_EDEFAULT = false;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -237,7 +97,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public boolean isNullable() {
-		return nullable;
+		return (Boolean)eGet(DatabasePackage.Literals.COLUMN__NULLABLE, true);
 	}
 
 	/**
@@ -246,10 +106,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public void setNullable(boolean newNullable) {
-		boolean oldNullable = nullable;
-		nullable = newNullable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__NULLABLE, oldNullable, nullable));
+		eSet(DatabasePackage.Literals.COLUMN__NULLABLE, newNullable);
 	}
 
 	/**
@@ -258,7 +115,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public String getDefaultValue() {
-		return defaultValue;
+		return (String)eGet(DatabasePackage.Literals.COLUMN__DEFAULT_VALUE, true);
 	}
 
 	/**
@@ -267,10 +124,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public void setDefaultValue(String newDefaultValue) {
-		String oldDefaultValue = defaultValue;
-		defaultValue = newDefaultValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__DEFAULT_VALUE, oldDefaultValue, defaultValue));
+		eSet(DatabasePackage.Literals.COLUMN__DEFAULT_VALUE, newDefaultValue);
 	}
 
 	/**
@@ -296,11 +150,9 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<IndexElement> getIndexElements() {
-		if (indexElements == null) {
-			indexElements = new EObjectWithInverseResolvingEList<IndexElement>(IndexElement.class, this, DatabasePackage.COLUMN__INDEX_ELEMENTS, DatabasePackage.INDEX_ELEMENT__COLUMN);
-		}
-		return indexElements;
+		return (EList<IndexElement>)eGet(DatabasePackage.Literals.COLUMN__INDEX_ELEMENTS, true);
 	}
 
 	/**
@@ -309,39 +161,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public PrimaryKey getPrimaryKey() {
-		if (primaryKey != null && ((EObject)primaryKey).eIsProxy()) {
-			InternalEObject oldPrimaryKey = (InternalEObject)primaryKey;
-			primaryKey = (PrimaryKey)eResolveProxy(oldPrimaryKey);
-			if (primaryKey != oldPrimaryKey) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabasePackage.COLUMN__PRIMARY_KEY, oldPrimaryKey, primaryKey));
-			}
-		}
-		return primaryKey;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PrimaryKey basicGetPrimaryKey() {
-		return primaryKey;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetPrimaryKey(PrimaryKey newPrimaryKey, NotificationChain msgs) {
-		PrimaryKey oldPrimaryKey = primaryKey;
-		primaryKey = newPrimaryKey;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__PRIMARY_KEY, oldPrimaryKey, newPrimaryKey);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+		return (PrimaryKey)eGet(DatabasePackage.Literals.COLUMN__PRIMARY_KEY, true);
 	}
 
 	/**
@@ -350,17 +170,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public void setPrimaryKey(PrimaryKey newPrimaryKey) {
-		if (newPrimaryKey != primaryKey) {
-			NotificationChain msgs = null;
-			if (primaryKey != null)
-				msgs = ((InternalEObject)primaryKey).eInverseRemove(this, DatabasePackage.PRIMARY_KEY__COLUMNS, PrimaryKey.class, msgs);
-			if (newPrimaryKey != null)
-				msgs = ((InternalEObject)newPrimaryKey).eInverseAdd(this, DatabasePackage.PRIMARY_KEY__COLUMNS, PrimaryKey.class, msgs);
-			msgs = basicSetPrimaryKey(newPrimaryKey, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__PRIMARY_KEY, newPrimaryKey, newPrimaryKey));
+		eSet(DatabasePackage.Literals.COLUMN__PRIMARY_KEY, newPrimaryKey);
 	}
 
 	/**
@@ -386,11 +196,9 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<ForeignKeyElement> getForeignKeyElements() {
-		if (foreignKeyElements == null) {
-			foreignKeyElements = new EObjectWithInverseResolvingEList<ForeignKeyElement>(ForeignKeyElement.class, this, DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS, DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN);
-		}
-		return foreignKeyElements;
+		return (EList<ForeignKeyElement>)eGet(DatabasePackage.Literals.COLUMN__FOREIGN_KEY_ELEMENTS, true);
 	}
 
 	/**
@@ -399,22 +207,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public Type getType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetType(Type newType, NotificationChain msgs) {
-		Type oldType = type;
-		type = newType;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__TYPE, oldType, newType);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+		return (Type)eGet(DatabasePackage.Literals.COLUMN__TYPE, true);
 	}
 
 	/**
@@ -423,17 +216,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public void setType(Type newType) {
-		if (newType != type) {
-			NotificationChain msgs = null;
-			if (type != null)
-				msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabasePackage.COLUMN__TYPE, null, msgs);
-			if (newType != null)
-				msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabasePackage.COLUMN__TYPE, null, msgs);
-			msgs = basicSetType(newType, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__TYPE, newType, newType));
+		eSet(DatabasePackage.Literals.COLUMN__TYPE, newType);
 	}
 
 	/**
@@ -442,24 +225,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public Sequence getSequence() {
-		if (sequence != null && ((EObject)sequence).eIsProxy()) {
-			InternalEObject oldSequence = (InternalEObject)sequence;
-			sequence = (Sequence)eResolveProxy(oldSequence);
-			if (sequence != oldSequence) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabasePackage.COLUMN__SEQUENCE, oldSequence, sequence));
-			}
-		}
-		return sequence;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Sequence basicGetSequence() {
-		return sequence;
+		return (Sequence)eGet(DatabasePackage.Literals.COLUMN__SEQUENCE, true);
 	}
 
 	/**
@@ -468,10 +234,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public void setSequence(Sequence newSequence) {
-		Sequence oldSequence = sequence;
-		sequence = newSequence;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__SEQUENCE, oldSequence, sequence));
+		eSet(DatabasePackage.Literals.COLUMN__SEQUENCE, newSequence);
 	}
 
 	/**
@@ -480,18 +243,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public AbstractTable getOwner() {
-		if (eContainerFeatureID() != DatabasePackage.COLUMN__OWNER) return null;
-		return (AbstractTable)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwner(AbstractTable newOwner, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwner, DatabasePackage.COLUMN__OWNER, msgs);
-		return msgs;
+		return (AbstractTable)eGet(DatabasePackage.Literals.COLUMN__OWNER, true);
 	}
 
 	/**
@@ -500,19 +252,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public void setOwner(AbstractTable newOwner) {
-		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.COLUMN__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DatabasePackage.ABSTRACT_TABLE__COLUMNS, AbstractTable.class, msgs);
-			msgs = basicSetOwner(newOwner, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__OWNER, newOwner, newOwner));
+		eSet(DatabasePackage.Literals.COLUMN__OWNER, newOwner);
 	}
 
 	/**
@@ -521,7 +261,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public boolean isAutoincrement() {
-		return autoincrement;
+		return (Boolean)eGet(DatabasePackage.Literals.COLUMN__AUTOINCREMENT, true);
 	}
 
 	/**
@@ -530,10 +270,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public void setAutoincrement(boolean newAutoincrement) {
-		boolean oldAutoincrement = autoincrement;
-		autoincrement = newAutoincrement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__AUTOINCREMENT, oldAutoincrement, autoincrement));
+		eSet(DatabasePackage.Literals.COLUMN__AUTOINCREMENT, newAutoincrement);
 	}
 
 	/**
@@ -654,250 +391,6 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 				}
 			}
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIndexElements()).basicAdd(otherEnd, msgs);
-			case DatabasePackage.COLUMN__PRIMARY_KEY:
-				if (primaryKey != null)
-					msgs = ((InternalEObject)primaryKey).eInverseRemove(this, DatabasePackage.PRIMARY_KEY__COLUMNS, PrimaryKey.class, msgs);
-				return basicSetPrimaryKey((PrimaryKey)otherEnd, msgs);
-			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getForeignKeyElements()).basicAdd(otherEnd, msgs);
-			case DatabasePackage.COLUMN__OWNER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwner((AbstractTable)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
-				return ((InternalEList<?>)getIndexElements()).basicRemove(otherEnd, msgs);
-			case DatabasePackage.COLUMN__PRIMARY_KEY:
-				return basicSetPrimaryKey(null, msgs);
-			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
-				return ((InternalEList<?>)getForeignKeyElements()).basicRemove(otherEnd, msgs);
-			case DatabasePackage.COLUMN__TYPE:
-				return basicSetType(null, msgs);
-			case DatabasePackage.COLUMN__OWNER:
-				return basicSetOwner(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case DatabasePackage.COLUMN__OWNER:
-				return eInternalContainer().eInverseRemove(this, DatabasePackage.ABSTRACT_TABLE__COLUMNS, AbstractTable.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DatabasePackage.COLUMN__NULLABLE:
-				return isNullable();
-			case DatabasePackage.COLUMN__DEFAULT_VALUE:
-				return getDefaultValue();
-			case DatabasePackage.COLUMN__INDEXES:
-				return getIndexes();
-			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
-				return getIndexElements();
-			case DatabasePackage.COLUMN__PRIMARY_KEY:
-				if (resolve) return getPrimaryKey();
-				return basicGetPrimaryKey();
-			case DatabasePackage.COLUMN__FOREIGN_KEYS:
-				return getForeignKeys();
-			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
-				return getForeignKeyElements();
-			case DatabasePackage.COLUMN__TYPE:
-				return getType();
-			case DatabasePackage.COLUMN__SEQUENCE:
-				if (resolve) return getSequence();
-				return basicGetSequence();
-			case DatabasePackage.COLUMN__OWNER:
-				return getOwner();
-			case DatabasePackage.COLUMN__AUTOINCREMENT:
-				return isAutoincrement();
-			case DatabasePackage.COLUMN__IN_PRIMARY_KEY:
-				return isInPrimaryKey();
-			case DatabasePackage.COLUMN__IN_FOREIGN_KEY:
-				return isInForeignKey();
-			case DatabasePackage.COLUMN__UNIQUE:
-				return isUnique();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DatabasePackage.COLUMN__NULLABLE:
-				setNullable((Boolean)newValue);
-				return;
-			case DatabasePackage.COLUMN__DEFAULT_VALUE:
-				setDefaultValue((String)newValue);
-				return;
-			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
-				getIndexElements().clear();
-				getIndexElements().addAll((Collection<? extends IndexElement>)newValue);
-				return;
-			case DatabasePackage.COLUMN__PRIMARY_KEY:
-				setPrimaryKey((PrimaryKey)newValue);
-				return;
-			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
-				getForeignKeyElements().clear();
-				getForeignKeyElements().addAll((Collection<? extends ForeignKeyElement>)newValue);
-				return;
-			case DatabasePackage.COLUMN__TYPE:
-				setType((Type)newValue);
-				return;
-			case DatabasePackage.COLUMN__SEQUENCE:
-				setSequence((Sequence)newValue);
-				return;
-			case DatabasePackage.COLUMN__OWNER:
-				setOwner((AbstractTable)newValue);
-				return;
-			case DatabasePackage.COLUMN__AUTOINCREMENT:
-				setAutoincrement((Boolean)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DatabasePackage.COLUMN__NULLABLE:
-				setNullable(NULLABLE_EDEFAULT);
-				return;
-			case DatabasePackage.COLUMN__DEFAULT_VALUE:
-				setDefaultValue(DEFAULT_VALUE_EDEFAULT);
-				return;
-			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
-				getIndexElements().clear();
-				return;
-			case DatabasePackage.COLUMN__PRIMARY_KEY:
-				setPrimaryKey((PrimaryKey)null);
-				return;
-			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
-				getForeignKeyElements().clear();
-				return;
-			case DatabasePackage.COLUMN__TYPE:
-				setType((Type)null);
-				return;
-			case DatabasePackage.COLUMN__SEQUENCE:
-				setSequence((Sequence)null);
-				return;
-			case DatabasePackage.COLUMN__OWNER:
-				setOwner((AbstractTable)null);
-				return;
-			case DatabasePackage.COLUMN__AUTOINCREMENT:
-				setAutoincrement(AUTOINCREMENT_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DatabasePackage.COLUMN__NULLABLE:
-				return nullable != NULLABLE_EDEFAULT;
-			case DatabasePackage.COLUMN__DEFAULT_VALUE:
-				return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
-			case DatabasePackage.COLUMN__INDEXES:
-				return !getIndexes().isEmpty();
-			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
-				return indexElements != null && !indexElements.isEmpty();
-			case DatabasePackage.COLUMN__PRIMARY_KEY:
-				return primaryKey != null;
-			case DatabasePackage.COLUMN__FOREIGN_KEYS:
-				return !getForeignKeys().isEmpty();
-			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
-				return foreignKeyElements != null && !foreignKeyElements.isEmpty();
-			case DatabasePackage.COLUMN__TYPE:
-				return type != null;
-			case DatabasePackage.COLUMN__SEQUENCE:
-				return sequence != null;
-			case DatabasePackage.COLUMN__OWNER:
-				return getOwner() != null;
-			case DatabasePackage.COLUMN__AUTOINCREMENT:
-				return autoincrement != AUTOINCREMENT_EDEFAULT;
-			case DatabasePackage.COLUMN__IN_PRIMARY_KEY:
-				return isInPrimaryKey() != IN_PRIMARY_KEY_EDEFAULT;
-			case DatabasePackage.COLUMN__IN_FOREIGN_KEY:
-				return isInForeignKey() != IN_FOREIGN_KEY_EDEFAULT;
-			case DatabasePackage.COLUMN__UNIQUE:
-				return isUnique() != UNIQUE_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (nullable: ");
-		result.append(nullable);
-		result.append(", defaultValue: ");
-		result.append(defaultValue);
-		result.append(", autoincrement: ");
-		result.append(autoincrement);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ColumnImpl

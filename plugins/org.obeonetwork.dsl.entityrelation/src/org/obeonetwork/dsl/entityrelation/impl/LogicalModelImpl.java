@@ -40,36 +40,6 @@ import org.obeonetwork.dsl.typeslibrary.TypesLibraryUser;
  */
 public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	/**
-	 * The cached value of the '{@link #getUsedLibraries() <em>Used Libraries</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsedLibraries()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypesLibrary> usedLibraries;
-
-	/**
-	 * The cached value of the '{@link #getEntities() <em>Entities</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEntities()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Entity> entities;
-
-	/**
-	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRelations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Relation> relations;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -93,69 +63,9 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<TypesLibrary> getUsedLibraries() {
-		if (usedLibraries == null) {
-			usedLibraries = new EObjectResolvingEList<TypesLibrary>(TypesLibrary.class, this, EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES);
-		}
-		return usedLibraries;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Entity> getEntities() {
-		if (entities == null) {
-			entities = new EObjectContainmentEList<Entity>(Entity.class, this, EntityRelationPackage.LOGICAL_MODEL__ENTITIES);
-		}
-		return entities;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Relation> getRelations() {
-		if (relations == null) {
-			relations = new EObjectContainmentEList<Relation>(Relation.class, this, EntityRelationPackage.LOGICAL_MODEL__RELATIONS);
-		}
-		return relations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
-				return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
-			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
-				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES:
-				return getUsedLibraries();
-			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
-				return getEntities();
-			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
-				return getRelations();
-		}
-		return super.eGet(featureID, resolve, coreType);
+		return (EList<TypesLibrary>)eGet(TypesLibraryPackage.Literals.TYPES_LIBRARY_USER__USED_LIBRARIES, true);
 	}
 
 	/**
@@ -164,23 +74,8 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES:
-				getUsedLibraries().clear();
-				getUsedLibraries().addAll((Collection<? extends TypesLibrary>)newValue);
-				return;
-			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
-				getEntities().clear();
-				getEntities().addAll((Collection<? extends Entity>)newValue);
-				return;
-			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
-				getRelations().clear();
-				getRelations().addAll((Collection<? extends Relation>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
+	public EList<Entity> getEntities() {
+		return (EList<Entity>)eGet(EntityRelationPackage.Literals.LOGICAL_MODEL__ENTITIES, true);
 	}
 
 	/**
@@ -188,38 +83,9 @@ public class LogicalModelImpl extends NamedElementImpl implements LogicalModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES:
-				getUsedLibraries().clear();
-				return;
-			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
-				getEntities().clear();
-				return;
-			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
-				getRelations().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EntityRelationPackage.LOGICAL_MODEL__USED_LIBRARIES:
-				return usedLibraries != null && !usedLibraries.isEmpty();
-			case EntityRelationPackage.LOGICAL_MODEL__ENTITIES:
-				return entities != null && !entities.isEmpty();
-			case EntityRelationPackage.LOGICAL_MODEL__RELATIONS:
-				return relations != null && !relations.isEmpty();
-		}
-		return super.eIsSet(featureID);
+	@SuppressWarnings("unchecked")
+	public EList<Relation> getRelations() {
+		return (EList<Relation>)eGet(EntityRelationPackage.Literals.LOGICAL_MODEL__RELATIONS, true);
 	}
 
 	/**
