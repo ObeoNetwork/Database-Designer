@@ -209,19 +209,15 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Index> getIndexes() {
-		List<Index> indexes = new ArrayList<Index>();
-		for (IndexElement indexElement : getIndexElements()) {
-			if (!indexes.contains(indexElement.eContainer())) {
-				indexes.add((Index)indexElement.eContainer());
-			}
-		}
-		return new EcoreEList.UnmodifiableEList<Index>(this,
-															DatabasePackage.Literals.COLUMN__INDEXES,
-															indexes.size(),
-															indexes.toArray());
+		// TODO: implement this method to return the 'Indexes' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
+		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -303,19 +299,11 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<ForeignKey> getForeignKeys() {
-		List<ForeignKey> foreignKeys = new ArrayList<ForeignKey>();
-		for (ForeignKeyElement fkElement : getForeignKeyElements()) {
-			if (!foreignKeys.contains(fkElement.eContainer())) {
-				foreignKeys.add((ForeignKey)fkElement.eContainer());
-			}
-		}
-		return new EcoreEList.UnmodifiableEList<ForeignKey>(this,
-															DatabasePackage.Literals.COLUMN__FOREIGN_KEYS,
-															foreignKeys.size(),
-															foreignKeys.toArray());
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -480,121 +468,64 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean isInPrimaryKey() {
-		return (getPrimaryKey() != null);
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean isInForeignKey() {
-		return !(getForeignKeys().isEmpty());
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean isUnique() {
-		// We have to check if the column is contained within a unique index
-		for (Index index : getIndexes()) {
-			if (index.isUnique()) {
-				return true;
-			}
-		}
-		return false;
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void addToPrimaryKey() {
-		// Do nothing if the column is already a PK column or if it does not belong to a table
-		if (isInPrimaryKey() == false
-				&& getOwner() != null
-				&& getOwner() instanceof Table) {
-			Table table = (Table)getOwner();
-			// First, ensure there is a Primary Key defined on this table
-			PrimaryKey pk = table.getPrimaryKey();
-			if (pk == null) {
-				// Create a new PK
-				pk = DatabaseFactory.eINSTANCE.createPrimaryKey();
-				pk.setName(table.getName() + "_PK");
-				table.setPrimaryKey(pk);
-			}
-			
-			// Then attach the column to the primary key
-			pk.getColumns().add(this);
-		}
+		throw new UnsupportedOperationException();
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void removeFromPrimaryKey() {
-		if (isInPrimaryKey() == true) {
-			getPrimaryKey().getColumns().remove(this);
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void addToUniqueIndex() {
-		if (isUnique() == false
-				&& getOwner() != null
-				&& getOwner() instanceof Table) {
-			Table table = (Table)getOwner();
-			// Check if there is a unique index defined on the table
-			Index uniqueIndex = null;
-			for(Index index : table.getIndexes()) {
-				if (index.isUnique()) {
-					uniqueIndex = index;
-					break;
-				}
-			}
-			if (uniqueIndex == null) {
-				// Create a new unique index
-				uniqueIndex = DatabaseFactory.eINSTANCE.createIndex();
-				uniqueIndex.setName(table.getName() + "_UNIQUE_INDEX");
-				uniqueIndex.setUnique(true);
-				table.getIndexes().add(uniqueIndex);
-			}
-			// We are sure we have a unique index here
-			IndexElement indexElt = DatabaseFactory.eINSTANCE.createIndexElement();
-			uniqueIndex.getElements().add(indexElt);
-			indexElt.setAsc(true);
-			indexElt.setColumn(this);
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void removeFromUniqueIndex() {
-		Collection<IndexElement> indexElements = new ArrayList<IndexElement>(getIndexElements());
-		for (IndexElement indexElt : indexElements) {
-			// Check if the associated index is unique
-			if (indexElt.eContainer() instanceof Index) {
-				Index index = (Index)indexElt.eContainer();
-				if (index.isUnique()) {
-					EcoreUtil.delete(indexElt, true);
-				}
-			}
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	/**
