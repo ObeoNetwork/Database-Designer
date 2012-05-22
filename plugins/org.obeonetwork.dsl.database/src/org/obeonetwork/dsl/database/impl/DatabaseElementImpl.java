@@ -14,6 +14,7 @@ package org.obeonetwork.dsl.database.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.obeonetwork.dsl.database.DatabaseElement;
 import org.obeonetwork.dsl.database.DatabasePackage;
@@ -32,7 +33,7 @@ import org.obeonetwork.dsl.database.DatabasePackage;
  *
  * @generated
  */
-public abstract class DatabaseElementImpl extends EObjectImpl implements DatabaseElement {
+public abstract class DatabaseElementImpl extends CDOObjectImpl implements DatabaseElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40,6 +41,20 @@ public abstract class DatabaseElementImpl extends EObjectImpl implements Databas
 	 */
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
+	/**
+	 * An array of objects representing the values of non-primitive features.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Object[] eVirtualValues;
+	/**
+	 * A bit field representing the indices of non-primitive feature values.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected int eVirtualIndexBits0;
 	/**
 	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,7 +64,6 @@ public abstract class DatabaseElementImpl extends EObjectImpl implements Databas
 	 * @ordered
 	 */
 	protected static final String ID_EDEFAULT = null;
-
 	/**
 	 * The default value of the '{@link #getComments() <em>Comments</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -59,16 +73,6 @@ public abstract class DatabaseElementImpl extends EObjectImpl implements Databas
 	 * @ordered
 	 */
 	protected static final String COMMENTS_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getComments() <em>Comments</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getComments()
-	 * @generated
-	 * @ordered
-	 */
-	protected String comments = COMMENTS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,7 +122,7 @@ public abstract class DatabaseElementImpl extends EObjectImpl implements Databas
 	 * @generated
 	 */
 	public String getComments() {
-		return comments;
+		return (String)eVirtualGet(DatabasePackage.DATABASE_ELEMENT__COMMENTS, COMMENTS_EDEFAULT);
 	}
 
 	/**
@@ -127,10 +131,10 @@ public abstract class DatabaseElementImpl extends EObjectImpl implements Databas
 	 * @generated
 	 */
 	public void setComments(String newComments) {
-		String oldComments = comments;
-		comments = newComments;
+		String comments = newComments;
+		Object oldComments = eVirtualSet(DatabasePackage.DATABASE_ELEMENT__COMMENTS, comments);
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.DATABASE_ELEMENT__COMMENTS, oldComments, comments));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.DATABASE_ELEMENT__COMMENTS, oldComments == EVIRTUAL_NO_VALUE ? COMMENTS_EDEFAULT : oldComments, comments));
 	}
 
 	/**
@@ -190,9 +194,61 @@ public abstract class DatabaseElementImpl extends EObjectImpl implements Databas
 			case DatabasePackage.DATABASE_ELEMENT__ID:
 				return ID_EDEFAULT == null ? getID() != null : !ID_EDEFAULT.equals(getID());
 			case DatabasePackage.DATABASE_ELEMENT__COMMENTS:
+				String comments = (String)eVirtualGet(DatabasePackage.DATABASE_ELEMENT__COMMENTS, COMMENTS_EDEFAULT);
 				return COMMENTS_EDEFAULT == null ? comments != null : !COMMENTS_EDEFAULT.equals(comments);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Object[] eVirtualValues() {
+		return eVirtualValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualValues(Object[] newValues) {
+		eVirtualValues = newValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eVirtualIndexBits(int offset) {
+		switch (offset) {
+			case 0 :
+				return eVirtualIndexBits0;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualIndexBits(int offset, int newIndexBits) {
+		switch (offset) {
+			case 0 :
+				eVirtualIndexBits0 = newIndexBits;
+				break;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
 	}
 
 	/**
@@ -206,7 +262,7 @@ public abstract class DatabaseElementImpl extends EObjectImpl implements Databas
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (comments: ");
-		result.append(comments);
+		result.append(eVirtualGet(DatabasePackage.DATABASE_ELEMENT__COMMENTS, COMMENTS_EDEFAULT));
 		result.append(')');
 		return result.toString();
 	}

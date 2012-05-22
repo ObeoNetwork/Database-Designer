@@ -13,6 +13,7 @@ package org.obeonetwork.dsl.typeslibrary.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -43,16 +44,6 @@ public class SimpleNamedTypeImpl extends UserDefinedTypeImpl implements SimpleNa
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypeInstance type;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -77,15 +68,7 @@ public class SimpleNamedTypeImpl extends UserDefinedTypeImpl implements SimpleNa
 	 * @generated
 	 */
 	public TypeInstance getType() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject)type;
-			type = (TypeInstance)eResolveProxy(oldType);
-			if (type != oldType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE, oldType, type));
-			}
-		}
-		return type;
+		return (TypeInstance)eDynamicGet(TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE, TypesLibraryPackage.Literals.SIMPLE_NAMED_TYPE__TYPE, true, true);
 	}
 
 	/**
@@ -94,7 +77,7 @@ public class SimpleNamedTypeImpl extends UserDefinedTypeImpl implements SimpleNa
 	 * @generated
 	 */
 	public TypeInstance basicGetType() {
-		return type;
+		return (TypeInstance)eDynamicGet(TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE, TypesLibraryPackage.Literals.SIMPLE_NAMED_TYPE__TYPE, false, true);
 	}
 
 	/**
@@ -103,10 +86,7 @@ public class SimpleNamedTypeImpl extends UserDefinedTypeImpl implements SimpleNa
 	 * @generated
 	 */
 	public void setType(TypeInstance newType) {
-		TypeInstance oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE, oldType, type));
+		eDynamicSet(TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE, TypesLibraryPackage.Literals.SIMPLE_NAMED_TYPE__TYPE, newType);
 	}
 
 	/**
@@ -163,7 +143,7 @@ public class SimpleNamedTypeImpl extends UserDefinedTypeImpl implements SimpleNa
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case TypesLibraryPackage.SIMPLE_NAMED_TYPE__TYPE:
-				return type != null;
+				return basicGetType() != null;
 		}
 		return super.eIsSet(featureID);
 	}

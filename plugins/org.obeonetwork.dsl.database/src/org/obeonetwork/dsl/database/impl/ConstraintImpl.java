@@ -13,6 +13,7 @@ package org.obeonetwork.dsl.database.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -53,16 +54,6 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	protected static final String EXPRESSION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected String expression = EXPRESSION_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -87,7 +78,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	 * @generated
 	 */
 	public String getExpression() {
-		return expression;
+		return (String)eVirtualGet(DatabasePackage.CONSTRAINT__EXPRESSION, EXPRESSION_EDEFAULT);
 	}
 
 	/**
@@ -96,10 +87,10 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	 * @generated
 	 */
 	public void setExpression(String newExpression) {
-		String oldExpression = expression;
-		expression = newExpression;
+		String expression = newExpression;
+		Object oldExpression = eVirtualSet(DatabasePackage.CONSTRAINT__EXPRESSION, expression);
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.CONSTRAINT__EXPRESSION, oldExpression, expression));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.CONSTRAINT__EXPRESSION, oldExpression == EVIRTUAL_NO_VALUE ? EXPRESSION_EDEFAULT : oldExpression, expression));
 	}
 
 	/**
@@ -129,7 +120,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	 */
 	public void setOwner(Table newOwner) {
 		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.CONSTRAINT__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, newOwner))
+			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -248,6 +239,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.CONSTRAINT__EXPRESSION:
+				String expression = (String)eVirtualGet(DatabasePackage.CONSTRAINT__EXPRESSION, EXPRESSION_EDEFAULT);
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 			case DatabasePackage.CONSTRAINT__OWNER:
 				return getOwner() != null;
@@ -266,7 +258,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (expression: ");
-		result.append(expression);
+		result.append(eVirtualGet(DatabasePackage.CONSTRAINT__EXPRESSION, EXPRESSION_EDEFAULT));
 		result.append(')');
 		return result.toString();
 	}

@@ -33,16 +33,6 @@ import org.obeonetwork.dsl.entityrelation.Identifier;
  */
 public class IdentifierImpl extends NamedElementImpl implements Identifier {
 	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAttributes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Attribute> attributes;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -66,11 +56,9 @@ public class IdentifierImpl extends NamedElementImpl implements Identifier {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Attribute> getAttributes() {
-		if (attributes == null) {
-			attributes = new EObjectWithInverseResolvingEList<Attribute>(Attribute.class, this, EntityRelationPackage.IDENTIFIER__ATTRIBUTES, EntityRelationPackage.ATTRIBUTE__USED_IN_IDENTIFIER);
-		}
-		return attributes;
+		return (EList<Attribute>)eDynamicGet(EntityRelationPackage.IDENTIFIER__ATTRIBUTES, EntityRelationPackage.Literals.IDENTIFIER__ATTRIBUTES, true, true);
 	}
 
 	/**
@@ -157,7 +145,7 @@ public class IdentifierImpl extends NamedElementImpl implements Identifier {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case EntityRelationPackage.IDENTIFIER__ATTRIBUTES:
-				return attributes != null && !attributes.isEmpty();
+				return !getAttributes().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

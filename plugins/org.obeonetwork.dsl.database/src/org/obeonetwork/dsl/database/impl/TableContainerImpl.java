@@ -47,26 +47,6 @@ public abstract class TableContainerImpl extends NamedElementImpl implements Tab
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getTables() <em>Tables</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTables()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AbstractTable> tables;
-
-	/**
-	 * The cached value of the '{@link #getSequences() <em>Sequences</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSequences()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Sequence> sequences;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -90,9 +70,11 @@ public abstract class TableContainerImpl extends NamedElementImpl implements Tab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<AbstractTable> getTables() {
+		EList<AbstractTable> tables = (EList<AbstractTable>)eVirtualGet(DatabasePackage.TABLE_CONTAINER__TABLES);
 		if (tables == null) {
-			tables = new EObjectContainmentWithInverseEList<AbstractTable>(AbstractTable.class, this, DatabasePackage.TABLE_CONTAINER__TABLES, DatabasePackage.ABSTRACT_TABLE__OWNER);
+			eVirtualSet(DatabasePackage.TABLE_CONTAINER__TABLES, tables = new EObjectContainmentWithInverseEList<AbstractTable>(AbstractTable.class, this, DatabasePackage.TABLE_CONTAINER__TABLES, DatabasePackage.ABSTRACT_TABLE__OWNER));
 		}
 		return tables;
 	}
@@ -102,9 +84,11 @@ public abstract class TableContainerImpl extends NamedElementImpl implements Tab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Sequence> getSequences() {
+		EList<Sequence> sequences = (EList<Sequence>)eVirtualGet(DatabasePackage.TABLE_CONTAINER__SEQUENCES);
 		if (sequences == null) {
-			sequences = new EObjectContainmentEList<Sequence>(Sequence.class, this, DatabasePackage.TABLE_CONTAINER__SEQUENCES);
+			eVirtualSet(DatabasePackage.TABLE_CONTAINER__SEQUENCES, sequences = new EObjectContainmentEList<Sequence>(Sequence.class, this, DatabasePackage.TABLE_CONTAINER__SEQUENCES));
 		}
 		return sequences;
 	}
@@ -200,12 +184,15 @@ public abstract class TableContainerImpl extends NamedElementImpl implements Tab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.TABLE_CONTAINER__TABLES:
+				EList<AbstractTable> tables = (EList<AbstractTable>)eVirtualGet(DatabasePackage.TABLE_CONTAINER__TABLES);
 				return tables != null && !tables.isEmpty();
 			case DatabasePackage.TABLE_CONTAINER__SEQUENCES:
+				EList<Sequence> sequences = (EList<Sequence>)eVirtualGet(DatabasePackage.TABLE_CONTAINER__SEQUENCES);
 				return sequences != null && !sequences.isEmpty();
 		}
 		return super.eIsSet(featureID);

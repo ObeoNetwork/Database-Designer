@@ -49,7 +49,6 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @ordered
 	 */
 	protected static final int START_EDEFAULT = 0;
-
 	/**
 	 * The cached value of the '{@link #getStart() <em>Start</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -59,7 +58,6 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @ordered
 	 */
 	protected int start = START_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getIncrement() <em>Increment</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -69,7 +67,6 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @ordered
 	 */
 	protected static final int INCREMENT_EDEFAULT = 0;
-
 	/**
 	 * The cached value of the '{@link #getIncrement() <em>Increment</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,7 +76,6 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @ordered
 	 */
 	protected int increment = INCREMENT_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getMinValue() <em>Min Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -89,7 +85,6 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @ordered
 	 */
 	protected static final int MIN_VALUE_EDEFAULT = 0;
-
 	/**
 	 * The cached value of the '{@link #getMinValue() <em>Min Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -99,7 +94,6 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @ordered
 	 */
 	protected int minValue = MIN_VALUE_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getMaxValue() <em>Max Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -109,7 +103,6 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @ordered
 	 */
 	protected static final int MAX_VALUE_EDEFAULT = 0;
-
 	/**
 	 * The cached value of the '{@link #getMaxValue() <em>Max Value</em>}' attribute.
 	 * <!-- begin-user-doc -->

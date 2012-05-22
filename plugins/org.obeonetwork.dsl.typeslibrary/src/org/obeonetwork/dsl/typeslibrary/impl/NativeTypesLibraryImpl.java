@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.obeonetwork.dsl.typeslibrary.NativeType;
 import org.obeonetwork.dsl.typeslibrary.NativeTypesLibrary;
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryKind;
@@ -41,7 +42,7 @@ import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
  *
  * @generated
  */
-public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLibrary {
+public class NativeTypesLibraryImpl extends CDOObjectImpl implements NativeTypesLibrary {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -58,17 +59,6 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	 * @ordered
 	 */
 	protected static final TypesLibraryKind KIND_EDEFAULT = TypesLibraryKind.LOGICAL_TYPES;
-
-	/**
-	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypesLibraryKind kind = KIND_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -78,26 +68,6 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getNativeTypes() <em>Native Types</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNativeTypes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<NativeType> nativeTypes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -123,8 +93,18 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TypesLibraryKind getKind() {
-		return kind;
+		return (TypesLibraryKind)eDynamicGet(TypesLibraryPackage.NATIVE_TYPES_LIBRARY__KIND, TypesLibraryPackage.Literals.TYPES_LIBRARY__KIND, true, true);
 	}
 
 	/**
@@ -133,10 +113,7 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	 * @generated
 	 */
 	public void setKind(TypesLibraryKind newKind) {
-		TypesLibraryKind oldKind = kind;
-		kind = newKind == null ? KIND_EDEFAULT : newKind;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.NATIVE_TYPES_LIBRARY__KIND, oldKind, kind));
+		eDynamicSet(TypesLibraryPackage.NATIVE_TYPES_LIBRARY__KIND, TypesLibraryPackage.Literals.TYPES_LIBRARY__KIND, newKind);
 	}
 
 	/**
@@ -145,7 +122,7 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	 * @generated
 	 */
 	public String getName() {
-		return name;
+		return (String)eDynamicGet(TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NAME, TypesLibraryPackage.Literals.NATIVE_TYPES_LIBRARY__NAME, true, true);
 	}
 
 	/**
@@ -154,10 +131,7 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	 * @generated
 	 */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NAME, oldName, name));
+		eDynamicSet(TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NAME, TypesLibraryPackage.Literals.NATIVE_TYPES_LIBRARY__NAME, newName);
 	}
 
 	/**
@@ -165,11 +139,9 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<NativeType> getNativeTypes() {
-		if (nativeTypes == null) {
-			nativeTypes = new EObjectContainmentEList<NativeType>(NativeType.class, this, TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NATIVE_TYPES);
-		}
-		return nativeTypes;
+		return (EList<NativeType>)eDynamicGet(TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NATIVE_TYPES, TypesLibraryPackage.Literals.NATIVE_TYPES_LIBRARY__NATIVE_TYPES, true, true);
 	}
 
 	/**
@@ -271,31 +243,13 @@ public class NativeTypesLibraryImpl extends EObjectImpl implements NativeTypesLi
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__KIND:
-				return kind != KIND_EDEFAULT;
+				return getKind() != KIND_EDEFAULT;
 			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 			case TypesLibraryPackage.NATIVE_TYPES_LIBRARY__NATIVE_TYPES:
-				return nativeTypes != null && !nativeTypes.isEmpty();
+				return !getNativeTypes().isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (kind: ");
-		result.append(kind);
-		result.append(", name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //NativeTypesLibraryImpl

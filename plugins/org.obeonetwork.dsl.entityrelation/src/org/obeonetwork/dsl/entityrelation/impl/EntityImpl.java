@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -39,36 +40,6 @@ import org.obeonetwork.dsl.entityrelation.Identifier;
  */
 public class EntityImpl extends NamedElementImpl implements Entity {
 	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAttributes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Attribute> attributes;
-
-	/**
-	 * The cached value of the '{@link #getIdentifiers() <em>Identifiers</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIdentifiers()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Identifier> identifiers;
-
-	/**
-	 * The cached value of the '{@link #getPrimaryIdentifier() <em>Primary Identifier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrimaryIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected Identifier primaryIdentifier;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -92,11 +63,9 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Attribute> getAttributes() {
-		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList<Attribute>(Attribute.class, this, EntityRelationPackage.ENTITY__ATTRIBUTES, EntityRelationPackage.ATTRIBUTE__OWNER);
-		}
-		return attributes;
+		return (EList<Attribute>)eDynamicGet(EntityRelationPackage.ENTITY__ATTRIBUTES, EntityRelationPackage.Literals.ENTITY__ATTRIBUTES, true, true);
 	}
 
 	/**
@@ -104,11 +73,9 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Identifier> getIdentifiers() {
-		if (identifiers == null) {
-			identifiers = new EObjectContainmentEList<Identifier>(Identifier.class, this, EntityRelationPackage.ENTITY__IDENTIFIERS);
-		}
-		return identifiers;
+		return (EList<Identifier>)eDynamicGet(EntityRelationPackage.ENTITY__IDENTIFIERS, EntityRelationPackage.Literals.ENTITY__IDENTIFIERS, true, true);
 	}
 
 	/**
@@ -117,15 +84,7 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 * @generated
 	 */
 	public Identifier getPrimaryIdentifier() {
-		if (primaryIdentifier != null && primaryIdentifier.eIsProxy()) {
-			InternalEObject oldPrimaryIdentifier = (InternalEObject)primaryIdentifier;
-			primaryIdentifier = (Identifier)eResolveProxy(oldPrimaryIdentifier);
-			if (primaryIdentifier != oldPrimaryIdentifier) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityRelationPackage.ENTITY__PRIMARY_IDENTIFIER, oldPrimaryIdentifier, primaryIdentifier));
-			}
-		}
-		return primaryIdentifier;
+		return (Identifier)eDynamicGet(EntityRelationPackage.ENTITY__PRIMARY_IDENTIFIER, EntityRelationPackage.Literals.ENTITY__PRIMARY_IDENTIFIER, true, true);
 	}
 
 	/**
@@ -134,7 +93,7 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 * @generated
 	 */
 	public Identifier basicGetPrimaryIdentifier() {
-		return primaryIdentifier;
+		return (Identifier)eDynamicGet(EntityRelationPackage.ENTITY__PRIMARY_IDENTIFIER, EntityRelationPackage.Literals.ENTITY__PRIMARY_IDENTIFIER, false, true);
 	}
 
 	/**
@@ -143,10 +102,7 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	 * @generated
 	 */
 	public void setPrimaryIdentifier(Identifier newPrimaryIdentifier) {
-		Identifier oldPrimaryIdentifier = primaryIdentifier;
-		primaryIdentifier = newPrimaryIdentifier;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.ENTITY__PRIMARY_IDENTIFIER, oldPrimaryIdentifier, primaryIdentifier));
+		eDynamicSet(EntityRelationPackage.ENTITY__PRIMARY_IDENTIFIER, EntityRelationPackage.Literals.ENTITY__PRIMARY_IDENTIFIER, newPrimaryIdentifier);
 	}
 
 	/**
@@ -253,11 +209,11 @@ public class EntityImpl extends NamedElementImpl implements Entity {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case EntityRelationPackage.ENTITY__ATTRIBUTES:
-				return attributes != null && !attributes.isEmpty();
+				return !getAttributes().isEmpty();
 			case EntityRelationPackage.ENTITY__IDENTIFIERS:
-				return identifiers != null && !identifiers.isEmpty();
+				return !getIdentifiers().isEmpty();
 			case EntityRelationPackage.ENTITY__PRIMARY_IDENTIFIER:
-				return primaryIdentifier != null;
+				return basicGetPrimaryIdentifier() != null;
 		}
 		return super.eIsSet(featureID);
 	}

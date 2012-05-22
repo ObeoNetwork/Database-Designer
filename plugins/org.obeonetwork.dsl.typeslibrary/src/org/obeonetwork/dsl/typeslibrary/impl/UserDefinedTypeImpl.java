@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
@@ -33,7 +34,7 @@ import org.obeonetwork.dsl.typeslibrary.UserDefinedType;
  *
  * @generated
  */
-public abstract class UserDefinedTypeImpl extends EObjectImpl implements UserDefinedType {
+public abstract class UserDefinedTypeImpl extends CDOObjectImpl implements UserDefinedType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -50,16 +51,6 @@ public abstract class UserDefinedTypeImpl extends EObjectImpl implements UserDef
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -85,8 +76,18 @@ public abstract class UserDefinedTypeImpl extends EObjectImpl implements UserDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getName() {
-		return name;
+		return (String)eDynamicGet(TypesLibraryPackage.USER_DEFINED_TYPE__NAME, TypesLibraryPackage.Literals.USER_DEFINED_TYPE__NAME, true, true);
 	}
 
 	/**
@@ -95,10 +96,7 @@ public abstract class UserDefinedTypeImpl extends EObjectImpl implements UserDef
 	 * @generated
 	 */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.USER_DEFINED_TYPE__NAME, oldName, name));
+		eDynamicSet(TypesLibraryPackage.USER_DEFINED_TYPE__NAME, TypesLibraryPackage.Literals.USER_DEFINED_TYPE__NAME, newName);
 	}
 
 	/**
@@ -154,25 +152,9 @@ public abstract class UserDefinedTypeImpl extends EObjectImpl implements UserDef
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case TypesLibraryPackage.USER_DEFINED_TYPE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //UserDefinedTypeImpl

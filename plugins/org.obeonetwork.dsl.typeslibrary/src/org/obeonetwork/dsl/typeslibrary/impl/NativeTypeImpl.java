@@ -14,8 +14,10 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.obeonetwork.dsl.typeslibrary.NativeType;
@@ -37,7 +39,7 @@ import org.obeonetwork.dsl.typeslibrary.TypesLibraryPackage;
  *
  * @generated
  */
-public class NativeTypeImpl extends EObjectImpl implements NativeType {
+public class NativeTypeImpl extends CDOObjectImpl implements NativeType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,17 +56,6 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getSpec() <em>Spec</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -74,26 +65,6 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	 * @ordered
 	 */
 	protected static final NativeTypeKind SPEC_EDEFAULT = NativeTypeKind.SIMPLE;
-
-	/**
-	 * The cached value of the '{@link #getSpec() <em>Spec</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSpec()
-	 * @generated
-	 * @ordered
-	 */
-	protected NativeTypeKind spec = SPEC_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getMapsTo() <em>Maps To</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMapsTo()
-	 * @generated
-	 * @ordered
-	 */
-	protected NativeType mapsTo;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,8 +90,18 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getName() {
-		return name;
+		return (String)eDynamicGet(TypesLibraryPackage.NATIVE_TYPE__NAME, TypesLibraryPackage.Literals.NATIVE_TYPE__NAME, true, true);
 	}
 
 	/**
@@ -129,10 +110,7 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	 * @generated
 	 */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.NATIVE_TYPE__NAME, oldName, name));
+		eDynamicSet(TypesLibraryPackage.NATIVE_TYPE__NAME, TypesLibraryPackage.Literals.NATIVE_TYPE__NAME, newName);
 	}
 
 	/**
@@ -141,7 +119,7 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	 * @generated
 	 */
 	public NativeTypeKind getSpec() {
-		return spec;
+		return (NativeTypeKind)eDynamicGet(TypesLibraryPackage.NATIVE_TYPE__SPEC, TypesLibraryPackage.Literals.NATIVE_TYPE__SPEC, true, true);
 	}
 
 	/**
@@ -150,10 +128,7 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	 * @generated
 	 */
 	public void setSpec(NativeTypeKind newSpec) {
-		NativeTypeKind oldSpec = spec;
-		spec = newSpec == null ? SPEC_EDEFAULT : newSpec;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.NATIVE_TYPE__SPEC, oldSpec, spec));
+		eDynamicSet(TypesLibraryPackage.NATIVE_TYPE__SPEC, TypesLibraryPackage.Literals.NATIVE_TYPE__SPEC, newSpec);
 	}
 
 	/**
@@ -162,15 +137,7 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	 * @generated
 	 */
 	public NativeType getMapsTo() {
-		if (mapsTo != null && mapsTo.eIsProxy()) {
-			InternalEObject oldMapsTo = (InternalEObject)mapsTo;
-			mapsTo = (NativeType)eResolveProxy(oldMapsTo);
-			if (mapsTo != oldMapsTo) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesLibraryPackage.NATIVE_TYPE__MAPS_TO, oldMapsTo, mapsTo));
-			}
-		}
-		return mapsTo;
+		return (NativeType)eDynamicGet(TypesLibraryPackage.NATIVE_TYPE__MAPS_TO, TypesLibraryPackage.Literals.NATIVE_TYPE__MAPS_TO, true, true);
 	}
 
 	/**
@@ -179,7 +146,7 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	 * @generated
 	 */
 	public NativeType basicGetMapsTo() {
-		return mapsTo;
+		return (NativeType)eDynamicGet(TypesLibraryPackage.NATIVE_TYPE__MAPS_TO, TypesLibraryPackage.Literals.NATIVE_TYPE__MAPS_TO, false, true);
 	}
 
 	/**
@@ -188,10 +155,7 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	 * @generated
 	 */
 	public void setMapsTo(NativeType newMapsTo) {
-		NativeType oldMapsTo = mapsTo;
-		mapsTo = newMapsTo;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.NATIVE_TYPE__MAPS_TO, oldMapsTo, mapsTo));
+		eDynamicSet(TypesLibraryPackage.NATIVE_TYPE__MAPS_TO, TypesLibraryPackage.Literals.NATIVE_TYPE__MAPS_TO, newMapsTo);
 	}
 
 	/**
@@ -264,31 +228,13 @@ public class NativeTypeImpl extends EObjectImpl implements NativeType {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case TypesLibraryPackage.NATIVE_TYPE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 			case TypesLibraryPackage.NATIVE_TYPE__SPEC:
-				return spec != SPEC_EDEFAULT;
+				return getSpec() != SPEC_EDEFAULT;
 			case TypesLibraryPackage.NATIVE_TYPE__MAPS_TO:
-				return mapsTo != null;
+				return basicGetMapsTo() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", spec: ");
-		result.append(spec);
-		result.append(')');
-		return result.toString();
 	}
 
 } //NativeTypeImpl

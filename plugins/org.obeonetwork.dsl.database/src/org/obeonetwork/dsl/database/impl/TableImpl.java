@@ -52,43 +52,6 @@ public class TableImpl extends AbstractTableImpl implements Table {
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getPrimaryKey() <em>Primary Key</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrimaryKey()
-	 * @generated
-	 * @ordered
-	 */
-	protected PrimaryKey primaryKey;
-	/**
-	 * The cached value of the '{@link #getForeignKeys() <em>Foreign Keys</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getForeignKeys()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ForeignKey> foreignKeys;
-	/**
-	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraints()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Constraint> constraints;
-	/**
-	 * The cached value of the '{@link #getIndexes() <em>Indexes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIndexes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Index> indexes;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -113,7 +76,7 @@ public class TableImpl extends AbstractTableImpl implements Table {
 	 * @generated
 	 */
 	public PrimaryKey getPrimaryKey() {
-		return primaryKey;
+		return (PrimaryKey)eVirtualGet(DatabasePackage.TABLE__PRIMARY_KEY);
 	}
 
 	/**
@@ -122,10 +85,9 @@ public class TableImpl extends AbstractTableImpl implements Table {
 	 * @generated
 	 */
 	public NotificationChain basicSetPrimaryKey(PrimaryKey newPrimaryKey, NotificationChain msgs) {
-		PrimaryKey oldPrimaryKey = primaryKey;
-		primaryKey = newPrimaryKey;
+		Object oldPrimaryKey = eVirtualSet(DatabasePackage.TABLE__PRIMARY_KEY, newPrimaryKey);
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.TABLE__PRIMARY_KEY, oldPrimaryKey, newPrimaryKey);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.TABLE__PRIMARY_KEY, oldPrimaryKey == EVIRTUAL_NO_VALUE ? null : oldPrimaryKey, newPrimaryKey);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -137,6 +99,7 @@ public class TableImpl extends AbstractTableImpl implements Table {
 	 * @generated
 	 */
 	public void setPrimaryKey(PrimaryKey newPrimaryKey) {
+		PrimaryKey primaryKey = (PrimaryKey)eVirtualGet(DatabasePackage.TABLE__PRIMARY_KEY);
 		if (newPrimaryKey != primaryKey) {
 			NotificationChain msgs = null;
 			if (primaryKey != null)
@@ -155,9 +118,11 @@ public class TableImpl extends AbstractTableImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<ForeignKey> getForeignKeys() {
+		EList<ForeignKey> foreignKeys = (EList<ForeignKey>)eVirtualGet(DatabasePackage.TABLE__FOREIGN_KEYS);
 		if (foreignKeys == null) {
-			foreignKeys = new EObjectContainmentWithInverseEList<ForeignKey>(ForeignKey.class, this, DatabasePackage.TABLE__FOREIGN_KEYS, DatabasePackage.FOREIGN_KEY__OWNER);
+			eVirtualSet(DatabasePackage.TABLE__FOREIGN_KEYS, foreignKeys = new EObjectContainmentWithInverseEList<ForeignKey>(ForeignKey.class, this, DatabasePackage.TABLE__FOREIGN_KEYS, DatabasePackage.FOREIGN_KEY__OWNER));
 		}
 		return foreignKeys;
 	}
@@ -167,9 +132,11 @@ public class TableImpl extends AbstractTableImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Constraint> getConstraints() {
+		EList<Constraint> constraints = (EList<Constraint>)eVirtualGet(DatabasePackage.TABLE__CONSTRAINTS);
 		if (constraints == null) {
-			constraints = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, DatabasePackage.TABLE__CONSTRAINTS, DatabasePackage.CONSTRAINT__OWNER);
+			eVirtualSet(DatabasePackage.TABLE__CONSTRAINTS, constraints = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, DatabasePackage.TABLE__CONSTRAINTS, DatabasePackage.CONSTRAINT__OWNER));
 		}
 		return constraints;
 	}
@@ -179,9 +146,11 @@ public class TableImpl extends AbstractTableImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Index> getIndexes() {
+		EList<Index> indexes = (EList<Index>)eVirtualGet(DatabasePackage.TABLE__INDEXES);
 		if (indexes == null) {
-			indexes = new EObjectContainmentWithInverseEList<Index>(Index.class, this, DatabasePackage.TABLE__INDEXES, DatabasePackage.INDEX__OWNER);
+			eVirtualSet(DatabasePackage.TABLE__INDEXES, indexes = new EObjectContainmentWithInverseEList<Index>(Index.class, this, DatabasePackage.TABLE__INDEXES, DatabasePackage.INDEX__OWNER));
 		}
 		return indexes;
 	}
@@ -196,6 +165,7 @@ public class TableImpl extends AbstractTableImpl implements Table {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabasePackage.TABLE__PRIMARY_KEY:
+				PrimaryKey primaryKey = (PrimaryKey)eVirtualGet(DatabasePackage.TABLE__PRIMARY_KEY);
 				if (primaryKey != null)
 					msgs = ((InternalEObject)primaryKey).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabasePackage.TABLE__PRIMARY_KEY, null, msgs);
 				return basicSetPrimaryKey((PrimaryKey)otherEnd, msgs);
@@ -306,16 +276,20 @@ public class TableImpl extends AbstractTableImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.TABLE__PRIMARY_KEY:
-				return primaryKey != null;
+				return eVirtualGet(DatabasePackage.TABLE__PRIMARY_KEY) != null;
 			case DatabasePackage.TABLE__FOREIGN_KEYS:
+				EList<ForeignKey> foreignKeys = (EList<ForeignKey>)eVirtualGet(DatabasePackage.TABLE__FOREIGN_KEYS);
 				return foreignKeys != null && !foreignKeys.isEmpty();
 			case DatabasePackage.TABLE__CONSTRAINTS:
+				EList<Constraint> constraints = (EList<Constraint>)eVirtualGet(DatabasePackage.TABLE__CONSTRAINTS);
 				return constraints != null && !constraints.isEmpty();
 			case DatabasePackage.TABLE__INDEXES:
+				EList<Index> indexes = (EList<Index>)eVirtualGet(DatabasePackage.TABLE__INDEXES);
 				return indexes != null && !indexes.isEmpty();
 		}
 		return super.eIsSet(featureID);

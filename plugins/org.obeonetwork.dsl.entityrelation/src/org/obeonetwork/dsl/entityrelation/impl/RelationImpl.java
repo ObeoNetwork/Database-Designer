@@ -6,22 +6,14 @@
  */
 package org.obeonetwork.dsl.entityrelation.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.obeonetwork.dsl.entityrelation.Attribute;
 import org.obeonetwork.dsl.entityrelation.Cardinality;
 import org.obeonetwork.dsl.entityrelation.Entity;
-import org.obeonetwork.dsl.entityrelation.EntityRelationFactory;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.Identifier;
 import org.obeonetwork.dsl.entityrelation.Relation;
@@ -51,16 +43,6 @@ import org.obeonetwork.dsl.entityrelation.RelationElement;
  */
 public class RelationImpl extends NamedElementImpl implements Relation {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected Entity source;
-
-	/**
 	 * The default value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,17 +51,6 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @ordered
 	 */
 	protected static final String SOURCE_ROLE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourceRole()
-	 * @generated
-	 * @ordered
-	 */
-	protected String sourceRole = SOURCE_ROLE_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getSourceCardinality() <em>Source Cardinality</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -89,17 +60,6 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @ordered
 	 */
 	protected static final Cardinality SOURCE_CARDINALITY_EDEFAULT = Cardinality.ZERO_STAR;
-
-	/**
-	 * The cached value of the '{@link #getSourceCardinality() <em>Source Cardinality</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourceCardinality()
-	 * @generated
-	 * @ordered
-	 */
-	protected Cardinality sourceCardinality = SOURCE_CARDINALITY_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #isSourceIsComposite() <em>Source Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -109,27 +69,6 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @ordered
 	 */
 	protected static final boolean SOURCE_IS_COMPOSITE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isSourceIsComposite() <em>Source Is Composite</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSourceIsComposite()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean sourceIsComposite = SOURCE_IS_COMPOSITE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected Entity target;
-
 	/**
 	 * The default value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -139,17 +78,6 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @ordered
 	 */
 	protected static final String TARGET_ROLE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetRole()
-	 * @generated
-	 * @ordered
-	 */
-	protected String targetRole = TARGET_ROLE_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getTargetCardinality() <em>Target Cardinality</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -159,17 +87,6 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @ordered
 	 */
 	protected static final Cardinality TARGET_CARDINALITY_EDEFAULT = Cardinality.ZERO_ONE;
-
-	/**
-	 * The cached value of the '{@link #getTargetCardinality() <em>Target Cardinality</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetCardinality()
-	 * @generated
-	 * @ordered
-	 */
-	protected Cardinality targetCardinality = TARGET_CARDINALITY_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #isTargetIsComposite() <em>Target Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -179,36 +96,6 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @ordered
 	 */
 	protected static final boolean TARGET_IS_COMPOSITE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isTargetIsComposite() <em>Target Is Composite</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isTargetIsComposite()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean targetIsComposite = TARGET_IS_COMPOSITE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<RelationElement> elements;
-
-	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected Identifier identifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -235,15 +122,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public Entity getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (Entity)eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityRelationPackage.RELATION__SOURCE, oldSource, source));
-			}
-		}
-		return source;
+		return (Entity)eDynamicGet(EntityRelationPackage.RELATION__SOURCE, EntityRelationPackage.Literals.RELATION__SOURCE, true, true);
 	}
 
 	/**
@@ -252,7 +131,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public Entity basicGetSource() {
-		return source;
+		return (Entity)eDynamicGet(EntityRelationPackage.RELATION__SOURCE, EntityRelationPackage.Literals.RELATION__SOURCE, false, true);
 	}
 
 	/**
@@ -261,10 +140,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public void setSource(Entity newSource) {
-		Entity oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__SOURCE, oldSource, source));
+		eDynamicSet(EntityRelationPackage.RELATION__SOURCE, EntityRelationPackage.Literals.RELATION__SOURCE, newSource);
 	}
 
 	/**
@@ -273,7 +149,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public String getSourceRole() {
-		return sourceRole;
+		return (String)eDynamicGet(EntityRelationPackage.RELATION__SOURCE_ROLE, EntityRelationPackage.Literals.RELATION__SOURCE_ROLE, true, true);
 	}
 
 	/**
@@ -282,10 +158,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public void setSourceRole(String newSourceRole) {
-		String oldSourceRole = sourceRole;
-		sourceRole = newSourceRole;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__SOURCE_ROLE, oldSourceRole, sourceRole));
+		eDynamicSet(EntityRelationPackage.RELATION__SOURCE_ROLE, EntityRelationPackage.Literals.RELATION__SOURCE_ROLE, newSourceRole);
 	}
 
 	/**
@@ -294,43 +167,16 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public Cardinality getSourceCardinality() {
-		return sourceCardinality;
+		return (Cardinality)eDynamicGet(EntityRelationPackage.RELATION__SOURCE_CARDINALITY, EntityRelationPackage.Literals.RELATION__SOURCE_CARDINALITY, true, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setSourceCardinality(Cardinality newSourceCardinality) {
-		Cardinality oldSourceCardinality = sourceCardinality;
-		sourceCardinality = newSourceCardinality == null ? SOURCE_CARDINALITY_EDEFAULT : newSourceCardinality;
-		if (sourceCardinality != oldSourceCardinality) {
-			// Cardinality has changed
-			if (oldSourceCardinality.isStarCardinality() == false && sourceCardinality.isStarCardinality() == true) {
-				// Cardinality was 0.1 or 1..1 and now is 0..* or 1..*
-				
-				// Then the source can not be set as composite
-				setSourceIsComposite(false);
-				// And the other side can not be 0..* or 1..*
-				if (targetCardinality == Cardinality.ZERO_STAR) {
-					setTargetCardinality(Cardinality.ZERO_ONE);
-				} else if (targetCardinality == Cardinality.ONE_STAR) {
-					setTargetCardinality(Cardinality.ONE_ONE);
-				}
-			} else if (oldSourceCardinality.isStarCardinality() == true && sourceCardinality.isStarCardinality() == false) {
-				// Cardinality was 0.* or 1..* and now is 0..1 or 1..1
-				
-				// Checks if the identifier is still consistent with the cardinality
-				if (targetCardinality.isStarCardinality() == true) {
-					// the previous identifier can not be used anymore
-					setIdentifier(pickBestIdentifier(target));
-				}
-			}
-		}
-		
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__SOURCE_CARDINALITY, oldSourceCardinality, sourceCardinality));
+		eDynamicSet(EntityRelationPackage.RELATION__SOURCE_CARDINALITY, EntityRelationPackage.Literals.RELATION__SOURCE_CARDINALITY, newSourceCardinality);
 	}
 
 	/**
@@ -339,27 +185,16 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public boolean isSourceIsComposite() {
-		return sourceIsComposite;
+		return (Boolean)eDynamicGet(EntityRelationPackage.RELATION__SOURCE_IS_COMPOSITE, EntityRelationPackage.Literals.RELATION__SOURCE_IS_COMPOSITE, true, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setSourceIsComposite(boolean newSourceIsComposite) {
-		if (newSourceIsComposite == true && sourceCardinality != Cardinality.ONE_ONE && sourceCardinality != Cardinality.ZERO_ONE) {
-			// Only roles with 1 as upper cardinality can be set as composite 
-			return;
-		}
-		boolean oldSourceIsComposite = sourceIsComposite;
-		sourceIsComposite = newSourceIsComposite;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__SOURCE_IS_COMPOSITE, oldSourceIsComposite, sourceIsComposite));
-		if (sourceIsComposite == true && targetIsComposite == true) {
-			// Only one role can be set as composite
-			setTargetIsComposite(false);
-		}
+		eDynamicSet(EntityRelationPackage.RELATION__SOURCE_IS_COMPOSITE, EntityRelationPackage.Literals.RELATION__SOURCE_IS_COMPOSITE, newSourceIsComposite);
 	}
 
 	/**
@@ -368,15 +203,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public Entity getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (Entity)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityRelationPackage.RELATION__TARGET, oldTarget, target));
-			}
-		}
-		return target;
+		return (Entity)eDynamicGet(EntityRelationPackage.RELATION__TARGET, EntityRelationPackage.Literals.RELATION__TARGET, true, true);
 	}
 
 	/**
@@ -385,7 +212,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public Entity basicGetTarget() {
-		return target;
+		return (Entity)eDynamicGet(EntityRelationPackage.RELATION__TARGET, EntityRelationPackage.Literals.RELATION__TARGET, false, true);
 	}
 
 	/**
@@ -394,10 +221,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public void setTarget(Entity newTarget) {
-		Entity oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__TARGET, oldTarget, target));
+		eDynamicSet(EntityRelationPackage.RELATION__TARGET, EntityRelationPackage.Literals.RELATION__TARGET, newTarget);
 	}
 
 	/**
@@ -406,7 +230,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public String getTargetRole() {
-		return targetRole;
+		return (String)eDynamicGet(EntityRelationPackage.RELATION__TARGET_ROLE, EntityRelationPackage.Literals.RELATION__TARGET_ROLE, true, true);
 	}
 
 	/**
@@ -415,10 +239,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public void setTargetRole(String newTargetRole) {
-		String oldTargetRole = targetRole;
-		targetRole = newTargetRole;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__TARGET_ROLE, oldTargetRole, targetRole));
+		eDynamicSet(EntityRelationPackage.RELATION__TARGET_ROLE, EntityRelationPackage.Literals.RELATION__TARGET_ROLE, newTargetRole);
 	}
 
 	/**
@@ -427,43 +248,16 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public Cardinality getTargetCardinality() {
-		return targetCardinality;
+		return (Cardinality)eDynamicGet(EntityRelationPackage.RELATION__TARGET_CARDINALITY, EntityRelationPackage.Literals.RELATION__TARGET_CARDINALITY, true, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setTargetCardinality(Cardinality newTargetCardinality) {
-		Cardinality oldTargetCardinality = targetCardinality;
-		targetCardinality = newTargetCardinality == null ? TARGET_CARDINALITY_EDEFAULT : newTargetCardinality;
-		if (targetCardinality != oldTargetCardinality) {
-			// Cardinality has changed
-			if (oldTargetCardinality.isStarCardinality() == false && targetCardinality.isStarCardinality() == true) {
-				// Cardinality was 0.1 or 1..1 and now is 0..* or 1..*
-				
-				// Then the target can not be set as composite
-				setTargetIsComposite(false);
-				// And the other side can not be 0..* or 1..*
-				if (sourceCardinality == Cardinality.ZERO_STAR) {
-					setSourceCardinality(Cardinality.ZERO_ONE);
-				} else if (sourceCardinality == Cardinality.ONE_STAR) {
-					setSourceCardinality(Cardinality.ONE_ONE);
-				}
-			} else if (oldTargetCardinality.isStarCardinality() == true && targetCardinality.isStarCardinality() == false) {
-				// Cardinality was 0.* or 1..* and now is 0..1 or 1..1
-				
-				// Checks if the identifier is still consistent with the cardinality
-				if (sourceCardinality.isStarCardinality() == true) {
-					// the previous identifier can not be used anymore
-					setIdentifier(pickBestIdentifier(source));
-				}
-			}
-		}
-		
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__TARGET_CARDINALITY, oldTargetCardinality, targetCardinality));
+		eDynamicSet(EntityRelationPackage.RELATION__TARGET_CARDINALITY, EntityRelationPackage.Literals.RELATION__TARGET_CARDINALITY, newTargetCardinality);
 	}
 
 	/**
@@ -472,27 +266,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public boolean isTargetIsComposite() {
-		return targetIsComposite;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setTargetIsComposite(boolean newTargetIsComposite) {
-		if (newTargetIsComposite == true && targetCardinality != Cardinality.ONE_ONE && targetCardinality != Cardinality.ZERO_ONE) {
-			// Only roles with 1 as upper cardinality can be set as composite 
-			return;
-		}
-		boolean oldTargetIsComposite = targetIsComposite;
-		targetIsComposite = newTargetIsComposite;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__TARGET_IS_COMPOSITE, oldTargetIsComposite, targetIsComposite));
-		if (targetIsComposite == true && sourceIsComposite == true) {
-			// Only one role can be set as composite
-			setSourceIsComposite(false);
-		}
+		return (Boolean)eDynamicGet(EntityRelationPackage.RELATION__TARGET_IS_COMPOSITE, EntityRelationPackage.Literals.RELATION__TARGET_IS_COMPOSITE, true, true);
 	}
 
 	/**
@@ -500,11 +274,18 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void setTargetIsComposite(boolean newTargetIsComposite) {
+		eDynamicSet(EntityRelationPackage.RELATION__TARGET_IS_COMPOSITE, EntityRelationPackage.Literals.RELATION__TARGET_IS_COMPOSITE, newTargetIsComposite);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
 	public EList<RelationElement> getElements() {
-		if (elements == null) {
-			elements = new EObjectContainmentEList<RelationElement>(RelationElement.class, this, EntityRelationPackage.RELATION__ELEMENTS);
-		}
-		return elements;
+		return (EList<RelationElement>)eDynamicGet(EntityRelationPackage.RELATION__ELEMENTS, EntityRelationPackage.Literals.RELATION__ELEMENTS, true, true);
 	}
 
 	/**
@@ -513,15 +294,7 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public Identifier getIdentifier() {
-		if (identifier != null && identifier.eIsProxy()) {
-			InternalEObject oldIdentifier = (InternalEObject)identifier;
-			identifier = (Identifier)eResolveProxy(oldIdentifier);
-			if (identifier != oldIdentifier) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityRelationPackage.RELATION__IDENTIFIER, oldIdentifier, identifier));
-			}
-		}
-		return identifier;
+		return (Identifier)eDynamicGet(EntityRelationPackage.RELATION__IDENTIFIER, EntityRelationPackage.Literals.RELATION__IDENTIFIER, true, true);
 	}
 
 	/**
@@ -530,78 +303,16 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	 * @generated
 	 */
 	public Identifier basicGetIdentifier() {
-		return identifier;
+		return (Identifier)eDynamicGet(EntityRelationPackage.RELATION__IDENTIFIER, EntityRelationPackage.Literals.RELATION__IDENTIFIER, false, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setIdentifier(Identifier newIdentifier) {
-		Identifier oldIdentifier = identifier;
-		identifier = newIdentifier;
-		
-		// We may have to delete and recreate RelationElement instances
-		if ((identifier == null && oldIdentifier != null)
-				|| (identifier != null && oldIdentifier == null)
-				|| (identifier.equals(oldIdentifier) == false)) {
-			
-			// Delete existing RelationElement instances
-			Collection<RelationElement> relationsElements = new ArrayList<RelationElement>(getElements());
-			for (RelationElement relationElement : relationsElements) {
-				EcoreUtil.delete(relationElement);
-			}
-			
-			// Create new RelationElement instances
-			if (identifier != null) {
-				if (getSource().equals(identifier.eContainer())) {
-					// Identifier is attached to the source
-					for (Attribute identifierAttribute : identifier.getAttributes()) {
-						Attribute otherAttribute = getOrCreateCorrespondingAttribute(getTarget(), identifierAttribute);
-						RelationElement relationElt = EntityRelationFactory.eINSTANCE.createRelationElement();
-						relationElt.setSourceAttribute(identifierAttribute);
-						relationElt.setTargetAttribute(otherAttribute);
-						getElements().add(relationElt);
-					}
-				} else if (getTarget().equals(identifier.eContainer())) {
-					// Identifier is attached to the target
-					for (Attribute identifierAttribute : identifier.getAttributes()) {
-						Attribute otherAttribute = getOrCreateCorrespondingAttribute(getSource(), identifierAttribute);
-						RelationElement relationElt = EntityRelationFactory.eINSTANCE.createRelationElement();
-						relationElt.setSourceAttribute(otherAttribute);
-						relationElt.setTargetAttribute(identifierAttribute);
-						getElements().add(relationElt);
-					}
-				}
-			}
-		}
-		
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION__IDENTIFIER, oldIdentifier, identifier));
-	}
-	
-	/**
-	 * @generated NOT
-	 */
-	private Attribute getOrCreateCorrespondingAttribute(Entity entity, Attribute reference) {
-		if (reference.getName() != null) {
-			for (Attribute attribute : entity.getAttributes()) {
-				if (reference.getName().equalsIgnoreCase(attribute.getName())) {
-					return attribute;
-				}
-			}
-		}
-		if (entity != null) {
-			// No attribute found, we have to create a new one
-			Attribute newAttribute = EntityRelationFactory.eINSTANCE.createAttribute();
-			entity.getAttributes().add(newAttribute);
-			newAttribute.setName(reference.getName());
-			newAttribute.setType(EcoreUtil.copy(reference.getType()));
-			return newAttribute;
-		}
-		
-		return null;
+		eDynamicSet(EntityRelationPackage.RELATION__IDENTIFIER, EntityRelationPackage.Literals.RELATION__IDENTIFIER, newIdentifier);
 	}
 
 	/**
@@ -748,68 +459,27 @@ public class RelationImpl extends NamedElementImpl implements Relation {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case EntityRelationPackage.RELATION__SOURCE:
-				return source != null;
+				return basicGetSource() != null;
 			case EntityRelationPackage.RELATION__SOURCE_ROLE:
-				return SOURCE_ROLE_EDEFAULT == null ? sourceRole != null : !SOURCE_ROLE_EDEFAULT.equals(sourceRole);
+				return SOURCE_ROLE_EDEFAULT == null ? getSourceRole() != null : !SOURCE_ROLE_EDEFAULT.equals(getSourceRole());
 			case EntityRelationPackage.RELATION__SOURCE_CARDINALITY:
-				return sourceCardinality != SOURCE_CARDINALITY_EDEFAULT;
+				return getSourceCardinality() != SOURCE_CARDINALITY_EDEFAULT;
 			case EntityRelationPackage.RELATION__SOURCE_IS_COMPOSITE:
-				return sourceIsComposite != SOURCE_IS_COMPOSITE_EDEFAULT;
+				return isSourceIsComposite() != SOURCE_IS_COMPOSITE_EDEFAULT;
 			case EntityRelationPackage.RELATION__TARGET:
-				return target != null;
+				return basicGetTarget() != null;
 			case EntityRelationPackage.RELATION__TARGET_ROLE:
-				return TARGET_ROLE_EDEFAULT == null ? targetRole != null : !TARGET_ROLE_EDEFAULT.equals(targetRole);
+				return TARGET_ROLE_EDEFAULT == null ? getTargetRole() != null : !TARGET_ROLE_EDEFAULT.equals(getTargetRole());
 			case EntityRelationPackage.RELATION__TARGET_CARDINALITY:
-				return targetCardinality != TARGET_CARDINALITY_EDEFAULT;
+				return getTargetCardinality() != TARGET_CARDINALITY_EDEFAULT;
 			case EntityRelationPackage.RELATION__TARGET_IS_COMPOSITE:
-				return targetIsComposite != TARGET_IS_COMPOSITE_EDEFAULT;
+				return isTargetIsComposite() != TARGET_IS_COMPOSITE_EDEFAULT;
 			case EntityRelationPackage.RELATION__ELEMENTS:
-				return elements != null && !elements.isEmpty();
+				return !getElements().isEmpty();
 			case EntityRelationPackage.RELATION__IDENTIFIER:
-				return identifier != null;
+				return basicGetIdentifier() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (sourceRole: ");
-		result.append(sourceRole);
-		result.append(", sourceCardinality: ");
-		result.append(sourceCardinality);
-		result.append(", sourceIsComposite: ");
-		result.append(sourceIsComposite);
-		result.append(", targetRole: ");
-		result.append(targetRole);
-		result.append(", targetCardinality: ");
-		result.append(targetCardinality);
-		result.append(", targetIsComposite: ");
-		result.append(targetIsComposite);
-		result.append(')');
-		return result.toString();
-	}
-	
-	/**
-	 * @generated NOT
-	 */
-	private Identifier pickBestIdentifier(Entity entity) {
-		if (entity != null) {
-			if (entity.getPrimaryIdentifier() != null) {
-				return entity.getPrimaryIdentifier();
-			}
-			if (entity.getIdentifiers().isEmpty() == false) {
-				return entity.getIdentifiers().get(0); 
-			}
-		}
-		return null;
 	}
 
 } //RelationImpl

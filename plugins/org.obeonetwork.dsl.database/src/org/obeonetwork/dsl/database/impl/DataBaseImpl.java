@@ -54,16 +54,6 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getUsedLibraries() <em>Used Libraries</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsedLibraries()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypesLibrary> usedLibraries;
-
-	/**
 	 * The default value of the '{@link #getUrl() <em>Url</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,36 +62,6 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * @ordered
 	 */
 	protected static final String URL_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getUrl() <em>Url</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUrl()
-	 * @generated
-	 * @ordered
-	 */
-	protected String url = URL_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getSchemas() <em>Schemas</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSchemas()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Schema> schemas;
-
-	/**
-	 * The cached value of the '{@link #getDefines() <em>Defines</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefines()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<UserDefinedTypesLibrary> defines;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,9 +87,11 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<TypesLibrary> getUsedLibraries() {
+		EList<TypesLibrary> usedLibraries = (EList<TypesLibrary>)eVirtualGet(DatabasePackage.DATA_BASE__USED_LIBRARIES);
 		if (usedLibraries == null) {
-			usedLibraries = new EObjectResolvingEList<TypesLibrary>(TypesLibrary.class, this, DatabasePackage.DATA_BASE__USED_LIBRARIES);
+			eVirtualSet(DatabasePackage.DATA_BASE__USED_LIBRARIES, usedLibraries = new EObjectResolvingEList<TypesLibrary>(TypesLibrary.class, this, DatabasePackage.DATA_BASE__USED_LIBRARIES));
 		}
 		return usedLibraries;
 	}
@@ -140,7 +102,7 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * @generated
 	 */
 	public String getUrl() {
-		return url;
+		return (String)eVirtualGet(DatabasePackage.DATA_BASE__URL, URL_EDEFAULT);
 	}
 
 	/**
@@ -149,10 +111,10 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * @generated
 	 */
 	public void setUrl(String newUrl) {
-		String oldUrl = url;
-		url = newUrl;
+		String url = newUrl;
+		Object oldUrl = eVirtualSet(DatabasePackage.DATA_BASE__URL, url);
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.DATA_BASE__URL, oldUrl, url));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.DATA_BASE__URL, oldUrl == EVIRTUAL_NO_VALUE ? URL_EDEFAULT : oldUrl, url));
 	}
 
 	/**
@@ -160,9 +122,11 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Schema> getSchemas() {
+		EList<Schema> schemas = (EList<Schema>)eVirtualGet(DatabasePackage.DATA_BASE__SCHEMAS);
 		if (schemas == null) {
-			schemas = new EObjectContainmentEList<Schema>(Schema.class, this, DatabasePackage.DATA_BASE__SCHEMAS);
+			eVirtualSet(DatabasePackage.DATA_BASE__SCHEMAS, schemas = new EObjectContainmentEList<Schema>(Schema.class, this, DatabasePackage.DATA_BASE__SCHEMAS));
 		}
 		return schemas;
 	}
@@ -172,9 +136,11 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<UserDefinedTypesLibrary> getDefines() {
+		EList<UserDefinedTypesLibrary> defines = (EList<UserDefinedTypesLibrary>)eVirtualGet(DatabasePackage.DATA_BASE__DEFINES);
 		if (defines == null) {
-			defines = new EObjectContainmentEList<UserDefinedTypesLibrary>(UserDefinedTypesLibrary.class, this, DatabasePackage.DATA_BASE__DEFINES);
+			eVirtualSet(DatabasePackage.DATA_BASE__DEFINES, defines = new EObjectContainmentEList<UserDefinedTypesLibrary>(UserDefinedTypesLibrary.class, this, DatabasePackage.DATA_BASE__DEFINES));
 		}
 		return defines;
 	}
@@ -272,16 +238,21 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.DATA_BASE__USED_LIBRARIES:
+				EList<TypesLibrary> usedLibraries = (EList<TypesLibrary>)eVirtualGet(DatabasePackage.DATA_BASE__USED_LIBRARIES);
 				return usedLibraries != null && !usedLibraries.isEmpty();
 			case DatabasePackage.DATA_BASE__URL:
+				String url = (String)eVirtualGet(DatabasePackage.DATA_BASE__URL, URL_EDEFAULT);
 				return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
 			case DatabasePackage.DATA_BASE__SCHEMAS:
+				EList<Schema> schemas = (EList<Schema>)eVirtualGet(DatabasePackage.DATA_BASE__SCHEMAS);
 				return schemas != null && !schemas.isEmpty();
 			case DatabasePackage.DATA_BASE__DEFINES:
+				EList<UserDefinedTypesLibrary> defines = (EList<UserDefinedTypesLibrary>)eVirtualGet(DatabasePackage.DATA_BASE__DEFINES);
 				return defines != null && !defines.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -330,7 +301,7 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (url: ");
-		result.append(url);
+		result.append(eVirtualGet(DatabasePackage.DATA_BASE__URL, URL_EDEFAULT));
 		result.append(')');
 		return result.toString();
 	}

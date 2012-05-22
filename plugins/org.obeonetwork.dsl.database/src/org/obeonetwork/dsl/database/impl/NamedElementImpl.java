@@ -51,16 +51,6 @@ public abstract class NamedElementImpl extends DatabaseElementImpl implements Na
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -101,7 +91,7 @@ public abstract class NamedElementImpl extends DatabaseElementImpl implements Na
 	 * @generated
 	 */
 	public String getName() {
-		return name;
+		return (String)eVirtualGet(DatabasePackage.NAMED_ELEMENT__NAME, NAME_EDEFAULT);
 	}
 
 	/**
@@ -110,10 +100,10 @@ public abstract class NamedElementImpl extends DatabaseElementImpl implements Na
 	 * @generated
 	 */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
+		String name = newName;
+		Object oldName = eVirtualSet(DatabasePackage.NAMED_ELEMENT__NAME, name);
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.NAMED_ELEMENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.NAMED_ELEMENT__NAME, oldName == EVIRTUAL_NO_VALUE ? NAME_EDEFAULT : oldName, name));
 	}
 
 	/**
@@ -169,6 +159,7 @@ public abstract class NamedElementImpl extends DatabaseElementImpl implements Na
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.NAMED_ELEMENT__NAME:
+				String name = (String)eVirtualGet(DatabasePackage.NAMED_ELEMENT__NAME, NAME_EDEFAULT);
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
@@ -185,7 +176,7 @@ public abstract class NamedElementImpl extends DatabaseElementImpl implements Na
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
-		result.append(name);
+		result.append(eVirtualGet(DatabasePackage.NAMED_ELEMENT__NAME, NAME_EDEFAULT));
 		result.append(')');
 		return result.toString();
 	}

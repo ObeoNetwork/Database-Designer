@@ -13,6 +13,7 @@ package org.obeonetwork.dsl.database.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.obeonetwork.dsl.database.Column;
@@ -43,26 +44,6 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getFkColumn() <em>Fk Column</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFkColumn()
-	 * @generated
-	 * @ordered
-	 */
-	protected Column fkColumn;
-
-	/**
-	 * The cached value of the '{@link #getPkColumn() <em>Pk Column</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPkColumn()
-	 * @generated
-	 * @ordered
-	 */
-	protected Column pkColumn;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -87,10 +68,12 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	 * @generated
 	 */
 	public Column getFkColumn() {
-		if (fkColumn != null && fkColumn.eIsProxy()) {
+		Column fkColumn = (Column)eVirtualGet(DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN);
+		if (fkColumn != null && ((EObject)fkColumn).eIsProxy()) {
 			InternalEObject oldFkColumn = (InternalEObject)fkColumn;
 			fkColumn = (Column)eResolveProxy(oldFkColumn);
 			if (fkColumn != oldFkColumn) {
+				eVirtualSet(DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN, fkColumn);
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN, oldFkColumn, fkColumn));
 			}
@@ -104,7 +87,7 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	 * @generated
 	 */
 	public Column basicGetFkColumn() {
-		return fkColumn;
+		return (Column)eVirtualGet(DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN);
 	}
 
 	/**
@@ -113,10 +96,9 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	 * @generated
 	 */
 	public NotificationChain basicSetFkColumn(Column newFkColumn, NotificationChain msgs) {
-		Column oldFkColumn = fkColumn;
-		fkColumn = newFkColumn;
+		Object oldFkColumn = eVirtualSet(DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN, newFkColumn);
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN, oldFkColumn, newFkColumn);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN, oldFkColumn == EVIRTUAL_NO_VALUE ? null : oldFkColumn, newFkColumn);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -128,6 +110,7 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	 * @generated
 	 */
 	public void setFkColumn(Column newFkColumn) {
+		Column fkColumn = (Column)eVirtualGet(DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN);
 		if (newFkColumn != fkColumn) {
 			NotificationChain msgs = null;
 			if (fkColumn != null)
@@ -147,10 +130,12 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	 * @generated
 	 */
 	public Column getPkColumn() {
-		if (pkColumn != null && pkColumn.eIsProxy()) {
+		Column pkColumn = (Column)eVirtualGet(DatabasePackage.FOREIGN_KEY_ELEMENT__PK_COLUMN);
+		if (pkColumn != null && ((EObject)pkColumn).eIsProxy()) {
 			InternalEObject oldPkColumn = (InternalEObject)pkColumn;
 			pkColumn = (Column)eResolveProxy(oldPkColumn);
 			if (pkColumn != oldPkColumn) {
+				eVirtualSet(DatabasePackage.FOREIGN_KEY_ELEMENT__PK_COLUMN, pkColumn);
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabasePackage.FOREIGN_KEY_ELEMENT__PK_COLUMN, oldPkColumn, pkColumn));
 			}
@@ -164,7 +149,7 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	 * @generated
 	 */
 	public Column basicGetPkColumn() {
-		return pkColumn;
+		return (Column)eVirtualGet(DatabasePackage.FOREIGN_KEY_ELEMENT__PK_COLUMN);
 	}
 
 	/**
@@ -173,10 +158,10 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	 * @generated
 	 */
 	public void setPkColumn(Column newPkColumn) {
-		Column oldPkColumn = pkColumn;
-		pkColumn = newPkColumn;
+		Column pkColumn = newPkColumn;
+		Object oldPkColumn = eVirtualSet(DatabasePackage.FOREIGN_KEY_ELEMENT__PK_COLUMN, pkColumn);
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY_ELEMENT__PK_COLUMN, oldPkColumn, pkColumn));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY_ELEMENT__PK_COLUMN, oldPkColumn == EVIRTUAL_NO_VALUE ? null : oldPkColumn, pkColumn));
 	}
 
 	/**
@@ -188,6 +173,7 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN:
+				Column fkColumn = (Column)eVirtualGet(DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN);
 				if (fkColumn != null)
 					msgs = ((InternalEObject)fkColumn).eInverseRemove(this, DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS, Column.class, msgs);
 				return basicSetFkColumn((Column)otherEnd, msgs);
@@ -272,9 +258,9 @@ public class ForeignKeyElementImpl extends DatabaseElementImpl implements Foreig
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN:
-				return fkColumn != null;
+				return eVirtualGet(DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN) != null;
 			case DatabasePackage.FOREIGN_KEY_ELEMENT__PK_COLUMN:
-				return pkColumn != null;
+				return eVirtualGet(DatabasePackage.FOREIGN_KEY_ELEMENT__PK_COLUMN) != null;
 		}
 		return super.eIsSet(featureID);
 	}

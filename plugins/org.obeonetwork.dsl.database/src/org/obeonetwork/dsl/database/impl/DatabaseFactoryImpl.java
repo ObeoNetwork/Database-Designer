@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.obeonetwork.dsl.database.*;
 import org.obeonetwork.dsl.database.Column;
 import org.obeonetwork.dsl.database.Constraint;
 import org.obeonetwork.dsl.database.DataBase;
@@ -83,18 +84,18 @@ public class DatabaseFactoryImpl extends EFactoryImpl implements DatabaseFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case DatabasePackage.DATA_BASE: return createDataBase();
-			case DatabasePackage.COLUMN: return createColumn();
-			case DatabasePackage.INDEX: return createIndex();
-			case DatabasePackage.VIEW: return createView();
-			case DatabasePackage.TABLE: return createTable();
-			case DatabasePackage.PRIMARY_KEY: return createPrimaryKey();
-			case DatabasePackage.FOREIGN_KEY: return createForeignKey();
-			case DatabasePackage.FOREIGN_KEY_ELEMENT: return createForeignKeyElement();
-			case DatabasePackage.INDEX_ELEMENT: return createIndexElement();
-			case DatabasePackage.CONSTRAINT: return createConstraint();
-			case DatabasePackage.SCHEMA: return createSchema();
-			case DatabasePackage.SEQUENCE: return createSequence();
+			case DatabasePackage.DATA_BASE: return (EObject)createDataBase();
+			case DatabasePackage.COLUMN: return (EObject)createColumn();
+			case DatabasePackage.INDEX: return (EObject)createIndex();
+			case DatabasePackage.VIEW: return (EObject)createView();
+			case DatabasePackage.TABLE: return (EObject)createTable();
+			case DatabasePackage.PRIMARY_KEY: return (EObject)createPrimaryKey();
+			case DatabasePackage.FOREIGN_KEY: return (EObject)createForeignKey();
+			case DatabasePackage.FOREIGN_KEY_ELEMENT: return (EObject)createForeignKeyElement();
+			case DatabasePackage.INDEX_ELEMENT: return (EObject)createIndexElement();
+			case DatabasePackage.CONSTRAINT: return (EObject)createConstraint();
+			case DatabasePackage.SCHEMA: return (EObject)createSchema();
+			case DatabasePackage.SEQUENCE: return (EObject)createSequence();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

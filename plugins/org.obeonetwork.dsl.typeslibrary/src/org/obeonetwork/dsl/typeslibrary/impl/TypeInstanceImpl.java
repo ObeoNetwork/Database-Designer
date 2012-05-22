@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -52,16 +53,6 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getNativeType() <em>Native Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNativeType()
-	 * @generated
-	 * @ordered
-	 */
-	protected NativeType nativeType;
-
-	/**
 	 * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,17 +61,6 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @ordered
 	 */
 	protected static final int LENGTH_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getLength() <em>Length</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLength()
-	 * @generated
-	 * @ordered
-	 */
-	protected int length = LENGTH_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -90,26 +70,6 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @ordered
 	 */
 	protected static final int PRECISION_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrecision()
-	 * @generated
-	 * @ordered
-	 */
-	protected int precision = PRECISION_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getLiterals() <em>Literals</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLiterals()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> literals;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,15 +96,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public NativeType getNativeType() {
-		if (nativeType != null && nativeType.eIsProxy()) {
-			InternalEObject oldNativeType = (InternalEObject)nativeType;
-			nativeType = (NativeType)eResolveProxy(oldNativeType);
-			if (nativeType != oldNativeType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE, oldNativeType, nativeType));
-			}
-		}
-		return nativeType;
+		return (NativeType)eDynamicGet(TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE, TypesLibraryPackage.Literals.TYPE_INSTANCE__NATIVE_TYPE, true, true);
 	}
 
 	/**
@@ -153,7 +105,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public NativeType basicGetNativeType() {
-		return nativeType;
+		return (NativeType)eDynamicGet(TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE, TypesLibraryPackage.Literals.TYPE_INSTANCE__NATIVE_TYPE, false, true);
 	}
 
 	/**
@@ -162,10 +114,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public void setNativeType(NativeType newNativeType) {
-		NativeType oldNativeType = nativeType;
-		nativeType = newNativeType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE, oldNativeType, nativeType));
+		eDynamicSet(TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE, TypesLibraryPackage.Literals.TYPE_INSTANCE__NATIVE_TYPE, newNativeType);
 	}
 
 	/**
@@ -174,7 +123,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public int getLength() {
-		return length;
+		return (Integer)eDynamicGet(TypesLibraryPackage.TYPE_INSTANCE__LENGTH, TypesLibraryPackage.Literals.TYPE_INSTANCE__LENGTH, true, true);
 	}
 
 	/**
@@ -183,10 +132,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public void setLength(int newLength) {
-		int oldLength = length;
-		length = newLength;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.TYPE_INSTANCE__LENGTH, oldLength, length));
+		eDynamicSet(TypesLibraryPackage.TYPE_INSTANCE__LENGTH, TypesLibraryPackage.Literals.TYPE_INSTANCE__LENGTH, newLength);
 	}
 
 	/**
@@ -195,7 +141,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public int getPrecision() {
-		return precision;
+		return (Integer)eDynamicGet(TypesLibraryPackage.TYPE_INSTANCE__PRECISION, TypesLibraryPackage.Literals.TYPE_INSTANCE__PRECISION, true, true);
 	}
 
 	/**
@@ -204,10 +150,7 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * @generated
 	 */
 	public void setPrecision(int newPrecision) {
-		int oldPrecision = precision;
-		precision = newPrecision;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TypesLibraryPackage.TYPE_INSTANCE__PRECISION, oldPrecision, precision));
+		eDynamicSet(TypesLibraryPackage.TYPE_INSTANCE__PRECISION, TypesLibraryPackage.Literals.TYPE_INSTANCE__PRECISION, newPrecision);
 	}
 
 	/**
@@ -215,11 +158,9 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<String> getLiterals() {
-		if (literals == null) {
-			literals = new EDataTypeUniqueEList<String>(String.class, this, TypesLibraryPackage.TYPE_INSTANCE__LITERALS);
-		}
-		return literals;
+		return (EList<String>)eDynamicGet(TypesLibraryPackage.TYPE_INSTANCE__LITERALS, TypesLibraryPackage.Literals.TYPE_INSTANCE__LITERALS, true, true);
 	}
 
 	/**
@@ -302,35 +243,15 @@ public class TypeInstanceImpl extends TypeImpl implements TypeInstance {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case TypesLibraryPackage.TYPE_INSTANCE__NATIVE_TYPE:
-				return nativeType != null;
+				return basicGetNativeType() != null;
 			case TypesLibraryPackage.TYPE_INSTANCE__LENGTH:
-				return length != LENGTH_EDEFAULT;
+				return getLength() != LENGTH_EDEFAULT;
 			case TypesLibraryPackage.TYPE_INSTANCE__PRECISION:
-				return precision != PRECISION_EDEFAULT;
+				return getPrecision() != PRECISION_EDEFAULT;
 			case TypesLibraryPackage.TYPE_INSTANCE__LITERALS:
-				return literals != null && !literals.isEmpty();
+				return !getLiterals().isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (length: ");
-		result.append(length);
-		result.append(", precision: ");
-		result.append(precision);
-		result.append(", literals: ");
-		result.append(literals);
-		result.append(')');
-		return result.toString();
 	}
 
 } //TypeInstanceImpl

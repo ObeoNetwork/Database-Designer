@@ -48,16 +48,6 @@ public class ComplexNamedTypeImpl extends UserDefinedTypeImpl implements Complex
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getTypes() <em>Types</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<UserDefinedType> types;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -81,11 +71,9 @@ public class ComplexNamedTypeImpl extends UserDefinedTypeImpl implements Complex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<UserDefinedType> getTypes() {
-		if (types == null) {
-			types = new EObjectContainmentEList<UserDefinedType>(UserDefinedType.class, this, TypesLibraryPackage.COMPLEX_NAMED_TYPE__TYPES);
-		}
-		return types;
+		return (EList<UserDefinedType>)eDynamicGet(TypesLibraryPackage.COMPLEX_NAMED_TYPE__TYPES, TypesLibraryPackage.Literals.COMPLEX_NAMED_TYPE__TYPES, true, true);
 	}
 
 	/**
@@ -157,7 +145,7 @@ public class ComplexNamedTypeImpl extends UserDefinedTypeImpl implements Complex
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case TypesLibraryPackage.COMPLEX_NAMED_TYPE__TYPES:
-				return types != null && !types.isEmpty();
+				return !getTypes().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

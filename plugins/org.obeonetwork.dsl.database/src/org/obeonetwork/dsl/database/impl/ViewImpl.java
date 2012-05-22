@@ -48,16 +48,6 @@ public class ViewImpl extends AbstractTableImpl implements View {
 	protected static final String QUERY_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getQuery() <em>Query</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getQuery()
-	 * @generated
-	 * @ordered
-	 */
-	protected String query = QUERY_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -82,7 +72,7 @@ public class ViewImpl extends AbstractTableImpl implements View {
 	 * @generated
 	 */
 	public String getQuery() {
-		return query;
+		return (String)eVirtualGet(DatabasePackage.VIEW__QUERY, QUERY_EDEFAULT);
 	}
 
 	/**
@@ -91,10 +81,10 @@ public class ViewImpl extends AbstractTableImpl implements View {
 	 * @generated
 	 */
 	public void setQuery(String newQuery) {
-		String oldQuery = query;
-		query = newQuery;
+		String query = newQuery;
+		Object oldQuery = eVirtualSet(DatabasePackage.VIEW__QUERY, query);
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.VIEW__QUERY, oldQuery, query));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.VIEW__QUERY, oldQuery == EVIRTUAL_NO_VALUE ? QUERY_EDEFAULT : oldQuery, query));
 	}
 
 	/**
@@ -150,6 +140,7 @@ public class ViewImpl extends AbstractTableImpl implements View {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.VIEW__QUERY:
+				String query = (String)eVirtualGet(DatabasePackage.VIEW__QUERY, QUERY_EDEFAULT);
 				return QUERY_EDEFAULT == null ? query != null : !QUERY_EDEFAULT.equals(query);
 		}
 		return super.eIsSet(featureID);
@@ -166,7 +157,7 @@ public class ViewImpl extends AbstractTableImpl implements View {
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (query: ");
-		result.append(query);
+		result.append(eVirtualGet(DatabasePackage.VIEW__QUERY, QUERY_EDEFAULT));
 		result.append(')');
 		return result.toString();
 	}

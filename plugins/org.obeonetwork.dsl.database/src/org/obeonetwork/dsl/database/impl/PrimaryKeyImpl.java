@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -50,16 +51,6 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getColumns() <em>Columns</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getColumns()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Column> columns;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -83,9 +74,11 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Column> getColumns() {
+		EList<Column> columns = (EList<Column>)eVirtualGet(DatabasePackage.PRIMARY_KEY__COLUMNS);
 		if (columns == null) {
-			columns = new EObjectWithInverseResolvingEList<Column>(Column.class, this, DatabasePackage.PRIMARY_KEY__COLUMNS, DatabasePackage.COLUMN__PRIMARY_KEY);
+			eVirtualSet(DatabasePackage.PRIMARY_KEY__COLUMNS, columns = new EObjectWithInverseResolvingEList<Column>(Column.class, this, DatabasePackage.PRIMARY_KEY__COLUMNS, DatabasePackage.COLUMN__PRIMARY_KEY));
 		}
 		return columns;
 	}
@@ -117,7 +110,7 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 	 */
 	public void setOwner(Table newOwner) {
 		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.PRIMARY_KEY__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, newOwner))
+			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -239,10 +232,12 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.PRIMARY_KEY__COLUMNS:
+				EList<Column> columns = (EList<Column>)eVirtualGet(DatabasePackage.PRIMARY_KEY__COLUMNS);
 				return columns != null && !columns.isEmpty();
 			case DatabasePackage.PRIMARY_KEY__OWNER:
 				return getOwner() != null;
@@ -250,7 +245,6 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 		return super.eIsSet(featureID);
 	}
 
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

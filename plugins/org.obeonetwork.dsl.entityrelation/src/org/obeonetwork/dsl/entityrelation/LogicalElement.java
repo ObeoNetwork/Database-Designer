@@ -6,6 +6,7 @@
  */
 package org.obeonetwork.dsl.entityrelation;
 
+import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -23,9 +24,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.obeonetwork.dsl.entityrelation.EntityRelationPackage#getLogicalElement()
  * @model abstract="true"
+ * @extends CDOObject
  * @generated
  */
-public interface LogicalElement extends EObject {
+public interface LogicalElement extends CDOObject {
 	/**
 	 * Returns the value of the '<em><b>ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->

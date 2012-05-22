@@ -13,6 +13,7 @@ package org.obeonetwork.dsl.database.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.obeonetwork.dsl.database.Column;
@@ -42,16 +43,6 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getColumn() <em>Column</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getColumn()
-	 * @generated
-	 * @ordered
-	 */
-	protected Column column;
-
-	/**
 	 * The default value of the '{@link #isAsc() <em>Asc</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +51,6 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * @ordered
 	 */
 	protected static final boolean ASC_EDEFAULT = false;
-
 	/**
 	 * The cached value of the '{@link #isAsc() <em>Asc</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -96,10 +86,12 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * @generated
 	 */
 	public Column getColumn() {
-		if (column != null && column.eIsProxy()) {
+		Column column = (Column)eVirtualGet(DatabasePackage.INDEX_ELEMENT__COLUMN);
+		if (column != null && ((EObject)column).eIsProxy()) {
 			InternalEObject oldColumn = (InternalEObject)column;
 			column = (Column)eResolveProxy(oldColumn);
 			if (column != oldColumn) {
+				eVirtualSet(DatabasePackage.INDEX_ELEMENT__COLUMN, column);
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabasePackage.INDEX_ELEMENT__COLUMN, oldColumn, column));
 			}
@@ -113,7 +105,7 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * @generated
 	 */
 	public Column basicGetColumn() {
-		return column;
+		return (Column)eVirtualGet(DatabasePackage.INDEX_ELEMENT__COLUMN);
 	}
 
 	/**
@@ -122,10 +114,9 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * @generated
 	 */
 	public NotificationChain basicSetColumn(Column newColumn, NotificationChain msgs) {
-		Column oldColumn = column;
-		column = newColumn;
+		Object oldColumn = eVirtualSet(DatabasePackage.INDEX_ELEMENT__COLUMN, newColumn);
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX_ELEMENT__COLUMN, oldColumn, newColumn);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX_ELEMENT__COLUMN, oldColumn == EVIRTUAL_NO_VALUE ? null : oldColumn, newColumn);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -137,6 +128,7 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * @generated
 	 */
 	public void setColumn(Column newColumn) {
+		Column column = (Column)eVirtualGet(DatabasePackage.INDEX_ELEMENT__COLUMN);
 		if (newColumn != column) {
 			NotificationChain msgs = null;
 			if (column != null)
@@ -180,6 +172,7 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabasePackage.INDEX_ELEMENT__COLUMN:
+				Column column = (Column)eVirtualGet(DatabasePackage.INDEX_ELEMENT__COLUMN);
 				if (column != null)
 					msgs = ((InternalEObject)column).eInverseRemove(this, DatabasePackage.COLUMN__INDEX_ELEMENTS, Column.class, msgs);
 				return basicSetColumn((Column)otherEnd, msgs);
@@ -263,7 +256,7 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.INDEX_ELEMENT__COLUMN:
-				return column != null;
+				return eVirtualGet(DatabasePackage.INDEX_ELEMENT__COLUMN) != null;
 			case DatabasePackage.INDEX_ELEMENT__ASC:
 				return asc != ASC_EDEFAULT;
 		}

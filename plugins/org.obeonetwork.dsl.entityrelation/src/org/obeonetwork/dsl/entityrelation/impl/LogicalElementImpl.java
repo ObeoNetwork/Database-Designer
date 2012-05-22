@@ -6,10 +6,8 @@
  */
 package org.obeonetwork.dsl.entityrelation.impl;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.obeonetwork.dsl.entityrelation.EntityRelationPackage;
 import org.obeonetwork.dsl.entityrelation.LogicalElement;
 
@@ -27,7 +25,7 @@ import org.obeonetwork.dsl.entityrelation.LogicalElement;
  *
  * @generated
  */
-public abstract class LogicalElementImpl extends EObjectImpl implements LogicalElement {
+public abstract class LogicalElementImpl extends CDOObjectImpl implements LogicalElement {
 	/**
 	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -37,17 +35,6 @@ public abstract class LogicalElementImpl extends EObjectImpl implements LogicalE
 	 * @ordered
 	 */
 	protected static final String ID_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getID()
-	 * @generated
-	 * @ordered
-	 */
-	protected String id = ID_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getComments() <em>Comments</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -57,16 +44,6 @@ public abstract class LogicalElementImpl extends EObjectImpl implements LogicalE
 	 * @ordered
 	 */
 	protected static final String COMMENTS_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getComments() <em>Comments</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getComments()
-	 * @generated
-	 * @ordered
-	 */
-	protected String comments = COMMENTS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -92,8 +69,18 @@ public abstract class LogicalElementImpl extends EObjectImpl implements LogicalE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getID() {
-		return id;
+		return (String)eDynamicGet(EntityRelationPackage.LOGICAL_ELEMENT__ID, EntityRelationPackage.Literals.LOGICAL_ELEMENT__ID, true, true);
 	}
 
 	/**
@@ -102,7 +89,7 @@ public abstract class LogicalElementImpl extends EObjectImpl implements LogicalE
 	 * @generated
 	 */
 	public String getComments() {
-		return comments;
+		return (String)eDynamicGet(EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS, EntityRelationPackage.Literals.LOGICAL_ELEMENT__COMMENTS, true, true);
 	}
 
 	/**
@@ -111,10 +98,7 @@ public abstract class LogicalElementImpl extends EObjectImpl implements LogicalE
 	 * @generated
 	 */
 	public void setComments(String newComments) {
-		String oldComments = comments;
-		comments = newComments;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS, oldComments, comments));
+		eDynamicSet(EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS, EntityRelationPackage.Literals.LOGICAL_ELEMENT__COMMENTS, newComments);
 	}
 
 	/**
@@ -172,29 +156,11 @@ public abstract class LogicalElementImpl extends EObjectImpl implements LogicalE
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case EntityRelationPackage.LOGICAL_ELEMENT__ID:
-				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+				return ID_EDEFAULT == null ? getID() != null : !ID_EDEFAULT.equals(getID());
 			case EntityRelationPackage.LOGICAL_ELEMENT__COMMENTS:
-				return COMMENTS_EDEFAULT == null ? comments != null : !COMMENTS_EDEFAULT.equals(comments);
+				return COMMENTS_EDEFAULT == null ? getComments() != null : !COMMENTS_EDEFAULT.equals(getComments());
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (ID: ");
-		result.append(id);
-		result.append(", comments: ");
-		result.append(comments);
-		result.append(')');
-		return result.toString();
 	}
 
 } //LogicalElementImpl

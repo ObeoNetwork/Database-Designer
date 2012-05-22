@@ -9,6 +9,7 @@ package org.obeonetwork.dsl.entityrelation.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -32,26 +33,6 @@ import org.obeonetwork.dsl.entityrelation.RelationElement;
  * @generated
  */
 public class RelationElementImpl extends LogicalElementImpl implements RelationElement {
-	/**
-	 * The cached value of the '{@link #getSourceAttribute() <em>Source Attribute</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourceAttribute()
-	 * @generated
-	 * @ordered
-	 */
-	protected Attribute sourceAttribute;
-
-	/**
-	 * The cached value of the '{@link #getTargetAttribute() <em>Target Attribute</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetAttribute()
-	 * @generated
-	 * @ordered
-	 */
-	protected Attribute targetAttribute;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,15 +58,7 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	 * @generated
 	 */
 	public Attribute getSourceAttribute() {
-		if (sourceAttribute != null && sourceAttribute.eIsProxy()) {
-			InternalEObject oldSourceAttribute = (InternalEObject)sourceAttribute;
-			sourceAttribute = (Attribute)eResolveProxy(oldSourceAttribute);
-			if (sourceAttribute != oldSourceAttribute) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE, oldSourceAttribute, sourceAttribute));
-			}
-		}
-		return sourceAttribute;
+		return (Attribute)eDynamicGet(EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE, EntityRelationPackage.Literals.RELATION_ELEMENT__SOURCE_ATTRIBUTE, true, true);
 	}
 
 	/**
@@ -94,7 +67,7 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	 * @generated
 	 */
 	public Attribute basicGetSourceAttribute() {
-		return sourceAttribute;
+		return (Attribute)eDynamicGet(EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE, EntityRelationPackage.Literals.RELATION_ELEMENT__SOURCE_ATTRIBUTE, false, true);
 	}
 
 	/**
@@ -103,10 +76,7 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	 * @generated
 	 */
 	public void setSourceAttribute(Attribute newSourceAttribute) {
-		Attribute oldSourceAttribute = sourceAttribute;
-		sourceAttribute = newSourceAttribute;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE, oldSourceAttribute, sourceAttribute));
+		eDynamicSet(EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE, EntityRelationPackage.Literals.RELATION_ELEMENT__SOURCE_ATTRIBUTE, newSourceAttribute);
 	}
 
 	/**
@@ -115,15 +85,7 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	 * @generated
 	 */
 	public Attribute getTargetAttribute() {
-		if (targetAttribute != null && targetAttribute.eIsProxy()) {
-			InternalEObject oldTargetAttribute = (InternalEObject)targetAttribute;
-			targetAttribute = (Attribute)eResolveProxy(oldTargetAttribute);
-			if (targetAttribute != oldTargetAttribute) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE, oldTargetAttribute, targetAttribute));
-			}
-		}
-		return targetAttribute;
+		return (Attribute)eDynamicGet(EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE, EntityRelationPackage.Literals.RELATION_ELEMENT__TARGET_ATTRIBUTE, true, true);
 	}
 
 	/**
@@ -132,7 +94,7 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	 * @generated
 	 */
 	public Attribute basicGetTargetAttribute() {
-		return targetAttribute;
+		return (Attribute)eDynamicGet(EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE, EntityRelationPackage.Literals.RELATION_ELEMENT__TARGET_ATTRIBUTE, false, true);
 	}
 
 	/**
@@ -141,10 +103,7 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	 * @generated
 	 */
 	public void setTargetAttribute(Attribute newTargetAttribute) {
-		Attribute oldTargetAttribute = targetAttribute;
-		targetAttribute = newTargetAttribute;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE, oldTargetAttribute, targetAttribute));
+		eDynamicSet(EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE, EntityRelationPackage.Literals.RELATION_ELEMENT__TARGET_ATTRIBUTE, newTargetAttribute);
 	}
 
 	/**
@@ -210,9 +169,9 @@ public class RelationElementImpl extends LogicalElementImpl implements RelationE
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case EntityRelationPackage.RELATION_ELEMENT__SOURCE_ATTRIBUTE:
-				return sourceAttribute != null;
+				return basicGetSourceAttribute() != null;
 			case EntityRelationPackage.RELATION_ELEMENT__TARGET_ATTRIBUTE:
-				return targetAttribute != null;
+				return basicGetTargetAttribute() != null;
 		}
 		return super.eIsSet(featureID);
 	}

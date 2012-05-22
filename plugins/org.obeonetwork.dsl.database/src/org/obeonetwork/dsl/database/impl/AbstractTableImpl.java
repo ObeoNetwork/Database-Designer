@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -49,16 +50,6 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * The cached value of the '{@link #getColumns() <em>Columns</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getColumns()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Column> columns;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -82,9 +73,11 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Column> getColumns() {
+		EList<Column> columns = (EList<Column>)eVirtualGet(DatabasePackage.ABSTRACT_TABLE__COLUMNS);
 		if (columns == null) {
-			columns = new EObjectContainmentWithInverseEList<Column>(Column.class, this, DatabasePackage.ABSTRACT_TABLE__COLUMNS, DatabasePackage.COLUMN__OWNER);
+			eVirtualSet(DatabasePackage.ABSTRACT_TABLE__COLUMNS, columns = new EObjectContainmentWithInverseEList<Column>(Column.class, this, DatabasePackage.ABSTRACT_TABLE__COLUMNS, DatabasePackage.COLUMN__OWNER));
 		}
 		return columns;
 	}
@@ -116,7 +109,7 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	 */
 	public void setOwner(TableContainer newOwner) {
 		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.ABSTRACT_TABLE__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, newOwner))
+			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -238,10 +231,12 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.ABSTRACT_TABLE__COLUMNS:
+				EList<Column> columns = (EList<Column>)eVirtualGet(DatabasePackage.ABSTRACT_TABLE__COLUMNS);
 				return columns != null && !columns.isEmpty();
 			case DatabasePackage.ABSTRACT_TABLE__OWNER:
 				return getOwner() != null;

@@ -18,6 +18,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -80,7 +81,6 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @ordered
 	 */
 	protected static final boolean NULLABLE_EDEFAULT = false;
-
 	/**
 	 * The cached value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -90,7 +90,6 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @ordered
 	 */
 	protected boolean nullable = NULLABLE_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -100,67 +99,6 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @ordered
 	 */
 	protected static final String DEFAULT_VALUE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefaultValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected String defaultValue = DEFAULT_VALUE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getIndexElements() <em>Index Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIndexElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<IndexElement> indexElements;
-
-	/**
-	 * The cached value of the '{@link #getPrimaryKey() <em>Primary Key</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrimaryKey()
-	 * @generated
-	 * @ordered
-	 */
-	protected PrimaryKey primaryKey;
-
-	/**
-	 * The cached value of the '{@link #getForeignKeyElements() <em>Foreign Key Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getForeignKeyElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ForeignKeyElement> foreignKeyElements;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected Type type;
-
-	/**
-	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSequence()
-	 * @generated
-	 * @ordered
-	 */
-	protected Sequence sequence;
-
 	/**
 	 * The default value of the '{@link #isAutoincrement() <em>Autoincrement</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -170,7 +108,6 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @ordered
 	 */
 	protected static final boolean AUTOINCREMENT_EDEFAULT = false;
-
 	/**
 	 * The cached value of the '{@link #isAutoincrement() <em>Autoincrement</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -180,7 +117,6 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @ordered
 	 */
 	protected boolean autoincrement = AUTOINCREMENT_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #isInPrimaryKey() <em>In Primary Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -190,7 +126,6 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @ordered
 	 */
 	protected static final boolean IN_PRIMARY_KEY_EDEFAULT = false;
-
 	/**
 	 * The default value of the '{@link #isInForeignKey() <em>In Foreign Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -200,7 +135,6 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @ordered
 	 */
 	protected static final boolean IN_FOREIGN_KEY_EDEFAULT = false;
-
 	/**
 	 * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -257,7 +191,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public String getDefaultValue() {
-		return defaultValue;
+		return (String)eVirtualGet(DatabasePackage.COLUMN__DEFAULT_VALUE, DEFAULT_VALUE_EDEFAULT);
 	}
 
 	/**
@@ -266,10 +200,10 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public void setDefaultValue(String newDefaultValue) {
-		String oldDefaultValue = defaultValue;
-		defaultValue = newDefaultValue;
+		String defaultValue = newDefaultValue;
+		Object oldDefaultValue = eVirtualSet(DatabasePackage.COLUMN__DEFAULT_VALUE, defaultValue);
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__DEFAULT_VALUE, oldDefaultValue, defaultValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__DEFAULT_VALUE, oldDefaultValue == EVIRTUAL_NO_VALUE ? DEFAULT_VALUE_EDEFAULT : oldDefaultValue, defaultValue));
 	}
 
 	/**
@@ -295,9 +229,11 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<IndexElement> getIndexElements() {
+		EList<IndexElement> indexElements = (EList<IndexElement>)eVirtualGet(DatabasePackage.COLUMN__INDEX_ELEMENTS);
 		if (indexElements == null) {
-			indexElements = new EObjectWithInverseResolvingEList<IndexElement>(IndexElement.class, this, DatabasePackage.COLUMN__INDEX_ELEMENTS, DatabasePackage.INDEX_ELEMENT__COLUMN);
+			eVirtualSet(DatabasePackage.COLUMN__INDEX_ELEMENTS, indexElements = new EObjectWithInverseResolvingEList<IndexElement>(IndexElement.class, this, DatabasePackage.COLUMN__INDEX_ELEMENTS, DatabasePackage.INDEX_ELEMENT__COLUMN));
 		}
 		return indexElements;
 	}
@@ -308,10 +244,12 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public PrimaryKey getPrimaryKey() {
-		if (primaryKey != null && primaryKey.eIsProxy()) {
+		PrimaryKey primaryKey = (PrimaryKey)eVirtualGet(DatabasePackage.COLUMN__PRIMARY_KEY);
+		if (primaryKey != null && ((EObject)primaryKey).eIsProxy()) {
 			InternalEObject oldPrimaryKey = (InternalEObject)primaryKey;
 			primaryKey = (PrimaryKey)eResolveProxy(oldPrimaryKey);
 			if (primaryKey != oldPrimaryKey) {
+				eVirtualSet(DatabasePackage.COLUMN__PRIMARY_KEY, primaryKey);
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabasePackage.COLUMN__PRIMARY_KEY, oldPrimaryKey, primaryKey));
 			}
@@ -325,7 +263,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public PrimaryKey basicGetPrimaryKey() {
-		return primaryKey;
+		return (PrimaryKey)eVirtualGet(DatabasePackage.COLUMN__PRIMARY_KEY);
 	}
 
 	/**
@@ -334,10 +272,9 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public NotificationChain basicSetPrimaryKey(PrimaryKey newPrimaryKey, NotificationChain msgs) {
-		PrimaryKey oldPrimaryKey = primaryKey;
-		primaryKey = newPrimaryKey;
+		Object oldPrimaryKey = eVirtualSet(DatabasePackage.COLUMN__PRIMARY_KEY, newPrimaryKey);
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__PRIMARY_KEY, oldPrimaryKey, newPrimaryKey);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__PRIMARY_KEY, oldPrimaryKey == EVIRTUAL_NO_VALUE ? null : oldPrimaryKey, newPrimaryKey);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -349,6 +286,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public void setPrimaryKey(PrimaryKey newPrimaryKey) {
+		PrimaryKey primaryKey = (PrimaryKey)eVirtualGet(DatabasePackage.COLUMN__PRIMARY_KEY);
 		if (newPrimaryKey != primaryKey) {
 			NotificationChain msgs = null;
 			if (primaryKey != null)
@@ -385,9 +323,11 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<ForeignKeyElement> getForeignKeyElements() {
+		EList<ForeignKeyElement> foreignKeyElements = (EList<ForeignKeyElement>)eVirtualGet(DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS);
 		if (foreignKeyElements == null) {
-			foreignKeyElements = new EObjectWithInverseResolvingEList<ForeignKeyElement>(ForeignKeyElement.class, this, DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS, DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN);
+			eVirtualSet(DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS, foreignKeyElements = new EObjectWithInverseResolvingEList<ForeignKeyElement>(ForeignKeyElement.class, this, DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS, DatabasePackage.FOREIGN_KEY_ELEMENT__FK_COLUMN));
 		}
 		return foreignKeyElements;
 	}
@@ -398,7 +338,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public Type getType() {
-		return type;
+		return (Type)eVirtualGet(DatabasePackage.COLUMN__TYPE);
 	}
 
 	/**
@@ -407,10 +347,9 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public NotificationChain basicSetType(Type newType, NotificationChain msgs) {
-		Type oldType = type;
-		type = newType;
+		Object oldType = eVirtualSet(DatabasePackage.COLUMN__TYPE, newType);
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__TYPE, oldType, newType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__TYPE, oldType == EVIRTUAL_NO_VALUE ? null : oldType, newType);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -422,6 +361,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public void setType(Type newType) {
+		Type type = (Type)eVirtualGet(DatabasePackage.COLUMN__TYPE);
 		if (newType != type) {
 			NotificationChain msgs = null;
 			if (type != null)
@@ -441,10 +381,12 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public Sequence getSequence() {
-		if (sequence != null && sequence.eIsProxy()) {
+		Sequence sequence = (Sequence)eVirtualGet(DatabasePackage.COLUMN__SEQUENCE);
+		if (sequence != null && ((EObject)sequence).eIsProxy()) {
 			InternalEObject oldSequence = (InternalEObject)sequence;
 			sequence = (Sequence)eResolveProxy(oldSequence);
 			if (sequence != oldSequence) {
+				eVirtualSet(DatabasePackage.COLUMN__SEQUENCE, sequence);
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabasePackage.COLUMN__SEQUENCE, oldSequence, sequence));
 			}
@@ -458,7 +400,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public Sequence basicGetSequence() {
-		return sequence;
+		return (Sequence)eVirtualGet(DatabasePackage.COLUMN__SEQUENCE);
 	}
 
 	/**
@@ -467,10 +409,10 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * @generated
 	 */
 	public void setSequence(Sequence newSequence) {
-		Sequence oldSequence = sequence;
-		sequence = newSequence;
+		Sequence sequence = newSequence;
+		Object oldSequence = eVirtualSet(DatabasePackage.COLUMN__SEQUENCE, sequence);
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__SEQUENCE, oldSequence, sequence));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.COLUMN__SEQUENCE, oldSequence == EVIRTUAL_NO_VALUE ? null : oldSequence, sequence));
 	}
 
 	/**
@@ -500,7 +442,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 */
 	public void setOwner(AbstractTable newOwner) {
 		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.COLUMN__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, newOwner))
+			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -667,6 +609,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIndexElements()).basicAdd(otherEnd, msgs);
 			case DatabasePackage.COLUMN__PRIMARY_KEY:
+				PrimaryKey primaryKey = (PrimaryKey)eVirtualGet(DatabasePackage.COLUMN__PRIMARY_KEY);
 				if (primaryKey != null)
 					msgs = ((InternalEObject)primaryKey).eInverseRemove(this, DatabasePackage.PRIMARY_KEY__COLUMNS, PrimaryKey.class, msgs);
 				return basicSetPrimaryKey((PrimaryKey)otherEnd, msgs);
@@ -844,27 +787,31 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.COLUMN__NULLABLE:
 				return nullable != NULLABLE_EDEFAULT;
 			case DatabasePackage.COLUMN__DEFAULT_VALUE:
+				String defaultValue = (String)eVirtualGet(DatabasePackage.COLUMN__DEFAULT_VALUE, DEFAULT_VALUE_EDEFAULT);
 				return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
 			case DatabasePackage.COLUMN__INDEXES:
 				return !getIndexes().isEmpty();
 			case DatabasePackage.COLUMN__INDEX_ELEMENTS:
+				EList<IndexElement> indexElements = (EList<IndexElement>)eVirtualGet(DatabasePackage.COLUMN__INDEX_ELEMENTS);
 				return indexElements != null && !indexElements.isEmpty();
 			case DatabasePackage.COLUMN__PRIMARY_KEY:
-				return primaryKey != null;
+				return eVirtualGet(DatabasePackage.COLUMN__PRIMARY_KEY) != null;
 			case DatabasePackage.COLUMN__FOREIGN_KEYS:
 				return !getForeignKeys().isEmpty();
 			case DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS:
+				EList<ForeignKeyElement> foreignKeyElements = (EList<ForeignKeyElement>)eVirtualGet(DatabasePackage.COLUMN__FOREIGN_KEY_ELEMENTS);
 				return foreignKeyElements != null && !foreignKeyElements.isEmpty();
 			case DatabasePackage.COLUMN__TYPE:
-				return type != null;
+				return eVirtualGet(DatabasePackage.COLUMN__TYPE) != null;
 			case DatabasePackage.COLUMN__SEQUENCE:
-				return sequence != null;
+				return eVirtualGet(DatabasePackage.COLUMN__SEQUENCE) != null;
 			case DatabasePackage.COLUMN__OWNER:
 				return getOwner() != null;
 			case DatabasePackage.COLUMN__AUTOINCREMENT:
@@ -892,7 +839,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 		result.append(" (nullable: ");
 		result.append(nullable);
 		result.append(", defaultValue: ");
-		result.append(defaultValue);
+		result.append(eVirtualGet(DatabasePackage.COLUMN__DEFAULT_VALUE, DEFAULT_VALUE_EDEFAULT));
 		result.append(", autoincrement: ");
 		result.append(autoincrement);
 		result.append(')');
