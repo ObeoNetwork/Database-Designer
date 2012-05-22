@@ -8,7 +8,7 @@
 	
   <groupId>org.obeonetwork.dsl.database</groupId>
   <artifactId>database-parent</artifactId>
-  <version>0.8.0-SNAPSHOT</version>    
+  <version>1.0.0-SNAPSHOT</version>    
   <packaging>pom</packaging>
   
   <name>Database-Synchronizer Parent</name>
@@ -30,10 +30,8 @@
   <properties>
      <tycho-version>0.12.0</tycho-version>
     <platform-version-name>indigo</platform-version-name>
-    <od-site>http://www.obeo.fr/download/release/designer/5.0.6/update/3.6</od-site>
-    <od-ext-site>http://marketplace.obeonetwork.com/updates/od5/</od-ext-site>
+    <od-site>http://update.obeo.fr/release/designer/release-6.0.1/indigo/update/repository</od-site>
     <eclipse-site>http://download.eclipse.org/releases/${platform-version-name}</eclipse-site>
-    <eef-site>http://mirror.update.eclipse.obeo.fr/interim-eef-1.1/</eef-site>
   </properties>
   
   <modules>
@@ -59,16 +57,6 @@
 	    <id>obeodesigner</id>
 	    <layout>p2</layout>
 	    <url>${od-site}</url>
-    </repository>
-    <repository>
-	    <id>obeodesignerextension</id>
-	    <layout>p2</layout>
-	    <url>${od-ext-site}</url>
-    </repository>
-    <repository>
-	    <id>eef</id>
-	    <layout>p2</layout>
-	    <url>${eef-site}</url> 
     </repository>
   </repositories>
   
