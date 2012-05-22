@@ -12,7 +12,7 @@ Contributors:
 <feature
       id="org.obeonetwork.dsl.database.feature"
       label="Database Designer (based on Obeo Designer)"
-      version="0.8.0.qualifier"
+      version="1.0.0.qualifier"
       provider-name="Obeo">
 
    <description url="http://marketplace.obeonetwork.com/database">
