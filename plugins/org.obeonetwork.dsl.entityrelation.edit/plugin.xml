@@ -105,43 +105,43 @@
       <propertySections
             contributorId="fr.obeo.dsl.viewpoint.diagram">
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.LogicalModelPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.entityrelation.section.LogicalModel"
                filter="org.obeonetwork.dsl.entityrelation.filters.LogicalModelTabPropertiesEditionSection"
                tab="LogicalModel">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.EntityPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.entityrelation.section.Entity"
                filter="org.obeonetwork.dsl.entityrelation.filters.EntityTabPropertiesEditionSection"
                tab="Entity">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.IdentifiersPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.entityrelation.section.Entity"
                filter="org.obeonetwork.dsl.entityrelation.filters.EntityTabPropertiesEditionSection"
                tab="Identifiers">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.RelationPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.entityrelation.section.Relation"
                filter="org.obeonetwork.dsl.entityrelation.filters.RelationTabPropertiesEditionSection"
                tab="Relation">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.RelationElementPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.entityrelation.section.RelationElement"
                filter="org.obeonetwork.dsl.entityrelation.filters.RelationElementTabPropertiesEditionSection"
                tab="Relation Element">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.AttributePropertiesEditionPartForm"
                id="org.obeonetwork.dsl.entityrelation.section.Attribute"
                filter="org.obeonetwork.dsl.entityrelation.filters.AttributeTabPropertiesEditionSection"
                tab="Attribute">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.entityrelation.parts.forms.IdentifierPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.entityrelation.section.Identifier"
                filter="org.obeonetwork.dsl.entityrelation.filters.IdentifierTabPropertiesEditionSection"
                tab="Identifier">

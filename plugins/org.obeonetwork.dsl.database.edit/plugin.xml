@@ -151,97 +151,97 @@
       <propertySections
             contributorId="fr.obeo.dsl.viewpoint.diagram">
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.DataBasePropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.DataBase"
                filter="org.obeonetwork.dsl.database.filters.DataBaseTabPropertiesEditionSection"
                tab="DataBase">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.ColumnPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.Column"
                filter="org.obeonetwork.dsl.database.filters.ColumnTabPropertiesEditionSection"
                tab="Column">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.IndexPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.Index"
                filter="org.obeonetwork.dsl.database.filters.IndexTabPropertiesEditionSection"
                tab="Index">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.ViewPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.View"
                filter="org.obeonetwork.dsl.database.filters.ViewTabPropertiesEditionSection"
                tab="View">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.TablePropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.Table"
                filter="org.obeonetwork.dsl.database.filters.TableTabPropertiesEditionSection"
                tab="Table">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.PrimaryKeyPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.Table.PrimaryKey"
                filter="org.obeonetwork.dsl.database.filters.PrimaryKeyForTableTabPropertiesEditionSection"
                tab="Primary Key">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.ForeignKeysPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.Table.ForeignKeys"
                filter="org.obeonetwork.dsl.database.filters.TableTabPropertiesEditionSection"
                tab="Foreign Keys">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.ConstraintsPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.Table.Constraints"
                filter="org.obeonetwork.dsl.database.filters.TableTabPropertiesEditionSection"
                tab="Constraints">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.TablePropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.Table.Indexes"
                filter="org.obeonetwork.dsl.database.filters.TableTabPropertiesEditionSection"
                tab="Indexes">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.PrimaryKeyPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.PrimaryKey"
                filter="org.obeonetwork.dsl.database.filters.PrimaryKeyTabPropertiesEditionSection"
                tab="Primary Key">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.ForeignKeyPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.ForeignKey"
                filter="org.obeonetwork.dsl.database.filters.ForeignKeyTabPropertiesEditionSection"
                tab="Foreign Key">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.ForeignKeyElementPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.ForeignKeyElement"
                filter="org.obeonetwork.dsl.database.filters.ForeignKeyElementTabPropertiesEditionSection"
                tab="Foreign Key Element">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.IndexElementPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.IndexElement"
                filter="org.obeonetwork.dsl.database.filters.IndexElementTabPropertiesEditionSection"
                tab="Index Element">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.ConstraintPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.Constraint"
                filter="org.obeonetwork.dsl.database.filters.ConstraintTabPropertiesEditionSection"
                tab="Constraint">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.SchemaPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.Schema"
                filter="org.obeonetwork.dsl.database.filters.SchemaTabPropertiesEditionSection"
                tab="Schema">
          </propertySection>
          <propertySection
-               class="org.eclipse.emf.eef.runtime.ui.properties.sections.PropertiesEditionSection"
+               class="org.obeonetwork.dsl.database.parts.forms.SequencePropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.Sequence"
                filter="org.obeonetwork.dsl.database.filters.SequenceTabPropertiesEditionSection"
                tab="Sequence">
