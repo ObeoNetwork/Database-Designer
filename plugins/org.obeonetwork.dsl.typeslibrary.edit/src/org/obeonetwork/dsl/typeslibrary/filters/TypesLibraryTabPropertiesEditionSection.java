@@ -1,16 +1,15 @@
 package org.obeonetwork.dsl.typeslibrary.filters;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
+import org.eclipse.jface.viewers.IFilter;
 import org.obeonetwork.dsl.typeslibrary.TypesLibrary;
 
-public class TypesLibraryTabPropertiesEditionSection extends AbstractTypeslibraryPropertiesEditionSection {
+public class TypesLibraryTabPropertiesEditionSection implements IFilter {
 
-	@Override
+	 
 	public boolean select(Object toTest) {
-		EObject eObj = resolveSemanticObject(toTest);
-		if (eObj != null && eObj instanceof TypesLibrary) {
-			return getProvider(eObj) != null;
-		}
-		return false;
+		EObject eObj = EEFUtils.resolveSemanticObject(toTest);
+		return (eObj != null && eObj instanceof TypesLibrary);
 	}
 }

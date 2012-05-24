@@ -1,17 +1,16 @@
 package org.obeonetwork.dsl.entityrelation.filters;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
+import org.eclipse.jface.viewers.IFilter;
 import org.obeonetwork.dsl.entityrelation.Entity;
 
 
-public class EntityTabPropertiesEditionSection extends AbstractEntityRelationPropertiesEditionSection {
+public class EntityTabPropertiesEditionSection implements IFilter {
 
-	@Override
+	 
 	public boolean select(Object toTest) {
-		EObject eObj = resolveSemanticObject(toTest);
-		if (eObj != null && eObj instanceof Entity) {
-			return getProvider(eObj) != null;
-		}
-		return false;
+		EObject eObj = EEFUtils.resolveSemanticObject(toTest);
+		return (eObj != null && eObj instanceof Entity);
 	}
 }

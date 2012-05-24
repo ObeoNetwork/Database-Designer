@@ -1,16 +1,15 @@
 package org.obeonetwork.dsl.typeslibrary.filters;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
+import org.eclipse.jface.viewers.IFilter;
 import org.obeonetwork.dsl.typeslibrary.ComplexNamedType;
 
-public class ComplexNamedTypeTabPropertiesEditionSection extends AbstractTypeslibraryPropertiesEditionSection {
+public class ComplexNamedTypeTabPropertiesEditionSection implements IFilter {
 
-	@Override
+	 
 	public boolean select(Object toTest) {
-		EObject eObj = resolveSemanticObject(toTest);
-		if (eObj != null && eObj instanceof ComplexNamedType) {
-			return getProvider(eObj) != null;
-		}
-		return false;
+		EObject eObj = EEFUtils.resolveSemanticObject(toTest);
+		return (eObj != null && eObj instanceof ComplexNamedType);
 	}
 }

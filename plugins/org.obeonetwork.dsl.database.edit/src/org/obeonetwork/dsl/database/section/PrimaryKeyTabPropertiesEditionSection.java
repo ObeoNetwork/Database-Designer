@@ -5,7 +5,7 @@ import org.obeonetwork.dsl.database.Table;
 
 public class PrimaryKeyTabPropertiesEditionSection extends AbstractDatabasePropertiesEditionSection {
 
-	@Override
+	 
 	public boolean select(Object toTest) {
 		EObject eObj = resolveSemanticObject(toTest);
 		if (eObj != null && eObj instanceof Table) {

@@ -1,16 +1,15 @@
 package org.obeonetwork.dsl.database.filters;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
+import org.eclipse.jface.viewers.IFilter;
 import org.obeonetwork.dsl.database.Index;
 
-public class IndexTabPropertiesEditionSection extends AbstractDatabasePropertiesEditionSection {
+public class IndexTabPropertiesEditionSection implements IFilter {
 
-	@Override
+	
 	public boolean select(Object toTest) {
-		EObject eObj = resolveSemanticObject(toTest);
-		if (eObj != null && eObj instanceof Index) {
-			return getProvider(eObj) != null;
-		}
-		return false;
+		EObject eObj = EEFUtils.resolveSemanticObject(toTest);
+		return (eObj != null && eObj instanceof Index);
 	}
 }

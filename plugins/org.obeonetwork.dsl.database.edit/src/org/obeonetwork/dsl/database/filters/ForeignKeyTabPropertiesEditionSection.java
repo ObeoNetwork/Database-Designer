@@ -1,16 +1,15 @@
 package org.obeonetwork.dsl.database.filters;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.eef.runtime.impl.utils.EEFUtils;
+import org.eclipse.jface.viewers.IFilter;
 import org.obeonetwork.dsl.database.ForeignKey;
 
-public class ForeignKeyTabPropertiesEditionSection extends AbstractDatabasePropertiesEditionSection {
+public class ForeignKeyTabPropertiesEditionSection implements IFilter {
 
-	@Override
+	
 	public boolean select(Object toTest) {
-		EObject eObj = resolveSemanticObject(toTest);
-		if (eObj != null && eObj instanceof ForeignKey) {
-			return getProvider(eObj) != null;
-		}
-		return false;
+		EObject eObj = EEFUtils.resolveSemanticObject(toTest);
+		return (eObj != null && eObj instanceof ForeignKey);
 	}
 }
