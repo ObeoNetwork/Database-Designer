@@ -52,16 +52,6 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 */
 	protected static final boolean ASC_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isAsc() <em>Asc</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAsc()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean asc = ASC_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -86,17 +76,7 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * @generated
 	 */
 	public Column getColumn() {
-		Column column = (Column)eVirtualGet(DatabasePackage.INDEX_ELEMENT__COLUMN);
-		if (column != null && ((EObject)column).eIsProxy()) {
-			InternalEObject oldColumn = (InternalEObject)column;
-			column = (Column)eResolveProxy(oldColumn);
-			if (column != oldColumn) {
-				eVirtualSet(DatabasePackage.INDEX_ELEMENT__COLUMN, column);
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabasePackage.INDEX_ELEMENT__COLUMN, oldColumn, column));
-			}
-		}
-		return column;
+		return (Column)eDynamicGet(DatabasePackage.INDEX_ELEMENT__COLUMN, DatabasePackage.Literals.INDEX_ELEMENT__COLUMN, true, true);
 	}
 
 	/**
@@ -105,7 +85,7 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * @generated
 	 */
 	public Column basicGetColumn() {
-		return (Column)eVirtualGet(DatabasePackage.INDEX_ELEMENT__COLUMN);
+		return (Column)eDynamicGet(DatabasePackage.INDEX_ELEMENT__COLUMN, DatabasePackage.Literals.INDEX_ELEMENT__COLUMN, false, true);
 	}
 
 	/**
@@ -114,11 +94,7 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * @generated
 	 */
 	public NotificationChain basicSetColumn(Column newColumn, NotificationChain msgs) {
-		Object oldColumn = eVirtualSet(DatabasePackage.INDEX_ELEMENT__COLUMN, newColumn);
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX_ELEMENT__COLUMN, oldColumn == EVIRTUAL_NO_VALUE ? null : oldColumn, newColumn);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		msgs = eDynamicInverseAdd((InternalEObject)newColumn, DatabasePackage.INDEX_ELEMENT__COLUMN, msgs);
 		return msgs;
 	}
 
@@ -128,18 +104,7 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * @generated
 	 */
 	public void setColumn(Column newColumn) {
-		Column column = (Column)eVirtualGet(DatabasePackage.INDEX_ELEMENT__COLUMN);
-		if (newColumn != column) {
-			NotificationChain msgs = null;
-			if (column != null)
-				msgs = ((InternalEObject)column).eInverseRemove(this, DatabasePackage.COLUMN__INDEX_ELEMENTS, Column.class, msgs);
-			if (newColumn != null)
-				msgs = ((InternalEObject)newColumn).eInverseAdd(this, DatabasePackage.COLUMN__INDEX_ELEMENTS, Column.class, msgs);
-			msgs = basicSetColumn(newColumn, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX_ELEMENT__COLUMN, newColumn, newColumn));
+		eDynamicSet(DatabasePackage.INDEX_ELEMENT__COLUMN, DatabasePackage.Literals.INDEX_ELEMENT__COLUMN, newColumn);
 	}
 
 	/**
@@ -148,7 +113,7 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * @generated
 	 */
 	public boolean isAsc() {
-		return asc;
+		return (Boolean)eDynamicGet(DatabasePackage.INDEX_ELEMENT__ASC, DatabasePackage.Literals.INDEX_ELEMENT__ASC, true, true);
 	}
 
 	/**
@@ -157,10 +122,7 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	 * @generated
 	 */
 	public void setAsc(boolean newAsc) {
-		boolean oldAsc = asc;
-		asc = newAsc;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX_ELEMENT__ASC, oldAsc, asc));
+		eDynamicSet(DatabasePackage.INDEX_ELEMENT__ASC, DatabasePackage.Literals.INDEX_ELEMENT__ASC, newAsc);
 	}
 
 	/**
@@ -172,7 +134,7 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabasePackage.INDEX_ELEMENT__COLUMN:
-				Column column = (Column)eVirtualGet(DatabasePackage.INDEX_ELEMENT__COLUMN);
+				Column column = basicGetColumn();
 				if (column != null)
 					msgs = ((InternalEObject)column).eInverseRemove(this, DatabasePackage.COLUMN__INDEX_ELEMENTS, Column.class, msgs);
 				return basicSetColumn((Column)otherEnd, msgs);
@@ -256,27 +218,11 @@ public class IndexElementImpl extends DatabaseElementImpl implements IndexElemen
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.INDEX_ELEMENT__COLUMN:
-				return eVirtualGet(DatabasePackage.INDEX_ELEMENT__COLUMN) != null;
+				return basicGetColumn() != null;
 			case DatabasePackage.INDEX_ELEMENT__ASC:
-				return asc != ASC_EDEFAULT;
+				return isAsc() != ASC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (asc: ");
-		result.append(asc);
-		result.append(')');
-		return result.toString();
 	}
 
 } //IndexElementImpl

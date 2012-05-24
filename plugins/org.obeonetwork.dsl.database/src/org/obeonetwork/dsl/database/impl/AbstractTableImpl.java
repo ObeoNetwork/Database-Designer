@@ -75,11 +75,7 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Column> getColumns() {
-		EList<Column> columns = (EList<Column>)eVirtualGet(DatabasePackage.ABSTRACT_TABLE__COLUMNS);
-		if (columns == null) {
-			eVirtualSet(DatabasePackage.ABSTRACT_TABLE__COLUMNS, columns = new EObjectContainmentWithInverseEList<Column>(Column.class, this, DatabasePackage.ABSTRACT_TABLE__COLUMNS, DatabasePackage.COLUMN__OWNER));
-		}
-		return columns;
+		return (EList<Column>)eDynamicGet(DatabasePackage.ABSTRACT_TABLE__COLUMNS, DatabasePackage.Literals.ABSTRACT_TABLE__COLUMNS, true, true);
 	}
 
 	/**
@@ -88,8 +84,7 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	 * @generated
 	 */
 	public TableContainer getOwner() {
-		if (eContainerFeatureID() != DatabasePackage.ABSTRACT_TABLE__OWNER) return null;
-		return (TableContainer)eContainer();
+		return (TableContainer)eDynamicGet(DatabasePackage.ABSTRACT_TABLE__OWNER, DatabasePackage.Literals.ABSTRACT_TABLE__OWNER, true, true);
 	}
 
 	/**
@@ -108,19 +103,7 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	 * @generated
 	 */
 	public void setOwner(TableContainer newOwner) {
-		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.ABSTRACT_TABLE__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DatabasePackage.TABLE_CONTAINER__TABLES, TableContainer.class, msgs);
-			msgs = basicSetOwner(newOwner, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.ABSTRACT_TABLE__OWNER, newOwner, newOwner));
+		eDynamicSet(DatabasePackage.ABSTRACT_TABLE__OWNER, DatabasePackage.Literals.ABSTRACT_TABLE__OWNER, newOwner);
 	}
 
 	/**
@@ -236,8 +219,7 @@ public abstract class AbstractTableImpl extends NamedElementImpl implements Abst
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.ABSTRACT_TABLE__COLUMNS:
-				EList<Column> columns = (EList<Column>)eVirtualGet(DatabasePackage.ABSTRACT_TABLE__COLUMNS);
-				return columns != null && !columns.isEmpty();
+				return !getColumns().isEmpty();
 			case DatabasePackage.ABSTRACT_TABLE__OWNER:
 				return getOwner() != null;
 		}

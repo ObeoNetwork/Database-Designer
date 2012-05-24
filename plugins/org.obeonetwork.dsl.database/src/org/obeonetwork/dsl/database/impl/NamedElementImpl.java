@@ -91,7 +91,7 @@ public abstract class NamedElementImpl extends DatabaseElementImpl implements Na
 	 * @generated
 	 */
 	public String getName() {
-		return (String)eVirtualGet(DatabasePackage.NAMED_ELEMENT__NAME, NAME_EDEFAULT);
+		return (String)eDynamicGet(DatabasePackage.NAMED_ELEMENT__NAME, DatabasePackage.Literals.NAMED_ELEMENT__NAME, true, true);
 	}
 
 	/**
@@ -100,10 +100,7 @@ public abstract class NamedElementImpl extends DatabaseElementImpl implements Na
 	 * @generated
 	 */
 	public void setName(String newName) {
-		String name = newName;
-		Object oldName = eVirtualSet(DatabasePackage.NAMED_ELEMENT__NAME, name);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.NAMED_ELEMENT__NAME, oldName == EVIRTUAL_NO_VALUE ? NAME_EDEFAULT : oldName, name));
+		eDynamicSet(DatabasePackage.NAMED_ELEMENT__NAME, DatabasePackage.Literals.NAMED_ELEMENT__NAME, newName);
 	}
 
 	/**
@@ -159,26 +156,9 @@ public abstract class NamedElementImpl extends DatabaseElementImpl implements Na
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.NAMED_ELEMENT__NAME:
-				String name = (String)eVirtualGet(DatabasePackage.NAMED_ELEMENT__NAME, NAME_EDEFAULT);
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(eVirtualGet(DatabasePackage.NAMED_ELEMENT__NAME, NAME_EDEFAULT));
-		result.append(')');
-		return result.toString();
 	}
 
 } //NamedElementImpl

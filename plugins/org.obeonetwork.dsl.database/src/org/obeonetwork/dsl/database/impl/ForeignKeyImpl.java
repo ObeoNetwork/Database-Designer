@@ -78,11 +78,7 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ForeignKeyElement> getElements() {
-		EList<ForeignKeyElement> elements = (EList<ForeignKeyElement>)eVirtualGet(DatabasePackage.FOREIGN_KEY__ELEMENTS);
-		if (elements == null) {
-			eVirtualSet(DatabasePackage.FOREIGN_KEY__ELEMENTS, elements = new EObjectContainmentEList<ForeignKeyElement>(ForeignKeyElement.class, this, DatabasePackage.FOREIGN_KEY__ELEMENTS));
-		}
-		return elements;
+		return (EList<ForeignKeyElement>)eDynamicGet(DatabasePackage.FOREIGN_KEY__ELEMENTS, DatabasePackage.Literals.FOREIGN_KEY__ELEMENTS, true, true);
 	}
 
 	/**
@@ -91,8 +87,7 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * @generated
 	 */
 	public Table getOwner() {
-		if (eContainerFeatureID() != DatabasePackage.FOREIGN_KEY__OWNER) return null;
-		return (Table)eContainer();
+		return (Table)eDynamicGet(DatabasePackage.FOREIGN_KEY__OWNER, DatabasePackage.Literals.FOREIGN_KEY__OWNER, true, true);
 	}
 
 	/**
@@ -111,19 +106,7 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * @generated
 	 */
 	public void setOwner(Table newOwner) {
-		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.FOREIGN_KEY__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DatabasePackage.TABLE__FOREIGN_KEYS, Table.class, msgs);
-			msgs = basicSetOwner(newOwner, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY__OWNER, newOwner, newOwner));
+		eDynamicSet(DatabasePackage.FOREIGN_KEY__OWNER, DatabasePackage.Literals.FOREIGN_KEY__OWNER, newOwner);
 	}
 
 	/**
@@ -132,17 +115,7 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * @generated
 	 */
 	public Table getTarget() {
-		Table target = (Table)eVirtualGet(DatabasePackage.FOREIGN_KEY__TARGET);
-		if (target != null && ((EObject)target).eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (Table)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				eVirtualSet(DatabasePackage.FOREIGN_KEY__TARGET, target);
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabasePackage.FOREIGN_KEY__TARGET, oldTarget, target));
-			}
-		}
-		return target;
+		return (Table)eDynamicGet(DatabasePackage.FOREIGN_KEY__TARGET, DatabasePackage.Literals.FOREIGN_KEY__TARGET, true, true);
 	}
 
 	/**
@@ -151,7 +124,7 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * @generated
 	 */
 	public Table basicGetTarget() {
-		return (Table)eVirtualGet(DatabasePackage.FOREIGN_KEY__TARGET);
+		return (Table)eDynamicGet(DatabasePackage.FOREIGN_KEY__TARGET, DatabasePackage.Literals.FOREIGN_KEY__TARGET, false, true);
 	}
 
 	/**
@@ -160,10 +133,7 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 * @generated
 	 */
 	public void setTarget(Table newTarget) {
-		Table target = newTarget;
-		Object oldTarget = eVirtualSet(DatabasePackage.FOREIGN_KEY__TARGET, target);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.FOREIGN_KEY__TARGET, oldTarget == EVIRTUAL_NO_VALUE ? null : oldTarget, target));
+		eDynamicSet(DatabasePackage.FOREIGN_KEY__TARGET, DatabasePackage.Literals.FOREIGN_KEY__TARGET, newTarget);
 	}
 
 	/**
@@ -303,12 +273,11 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.FOREIGN_KEY__ELEMENTS:
-				EList<ForeignKeyElement> elements = (EList<ForeignKeyElement>)eVirtualGet(DatabasePackage.FOREIGN_KEY__ELEMENTS);
-				return elements != null && !elements.isEmpty();
+				return !getElements().isEmpty();
 			case DatabasePackage.FOREIGN_KEY__OWNER:
 				return getOwner() != null;
 			case DatabasePackage.FOREIGN_KEY__TARGET:
-				return eVirtualGet(DatabasePackage.FOREIGN_KEY__TARGET) != null;
+				return basicGetTarget() != null;
 		}
 		return super.eIsSet(featureID);
 	}

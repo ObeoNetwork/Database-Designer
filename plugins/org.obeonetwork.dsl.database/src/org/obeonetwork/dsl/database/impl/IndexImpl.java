@@ -72,15 +72,6 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 */
 	protected static final boolean UNIQUE_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isUnique() <em>Unique</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isUnique()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean unique = UNIQUE_EDEFAULT;
-	/**
 	 * The default value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -89,15 +80,6 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 * @ordered
 	 */
 	protected static final int CARDINALITY_EDEFAULT = 0;
-	/**
-	 * The cached value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCardinality()
-	 * @generated
-	 * @ordered
-	 */
-	protected int cardinality = CARDINALITY_EDEFAULT;
 	/**
 	 * The default value of the '{@link #getIndexType() <em>Index Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -133,7 +115,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 * @generated
 	 */
 	public String getQualifier() {
-		return (String)eVirtualGet(DatabasePackage.INDEX__QUALIFIER, QUALIFIER_EDEFAULT);
+		return (String)eDynamicGet(DatabasePackage.INDEX__QUALIFIER, DatabasePackage.Literals.INDEX__QUALIFIER, true, true);
 	}
 
 	/**
@@ -142,10 +124,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 * @generated
 	 */
 	public void setQualifier(String newQualifier) {
-		String qualifier = newQualifier;
-		Object oldQualifier = eVirtualSet(DatabasePackage.INDEX__QUALIFIER, qualifier);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX__QUALIFIER, oldQualifier == EVIRTUAL_NO_VALUE ? QUALIFIER_EDEFAULT : oldQualifier, qualifier));
+		eDynamicSet(DatabasePackage.INDEX__QUALIFIER, DatabasePackage.Literals.INDEX__QUALIFIER, newQualifier);
 	}
 
 	/**
@@ -155,11 +134,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IndexElement> getElements() {
-		EList<IndexElement> elements = (EList<IndexElement>)eVirtualGet(DatabasePackage.INDEX__ELEMENTS);
-		if (elements == null) {
-			eVirtualSet(DatabasePackage.INDEX__ELEMENTS, elements = new EObjectContainmentEList<IndexElement>(IndexElement.class, this, DatabasePackage.INDEX__ELEMENTS));
-		}
-		return elements;
+		return (EList<IndexElement>)eDynamicGet(DatabasePackage.INDEX__ELEMENTS, DatabasePackage.Literals.INDEX__ELEMENTS, true, true);
 	}
 
 	/**
@@ -168,7 +143,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 * @generated
 	 */
 	public boolean isUnique() {
-		return unique;
+		return (Boolean)eDynamicGet(DatabasePackage.INDEX__UNIQUE, DatabasePackage.Literals.INDEX__UNIQUE, true, true);
 	}
 
 	/**
@@ -177,10 +152,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 * @generated
 	 */
 	public void setUnique(boolean newUnique) {
-		boolean oldUnique = unique;
-		unique = newUnique;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX__UNIQUE, oldUnique, unique));
+		eDynamicSet(DatabasePackage.INDEX__UNIQUE, DatabasePackage.Literals.INDEX__UNIQUE, newUnique);
 	}
 
 	/**
@@ -189,7 +161,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 * @generated
 	 */
 	public int getCardinality() {
-		return cardinality;
+		return (Integer)eDynamicGet(DatabasePackage.INDEX__CARDINALITY, DatabasePackage.Literals.INDEX__CARDINALITY, true, true);
 	}
 
 	/**
@@ -198,10 +170,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 * @generated
 	 */
 	public void setCardinality(int newCardinality) {
-		int oldCardinality = cardinality;
-		cardinality = newCardinality;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX__CARDINALITY, oldCardinality, cardinality));
+		eDynamicSet(DatabasePackage.INDEX__CARDINALITY, DatabasePackage.Literals.INDEX__CARDINALITY, newCardinality);
 	}
 
 	/**
@@ -210,7 +179,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 * @generated
 	 */
 	public String getIndexType() {
-		return (String)eVirtualGet(DatabasePackage.INDEX__INDEX_TYPE, INDEX_TYPE_EDEFAULT);
+		return (String)eDynamicGet(DatabasePackage.INDEX__INDEX_TYPE, DatabasePackage.Literals.INDEX__INDEX_TYPE, true, true);
 	}
 
 	/**
@@ -219,10 +188,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 * @generated
 	 */
 	public void setIndexType(String newIndexType) {
-		String indexType = newIndexType;
-		Object oldIndexType = eVirtualSet(DatabasePackage.INDEX__INDEX_TYPE, indexType);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX__INDEX_TYPE, oldIndexType == EVIRTUAL_NO_VALUE ? INDEX_TYPE_EDEFAULT : oldIndexType, indexType));
+		eDynamicSet(DatabasePackage.INDEX__INDEX_TYPE, DatabasePackage.Literals.INDEX__INDEX_TYPE, newIndexType);
 	}
 
 	/**
@@ -231,8 +197,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 * @generated
 	 */
 	public Table getOwner() {
-		if (eContainerFeatureID() != DatabasePackage.INDEX__OWNER) return null;
-		return (Table)eContainer();
+		return (Table)eDynamicGet(DatabasePackage.INDEX__OWNER, DatabasePackage.Literals.INDEX__OWNER, true, true);
 	}
 
 	/**
@@ -251,19 +216,7 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	 * @generated
 	 */
 	public void setOwner(Table newOwner) {
-		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.INDEX__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DatabasePackage.TABLE__INDEXES, Table.class, msgs);
-			msgs = basicSetOwner(newOwner, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.INDEX__OWNER, newOwner, newOwner));
+		eDynamicSet(DatabasePackage.INDEX__OWNER, DatabasePackage.Literals.INDEX__OWNER, newOwner);
 	}
 
 	/**
@@ -408,44 +361,19 @@ public class IndexImpl extends NamedElementImpl implements Index {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.INDEX__QUALIFIER:
-				String qualifier = (String)eVirtualGet(DatabasePackage.INDEX__QUALIFIER, QUALIFIER_EDEFAULT);
-				return QUALIFIER_EDEFAULT == null ? qualifier != null : !QUALIFIER_EDEFAULT.equals(qualifier);
+				return QUALIFIER_EDEFAULT == null ? getQualifier() != null : !QUALIFIER_EDEFAULT.equals(getQualifier());
 			case DatabasePackage.INDEX__ELEMENTS:
-				EList<IndexElement> elements = (EList<IndexElement>)eVirtualGet(DatabasePackage.INDEX__ELEMENTS);
-				return elements != null && !elements.isEmpty();
+				return !getElements().isEmpty();
 			case DatabasePackage.INDEX__UNIQUE:
-				return unique != UNIQUE_EDEFAULT;
+				return isUnique() != UNIQUE_EDEFAULT;
 			case DatabasePackage.INDEX__CARDINALITY:
-				return cardinality != CARDINALITY_EDEFAULT;
+				return getCardinality() != CARDINALITY_EDEFAULT;
 			case DatabasePackage.INDEX__INDEX_TYPE:
-				String indexType = (String)eVirtualGet(DatabasePackage.INDEX__INDEX_TYPE, INDEX_TYPE_EDEFAULT);
-				return INDEX_TYPE_EDEFAULT == null ? indexType != null : !INDEX_TYPE_EDEFAULT.equals(indexType);
+				return INDEX_TYPE_EDEFAULT == null ? getIndexType() != null : !INDEX_TYPE_EDEFAULT.equals(getIndexType());
 			case DatabasePackage.INDEX__OWNER:
 				return getOwner() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (qualifier: ");
-		result.append(eVirtualGet(DatabasePackage.INDEX__QUALIFIER, QUALIFIER_EDEFAULT));
-		result.append(", unique: ");
-		result.append(unique);
-		result.append(", cardinality: ");
-		result.append(cardinality);
-		result.append(", indexType: ");
-		result.append(eVirtualGet(DatabasePackage.INDEX__INDEX_TYPE, INDEX_TYPE_EDEFAULT));
-		result.append(')');
-		return result.toString();
 	}
 
 } //IndexImpl

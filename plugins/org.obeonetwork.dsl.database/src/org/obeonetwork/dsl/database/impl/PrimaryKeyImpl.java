@@ -76,11 +76,7 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Column> getColumns() {
-		EList<Column> columns = (EList<Column>)eVirtualGet(DatabasePackage.PRIMARY_KEY__COLUMNS);
-		if (columns == null) {
-			eVirtualSet(DatabasePackage.PRIMARY_KEY__COLUMNS, columns = new EObjectWithInverseResolvingEList<Column>(Column.class, this, DatabasePackage.PRIMARY_KEY__COLUMNS, DatabasePackage.COLUMN__PRIMARY_KEY));
-		}
-		return columns;
+		return (EList<Column>)eDynamicGet(DatabasePackage.PRIMARY_KEY__COLUMNS, DatabasePackage.Literals.PRIMARY_KEY__COLUMNS, true, true);
 	}
 
 	/**
@@ -89,8 +85,7 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 	 * @generated
 	 */
 	public Table getOwner() {
-		if (eContainerFeatureID() != DatabasePackage.PRIMARY_KEY__OWNER) return null;
-		return (Table)eContainer();
+		return (Table)eDynamicGet(DatabasePackage.PRIMARY_KEY__OWNER, DatabasePackage.Literals.PRIMARY_KEY__OWNER, true, true);
 	}
 
 	/**
@@ -109,19 +104,7 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 	 * @generated
 	 */
 	public void setOwner(Table newOwner) {
-		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.PRIMARY_KEY__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DatabasePackage.TABLE__PRIMARY_KEY, Table.class, msgs);
-			msgs = basicSetOwner(newOwner, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.PRIMARY_KEY__OWNER, newOwner, newOwner));
+		eDynamicSet(DatabasePackage.PRIMARY_KEY__OWNER, DatabasePackage.Literals.PRIMARY_KEY__OWNER, newOwner);
 	}
 
 	/**
@@ -237,8 +220,7 @@ public class PrimaryKeyImpl extends NamedElementImpl implements PrimaryKey {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.PRIMARY_KEY__COLUMNS:
-				EList<Column> columns = (EList<Column>)eVirtualGet(DatabasePackage.PRIMARY_KEY__COLUMNS);
-				return columns != null && !columns.isEmpty();
+				return !getColumns().isEmpty();
 			case DatabasePackage.PRIMARY_KEY__OWNER:
 				return getOwner() != null;
 		}

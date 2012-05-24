@@ -50,15 +50,6 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 */
 	protected static final int START_EDEFAULT = 0;
 	/**
-	 * The cached value of the '{@link #getStart() <em>Start</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStart()
-	 * @generated
-	 * @ordered
-	 */
-	protected int start = START_EDEFAULT;
-	/**
 	 * The default value of the '{@link #getIncrement() <em>Increment</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,15 +58,6 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @ordered
 	 */
 	protected static final int INCREMENT_EDEFAULT = 0;
-	/**
-	 * The cached value of the '{@link #getIncrement() <em>Increment</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIncrement()
-	 * @generated
-	 * @ordered
-	 */
-	protected int increment = INCREMENT_EDEFAULT;
 	/**
 	 * The default value of the '{@link #getMinValue() <em>Min Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -86,15 +68,6 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 */
 	protected static final int MIN_VALUE_EDEFAULT = 0;
 	/**
-	 * The cached value of the '{@link #getMinValue() <em>Min Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMinValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected int minValue = MIN_VALUE_EDEFAULT;
-	/**
 	 * The default value of the '{@link #getMaxValue() <em>Max Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,16 +76,6 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @ordered
 	 */
 	protected static final int MAX_VALUE_EDEFAULT = 0;
-	/**
-	 * The cached value of the '{@link #getMaxValue() <em>Max Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMaxValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected int maxValue = MAX_VALUE_EDEFAULT;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,7 +101,7 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public int getStart() {
-		return start;
+		return (Integer)eDynamicGet(DatabasePackage.SEQUENCE__START, DatabasePackage.Literals.SEQUENCE__START, true, true);
 	}
 
 	/**
@@ -147,10 +110,7 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public void setStart(int newStart) {
-		int oldStart = start;
-		start = newStart;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.SEQUENCE__START, oldStart, start));
+		eDynamicSet(DatabasePackage.SEQUENCE__START, DatabasePackage.Literals.SEQUENCE__START, newStart);
 	}
 
 	/**
@@ -159,7 +119,7 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public int getIncrement() {
-		return increment;
+		return (Integer)eDynamicGet(DatabasePackage.SEQUENCE__INCREMENT, DatabasePackage.Literals.SEQUENCE__INCREMENT, true, true);
 	}
 
 	/**
@@ -168,10 +128,7 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public void setIncrement(int newIncrement) {
-		int oldIncrement = increment;
-		increment = newIncrement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.SEQUENCE__INCREMENT, oldIncrement, increment));
+		eDynamicSet(DatabasePackage.SEQUENCE__INCREMENT, DatabasePackage.Literals.SEQUENCE__INCREMENT, newIncrement);
 	}
 
 	/**
@@ -180,7 +137,7 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public int getMinValue() {
-		return minValue;
+		return (Integer)eDynamicGet(DatabasePackage.SEQUENCE__MIN_VALUE, DatabasePackage.Literals.SEQUENCE__MIN_VALUE, true, true);
 	}
 
 	/**
@@ -189,10 +146,7 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public void setMinValue(int newMinValue) {
-		int oldMinValue = minValue;
-		minValue = newMinValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.SEQUENCE__MIN_VALUE, oldMinValue, minValue));
+		eDynamicSet(DatabasePackage.SEQUENCE__MIN_VALUE, DatabasePackage.Literals.SEQUENCE__MIN_VALUE, newMinValue);
 	}
 
 	/**
@@ -201,7 +155,7 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public int getMaxValue() {
-		return maxValue;
+		return (Integer)eDynamicGet(DatabasePackage.SEQUENCE__MAX_VALUE, DatabasePackage.Literals.SEQUENCE__MAX_VALUE, true, true);
 	}
 
 	/**
@@ -210,10 +164,7 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	 * @generated
 	 */
 	public void setMaxValue(int newMaxValue) {
-		int oldMaxValue = maxValue;
-		maxValue = newMaxValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.SEQUENCE__MAX_VALUE, oldMaxValue, maxValue));
+		eDynamicSet(DatabasePackage.SEQUENCE__MAX_VALUE, DatabasePackage.Literals.SEQUENCE__MAX_VALUE, newMaxValue);
 	}
 
 	/**
@@ -293,37 +244,15 @@ public class SequenceImpl extends NamedElementImpl implements Sequence {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.SEQUENCE__START:
-				return start != START_EDEFAULT;
+				return getStart() != START_EDEFAULT;
 			case DatabasePackage.SEQUENCE__INCREMENT:
-				return increment != INCREMENT_EDEFAULT;
+				return getIncrement() != INCREMENT_EDEFAULT;
 			case DatabasePackage.SEQUENCE__MIN_VALUE:
-				return minValue != MIN_VALUE_EDEFAULT;
+				return getMinValue() != MIN_VALUE_EDEFAULT;
 			case DatabasePackage.SEQUENCE__MAX_VALUE:
-				return maxValue != MAX_VALUE_EDEFAULT;
+				return getMaxValue() != MAX_VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (start: ");
-		result.append(start);
-		result.append(", increment: ");
-		result.append(increment);
-		result.append(", minValue: ");
-		result.append(minValue);
-		result.append(", maxValue: ");
-		result.append(maxValue);
-		result.append(')');
-		return result.toString();
 	}
 
 } //SequenceImpl

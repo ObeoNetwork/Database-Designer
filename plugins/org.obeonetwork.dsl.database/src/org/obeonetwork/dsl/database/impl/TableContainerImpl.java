@@ -72,11 +72,7 @@ public abstract class TableContainerImpl extends NamedElementImpl implements Tab
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<AbstractTable> getTables() {
-		EList<AbstractTable> tables = (EList<AbstractTable>)eVirtualGet(DatabasePackage.TABLE_CONTAINER__TABLES);
-		if (tables == null) {
-			eVirtualSet(DatabasePackage.TABLE_CONTAINER__TABLES, tables = new EObjectContainmentWithInverseEList<AbstractTable>(AbstractTable.class, this, DatabasePackage.TABLE_CONTAINER__TABLES, DatabasePackage.ABSTRACT_TABLE__OWNER));
-		}
-		return tables;
+		return (EList<AbstractTable>)eDynamicGet(DatabasePackage.TABLE_CONTAINER__TABLES, DatabasePackage.Literals.TABLE_CONTAINER__TABLES, true, true);
 	}
 
 	/**
@@ -86,11 +82,7 @@ public abstract class TableContainerImpl extends NamedElementImpl implements Tab
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Sequence> getSequences() {
-		EList<Sequence> sequences = (EList<Sequence>)eVirtualGet(DatabasePackage.TABLE_CONTAINER__SEQUENCES);
-		if (sequences == null) {
-			eVirtualSet(DatabasePackage.TABLE_CONTAINER__SEQUENCES, sequences = new EObjectContainmentEList<Sequence>(Sequence.class, this, DatabasePackage.TABLE_CONTAINER__SEQUENCES));
-		}
-		return sequences;
+		return (EList<Sequence>)eDynamicGet(DatabasePackage.TABLE_CONTAINER__SEQUENCES, DatabasePackage.Literals.TABLE_CONTAINER__SEQUENCES, true, true);
 	}
 
 	/**
@@ -189,11 +181,9 @@ public abstract class TableContainerImpl extends NamedElementImpl implements Tab
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.TABLE_CONTAINER__TABLES:
-				EList<AbstractTable> tables = (EList<AbstractTable>)eVirtualGet(DatabasePackage.TABLE_CONTAINER__TABLES);
-				return tables != null && !tables.isEmpty();
+				return !getTables().isEmpty();
 			case DatabasePackage.TABLE_CONTAINER__SEQUENCES:
-				EList<Sequence> sequences = (EList<Sequence>)eVirtualGet(DatabasePackage.TABLE_CONTAINER__SEQUENCES);
-				return sequences != null && !sequences.isEmpty();
+				return !getSequences().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

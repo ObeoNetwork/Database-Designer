@@ -78,7 +78,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	 * @generated
 	 */
 	public String getExpression() {
-		return (String)eVirtualGet(DatabasePackage.CONSTRAINT__EXPRESSION, EXPRESSION_EDEFAULT);
+		return (String)eDynamicGet(DatabasePackage.CONSTRAINT__EXPRESSION, DatabasePackage.Literals.CONSTRAINT__EXPRESSION, true, true);
 	}
 
 	/**
@@ -87,10 +87,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	 * @generated
 	 */
 	public void setExpression(String newExpression) {
-		String expression = newExpression;
-		Object oldExpression = eVirtualSet(DatabasePackage.CONSTRAINT__EXPRESSION, expression);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.CONSTRAINT__EXPRESSION, oldExpression == EVIRTUAL_NO_VALUE ? EXPRESSION_EDEFAULT : oldExpression, expression));
+		eDynamicSet(DatabasePackage.CONSTRAINT__EXPRESSION, DatabasePackage.Literals.CONSTRAINT__EXPRESSION, newExpression);
 	}
 
 	/**
@@ -99,8 +96,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	 * @generated
 	 */
 	public Table getOwner() {
-		if (eContainerFeatureID() != DatabasePackage.CONSTRAINT__OWNER) return null;
-		return (Table)eContainer();
+		return (Table)eDynamicGet(DatabasePackage.CONSTRAINT__OWNER, DatabasePackage.Literals.CONSTRAINT__OWNER, true, true);
 	}
 
 	/**
@@ -119,19 +115,7 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	 * @generated
 	 */
 	public void setOwner(Table newOwner) {
-		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DatabasePackage.CONSTRAINT__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, (EObject)newOwner))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DatabasePackage.TABLE__CONSTRAINTS, Table.class, msgs);
-			msgs = basicSetOwner(newOwner, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.CONSTRAINT__OWNER, newOwner, newOwner));
+		eDynamicSet(DatabasePackage.CONSTRAINT__OWNER, DatabasePackage.Literals.CONSTRAINT__OWNER, newOwner);
 	}
 
 	/**
@@ -239,28 +223,11 @@ public class ConstraintImpl extends NamedElementImpl implements Constraint {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.CONSTRAINT__EXPRESSION:
-				String expression = (String)eVirtualGet(DatabasePackage.CONSTRAINT__EXPRESSION, EXPRESSION_EDEFAULT);
-				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
+				return EXPRESSION_EDEFAULT == null ? getExpression() != null : !EXPRESSION_EDEFAULT.equals(getExpression());
 			case DatabasePackage.CONSTRAINT__OWNER:
 				return getOwner() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (expression: ");
-		result.append(eVirtualGet(DatabasePackage.CONSTRAINT__EXPRESSION, EXPRESSION_EDEFAULT));
-		result.append(')');
-		return result.toString();
 	}
 
 } //ConstraintImpl

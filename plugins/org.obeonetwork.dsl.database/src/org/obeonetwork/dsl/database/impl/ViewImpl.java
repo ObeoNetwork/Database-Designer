@@ -72,7 +72,7 @@ public class ViewImpl extends AbstractTableImpl implements View {
 	 * @generated
 	 */
 	public String getQuery() {
-		return (String)eVirtualGet(DatabasePackage.VIEW__QUERY, QUERY_EDEFAULT);
+		return (String)eDynamicGet(DatabasePackage.VIEW__QUERY, DatabasePackage.Literals.VIEW__QUERY, true, true);
 	}
 
 	/**
@@ -81,10 +81,7 @@ public class ViewImpl extends AbstractTableImpl implements View {
 	 * @generated
 	 */
 	public void setQuery(String newQuery) {
-		String query = newQuery;
-		Object oldQuery = eVirtualSet(DatabasePackage.VIEW__QUERY, query);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.VIEW__QUERY, oldQuery == EVIRTUAL_NO_VALUE ? QUERY_EDEFAULT : oldQuery, query));
+		eDynamicSet(DatabasePackage.VIEW__QUERY, DatabasePackage.Literals.VIEW__QUERY, newQuery);
 	}
 
 	/**
@@ -140,26 +137,9 @@ public class ViewImpl extends AbstractTableImpl implements View {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.VIEW__QUERY:
-				String query = (String)eVirtualGet(DatabasePackage.VIEW__QUERY, QUERY_EDEFAULT);
-				return QUERY_EDEFAULT == null ? query != null : !QUERY_EDEFAULT.equals(query);
+				return QUERY_EDEFAULT == null ? getQuery() != null : !QUERY_EDEFAULT.equals(getQuery());
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (query: ");
-		result.append(eVirtualGet(DatabasePackage.VIEW__QUERY, QUERY_EDEFAULT));
-		result.append(')');
-		return result.toString();
 	}
 
 } //ViewImpl

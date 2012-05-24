@@ -42,20 +42,6 @@ public abstract class DatabaseElementImpl extends CDOObjectImpl implements Datab
 	public static final String copyright = "Copyright (c) 2011 Obeo.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n    Obeo - initial API and implementation";
 
 	/**
-	 * An array of objects representing the values of non-primitive features.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Object[] eVirtualValues;
-	/**
-	 * A bit field representing the indices of non-primitive feature values.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected int eVirtualIndexBits0;
-	/**
 	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,6 +82,16 @@ public abstract class DatabaseElementImpl extends CDOObjectImpl implements Datab
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getID() {
@@ -122,7 +118,7 @@ public abstract class DatabaseElementImpl extends CDOObjectImpl implements Datab
 	 * @generated
 	 */
 	public String getComments() {
-		return (String)eVirtualGet(DatabasePackage.DATABASE_ELEMENT__COMMENTS, COMMENTS_EDEFAULT);
+		return (String)eDynamicGet(DatabasePackage.DATABASE_ELEMENT__COMMENTS, DatabasePackage.Literals.DATABASE_ELEMENT__COMMENTS, true, true);
 	}
 
 	/**
@@ -131,10 +127,7 @@ public abstract class DatabaseElementImpl extends CDOObjectImpl implements Datab
 	 * @generated
 	 */
 	public void setComments(String newComments) {
-		String comments = newComments;
-		Object oldComments = eVirtualSet(DatabasePackage.DATABASE_ELEMENT__COMMENTS, comments);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.DATABASE_ELEMENT__COMMENTS, oldComments == EVIRTUAL_NO_VALUE ? COMMENTS_EDEFAULT : oldComments, comments));
+		eDynamicSet(DatabasePackage.DATABASE_ELEMENT__COMMENTS, DatabasePackage.Literals.DATABASE_ELEMENT__COMMENTS, newComments);
 	}
 
 	/**
@@ -194,77 +187,9 @@ public abstract class DatabaseElementImpl extends CDOObjectImpl implements Datab
 			case DatabasePackage.DATABASE_ELEMENT__ID:
 				return ID_EDEFAULT == null ? getID() != null : !ID_EDEFAULT.equals(getID());
 			case DatabasePackage.DATABASE_ELEMENT__COMMENTS:
-				String comments = (String)eVirtualGet(DatabasePackage.DATABASE_ELEMENT__COMMENTS, COMMENTS_EDEFAULT);
-				return COMMENTS_EDEFAULT == null ? comments != null : !COMMENTS_EDEFAULT.equals(comments);
+				return COMMENTS_EDEFAULT == null ? getComments() != null : !COMMENTS_EDEFAULT.equals(getComments());
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected Object[] eVirtualValues() {
-		return eVirtualValues;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected void eSetVirtualValues(Object[] newValues) {
-		eVirtualValues = newValues;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eVirtualIndexBits(int offset) {
-		switch (offset) {
-			case 0 :
-				return eVirtualIndexBits0;
-			default :
-				throw new IndexOutOfBoundsException();
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected void eSetVirtualIndexBits(int offset, int newIndexBits) {
-		switch (offset) {
-			case 0 :
-				eVirtualIndexBits0 = newIndexBits;
-				break;
-			default :
-				throw new IndexOutOfBoundsException();
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (comments: ");
-		result.append(eVirtualGet(DatabasePackage.DATABASE_ELEMENT__COMMENTS, COMMENTS_EDEFAULT));
-		result.append(')');
-		return result.toString();
 	}
 
 } //DatabaseElementImpl

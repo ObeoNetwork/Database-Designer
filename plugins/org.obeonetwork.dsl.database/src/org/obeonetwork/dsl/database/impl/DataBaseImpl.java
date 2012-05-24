@@ -89,11 +89,7 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<TypesLibrary> getUsedLibraries() {
-		EList<TypesLibrary> usedLibraries = (EList<TypesLibrary>)eVirtualGet(DatabasePackage.DATA_BASE__USED_LIBRARIES);
-		if (usedLibraries == null) {
-			eVirtualSet(DatabasePackage.DATA_BASE__USED_LIBRARIES, usedLibraries = new EObjectResolvingEList<TypesLibrary>(TypesLibrary.class, this, DatabasePackage.DATA_BASE__USED_LIBRARIES));
-		}
-		return usedLibraries;
+		return (EList<TypesLibrary>)eDynamicGet(DatabasePackage.DATA_BASE__USED_LIBRARIES, TypesLibraryPackage.Literals.TYPES_LIBRARY_USER__USED_LIBRARIES, true, true);
 	}
 
 	/**
@@ -102,7 +98,7 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * @generated
 	 */
 	public String getUrl() {
-		return (String)eVirtualGet(DatabasePackage.DATA_BASE__URL, URL_EDEFAULT);
+		return (String)eDynamicGet(DatabasePackage.DATA_BASE__URL, DatabasePackage.Literals.DATA_BASE__URL, true, true);
 	}
 
 	/**
@@ -111,10 +107,7 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 * @generated
 	 */
 	public void setUrl(String newUrl) {
-		String url = newUrl;
-		Object oldUrl = eVirtualSet(DatabasePackage.DATA_BASE__URL, url);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabasePackage.DATA_BASE__URL, oldUrl == EVIRTUAL_NO_VALUE ? URL_EDEFAULT : oldUrl, url));
+		eDynamicSet(DatabasePackage.DATA_BASE__URL, DatabasePackage.Literals.DATA_BASE__URL, newUrl);
 	}
 
 	/**
@@ -124,11 +117,7 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Schema> getSchemas() {
-		EList<Schema> schemas = (EList<Schema>)eVirtualGet(DatabasePackage.DATA_BASE__SCHEMAS);
-		if (schemas == null) {
-			eVirtualSet(DatabasePackage.DATA_BASE__SCHEMAS, schemas = new EObjectContainmentEList<Schema>(Schema.class, this, DatabasePackage.DATA_BASE__SCHEMAS));
-		}
-		return schemas;
+		return (EList<Schema>)eDynamicGet(DatabasePackage.DATA_BASE__SCHEMAS, DatabasePackage.Literals.DATA_BASE__SCHEMAS, true, true);
 	}
 
 	/**
@@ -138,11 +127,7 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<UserDefinedTypesLibrary> getDefines() {
-		EList<UserDefinedTypesLibrary> defines = (EList<UserDefinedTypesLibrary>)eVirtualGet(DatabasePackage.DATA_BASE__DEFINES);
-		if (defines == null) {
-			eVirtualSet(DatabasePackage.DATA_BASE__DEFINES, defines = new EObjectContainmentEList<UserDefinedTypesLibrary>(UserDefinedTypesLibrary.class, this, DatabasePackage.DATA_BASE__DEFINES));
-		}
-		return defines;
+		return (EList<UserDefinedTypesLibrary>)eDynamicGet(DatabasePackage.DATA_BASE__DEFINES, DatabasePackage.Literals.DATA_BASE__DEFINES, true, true);
 	}
 
 	/**
@@ -243,17 +228,13 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabasePackage.DATA_BASE__USED_LIBRARIES:
-				EList<TypesLibrary> usedLibraries = (EList<TypesLibrary>)eVirtualGet(DatabasePackage.DATA_BASE__USED_LIBRARIES);
-				return usedLibraries != null && !usedLibraries.isEmpty();
+				return !getUsedLibraries().isEmpty();
 			case DatabasePackage.DATA_BASE__URL:
-				String url = (String)eVirtualGet(DatabasePackage.DATA_BASE__URL, URL_EDEFAULT);
-				return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
+				return URL_EDEFAULT == null ? getUrl() != null : !URL_EDEFAULT.equals(getUrl());
 			case DatabasePackage.DATA_BASE__SCHEMAS:
-				EList<Schema> schemas = (EList<Schema>)eVirtualGet(DatabasePackage.DATA_BASE__SCHEMAS);
-				return schemas != null && !schemas.isEmpty();
+				return !getSchemas().isEmpty();
 			case DatabasePackage.DATA_BASE__DEFINES:
-				EList<UserDefinedTypesLibrary> defines = (EList<UserDefinedTypesLibrary>)eVirtualGet(DatabasePackage.DATA_BASE__DEFINES);
-				return defines != null && !defines.isEmpty();
+				return !getDefines().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -288,22 +269,6 @@ public class DataBaseImpl extends TableContainerImpl implements DataBase {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (url: ");
-		result.append(eVirtualGet(DatabasePackage.DATA_BASE__URL, URL_EDEFAULT));
-		result.append(')');
-		return result.toString();
 	}
 
 } //DataBaseImpl
