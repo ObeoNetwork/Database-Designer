@@ -199,7 +199,7 @@
                tab="Constraints">
          </propertySection>
          <propertySection
-               class="org.obeonetwork.dsl.database.parts.forms.TablePropertiesEditionPartForm"
+               class="org.obeonetwork.dsl.database.parts.forms.IndexesPropertiesEditionPartForm"
                id="org.obeonetwork.dsl.database.section.Table.Indexes"
                filter="org.obeonetwork.dsl.database.filters.TableTabPropertiesEditionSection"
                tab="Indexes">
